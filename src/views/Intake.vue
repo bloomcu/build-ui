@@ -1,5 +1,5 @@
 <template>
-  <h1>Home</h1>
+  <h1>Intake</h1>
 </template>
 
 <script lang="ts" setup>

@@ -1,26 +1,26 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from '@/views/Home.vue';
+import Intake from '@/views/Intake.vue';
+import Survey from '@/views/Survey.vue';
 import Flowchart from '@/views/Flowchart.vue';
-import About from '@/views/About.vue';
 
 const routes = [
   { 
-    path: '/', 
-    component: Home 
+    path: '/intake', 
+    component: Intake 
+  },
+  { 
+    path: '/survey', 
+    component: Survey 
   },
   { 
     path: '/flowchart', 
     component: Flowchart
   },
-  { 
-    path: '/about', 
-    component: About 
-  },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: routes,
 })
 

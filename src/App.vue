@@ -1,8 +1,10 @@
 <template>
-  <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+  <div class="container max-width-lg flex justify-center">
+    <div>
+      <router-link to="/intake">Intake</router-link> |
+      <router-link to="/survey">Survey</router-link> |
       <router-link to="/flowchart">Flowchart</router-link>
+    </div>
   </div>
   
   <router-view />

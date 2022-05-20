@@ -134,7 +134,9 @@ const toggleclass = () => elements.value.forEach((el) => (el.class = el.class ==
 
 /* this contains the default theme, these are optional styles */
 @import '@braks/vue-flow/dist/theme-default.css';
+</style>
 
+<style scoped>
 body {
   margin: 0;
   background-color: #fafafa;
