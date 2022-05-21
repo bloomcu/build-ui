@@ -8,10 +8,9 @@ export default defineConfig({
           '@': `${path.resolve(__dirname, 'src')}`,
       }
   },
+  
   plugins: [vue()],
-  /**
-   * Configure how css is handled by Vite
-   */
+  
   css: {
       preprocessorOptions: {
           scss: {

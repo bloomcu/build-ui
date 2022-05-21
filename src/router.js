@@ -1,14 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Intake from '@/views/Intake.vue';
 import Survey from '@/views/Survey.vue';
 import Flowchart from '@/views/Flowchart.vue';
 
+import assetsRoutes from '@/views/assets/routes/index.js'
+
 const routes = [
-  { 
-    path: '/intake', 
-    component: Intake 
-  },
+  ...assetsRoutes,
   { 
     path: '/survey', 
     component: Survey 
