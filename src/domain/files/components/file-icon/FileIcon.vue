@@ -1,7 +1,13 @@
 <template>
-  <svg viewBox="0 0 48 48" class="icon">
-    <component :is="dynamicIcon"/>
-  </svg>
+  <figure v-if="type === 'jpg' || type === 'jpeg' || type === 'png'" class="file-icon">
+    <img :src="source">
+  </figure>
+  
+  <figure v-else class="file-icon">
+    <svg viewBox="0 0 48 48" class="icon">
+      <component :is="dynamicIcon"/>
+    </svg>
+  </figure>
 </template>
 
 <script setup>
@@ -10,7 +16,8 @@ import { computed, defineAsyncComponent } from 'vue'
 import IconNone from '@/domain/files/components/file-icon/icons/icon-none.vue'
 
 const props = defineProps({
-    filetype: { type: String }
+    type: { type: String },
+    source: { type: String },
 })
 
 const filetypes = [
@@ -36,7 +43,6 @@ const filetypes = [
   'woff',
   'woff2',
   'xlsx',
-  'unknown',
 ];
 
 const icons = {
@@ -65,7 +71,7 @@ const icons = {
 }
 
 const dynamicIcon = computed(() => {
-  let type = props.filetype.toLowerCase()
+  let type = props.type.toLowerCase()
 
   if (filetypes.includes(type)) {
     return icons[type]
@@ -74,3 +80,30 @@ const dynamicIcon = computed(() => {
   }
 })
 </script>
+
+<style lang="scss">
+.file-icon {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  margin-right: var(--space-xs);
+  
+  
+  img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  svg {
+     width: 40px;
+     height: 40px;
+  }
+}
+</style>

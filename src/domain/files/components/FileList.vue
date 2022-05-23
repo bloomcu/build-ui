@@ -4,20 +4,12 @@
         <div class="dow-list__item padding-xs" @click="select(file)">
           <div class="flex flex-column gap-xs flex-row@xs justify-between@xs items-center@xs">
             <div class="flex items-center">
-              <!-- file thumbnail -->
-              <figure v-if="file.type === 'jpg' || file.type === 'jpeg' || file.type === 'png' " class="thumbnail">
-                <img :src="file.src" :alt="file.name">
-              </figure>
-              
-              <figure v-else class="thumbnail">
-                <FileIcon :filetype="file.type" />
-              </figure>
+              <FileIcon :type="file.type" :source="file.src"/>
               
 
               <!-- file info -->
               <div>
                 <h3 class="text-sm line-height-1 margin-bottom-xxxs">{{ file.name }}</h3>
-
                 <ul class="dow-list__metadata-list text-sm text-xs@md color-contrast-medium">
                   <li>Type: {{ file.type }}</li>
                   <li>Size: {{ formatFileSize(file.size) }}</li>
@@ -26,11 +18,7 @@
             </div>
 
             <!-- actions -->
-            <div class="padding-right-xxxxs@xs">
-              <!-- <button class="btn btn--primary">
-                Delete
-              </button> -->
-            </div>
+            <div class="padding-right-xxxxs@xs"></div>
           </div>
         </div>
       </li>
@@ -65,31 +53,6 @@ const formatFileSize = (bites) => {
 </script>
 
 <style lang="scss">
-.thumbnail {
-  height: 60px;
-  width: 60px;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  overflow: hidden;
-  flex-shrink: 0;
-  border-radius: var(--radius-md);
-  margin-right: var(--space-xs);
-  
-  
-  img {
-    display: block;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-  
-  svg {
-     width: 40px;
-     height: 40px;
-  }
-}
-
 .dow-list {
   display: grid;
   gap: var(--space-xs);
