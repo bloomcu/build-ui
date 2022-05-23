@@ -1,6 +1,6 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { fileApi as FileApi } from '@/domain/files/api/fileApi'
-import { s3Api as S3Api } from '@/domain/files/api/s3Api'
+// import { s3Api as S3Api } from '@/domain/files/api/s3Api'
 
 export const useFileStore = defineStore('fileStore', {
     state: () => ({
@@ -25,7 +25,8 @@ export const useFileStore = defineStore('fileStore', {
         store(fileObject) {      
             FileApi.store(fileObject)
                 .then(response => {
-                    this.files.unshift(response.data.data)
+                    // this.files.unshift(response.data.data)
+                    this.files.unshift(response.data)
                 }).catch(error => {
                     console.log('Error', error.response.data)
                 })
@@ -37,14 +38,13 @@ export const useFileStore = defineStore('fileStore', {
         
         destroy(id) {},
         
-        sign(file) {
-            return FileApi.sign(file)
-        },
-        
-        upload(url, file) {
-            return S3Api.upload(url, file)
-        }
-        
+        // sign(file) {
+        //     return FileApi.sign(file)
+        // },
+        // 
+        // upload(url, file) {
+        //     return S3Api.upload(url, file)
+        // }
     }
 })
 

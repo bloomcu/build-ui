@@ -15,10 +15,6 @@ const fileStore = useFileStore()
 
 const uploader = ref() // Input binding
 
-// TODO: Simulate a failed file sign, upload and store
-// Do we get proper error responses and does this cancel
-// the Filepond upload calling abort()?
-
 onMounted(() => {
     const pond = Filepond.create(uploader.value, {
         allowRevert: false,
@@ -26,46 +22,43 @@ onMounted(() => {
         // Process files
         server: {
             process: (fieldName, file, metadata, load, error, progress, abort) => {
-                console.log({
-                  fieldName, file, metadata, load, error, progress, abort
-                })
-                // Create empty form data object
-                let form = new FormData()
                 const cancelToken = axios.CancelToken.source()
                 
-                // Request a signed upload request object from our API
-                fileStore.sign({
-                    name: metadata.fileInfo.name,
-                    extension: metadata.fileInfo.extension
-                }).then((response) => {
-                    console.log('Signed', response)
-                    // Add AWS S3 signature attributes to file
-                    file.additionalData = response.data.additionalData
-
-                    // Add each signature attribute to our form data object
-                    for (var field in file.additionalData) {
-                        form.append(field, file.additionalData[field])
-                    }
-
-                    // Add the file to our form data object
-                    form.append('file', file)
-
-                    // Post the file to our AWS S3 bucket
-                    fileStore.upload(response.data.attributes.action, form, {
-                        
-                        // While uploading...
-                        onUploadProgress(e) {
-                            // inform uploader of the progress
-                            progress(e.lengthComputable, e.loaded, e.total)
-                        },
-
-                        // Set token for canceling upload
-                        cancelToken: cancelToken.token
-                    }).then(() => {
-                        // Mark complete in uploader by targeting file by it's key
-                        load(`${file.additionalData.key}`)
+                let form = new FormData()
+                form.append('file', file)
+                form.append('upload_preset', 'metrifi-unsigned');
+                form.append('cloud_name', 'metrifi');
+                
+                const config = {
+                  onUploadProgress: event => {
+                      // inform uploader of the progress
+                      progress(e.lengthComputable, e.loaded, e.total)
+                  },
+                  
+                  // Set token for canceling upload
+                  cancelToken: cancelToken.token
+                }
+                
+                // Upload to Cloudinary
+                axios.post('https://api.cloudinary.com/v1_1/metrifi/upload', form)
+                  .then(function (response) {
+                    console.log('Cloudinary response', response);
+                    
+                    // Save to Laravel db
+                    fileStore.store({
+                        type: response.data.format ? response.data.format : file.name.split('.').pop(),
+                        name: response.data.original_filename,
+                        size: response.data.bytes,
+                        public_id: response.data.public_id,
+                        src: response.data.secure_url,
                     })
-                })
+                    
+                    // Show file as loaded
+                    load(response.data.asset_id)
+                  })
+                  .catch(function (error) {
+                    console.log('Cloudinary error', error);
+                  });
 
                 return {
                     // Abort callback if canceling
@@ -74,20 +67,13 @@ onMounted(() => {
                         abort()
                     }
                 }
+                
             }
         },
 
         // File is initally added
         onaddfile: (error, file) => {
             if (error) { return }
-
-            // Set metadata on file to be used when we request
-            // the signed upload request object from our API
-            file.setMetadata('fileInfo', {
-                name: file.filenameWithoutExtension,
-                extension: file.fileExtension,
-                size: file.fileSize
-            })
         },
 
         // File is finished uploading
@@ -98,14 +84,6 @@ onMounted(() => {
             setTimeout(function () {
                 pond.removeFile(file)
             }.bind(this), 2000)
-            
-            // Upload the file
-            fileStore.store({
-                type: file.fileType,
-                name: file.filename,
-                src: file.serverId,
-                size: file.fileSize,
-            })
         }
     })
 })

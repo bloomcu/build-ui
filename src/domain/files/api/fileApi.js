@@ -21,15 +21,15 @@ const fileApi = {
         return HttpClient.post('/files', fileObject)
     },
     
-    /**
-     * Create a presigned URL
-     *
-     * This presigned URL is used to post a file to AWS S3
-     * @param Object request [name, extension, size]
-     */
-    sign(request) {
-        return HttpClient.post('/file/sign', request)
-    },
+    // /**
+    //  * Create a presigned URL
+    //  *
+    //  * This presigned URL is used to post a file to AWS S3
+    //  * @param Object request [name, extension, size]
+    //  */
+    // sign(request) {
+    //     return HttpClient.post('/file/sign', request)
+    // },
 }
 
 export { fileApi }
