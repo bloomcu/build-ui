@@ -1,8 +1,15 @@
 <template>
+  <!-- Raster -->
   <figure v-if="type === 'jpg' || type === 'jpeg' || type === 'png'" class="file-icon">
     <img :src="source">
   </figure>
   
+  <!-- Vector -->
+  <figure v-else-if="type === 'svg'" class="file-icon">
+    <img :src="source">
+  </figure>
+  
+  <!-- Other -->
   <figure v-else class="file-icon">
     <svg viewBox="0 0 48 48" class="icon">
       <component :is="dynamicIcon"/>

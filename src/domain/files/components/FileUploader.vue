@@ -11,9 +11,17 @@ import * as Filepond from 'filepond'
 import { ref, onMounted } from 'vue'
 import { useFileStore } from '@/domain/files/store/useFileStore'
 
-const fileStore = useFileStore()
+const props = defineProps({
+    group: { 
+      // Optionally assign files to a group
+      type: String, 
+      optional: true 
+    }
+})
 
 const uploader = ref() // Input binding
+
+const fileStore = useFileStore()
 
 onMounted(() => {
     const pond = Filepond.create(uploader.value, {
@@ -46,6 +54,7 @@ onMounted(() => {
                     
                     // Save to Laravel db
                     fileStore.store({
+                        group: props.group ? props.group : 'general',
                         type: response.data.format ? response.data.format : file.name.split('.').pop(),
                         name: response.data.original_filename,
                         size: response.data.bytes,

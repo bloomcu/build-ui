@@ -7,8 +7,8 @@ const fileApi = {
      * @param Object params [Key/value params to query by]
      * @return promise
      */
-    index() {
-        return HttpClient.get(`/files`)
+    index(params) {
+        return HttpClient.get(`/files`, { params: params })
     },
     
     /**

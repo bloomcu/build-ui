@@ -1,6 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { fileApi as FileApi } from '@/domain/files/api/fileApi'
-// import { s3Api as S3Api } from '@/domain/files/api/s3Api'
 
 export const useFileStore = defineStore('fileStore', {
     state: () => ({
@@ -9,17 +8,24 @@ export const useFileStore = defineStore('fileStore', {
         isLoading: false,
     }),
     
+    getters: {
+      filterByGroup: (state) => {
+        return (group) => state.files.filter((file) => {
+          return file.group == group
+        })
+      }
+    },
+    
     actions: {
-      
-        index() {
-            FileApi.index()
-                .then(response => {
-                    console.log('files', response)
-                    // this.files = response.data.data
-                    this.files = response.data
-                }).catch(error => {
-                    console.log('Error', error.response.data)
-                })
+        index(params) {
+          this.files = []
+          
+          FileApi.index(params)
+            .then(response => {
+              this.files = response.data
+            }).catch(error => {
+              console.log('Error', error.response.data)
+            })
         },
         
         store(fileObject) {      
@@ -37,14 +43,6 @@ export const useFileStore = defineStore('fileStore', {
         update() {},
         
         destroy(id) {},
-        
-        // sign(file) {
-        //     return FileApi.sign(file)
-        // },
-        // 
-        // upload(url, file) {
-        //     return S3Api.upload(url, file)
-        // }
     }
 })
 
