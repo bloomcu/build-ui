@@ -18,6 +18,19 @@
   </div> -->
   
   <div class="container max-width-lg padding-y-sm">
+    <div v-for="group in groups" :key="group.name" class="grid gap-sm margin-bottom-xl padding-y-sm border-top border-contrast-lower">
+      <div class="col-4 text-component padding-right-md">
+        <h4>{{ group.title }}</h4>
+        <p class="text-sm" v-html="group.description"></p>
+      </div>
+      <div class="col-8 padding-sm" style="background-color: #f1f0ef; border-radius: 20px;">
+        <FileUploader :group="group.name"/>
+        <FileList :files="fileStore.filterByGroup(group.name)"/>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <div class="container max-width-lg padding-y-sm">
     <div v-for="group in groups" :key="group.name" class="grid gap-sm margin-bottom-xl">
       <div class="col-12 text-component padding-y-sm border-top border-contrast-lower">
         <h4>{{ group.title }}</h4>
@@ -30,7 +43,9 @@
         <FileList :files="fileStore.filterByGroup(group.name)"/>
       </div>
     </div>
-  </div>
+  </div> -->
+  
+  <!-- <FileModal/> -->
 </template>
 
 <script setup>
@@ -39,6 +54,7 @@ import { useFileStore } from '@/domain/files/store/useFileStore'
 
 import FileUploader from '@/domain/files/components/FileUploader.vue'
 import FileList from '@/domain/files/components/FileList.vue'
+import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
 
 const fileStore = useFileStore()
 
@@ -57,7 +73,7 @@ const groups = [
   {
     name: 'color',
     title: 'Color Palette',
-    description: 'Upload an image or document showing your color palette.',
+    description: 'Upload an image or document containing your color palette.',
   },
   {
     name: 'fonts',
