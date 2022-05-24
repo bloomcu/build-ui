@@ -1,7 +1,7 @@
 <template>
-  <div class="container max-width-lg padding-y-sm">
+  <div class="container max-width-lg text-component padding-y-sm">
     <h2>Assets Intake</h2>
-    <!-- <p>The purpose of this guide is to gather information and assets about your brand needed to begin the design and copywriting phases of this project.</p> -->
+    <p>AirBnb</p>
   </div>
 
   <!-- <div class="container max-width-lg padding-y-sm">
@@ -76,19 +76,19 @@ const groups = [
   //   description: 'Upload an image or document containing your color palette.',
   // },
   {
-    name: 'fonts',
+    name: 'font',
     title: 'Fonts',
     description: 'Upload your fonts for desktop usage and web usage.<br><br>Desktop formats: TTF, TTC, OTF.<br><br>Web formats: TTF, OTF, WOFF, WOFF2, EOT.',
     formats: ['TTF', 'TTC', 'OTF', 'WOFF', 'WOFF2', 'EOT'],
   },
   {
-    name: 'photography',
+    name: 'photo',
     title: 'Photography',
     description: 'Upload your photography.',
     formats: ['JPG', 'JPEG', 'PNG'],
   },
   {
-    name: 'other-media',
+    name: 'other',
     title: 'Other Media',
     description: 'Upload other brand media such as patterns, icons or other graphics.',
   },
