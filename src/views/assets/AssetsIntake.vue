@@ -1,6 +1,6 @@
 <template>
   <div class="container max-width-lg padding-y-sm">
-    <h2>Intake</h2>
+    <h2>Assets Intake</h2>
     <!-- <p>The purpose of this guide is to gather information and assets about your brand needed to begin the design and copywriting phases of this project.</p> -->
   </div>
 
@@ -70,15 +70,15 @@ const groups = [
     description: 'Upload your logo(s) here.',
     formats: ['SVG', 'EPS'],
   },
-  {
-    name: 'color',
-    title: 'Color Palette',
-    description: 'Upload an image or document containing your color palette.',
-  },
+  // {
+  //   name: 'color',
+  //   title: 'Color Palette',
+  //   description: 'Upload an image or document containing your color palette.',
+  // },
   {
     name: 'fonts',
     title: 'Fonts',
-    description: 'Upload your fonts for desktop usage and web usage.<br>Desktop formats: TTF, TTC, OTF.<br>Web formats: TTF, OTF, WOFF, WOFF2, EOT.',
+    description: 'Upload your fonts for desktop usage and web usage.<br><br>Desktop formats: TTF, TTC, OTF.<br><br>Web formats: TTF, OTF, WOFF, WOFF2, EOT.',
     formats: ['TTF', 'TTC', 'OTF', 'WOFF', 'WOFF2', 'EOT'],
   },
   {

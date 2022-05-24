@@ -19,7 +19,6 @@ export const useFileStore = defineStore('fileStore', {
     actions: {
         index(params) {
           this.files = []
-          
           FileApi.index(params)
             .then(response => {
               this.files = response.data
@@ -28,7 +27,7 @@ export const useFileStore = defineStore('fileStore', {
             })
         },
         
-        store(fileObject) {      
+        store(fileObject) {
             FileApi.store(fileObject)
                 .then(response => {
                     // this.files.unshift(response.data.data)

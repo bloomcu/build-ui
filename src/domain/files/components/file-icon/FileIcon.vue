@@ -103,7 +103,7 @@ const dynamicIcon = computed(() => {
   
   img {
     display: block;
-    object-fit: cover;
+    object-fit: fit;
     width: 100%;
     height: 100%;
   }
