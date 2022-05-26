@@ -11,13 +11,13 @@
         <div class="flex-grow padding-x-lg padding-bottom-xxl">
           <FileUploader folder="bloomcu" :group="groups[step].name"/>
           <FileList :files="fileStore.filterByGroup(groups[step].name)"/>
-          <!-- <ChoiceButton/> -->
+          <!-- <AppChoiceButton/> -->
         </div>
       </div>
       <!-- Controls -->
       <div class="margin-top-auto position-fixed bottom-0 left-50% right-0 bg">
         <div>
-          <ProgressBar :progress="progress"/>
+          <AppProgressBar :progress="progress"/>
         </div>
         <div class="flex justify-between padding-x-lg padding-y-md">
           <router-link v-if="step == 0" to="/assets" type="button" name="button" class="btn">Close</router-link>
@@ -39,8 +39,8 @@ import { useFileStore } from '@/domain/files/store/useFileStore'
 import FileUploader from '@/domain/files/components/FileUploader.vue'
 import FileList from '@/domain/files/components/FileList.vue'
 import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
-import ChoiceButton from '@/app/components/ChoiceButton.vue'
-import ProgressBar from '@/app/components/ProgressBar.vue'
+import AppChoiceButton from '@/app/components/AppChoiceButton.vue'
+import AppProgressBar from '@/app/components/AppProgressBar.vue'
 
 const fileStore = useFileStore()
 

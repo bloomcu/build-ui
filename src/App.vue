@@ -6,11 +6,14 @@
       <router-link to="/flowchart">Flowchart</router-link>
     </div>
   </div> -->
+  <AppNavigation/>
   
   <router-view />
 </template>
 
-<script lang="ts" setup></script>
+<script setup>
+import AppNavigation from '@/app/components/AppNavigation.vue'
+</script>
 
 <style lang="scss">
 @import '@/app/styles/styles.scss';
