@@ -1,23 +1,25 @@
 <template>  
-  <div class="grid">
+  <div class="flex margin-auto height-100vh">
     <!-- Left -->
-    <div class="col-6 text-component color-white bg-primary padding-x-lg padding-y-md">
+    <div class="text-component color-white bg-primary padding-x-lg padding-y-md" style="flex: 1 0 50%; position: sticky; top: 0; left: 0;">
       <h2 class="color-white">{{ groups[step].title }}</h2>
       <p class="text-sm" v-html="groups[step].description"></p>
     </div>
     <!-- Right -->
-    <div class="col-6 flex flex-column height-100vh padding-x-lg padding-y-md">
-      <div class="flex-grow">
-        <FileUploader :group="groups[step].name"/>
-        <FileList :files="fileStore.filterByGroup(groups[step].name)"/>
-        <!-- <ChoiceButton/> -->
+    <div class="c_ol-6 flex flex-column" style="flex: 1 0 50%; position: relative; overflow-y: scroll;">
+      <div class="position-absolute inset-0 padding-y-md">
+        <div class="flex-grow padding-x-lg padding-bottom-xxl">
+          <FileUploader folder="bloomcu" :group="groups[step].name"/>
+          <FileList :files="fileStore.filterByGroup(groups[step].name)"/>
+          <!-- <ChoiceButton/> -->
+        </div>
       </div>
       <!-- Controls -->
-      <div class="margin-top-auto">
-        <div class="padding-y-sm">
+      <div class="margin-top-auto position-fixed bottom-0 left-50% right-0 bg">
+        <div>
           <ProgressBar :progress="progress"/>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between padding-x-lg padding-y-md">
           <router-link v-if="step == 0" to="/assets" type="button" name="button" class="btn">Close</router-link>
           <button v-if="step > 0" @click="step = step - 1" type="button" name="button" class="btn">Back</button>
           <button v-if="step != 4" @click="step = step + 1" type="button" name="button" class="btn btn--primary margin-left-auto">Next Step</button>

@@ -24,7 +24,7 @@
         <p class="text-sm" v-html="group.description"></p>
       </div>
       <div class="col-8 padding-sm" style="background-color: #f1f0ef; border-radius: 20px;">
-        <FileUploader :group="group.name"/>
+        <FileUploader folder="bloomcu" :group="group.name"/>
         <FileList :files="fileStore.filterByGroup(group.name)"/>
       </div>
     </div>

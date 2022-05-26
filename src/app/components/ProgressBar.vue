@@ -22,7 +22,6 @@ const props = defineProps({
   position: relative;
   width: 100%;
   height: 5px;
-  border-radius: 50em;
   background-color: alpha(var(--color-contrast-higher), 0.1);
   flex-grow: 1;
   overflow: hidden;

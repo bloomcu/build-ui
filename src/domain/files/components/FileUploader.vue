@@ -12,11 +12,8 @@ import { ref, onMounted } from 'vue'
 import { useFileStore } from '@/domain/files/store/useFileStore'
 
 const props = defineProps({
-    group: { 
-      // Optionally assign files to a group
-      type: String, 
-      optional: true 
-    }
+  folder: { type: String },
+  group: { type: String }
 })
 
 const uploader = ref() // Input binding
@@ -31,44 +28,21 @@ onMounted(() => {
         server: {
             process: (fieldName, file, metadata, load, error, progress, abort) => {
                 const cancelToken = axios.CancelToken.source()
+                console.log(props.folder)
+                const folder = props.folder
+                const group = props.group
                 
-                let form = new FormData()
-                form.append('file', file)
-                form.append('upload_preset', 'metrifi-unsigned');
-                form.append('cloud_name', 'metrifi');
-                
-                const config = {
+                const uploadConfig = {
                   onUploadProgress: event => {
-                      // inform uploader of the progress
                       progress(e.lengthComputable, e.loaded, e.total)
                   },
-                  
-                  // Set token for canceling upload
                   cancelToken: cancelToken.token
                 }
                 
-                // Upload to Cloudinary
-                axios.post('https://api.cloudinary.com/v1_1/metrifi/upload', form)
-                  .then(function (response) {
-                    console.log('Cloudinary response', response);
-                    
-                    // Save to Laravel db
-                    fileStore.store({
-                        group: props.group ? props.group : 'general',
-                        type: response.data.format ? response.data.format : file.name.split('.').pop(),
-                        name: response.data.original_filename,
-                        size: response.data.bytes,
-                        public_id: response.data.public_id,
-                        src: response.data.secure_url,
-                    })
-                    
-                    // Show file as loaded
-                    load(response.data.asset_id)
-                  })
-                  .catch(function (error) {
-                    console.log('Cloudinary error', error);
-                  });
-
+                fileStore.store(file, folder, group, uploadConfig).then((response) => {
+                  load(response.data.asset_id)
+                })
+                
                 return {
                     // Abort callback if canceling
                     abort: () => {

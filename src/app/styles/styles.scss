@@ -1,2 +1,27 @@
 @import 'node_modules/codyhouse-framework/main/assets/css/base';
 @import 'custom-style';
+
+/* --------------------------------
+
+Title: Utility Classes
+Descr: App-wide utility classes
+
+-------------------------------- */
+.app-disabled {
+  pointer-events: none;
+  opacity: .5;
+}
+
+.app-lock-scroll {
+    overflow: hidden;
+}
+
+.app-scrollable {
+    overflow: auto;
+    -ms-overflow-style: none; // IE and Edge
+    scrollbar-width: none; // Firefox
+
+    &::-webkit-scrollbar {
+        display: none; // Chrome, Safari and Opera
+    }
+}
