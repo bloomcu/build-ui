@@ -7,8 +7,8 @@ const fileApi = {
      * @param Object params [Key/value params to query by]
      * @return promise
      */
-    index(organization, params) {
-        return HttpClient.get(`/${organization}/files`, { params: params })
+    index(params) {
+        return HttpClient.get(`/bloomcu/files`, { params: params })
     },
     
     /**
@@ -18,7 +18,7 @@ const fileApi = {
      * @return promise
      */
     store(file) {
-        return HttpClient.post('/files', file)
+        return HttpClient.post('/bloomcu/files', file)
     }
 }
 

@@ -39,7 +39,7 @@ const route = useRoute()
         </ul>
     
         <div class="f-header__search margin-right-md">
-          <AppNavigationSearch />
+          <!-- <AppNavigationSearch /> -->
         </div>
         
         <ul class="f-header__list">

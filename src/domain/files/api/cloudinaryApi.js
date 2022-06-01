@@ -9,7 +9,6 @@ const cloudinaryApi = {
      * @return promise
      */
     async upload(file, folder) {
-      console.log(folder)
       let form = new FormData()
       form.append('file', file)
       form.append('folder', folder)

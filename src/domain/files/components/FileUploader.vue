@@ -28,7 +28,6 @@ onMounted(() => {
         server: {
             process: (fieldName, file, metadata, load, error, progress, abort) => {
                 const cancelToken = axios.CancelToken.source()
-                console.log(props.folder)
                 const folder = props.folder
                 const group = props.group
                 
