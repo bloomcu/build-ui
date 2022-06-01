@@ -7,18 +7,18 @@ const fileApi = {
      * @param Object params [Key/value params to query by]
      * @return promise
      */
-    index(params) {
-        return HttpClient.get(`/files`, { params: params })
+    index(organization, params) {
+        return HttpClient.get(`/${organization}/files`, { params: params })
     },
     
     /**
      * Store a file
      *
-     * @param Object post [Properties to create file from]
+     * @param Object file [Object to create file from]
      * @return promise
      */
-    store(fileObject) {
-        return HttpClient.post('/files', fileObject)
+    store(file) {
+        return HttpClient.post('/files', file)
     }
 }
 

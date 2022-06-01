@@ -10,19 +10,6 @@
     </div>
 </template>
 
-<script setup>
-const props = defineProps({
-    files: { type: Array },
-    loading: { type: Boolean, default: false },
-})
-
-const select = (file) => {
-    emit('selected', file)
-}
-
-const emit = defineEmits(['selected'])
-</script>
-
 <style lang="scss">
 .file-gallery {
     &__item {

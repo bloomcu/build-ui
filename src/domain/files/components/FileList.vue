@@ -24,33 +24,6 @@
     </ul>
 </template>
 
-<script setup>
-import FileIcon from '@/domain/files/components/file-icon/FileIcon.vue'
-
-const props = defineProps({
-    files: { type: Array },
-    loading: { type: Boolean, default: false },
-})
-
-const select = (file) => {
-    emit('selected', file)
-}
-
-const emit = defineEmits(['selected'])
-
-const formatFileSize = (bites) => {
-  const units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  
-  let l = 0, n = parseInt(bites, 10) || 0;
-
-  while(n >= 1024 && ++l){
-      n = n/1024;
-  }
-  
-  return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
-}
-</script>
-
 <style lang="scss">
 .dow-list {
   display: grid;
@@ -59,7 +32,7 @@ const formatFileSize = (bites) => {
 
 .dow-list__item {
   border-radius: var(--radius-md);
-  background: var(--color-bg-light);
+  background: var(--color-bg);
   box-shadow: var(--inner-glow), var(--shadow-sm);
 }
 

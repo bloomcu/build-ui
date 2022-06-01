@@ -1,44 +1,3 @@
-Flowchart<template>
-  <div class="funnel-wrapper">
-    <div class="funnel" @drop="onDrop">
-      <VueFlow v-model="elements" :node-types="nodeTypes" @dragover="onDragOver" class="vue-flow">
-      <!-- <VueFlow v-model="elements" @dragover="onDragOver" class="vue-flow">
-        <template #node-custom="props">
-          <FlowchartNode v-bind="props" />
-        </template> -->
-        <!-- <Background /> -->
-        <MiniMap />
-        <Controls />
-        <!-- <div style="position: absolute; right: 10px; top: 10px; z-index: 4">
-          <button style="margin-right: 5px" @click="resetTransform">reset transform</button>
-          <button style="margin-right: 5px" @click="toggleclass">toggle class</button>
-          <button @click="logToObject">toObject</button>
-        </div> -->
-      </VueFlow>
-      
-      <!-- <FlowchartSidebar/> -->
-      <aside> 
-        <div class="vue-flow__node-input" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'input')">Input Node</div>
-        <div class="vue-flow__node-default" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'default')">Default Node</div>
-        <div class="vue-flow__node-output" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'output')">Output Node</div>
-        
-        <div class="updatenode__controls">
-          <label>label:</label>
-          <input v-model="opts.label" @input="updateNode" />
-
-          <label class="updatenode__bglabel">background:</label>
-          <input v-model="opts.bg" type="color" @input="updateNode" />
-
-          <div class="updatenode__checkboxwrapper">
-            <label>hidden:</label>
-            <input v-model="opts.hidden" type="checkbox" @change="updateNode" />
-          </div>
-        </div>
-      </aside>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { ref, reactive, markRaw } from 'vue'
 import { VueFlow, MiniMap, Controls, Background, Node, isNode, useVueFlow } from '@braks/vue-flow'
@@ -127,6 +86,47 @@ const logToObject = () => console.log(instance.value?.toObject())
 const resetTransform = () => instance.value?.setTransform({ x: 0, y: 0, zoom: 1 })
 const toggleclass = () => elements.value.forEach((el) => (el.class = el.class === 'light' ? 'dark' : 'light'))
 </script>
+
+<template>
+  <div class="funnel-wrapper">
+    <div class="funnel" @drop="onDrop">
+      <VueFlow v-model="elements" :node-types="nodeTypes" @dragover="onDragOver" class="vue-flow">
+      <!-- <VueFlow v-model="elements" @dragover="onDragOver" class="vue-flow">
+        <template #node-custom="props">
+          <FlowchartNode v-bind="props" />
+        </template> -->
+        <!-- <Background /> -->
+        <MiniMap />
+        <Controls />
+        <!-- <div style="position: absolute; right: 10px; top: 10px; z-index: 4">
+          <button style="margin-right: 5px" @click="resetTransform">reset transform</button>
+          <button style="margin-right: 5px" @click="toggleclass">toggle class</button>
+          <button @click="logToObject">toObject</button>
+        </div> -->
+      </VueFlow>
+      
+      <!-- <FlowchartSidebar/> -->
+      <aside> 
+        <div class="vue-flow__node-input" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'input')">Input Node</div>
+        <div class="vue-flow__node-default" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'default')">Default Node</div>
+        <div class="vue-flow__node-output" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'output')">Output Node</div>
+        
+        <div class="updatenode__controls">
+          <label>label:</label>
+          <input v-model="opts.label" @input="updateNode" />
+
+          <label class="updatenode__bglabel">background:</label>
+          <input v-model="opts.bg" type="color" @input="updateNode" />
+
+          <div class="updatenode__checkboxwrapper">
+            <label>hidden:</label>
+            <input v-model="opts.hidden" type="checkbox" @change="updateNode" />
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</template>
 
 <style>
 /* these are necessary styles for vue flow */

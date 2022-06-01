@@ -1,48 +1,3 @@
-<template>
-  <div class="container max-width-lg text-center padding-y-sm">
-    <h3>Question: {{ question.title }}</h3>
-    <p>Instructions: {{ question.instructions }}</p>
-    {{ answers }}
-  </div>
-  
-  <div class="container">
-    <!-- <div class="grid-auto-md gap-sm"> -->
-    <div class="grid gap-sm">
-      
-      <div v-for="option in options" :key="option.id" class="col-6">
-        <div @click="handleVote(option)" class="card card--is-link">
-          {{ option.id }}
-          <div href="card__link">
-            <figure class="card__img">
-              <img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder">
-            </figure>
-            
-            <!-- <div class="card__content">
-              <div class="text-component">
-                <h4>Title of the Card</h4>
-                <p class="text-sm color-contrast-medium">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, suscipit.</p>
-              </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      
-    </div>
-    <!-- <ul class="grid-auto-md gap-sm">
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-      <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
-    </ul> -->
-  </div>
-</template>
-
 <script setup>
 import { ref, reactive } from 'vue'
 
@@ -97,6 +52,53 @@ const handleVote = (option) => {
   })
 }
 </script>
+
+<template>
+  <div>
+    <div class="container max-width-lg text-center padding-y-sm">
+      <h3>Question: {{ question.title }}</h3>
+      <p>Instructions: {{ question.instructions }}</p>
+      {{ answers }}
+    </div>
+    
+    <div class="container">
+      <!-- <div class="grid-auto-md gap-sm"> -->
+      <div class="grid gap-sm">
+        
+        <div v-for="option in options" :key="option.id" class="col-6">
+          <div @click="handleVote(option)" class="card card--is-link">
+            {{ option.id }}
+            <div href="card__link">
+              <figure class="card__img">
+                <img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder">
+              </figure>
+              
+              <!-- <div class="card__content">
+                <div class="text-component">
+                  <h4>Title of the Card</h4>
+                  <p class="text-sm color-contrast-medium">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, suscipit.</p>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- <ul class="grid-auto-md gap-sm">
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+        <li><img class="block width-100%" src="https://codyhouse.co/app/assets/img/auto-sized-grid-img-1.svg" alt="placeholder"></li>
+      </ul> -->
+    </div>
+  </div>
+</template>
 
 <style lang="scss">
 /* -------------------------------- 

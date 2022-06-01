@@ -11,7 +11,7 @@
 
 <style lang="scss">
 :root {
-  --search-input-btn-width: 2.2em;
+  --search-input-btn-width: 3em;
   --search-input-icon-size: 1em;
   --search-input-shortcut-margin: 0.325em; /* gap between the shortcut badge and the input edges */
 }
@@ -23,6 +23,9 @@
 .search-input__input {
   width: 100%;
   height: 100%;
+  border-radius: 50em !important;
+  padding-left: var(--space-sm) !important;
+  border: none !important;
   
   &::-webkit-search-decoration,
   &::-webkit-search-cancel-button,

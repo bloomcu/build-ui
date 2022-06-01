@@ -18,9 +18,9 @@ export const useFileStore = defineStore('fileStore', {
     },
     
     actions: {
-        index(params) {
+        index(organization, params) {
           this.files = []
-          FileApi.index(params)
+          FileApi.index(organization, params)
             .then(response => {
               this.files = response.data
             }).catch(error => {
@@ -33,7 +33,6 @@ export const useFileStore = defineStore('fileStore', {
         },
         
         async store(file, folder, group) {
-          console.log(folder)
           let upload = await CloudinaryApi.upload(file, folder)
           
           FileApi.store({
