@@ -25,3 +25,20 @@ Descr: App-wide utility classes
         display: none; // Chrome, Safari and Opera
     }
 }
+
+.app-action {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 50em;
+    cursor: pointer;
+
+    &:hover {
+        background-color: alpha(var(--color-contrast-higher), 0.08);
+    }
+
+    .icon {
+        width: 18px;
+        height: 18px;
+    }
+}

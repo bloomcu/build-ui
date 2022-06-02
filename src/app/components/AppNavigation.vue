@@ -28,6 +28,9 @@ const route = useRoute()
         
         <ul class="f-header__list margin-right-md">
           <li class="f-header__item">
+            <router-link :to="{ name: 'assets', params: { organization: route.params.organization }}" class="f-header__link">Pages</router-link>
+          </li>
+          <li class="f-header__item">
             <router-link :to="{ name: 'assets', params: { organization: route.params.organization }}" class="f-header__link">Assets</router-link>
           </li>
           <li class="f-header__item">

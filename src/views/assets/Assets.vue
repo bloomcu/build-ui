@@ -13,7 +13,7 @@
         </div>
         <div class="col-8 bg-dark radius-md padding-sm">
           <FileUploader folder="bloomcu" :group="group.name"/>
-          <FileList :files="fileStore.filterByGroup(group.name)"/>
+          <FileList @selected="onSelect" :files="fileStore.filterByGroup(group.name)"/>
         </div>
       </div>
     </div>
@@ -37,6 +37,10 @@ const fileStore = useFileStore()
 onMounted(() => {
     fileStore.index(route.params.organization)
 })
+
+function onSelect(file) {
+  fileStore.destroy(file.public_id, file.id)
+}
 
 const groups = [
   {

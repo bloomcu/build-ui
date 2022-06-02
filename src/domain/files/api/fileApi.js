@@ -19,7 +19,17 @@ const fileApi = {
      */
     store(file) {
         return HttpClient.post('/bloomcu/files', file)
-    }
+    },
+    
+    /**
+     * Destroy a file
+     *
+     * @param Integer id [Id of the file you want to destroy]
+     * @return promise
+     */
+    destroy(id) {
+        return HttpClient.delete(`/bloomcu/files/${id}`)
+    },
 }
 
 export { fileApi }
