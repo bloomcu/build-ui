@@ -1,9 +1,10 @@
 <template>  
   <div class="flex margin-auto height-100vh">
     <!-- Left -->
-    <div class="text-component color-white bg-primary padding-x-lg padding-y-md" style="flex: 1 0 50%; position: sticky; top: 0; left: 0;">
-      <h2 class="color-white">{{ groups[step].title }}</h2>
-      <p class="text-sm" v-html="groups[step].description"></p>
+    <div class="color-white bg-primary padding-x-lg padding-y-md" style="flex: 1 0 50%; position: sticky; top: 0; left: 0;">
+      <h2 class="color-white margin-bottom-sm">{{ groups[step].title }}</h2>
+      <p class="text-sm margin-bottom-sm" v-html="groups[step].description"></p>
+      <AppTodoList :todos="groups[step].todos" />
     </div>
     <!-- Right -->
     <div class="c_ol-6 flex flex-column" style="flex: 1 0 50%; position: relative; overflow-y: scroll;">
@@ -35,6 +36,7 @@ import { useFileStore } from '@/domain/files/store/useFileStore'
 
 import FileUploader from '@/domain/files/components/FileUploader.vue'
 import FileList from '@/domain/files/components/FileList.vue'
+import AppTodoList from '@/app/components/AppTodoList.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
 
 const fileStore = useFileStore()
@@ -58,12 +60,23 @@ const groups = [
     name: 'brand-guide',
     title: 'Brand Guide',
     description: 'Upload your brand usage guide document(s) here.',
+    todos: [
+      {
+        title: 'Format: PDF',
+        formats: ['pdf'],
+      }
+    ]
   },
   {
     name: 'logo',
     title: 'Logo',
     description: 'Upload your logo(s) here.',
-    formats: ['SVG', 'EPS'],
+    todos: [
+      {
+        title: 'Format: SVG and EPS',
+        formats: ['svg', 'eps'],
+      }
+    ]
   },
   // {
   //   name: 'color',
@@ -72,20 +85,48 @@ const groups = [
   // },
   {
     name: 'font',
-    title: 'Fonts',
-    description: 'Upload your fonts for desktop usage and web usage.<br><br>Desktop formats: TTF, TTC, OTF.<br>Web formats: TTF, OTF, WOFF, WOFF2, EOT.',
-    formats: ['TTF', 'TTC', 'OTF', 'WOFF', 'WOFF2', 'EOT'],
+    title: 'Desktop Fonts',
+    description: 'Upload your fonts for desktop usage.',
+    todos: [
+      {
+        title: 'Format: TTF, TTC or OTF',
+        formats: ['ttf', 'ttc', 'otf'],
+      }
+    ]
+  },
+  {
+    name: 'font',
+    title: 'Web Fonts',
+    description: 'Upload your fonts for web usage.',
+    todos: [
+      {
+        title: 'Format: TTF, OTF, WOFF, WOFF2 or EOT',
+        formats: ['ttf', 'otf', 'woff', 'woff2', 'eot'],
+      }
+    ]
   },
   {
     name: 'photo',
     title: 'Photography',
     description: 'Upload your photography.',
-    formats: ['JPG', 'JPEG', 'PNG'],
+    todos: [
+      {
+        title: 'Format: JPG, JPEG or PNG',
+        formats: ['jpg', 'jpeg', 'png'],
+      }
+    ]
   },
   {
     name: 'other',
     title: 'Other Media',
     description: 'Upload other brand media such as patterns, icons or other graphics.',
+    todos: []
   },
 ]
 </script>
+
+<style lang="scss" scoped>
+.todo__checkbox {
+  background-color: #fff !important;
+}
+</style>

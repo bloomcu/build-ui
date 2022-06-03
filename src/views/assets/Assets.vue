@@ -7,9 +7,10 @@
     
     <div class="container max-width-lg padding-y-sm">
       <div v-for="group in groups" :key="group.name" class="grid gap-sm margin-bottom-xl padding-y-sm border-top border-contrast-lower">
-        <div class="col-4 text-component padding-right-md">
-          <h4>{{ group.title }}</h4>
-          <p class="text-sm" v-html="group.description"></p>
+        <div class="col-4 padding-right-md">
+          <h4 class="margin-bottom-sm">{{ group.title }}</h4>
+          <p class="text-sm margin-bottom-sm" v-html="group.description"></p>
+          <AppTodoList :todos="group.todos" />
         </div>
         <div class="col-8 bg-dark radius-md padding-sm">
           <FileUploader folder="bloomcu" :group="group.name"/>
@@ -30,6 +31,7 @@ import { useFileStore } from '@/domain/files/store/useFileStore'
 import FileUploader from '@/domain/files/components/FileUploader.vue'
 import FileList from '@/domain/files/components/FileList.vue'
 import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
+import AppTodoList from '@/app/components/AppTodoList.vue'
 
 const route = useRoute()
 const fileStore = useFileStore()
@@ -57,12 +59,23 @@ const groups = [
     name: 'brand-guide',
     title: 'Brand Guide',
     description: 'Upload your brand usage guide document(s) here.',
+    todos: [
+      {
+        title: 'Format: PDF',
+        formats: ['pdf'],
+      }
+    ]
   },
   {
     name: 'logo',
     title: 'Logo',
     description: 'Upload your logo(s) here.',
-    formats: ['SVG', 'EPS'],
+    todos: [
+      {
+        title: 'Format: SVG and EPS',
+        formats: ['svg', 'eps'],
+      }
+    ]
   },
   // {
   //   name: 'color',
@@ -71,20 +84,42 @@ const groups = [
   // },
   {
     name: 'font',
-    title: 'Fonts',
-    description: 'Upload your fonts for desktop usage and web usage.<br><br>Desktop formats: TTF, TTC, OTF.<br>Web formats: TTF, OTF, WOFF, WOFF2, EOT.',
-    formats: ['TTF', 'TTC', 'OTF', 'WOFF', 'WOFF2', 'EOT'],
+    title: 'Desktop Fonts',
+    description: 'Upload your fonts for desktop usage.',
+    todos: [
+      {
+        title: 'Format: TTF, TTC or OTF',
+        formats: ['ttf', 'ttc', 'otf'],
+      }
+    ]
+  },
+  {
+    name: 'font',
+    title: 'Web Fonts',
+    description: 'Upload your fonts for web usage.',
+    todos: [
+      {
+        title: 'Format: TTF, OTF, WOFF, WOFF2 or EOT',
+        formats: ['ttf', 'otf', 'woff', 'woff2', 'eot'],
+      }
+    ]
   },
   {
     name: 'photo',
     title: 'Photography',
     description: 'Upload your photography.',
-    formats: ['JPG', 'JPEG', 'PNG'],
+    todos: [
+      {
+        title: 'Format: JPG, JPEG or PNG',
+        formats: ['jpg', 'jpeg', 'png'],
+      }
+    ]
   },
   {
     name: 'other',
     title: 'Other Media',
     description: 'Upload other brand media such as patterns, icons or other graphics.',
+    todos: []
   },
 ]
 </script>
