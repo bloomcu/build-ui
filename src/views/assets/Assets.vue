@@ -18,7 +18,7 @@
       </div>
     </div>
     
-    <FileModal @closed="closeModal" @destroyed="destroyFile" v-bind="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
+    <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
   </div>
 </template>
 
@@ -36,26 +36,20 @@ const fileStore = useFileStore()
 let modalData = ref(null)
 
 onMounted(() => {
-    fileStore.index(route.params.organization)
+  fileStore.index(route.params.organization)
 })
 
 function openModal(file) {
-  modalData.value = {
-    id: file.id,
-    public_id: file.public_id,
-    name: file.name,
-    type: file.type,
-    src: file.src,
-  }
+  modalData.value = file
 }
 
 function closeModal() {
   modalData.value = null
 }
 
-function destroyFile(id, public_id) {
-  console.log('destroyyyyy', id, public_id)
-  // fileStore.destroy(id, public_id)
+function destroyFile(file) {
+  fileStore.destroy(file.id, file.public_id)
+  closeModal()
 }
 
 const groups = [

@@ -26,11 +26,16 @@ Descr: App-wide utility classes
     }
 }
 
-.app-action {
-    width: 40px;
+.app-action-icon {
+    position: relative;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 40px;
-    padding: 10px;
-    border-radius: 50em;
+    width: 40px;
+    border-radius: 50%;
+    
     transition: 0.2s;
     cursor: pointer;
 

@@ -1,20 +1,20 @@
 <template>
-  <div class="modal modal--animate-scale flex flex-center bg-black bg-opacity-90% padding-md">
+  <div v-if="file" class="modal modal--animate-scale flex flex-center bg-black bg-opacity-90% padding-md">
     <div class="modal__content width-100% max-width-lg max-height-100% overflow-auto bg padding-x-md radius-md inner-glow shadow-md" role="alertdialog" aria-labelledby="modal-title-1" aria-describedby="modal-description-1">
       <header class="flex justify-between padding-top-md">
         <div class="flex gap-sm items-center">
           <AppAvatar/>
           <div class="text-component">
-            <h1 class="text-base">{{ name }}</h1>
-            <p class="text-xs">{{ type }}</p>
+            <h1 class="text-base">{{ file.name }}</h1>
+            <p class="text-xs">{{ file.type }}</p>
           </div>
         </div>
         <div class="flex gap-xs items-center items-end">
-          <button @click="destroy" class="btn btn--subtle=">
+          <button @click="destroy()" class="btn btn--subtle=">
             <svg class="icon margin-right-xs" height="24" width="24" viewBox="0 0 24 24"><g stroke-linecap="round" stroke-width="2" fill="none" stroke="#000000" stroke-linejoin="round" class="nc-icon-wrapper"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5" stroke="#000000"></line><path data-cap="butt" d="M8,5V1h8V5" stroke="#000000"></path></g></svg>
             Delete
           </button>
-          <a href="https://res.cloudinary.com/metrifi/image/upload/fl_attachment/v1654205570/bloomcu/Screen_Shot_2022-06-02_at_3.32.36_PM_c7g98e.png" class="btn btn--primary">
+          <a :href="`https://res.cloudinary.com/metrifi/image/upload/fl_attachment/${file.public_id}`" class="btn btn--primary">
             <svg class="icon margin-right-xs"  height="24" width="24" viewBox="0 0 24 24"><g stroke-linecap="round" stroke-width="2" fill="none" stroke="#fff" stroke-linejoin="round" class="nc-icon-wrapper"><line data-cap="butt" x1="12" y1="16" x2="12" y2="3" stroke="#fff"></line> <polyline points="17,3 23,3 23,21 1,21 1,3 7,3 "></polyline> <polyline points=" 17,11 12,16 7,11 " stroke="#fff"></polyline></g></svg>
             Download
           </a>
@@ -22,7 +22,7 @@
       </header>
 
       <div class="content__image-wrapper padding-y-md">
-          <img class="content__image" :src="src" alt="">
+          <img class="content__image" :src="file.src" alt="">
       </div>
 
       <!-- <footer class="padding-md">
@@ -49,23 +49,26 @@
 import AppAvatar from '@/app/components/AppAvatar.vue'
 
 const props = defineProps({
-  id: {
-    type: Number
+  file: {
+    type: Object
   },
-  public_id: {
-    type: String,
-  },
-  name: { 
-    type: String,
-    default: 'File name',
-  },
-  type: { 
-    type: String,
-    default: 'File type',
-  },
-  src: { 
-    type: String,
-  },
+  // id: {
+  //   type: Number
+  // },
+  // public_id: {
+  //   type: String,
+  // },
+  // name: { 
+  //   type: String,
+  //   default: 'File name',
+  // },
+  // type: { 
+  //   type: String,
+  //   default: 'File type',
+  // },
+  // src: { 
+  //   type: String,
+  // },
 })
 
 function close() {
@@ -73,7 +76,7 @@ function close() {
 }
 
 function destroy() {
-  emit('destroyed', props.id, props.public_id)
+  emit('destroyed', props.file)
 }
 
 const emit = defineEmits(['closed', 'destroyed'])

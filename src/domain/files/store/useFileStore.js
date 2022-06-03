@@ -30,7 +30,7 @@ export const useFileStore = defineStore('fileStore', {
         
         async store(file, folder, group) {
           let upload = await CloudinaryApi.upload(file, folder)
-          
+          console.log(upload)
           FileApi.store({
             group: group,
             type: upload.data.format ? upload.data.format : file.name.split('.').pop(),

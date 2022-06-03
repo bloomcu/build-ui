@@ -17,10 +17,13 @@
             </div>
 
             <!-- actions -->
-            <div class="padding-right-xxxxs@xs">
-              <button @click.stop="destroy" class="app-action reset margin-right-sm" type="button" name="button">
+            <div class="flex padding-right-xxxxs@xs">
+              <button @click.stop="destroy(file)" class="app-action-icon reset margin-right-xs" type="button" name="button">
                 <svg class="icon" height="24" width="24" viewBox="0 0 24 24"><title>trash can</title><g stroke-linecap="round" stroke-width="2" fill="none" stroke="#000000" stroke-linejoin="round" class="nc-icon-wrapper"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5" stroke="#000000"></line><path data-cap="butt" d="M8,5V1h8V5" stroke="#000000"></path></g></svg>
               </button>
+              <a @click.stop :href="`https://res.cloudinary.com/metrifi/image/upload/fl_attachment/${file.public_id}`" class="app-action-icon reset margin-right-sm">
+                <svg class="icon"  height="24" width="24" viewBox="0 0 24 24"><g stroke-linecap="round" stroke-width="2" fill="none" stroke="#000000" stroke-linejoin="round" class="nc-icon-wrapper"><line data-cap="butt" x1="12" y1="16" x2="12" y2="3" stroke="#000000"></line> <polyline points="17,3 23,3 23,21 1,21 1,3 7,3 "></polyline> <polyline points=" 17,11 12,16 7,11 " stroke="#000000"></polyline></g></svg>
+              </a>
             </div>
           </div>
         </div>
