@@ -13,33 +13,49 @@
         </div>
         <div class="col-8 bg-dark radius-md padding-sm">
           <FileUploader folder="bloomcu" :group="group.name"/>
-          <FileList @selected="onSelect" :files="fileStore.filterByGroup(group.name)"/>
+          <FileList @selected="openModal" @destroyed="destroyFile" :files="fileStore.filterByGroup(group.name)"/>
         </div>
       </div>
     </div>
     
-    <!-- <FileModal/> -->
+    <FileModal @closed="closeModal" @destroyed="destroyFile" v-bind="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFileStore } from '@/domain/files/store/useFileStore'
 
 import FileUploader from '@/domain/files/components/FileUploader.vue'
 import FileList from '@/domain/files/components/FileList.vue'
-// import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
+import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
 
 const route = useRoute()
 const fileStore = useFileStore()
+let modalData = ref(null)
 
 onMounted(() => {
     fileStore.index(route.params.organization)
 })
 
-function onSelect(file) {
-  fileStore.destroy(file.public_id, file.id)
+function openModal(file) {
+  modalData.value = {
+    id: file.id,
+    public_id: file.public_id,
+    name: file.name,
+    type: file.type,
+    src: file.src,
+  }
+}
+
+function closeModal() {
+  modalData.value = null
+}
+
+function destroyFile(id, public_id) {
+  console.log('destroyyyyy', id, public_id)
+  // fileStore.destroy(id, public_id)
 }
 
 const groups = [

@@ -1,36 +1,39 @@
 <template>
-  <div class="modal modal--animate-scale modal--is-visible flex flex-center bg-black bg-opacity-90% padding-md">
-    <div class="modal__content width-100% max-width-md max-height-100% overflow-auto bg radius-md inner-glow shadow-md" role="alertdialog" aria-labelledby="modal-title-1" aria-describedby="modal-description-1">
-      <header class="bg-contrast-lower bg-opacity-50% padding-y-sm padding-x-md flex items-center justify-between">
-        <h1 class="text-truncate text-md">Modal title</h1>
-
-        <button class="reset modal__close-btn modal__close-btn--inner hide@md js-modal__close js-tab-focus">
-          <svg class="icon icon--xs" viewBox="0 0 16 16">
-            <title>Close modal window</title>
-            <g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
-              <line x1="13.5" y1="2.5" x2="2.5" y2="13.5"></line>
-              <line x1="2.5" y1="2.5" x2="13.5" y2="13.5"></line>
-            </g>
-          </svg>
-        </button>
+  <div class="modal modal--animate-scale flex flex-center bg-black bg-opacity-90% padding-md">
+    <div class="modal__content width-100% max-width-lg max-height-100% overflow-auto bg padding-x-md radius-md inner-glow shadow-md" role="alertdialog" aria-labelledby="modal-title-1" aria-describedby="modal-description-1">
+      <header class="flex justify-between padding-top-md">
+        <div class="flex gap-sm items-center">
+          <AppAvatar/>
+          <div class="text-component">
+            <h1 class="text-base">{{ name }}</h1>
+            <p class="text-xs">{{ type }}</p>
+          </div>
+        </div>
+        <div class="flex gap-xs items-center items-end">
+          <button @click="destroy" class="btn btn--subtle=">
+            <svg class="icon margin-right-xs" height="24" width="24" viewBox="0 0 24 24"><g stroke-linecap="round" stroke-width="2" fill="none" stroke="#000000" stroke-linejoin="round" class="nc-icon-wrapper"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5" stroke="#000000"></line><path data-cap="butt" d="M8,5V1h8V5" stroke="#000000"></path></g></svg>
+            Delete
+          </button>
+          <a href="https://res.cloudinary.com/metrifi/image/upload/fl_attachment/v1654205570/bloomcu/Screen_Shot_2022-06-02_at_3.32.36_PM_c7g98e.png" class="btn btn--primary">
+            <svg class="icon margin-right-xs"  height="24" width="24" viewBox="0 0 24 24"><g stroke-linecap="round" stroke-width="2" fill="none" stroke="#fff" stroke-linejoin="round" class="nc-icon-wrapper"><line data-cap="butt" x1="12" y1="16" x2="12" y2="3" stroke="#fff"></line> <polyline points="17,3 23,3 23,21 1,21 1,3 7,3 "></polyline> <polyline points=" 17,11 12,16 7,11 " stroke="#fff"></polyline></g></svg>
+            Download
+          </a>
+        </div>
       </header>
 
-      <div class="padding-y-sm padding-x-md">
-        <div class="text-component">
-          <img class="content__image" src="https://res.cloudinary.com/metrifi/image/upload/v1653346800/arch-samples-from-brand-guidlines_huhpef.jpg" alt="">
-          <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae culpa, inventore alias ab atque similique quod ea reprehenderit.</p> -->
-        </div>
+      <div class="content__image-wrapper padding-y-md">
+          <img class="content__image" :src="src" alt="">
       </div>
 
-      <footer class="padding-md">
-        <div class="flex justify-end gap-xs">
+      <!-- <footer class="padding-md">
+        <div class="flex gap-xs items-center">
           <button class="btn btn--subtle js-modal__close">Cancel</button>
           <button class="btn btn--primary">Install</button>
         </div>
-      </footer>
+      </footer> -->
     </div>
 
-    <button class="reset modal__close-btn modal__close-btn--outer display@md js-modal__close js-tab-focus">
+    <button @click="close()" class="reset modal__close-btn modal__close-btn--outer display@md js-modal__close js-tab-focus">
       <svg class="icon icon--sm" viewBox="0 0 24 24">
         <title>Close modal window</title>
         <g fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -43,12 +46,37 @@
 </template>
 
 <script setup>
-// import FileIcon from '@/domain/files/components/file-icon/FileIcon.vue'
+import AppAvatar from '@/app/components/AppAvatar.vue'
 
 const props = defineProps({
-    files: { type: Array },
-    loading: { type: Boolean, default: false },
+  id: {
+    type: Number
+  },
+  public_id: {
+    type: String,
+  },
+  name: { 
+    type: String,
+    default: 'File name',
+  },
+  type: { 
+    type: String,
+    default: 'File type',
+  },
+  src: { 
+    type: String,
+  },
 })
+
+function close() {
+  emit('closed')
+}
+
+function destroy() {
+  emit('destroyed', props.id, props.public_id)
+}
+
+const emit = defineEmits(['closed', 'destroyed'])
 </script>
 
 <style lang="scss">
@@ -73,11 +101,15 @@ const props = defineProps({
   visibility: visible;
 }
 
-/* content */
+.content__image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
 .content__image {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  max-height: 80vh;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
 }

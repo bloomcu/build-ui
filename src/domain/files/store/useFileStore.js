@@ -52,7 +52,7 @@ export const useFileStore = defineStore('fileStore', {
         
         update() {},
         
-        async destroy(publicId, id) {
+        async destroy(id, public_id) {
           // let destroyed = await CloudinaryApi.destroy(publicId)
           
           FileApi.destroy(id)
