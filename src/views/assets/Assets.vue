@@ -38,7 +38,7 @@ const fileStore = useFileStore()
 let modalData = ref(null)
 
 onMounted(() => {
-  fileStore.index(route.params.organization)
+  fileStore.index()
 })
 
 function openModal(file) {
