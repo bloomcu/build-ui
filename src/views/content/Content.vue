@@ -2,7 +2,7 @@
   <div class="flex">
     <aside style="flex-shrink: 0; flex-grow: 1;" class="position-relative z-index-1 width-100% max-width-xxxxs border-right">
       <div class="padding-sm">
-        The sidebar
+        <AppNestedMenu :items="menu"/>
       </div>
     </aside>
     
@@ -26,12 +26,52 @@
 import { ref, onMounted } from 'vue'
 // import { useRoute } from 'vue-router'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
-
+import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 // import ContentItemModal from '@/domain/content/components/ContentItemModal.vue'
 
 // const route = useRoute()
 const pageStore = usePageStore()
 
+let menu = [
+  {
+    id: 1,
+    title: 'Parent',
+    children: [
+      {
+        id: 4,
+        title: 'Child',
+        children: [
+          {
+            id: 7,
+            title: 'Grandchild',
+            children: []
+          },
+        ]
+      },
+      {
+        id: 5,
+        title: 'Child',
+        children: []
+      },
+    ]
+  },
+  {
+    id: 2,
+    title: 'Parent',
+    children: [
+      {
+        id: 6,
+        title: 'Child',
+        children: []
+      },
+    ]
+  },
+  {
+    id: 3,
+    title: 'Parent',
+    children: []
+  },
+]
 // let modalData = ref(null)
 
 onMounted(() => {
