@@ -31,13 +31,36 @@ const route = useRoute()
             <router-link :to="{ name: 'assets', params: { organization: route.params.organization }}" class="f-header__link">Pages</router-link>
           </li> -->
           <li class="f-header__item">
-            <router-link :to="{ name: 'assets', params: { organization: route.params.organization }}" class="f-header__link">Assets</router-link>
+            <router-link 
+              :to="{ name: 'assets', params: { organization: route.params.organization }}" 
+              class="f-header__link"
+            >
+              Assets
+            </router-link>
           </li>
           <li class="f-header__item">
-            <router-link :to="{ name: 'assetsIntake', params: { organization: route.params.organization }}" class="f-header__link">Intake</router-link>
+            <router-link 
+              :to="{ name: 'assetsIntake', params: { organization: route.params.organization }}" 
+              class="f-header__link"
+            >
+              Intake
+            </router-link>
           </li>
           <li class="f-header__item">
-            <router-link :to="{ name: 'styleTileBrief', params: { organization: route.params.organization }}" class="f-header__link">Brief</router-link>
+            <router-link 
+              :to="{ name: 'styleTileBrief', params: { organization: route.params.organization }}" 
+              class="f-header__link"
+            >
+              Brief
+            </router-link>
+          </li>
+          <li class="f-header__item">
+            <router-link 
+              :to="{ name: 'content', params: { organization: route.params.organization, site: 1 }}" 
+              class="f-header__link"
+            >
+              Content
+            </router-link>
           </li>
         </ul>
     

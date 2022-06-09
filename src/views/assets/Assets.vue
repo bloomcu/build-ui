@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="container max-width-lg text-component padding-y-sm">
-      <h2>Assets</h2>
+    <div class="container max-width-lg padding-y-sm">
       <p>AirBnb</p>
+      <h3>Assets</h3>
     </div>
     
     <div class="container max-width-lg padding-y-sm">

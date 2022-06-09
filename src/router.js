@@ -3,14 +3,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import Survey from '@/views/Survey.vue';
 // import Flowchart from '@/views/Flowchart.vue';
 
-import assetsRoutes from '@/views/assets/routes/index.js'
-import briefsRoutes from '@/views/briefs/routes/index.js'
-import organizationsRoutes from '@/views/organizations/routes/index.js'
+import assets from '@/views/assets/routes/index.js'
+import briefs from '@/views/briefs/routes/index.js'
+import content from '@/views/content/routes/index.js'
+import organizations from '@/views/organizations/routes/index.js'
 
 const routes = [
-  ...assetsRoutes,
-  ...briefsRoutes,
-  ...organizationsRoutes,
+  ...assets,
+  ...briefs,
+  ...content,
+  ...organizations,
   // { 
   //   path: '/survey', 
   //   component: Survey 

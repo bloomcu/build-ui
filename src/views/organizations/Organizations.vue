@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container max-width-lg flex items-center justify-between padding-y-sm">
-      <h2>Organizations</h2>
+      <h3>Organizations</h3>
       <RouterLink to="" class="btn btn--primary">Create organization</RouterLink>
     </div>
 

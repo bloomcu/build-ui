@@ -1,21 +1,22 @@
 <template>
-  <div>
-    <div class="container max-width-lg text-component padding-y-sm">
-      <h2>Content</h2>
-      <p>AirBnb</p>
-    </div>
-    
-    <div class="container max-width-lg padding-y-sm">
-      <div v-for="group in groups" :key="group.name" class="grid gap-sm margin-bottom-xl padding-y-sm border-top border-contrast-lower">
-        <div class="col-4 padding-right-md">
-          <h4 class="margin-bottom-sm">{{ group.title }}</h4>
-          <p class="text-sm margin-bottom-sm" v-html="group.description"></p>
-          <AppTodoList :todos="group.todos" />
-        </div>
-        <div class="col-8 bg-dark radius-md padding-sm">
-        </div>
+  <div class="flex">
+    <aside style="flex-shrink: 0; flex-grow: 1;" class="position-relative z-index-1 width-100% max-width-xxxxs border-right">
+      <div class="padding-sm">
+        The sidebar
       </div>
-    </div>
+    </aside>
+    
+    <main class="position-relative z-index-1 flex-grow height-100vh">
+      <div class="padding-y-sm padding-x-md">
+        <p v-for="page in pageStore.pages" :key="page.id">{{ page.title }}</p>
+      </div>
+    </main>
+    
+    <!-- <div class="container max-width-lg padding-y-sm">
+      <div v-for="page in pageStore.pages" :key="page.id">
+        <p>{{ page.title }}</p>
+      </div>
+    </div> -->
     
     <!-- <ContentItemModal @closed="closeModal" @destroyed="destroyItem" :item="modalData" :class="modalData ? 'modal--is-visible' : ''"/> -->
   </div>
@@ -23,18 +24,18 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import { useContentStore } from '@/domain/content/store/useContentStore'
+// import { useRoute } from 'vue-router'
+import { usePageStore } from '@/domain/pages/store/usePageStore'
 
 // import ContentItemModal from '@/domain/content/components/ContentItemModal.vue'
 
-const route = useRoute()
-const contentStore = useContentStore()
+// const route = useRoute()
+const pageStore = usePageStore()
 
 // let modalData = ref(null)
 
 onMounted(() => {
-  contentStore.index()
+  pageStore.index()
 })
 
 // function openModal(item) {
@@ -45,8 +46,13 @@ onMounted(() => {
 //   modalData.value = null
 // }
 
-function destroyItem(item) {
-  fileStore.destroy(item.id)
+function storePage(page) {
+  pageStore.store(page)
+  // closeModal()
+}
+
+function destroyPage(page) {
+  pageStore.destroy(page.id)
   // closeModal()
 }
 </script>

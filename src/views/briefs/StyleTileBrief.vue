@@ -14,9 +14,9 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="container max-width-lg text-component padding-y-sm">
-      <h2>Style Tile Brief</h2>
+    <div class="container max-width-lg padding-y-sm">
       <p>AirBnb</p>
+      <h3>Style Tile Brief</h3>
     </div>
 
     <div class="container max-width-lg padding-y-sm">
@@ -67,7 +67,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    
+
     <!-- <FileModal/> -->
   </div>
 </template>
