@@ -1,20 +1,14 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export default function useToggle() {
-    const array = ref([])
-
-    function toggled(item) {
-        return array.value.includes(item)
-    }
-
+    const toggled = ref()
+    
     function toggle(item) {
-        const index = array.value.indexOf(item)
-
-        index === -1 ? array.value.push(item) : array.value.splice(index, 1);
+        item == toggled.value ? toggled.value = '' : toggled.value = item
     }
 
     return {
-        toggled,
+        toggled: computed(() => toggled.value),
         toggle
     }
 }

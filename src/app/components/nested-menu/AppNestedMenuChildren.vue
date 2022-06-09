@@ -35,14 +35,14 @@ export default {
 </script>
 
 <script setup>
-import useToggle from '@/app/composables/useToggle.js'
+import useToggleMultiple from '@/app/composables/useToggleMultiple.js'
 
 const props = defineProps({
     items: { type: Array },
     selected: ''
 })
 
-const { toggle, toggled } = useToggle()
+const { toggle, toggled } = useToggleMultiple()
 
 const select = (id) => {
     emit('selected', id)
