@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <aside style="flex-shrink: 0; flex-grow: 1;" class="position-relative z-index-1 width-100% max-width-xxxxs border-right">
+    <aside class="flex-shrink-0 flex-grow position-relative z-index-1 width-100% max-width-xxxxs">
       <div class="padding-sm">
         <AppNestedMenu :items="menu"/>
       </div>
@@ -8,7 +8,10 @@
     
     <main class="position-relative z-index-1 flex-grow height-100vh">
       <div class="padding-y-sm padding-x-md">
-        <p v-for="page in pageStore.pages" :key="page.id">{{ page.title }}</p>
+        <!-- <p v-for="page in pageStore.pages" :key="page.id">{{ page.title }}</p> -->
+        <AppTable 
+          :items="pages"
+        />
       </div>
     </main>
     
@@ -26,6 +29,8 @@
 import { ref, onMounted } from 'vue'
 // import { useRoute } from 'vue-router'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
+
+import AppTable from '@/app/components/AppTable.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 // import ContentItemModal from '@/domain/content/components/ContentItemModal.vue'
 
@@ -70,6 +75,21 @@ let menu = [
     id: 3,
     title: 'Parent',
     children: []
+  },
+]
+
+let pages = [
+  {
+    id: 1,
+    title: 'Item One',
+  },
+  {
+    id: 2,
+    title: 'Item Two',
+  },
+  {
+    id: 3,
+    title: 'Item Three',
   },
 ]
 
