@@ -3,7 +3,7 @@
     <!-- <LoadingGhost v-if="loading"/> -->
     
     <!-- Top bar -->
-    <div class="card flex items-center justify-between padding-sm margin-bottom-sm">
+    <div class="_card flex items-center justify-between padding-y-sm margin-bottom-sm">
       <!-- Left -->
       <div class="flex items-center">
         <span class="text-sm">12 Pages</span>

@@ -1,10 +1,10 @@
-import Content from '@/views/content/Content.vue'
+import ContentInventory from '@/views/content/ContentInventory.vue'
 
 export default [
   {
     path: "/:organization/sites/:site/content",
     name: "content",
-    component: Content,
+    component: ContentInventory,
     props: true,
   },
 ]
