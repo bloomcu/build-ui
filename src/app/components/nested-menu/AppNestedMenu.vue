@@ -1,5 +1,10 @@
 <template>
-    <nav class="nested-menu">
+    <nav class="nested-menu margin-bottom-md">
+        <!-- Title -->
+        <div class="padding-bottom-sm">
+          <span class="text-xs text-uppercase letter-spacing-lg color-primary">{{ title }}</span>
+        </div>
+        
         <ul class="nested-menu__list">
 
             <!-- "All" option -->
@@ -22,8 +27,14 @@ import useToggle from '@/app/composables/useToggle.js'
 // import LoadingGhost from '@/components/loading/LoadingGhost.vue'
 import AppNestedMenuChildren from '@/app/components/nested-menu/AppNestedMenuChildren.vue'
 
-const props = defineProps({ 
-    items: { type: Array }
+const props = defineProps({
+    title: { 
+      type: String
+    },
+    items: { 
+      type: Array,
+      required: true
+    }
 })
 
 const { toggle, toggled } = useToggle()

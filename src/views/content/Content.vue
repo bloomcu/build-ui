@@ -2,24 +2,18 @@
   <div class="flex">
     <aside class="flex-shrink-0 flex-grow position-relative z-index-1 width-100% max-width-xxxxs">
       <div class="padding-sm">
-        <AppNestedMenu :items="menu"/>
+        <!-- <p class="text-sm margin-bottom-xxs">Redwood</p>
+        <h3 class="text-base margin-bottom-sm">Content Inventory</h3> -->
+        <AppNestedMenu title="Status" :items="menu"/>
+        <AppNestedMenu title="Category" :items="menu"/>
       </div>
     </aside>
     
     <main class="position-relative z-index-1 flex-grow height-100vh">
       <div class="padding-y-sm padding-x-md">
-        <!-- <p v-for="page in pageStore.pages" :key="page.id">{{ page.title }}</p> -->
-        <AppTable 
-          :items="pages"
-        />
+        <AppTable :items="pages"/>
       </div>
     </main>
-    
-    <!-- <div class="container max-width-lg padding-y-sm">
-      <div v-for="page in pageStore.pages" :key="page.id">
-        <p>{{ page.title }}</p>
-      </div>
-    </div> -->
     
     <!-- <ContentItemModal @closed="closeModal" @destroyed="destroyItem" :item="modalData" :class="modalData ? 'modal--is-visible' : ''"/> -->
   </div>
