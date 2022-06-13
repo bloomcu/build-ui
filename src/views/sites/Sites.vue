@@ -2,7 +2,7 @@
   <div>
     <div class="container max-width-sm flex items-center justify-between padding-y-sm">
       <h1 class="text-lg">Sites</h1>
-      <RouterLink to="" class="btn btn--primary">Add site</RouterLink>
+      <button @click="siteStore.toggleCreateModal" class="btn btn--primary">Add site</button>
     </div>
 
     <div class="container max-width-sm padding-y-sm">
@@ -31,14 +31,16 @@
         <p class="text-sm">Last crawl: Yesterday</p>
       </div>
     </div>
+
+    <CreateSiteModal/>
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
 
-import AppCard from '@/app/components/AppCard.vue'
+import CreateSiteModal from '@/views/sites/components/CreateSiteModal.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
 import AppCircleLoader from '@/app/components/AppCircleLoader.vue'
 import IconCheck from '@/app/components/icons/IconCheck.vue'
@@ -48,11 +50,9 @@ const siteStore = useSiteStore()
 const sites = [
   {
     title: 'redwoodcu.com',
-    // subtitle: 'This is the description',
   },
   {
     title: 'blog.redwoodcu.com',
-    // subtitle: 'This is the description',
   },
 ]
 

@@ -6,6 +6,7 @@ export const useSiteStore = defineStore('siteStore', {
         sites: [],
         site: {},
         isLoading: false,
+        createModalOpen: false,
     }),
     
     getters: {},
@@ -43,6 +44,10 @@ export const useSiteStore = defineStore('siteStore', {
               console.log('Error', error.response.data)
             })
         },
+        
+        toggleCreateModal() {
+          this.createModalOpen = !this.createModalOpen
+        }
     }
 })
 
