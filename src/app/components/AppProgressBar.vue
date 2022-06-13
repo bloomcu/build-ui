@@ -33,6 +33,6 @@ const props = defineProps({
   top: 0;
   height: 100%;
   width: 0%; // fallback value -> make sure to set it in the HTML
-  background-color: var(--color-primary);
+  background-color: var(--color-success);
 }
 </style>

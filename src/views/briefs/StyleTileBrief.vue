@@ -15,7 +15,6 @@ onMounted(() => {
 <template>
   <div>
     <div class="container max-width-lg padding-y-sm">
-      <p>AirBnb</p>
       <h3>Style Tile Brief</h3>
     </div>
 

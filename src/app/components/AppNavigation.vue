@@ -56,6 +56,14 @@ const route = useRoute()
           </li>
           <li class="f-header__item">
             <router-link 
+              :to="{ name: 'sites', params: { organization: route.params.organization}}" 
+              class="f-header__link"
+            >
+              Sites
+            </router-link>
+          </li>
+          <li class="f-header__item">
+            <router-link 
               :to="{ name: 'content', params: { organization: route.params.organization, site: 1 }}" 
               class="f-header__link"
             >

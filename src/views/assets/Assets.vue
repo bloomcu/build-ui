@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="container max-width-lg padding-y-sm">
-      <p>AirBnb</p>
       <h3>Assets</h3>
     </div>
     
