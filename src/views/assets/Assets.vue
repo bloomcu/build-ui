@@ -49,7 +49,7 @@ function closeModal() {
 }
 
 function destroyFile(file) {
-  fileStore.destroy(file.id, file.public_id)
+  fileStore.destroy(file)
   closeModal()
 }
 

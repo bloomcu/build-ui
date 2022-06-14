@@ -20,6 +20,7 @@ export const useFileStore = defineStore('fileStore', {
     actions: {
         index(params) {
           this.files = []
+          
           FileApi.index(params)
             .then(response => {
               this.files = response.data
@@ -30,7 +31,7 @@ export const useFileStore = defineStore('fileStore', {
         
         async store(file, folder, group) {
           let upload = await CloudinaryApi.upload(file, folder)
-          console.log(upload)
+          
           FileApi.store({
             group: group,
             type: upload.data.format ? upload.data.format : file.name.split('.').pop(),
@@ -52,17 +53,16 @@ export const useFileStore = defineStore('fileStore', {
         
         update() {},
         
-        async destroy(id, public_id) {
-          // let destroyed = await CloudinaryApi.destroy(publicId)
+        destroy(file) {
+          this.files = this.files.filter((f) => f.id !== file.id)
           
-          FileApi.destroy(id)
-          .then(response => {
-            this.files = this.files.filter((file) => file.id !== id)
-          }).catch(error => {
-            console.log('Error', error.response.data)
-          })
-          
-          // return destroyed
+          FileApi.destroy(file.id)
+            .then(response => {
+              console.log('File successfully destroyed')
+            }).catch(error => {
+              this.files.unshift(file)
+              console.log('Error', error.response.data)
+            })
         },
     }
 })
