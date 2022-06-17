@@ -1,8 +1,8 @@
 <template>
   <AppModal 
     size="sm"
-    @closed="tagStore.toggleCreateModal" 
-    :class="tagStore.createModal ? 'modal--is-visible' : ''"
+    @closed="tagGroupStore.toggleCreateModal" 
+    :class="tagGroupStore.createModal ? 'modal--is-visible' : ''"
   >
   <form action="#" @submit.prevent="store(newGroup)">
       <div class="margin-bottom-sm">
@@ -26,19 +26,19 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useTagStore } from '@/domain/tags/store/useTagStore'
+import { useTagGroupStore } from '@/domain/tags/store/useTagGroupStore'
 import AppModal from '@/app/components/AppModal.vue'
 
-const tagStore = useTagStore()
+const tagGroupStore = useTagGroupStore()
 
 const newGroup = ref({
   title: '',
 })
 
 function store(newGroup) {
-  tagStore.storeGroup(newGroup)
+  tagGroupStore.store(newGroup)
     .then(() => {
-      tagStore.toggleCreateModal()
+      tagGroupStore.toggleCreateModal()
       newGroup.title = ''
     }).catch(error => {
       console.log('Error', error.response.data)
