@@ -46,7 +46,7 @@ onMounted(() => {
 })
 
 function destroyFile(file) {
-  fileStore.destroy(file.id, file.public_id)
+  fileStore.destroy(file)
 }
 
 const step = ref(0)

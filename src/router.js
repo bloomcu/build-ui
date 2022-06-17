@@ -8,6 +8,7 @@ import briefs from '@/views/briefs/routes/index.js'
 import content from '@/views/content/routes/index.js'
 import organizations from '@/views/organizations/routes/index.js'
 import sites from '@/views/sites/routes/index.js'
+import tags from '@/views/tags/routes/index.js'
 
 const routes = [
   ...assets,
@@ -15,6 +16,7 @@ const routes = [
   ...content,
   ...organizations,
   ...sites,
+  ...tags,
   // { 
   //   path: '/survey', 
   //   component: Survey 
