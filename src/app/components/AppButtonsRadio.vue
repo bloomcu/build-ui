@@ -1,13 +1,18 @@
 <template>
   <div class="btns btns--radio inline-flex">
     <div>
-      <input type="radio" name="radio-btns-1" id="radio-1" checked>
-      <label class="btns__btn" for="radio-1">Looks Good</label>
+      <input type="radio" name="radio-btns" id="radio-1" checked>
+      <label class="btns__btn" for="radio-1">Review</label>
+    </div>
+    
+    <div>
+      <input type="radio" name="radio-btns" id="radio-2">
+      <label class="btns__btn" for="radio-2">Good</label>
     </div>
 
     <div>
-      <input type="radio" name="radio-btns-1" id="radio-2">
-      <label class="btns__btn" for="radio-2">Not Sure</label>
+      <input type="radio" name="radio-btns" id="radio-3">
+      <label class="btns__btn" for="radio-3">Unsure</label>
     </div>
   </div>
 </template>

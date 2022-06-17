@@ -79,7 +79,7 @@ const route = useRoute()
         <ul class="f-header__list">
           <li class="f-header__item margin-right-md">
             <button class="f-header__link reset cursor-pointer">
-              <span>Admin</span>
+              <span>Settings</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </button>
 

@@ -1,6 +1,6 @@
 <template>
   <AppModal 
-    size="sm"
+    size="xxs"
     @closed="tagGroupStore.toggleCreateModal" 
     :class="tagGroupStore.createModal ? 'modal--is-visible' : ''"
   >
@@ -10,7 +10,7 @@
         <input 
           v-model="newGroup.title" 
           required
-          placeholder="Site title"
+          placeholder="Gorup title"
           class="form-control width-100%" 
           type="text" 
           name="title" 

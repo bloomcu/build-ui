@@ -3,7 +3,7 @@
     <!-- <LoadingGhost v-if="loading"/> -->
     
     <!-- Top bar -->
-    <div class="_card flex items-center justify-between padding-y-sm margin-bottom-sm">
+    <div class="flex items-center justify-between padding-y-sm margin-bottom-sm">
       <!-- Left -->
       <div class="flex items-center">
         <span class="text-sm">12 Pages</span>
@@ -15,12 +15,7 @@
       
       <!-- Right -->
       <div class="flex items-center">
-        <button class="btn btn--sm btn--primary margin-right-xs">
-          <IconEdit size="xxs" class="color-white"/>
-          <span class="margin-left-xxs">Edit</span>
-        </button>
-        
-        <button class="btn btn--sm btn--subtle">
+        <button @click="store()" class="btn btn--sm btn--subtle">
           <IconPlus size="xxs" class="color-primary"/>
           <span class="margin-left-xxs">Add Page</span>
         </button>
@@ -29,34 +24,34 @@
     
     <!-- Table -->
     <ul class="table card text-sm">
-        <!-- Item -->
-        <li v-for="item in items" :key="item.id" class="table-item flex padding-sm">
+        <!-- Page -->
+        <li v-for="page in pageStore.pages" :key="page.id" class="table-item flex padding-sm">
           <!-- Checkbox -->
           <div class="flex items-center border-right padding-left-xs padding-right-sm margin-right-md">
-            <input class="checkbox" type="checkbox" :id="item.id">
-            <label :for="item.id"/>
+            <input class="checkbox" type="checkbox" :id="page.id">
+            <label :for="page.id"/>
           </div>
-
+          
+          <!-- Title & URL -->
+          <div class="flex-grow margin-right-xs padding-y-xxxs">
+            <h3 class="text-sm margin-bottom-xxxs">{{ page.title }}</h3>
+            <a v-if="page.url" :href="page.url" target="_blank" class="text-xs">{{ page.url }}</a>
+            <p v-else class="text-xs text-underline cursor-pointer">Add URL</p>
+          </div>
+          
           <!-- Statuses -->
           <div class="flex items-center border-right padding-right-md margin-right-md margin-left-auto">
             <AppButtonsRadio/>
           </div>
-
-          <!-- Title & URL -->
-          <div class="flex-grow margin-right-xs padding-y-xxxs">
-            <h3 class="text-sm margin-bottom-xxxs">{{ item.title }}</h3>
-            <p class="text-xs">https://google.com</p>
-          </div>
-
+          
           <!-- Tags -->
           <div class="flex items-center border-right padding-right-md margin-right-sm margin-left-auto">
             <AppChip label="Personal"/>
-            <AppChip label="Product"/>
           </div>
           
           <!-- Destroy -->
           <div class="flex items-center margin-left-auto">
-            <button @click="destroy(item.id)" class="app-action-icon reset" type="button" name="button">
+            <button @click="destroy(page.id)" class="app-action-icon reset" type="button" name="button">
               <svg class="icon" viewBox="0 0 24 24">
                 <g stroke-linecap="square" stroke-miterlimit="10" fill="none" stroke="currentColor" stroke-linejoin="miter"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5"></line><path data-cap="butt" d="M8,5V1h8V5" stroke-linecap="butt"></path></g>
               </svg>
@@ -68,7 +63,8 @@
 </template>
 
 <script setup>
-// TODO: Hookup the loading ghost
+import { onMounted } from 'vue'
+import { usePageStore } from '@/domain/pages/store/usePageStore'
 // import LoadingGhost from '@/components/loading/LoadingGhost.vue'
 import AppButtonsRadio from '@/app/components/AppButtonsRadio.vue'
 import AppChip from '@/app/components/AppChip.vue'
@@ -76,16 +72,22 @@ import IconClose from '@/app/components/icons/IconClose.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import IconEdit from '@/app/components/icons/IconEdit.vue'
 
-const props = defineProps({ 
-  items: { type: Array },
-  loading: { type: Boolean, default: false },
-})
+const pageStore = usePageStore()
 
-const destroy = (id) => {
-  emit('destroy', id)
+function store() {
+  pageStore.store({
+    title: 'New page'
+  })
 }
 
-const emit = defineEmits(['replicate', 'destroy'])
+function destroy(id) {
+  console.log('Destroying page with id:', id)
+  // pageStore.destroy(page.id)
+}
+
+onMounted(() => {
+  pageStore.index()
+})
 </script>
 
 <style>

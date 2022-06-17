@@ -46,6 +46,7 @@ Title: Button Group
 
   > *:last-child, *:last-child .btns__btn {
     border-radius: 0 var(--btns-button-radius) var(--btns-button-radius) 0;
+    border-left: none;
   }
 }
 
