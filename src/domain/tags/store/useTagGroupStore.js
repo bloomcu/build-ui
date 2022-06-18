@@ -9,7 +9,9 @@ export const useTagGroupStore = defineStore('tagGroupStore', {
         isLoading: false,
     }),
     
-    getters: {},
+    getters: {
+      tags: (state) => state.group.tags
+    },
     
     actions: {
       index(params) {
