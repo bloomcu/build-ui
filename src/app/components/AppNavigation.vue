@@ -85,7 +85,7 @@ const route = useRoute()
 
             <ul class="f-header__dropdown">
               <li>
-                <RouterLink :to="{ name: 'tag-groups', params: { organization: route.params.organization} }" class="f-header__dropdown-link">Tags</RouterLink>
+                <RouterLink :to="{ name: 'tags', params: { organization: route.params.organization} }" class="f-header__dropdown-link">Tags</RouterLink>
               </li>
             </ul>
           </li>

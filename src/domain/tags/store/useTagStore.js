@@ -4,17 +4,40 @@ import { tagApi as TagApi } from '@/domain/tags/api/tagApi'
 export const useTagStore = defineStore('tagStore', {
     state: () => ({
         tag: {},
+        tags: [],
+        createModal: false,
         isLoading: false,
     }),
     
-    getters: {},
+    getters: {
+      children: (state) => state.tag.children
+    },
     
     actions: {
+      index(params) {
+        this.tags = []
       
-      store(tag) {
-        TagApi.store(this.group.slug, tag)
+        TagApi.index(params)
+          .then(response => {
+            this.tags = response.data.data
+          }).catch(error => {
+            console.log('Error', error.response.data)
+          })
+      },
+      
+      async store(tag) {
+        await TagApi.store(tag)
           .then(response => {
             this.tags.unshift(response.data.data)
+          }).catch(error => {
+            console.log('Error', error.response.data)
+          })
+      },
+      
+      show(id) {
+        TagApi.show(id)
+          .then(response => {
+            this.tag = response.data.data
           }).catch(error => {
             console.log('Error', error.response.data)
           })
@@ -41,6 +64,9 @@ export const useTagStore = defineStore('tagStore', {
           })
       },
       
+      toggleCreateModal() {
+        this.createModal = !this.createModal
+      }
     }
 })
 

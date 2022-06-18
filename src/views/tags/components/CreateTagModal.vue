@@ -1,16 +1,16 @@
 <template>
   <AppModal 
     size="xxs"
-    @closed="tagGroupStore.toggleCreateModal" 
-    :class="tagGroupStore.createModal ? 'modal--is-visible' : ''"
+    @closed="tagStore.toggleCreateModal()" 
+    :class="tagStore.createModal ? 'modal--is-visible' : ''"
   >
-  <form action="#" @submit.prevent="store(newGroup)">
+  <form action="#" @submit.prevent="store(tag)">
       <div class="margin-bottom-sm">
-        <label class="form-label margin-bottom-xxxs" for="title">Group title</label>
+        <label class="form-label margin-bottom-xxxs" for="title">Title</label>
         <input 
-          v-model="newGroup.title" 
+          v-model="tag.title" 
           required
-          placeholder="Gorup title"
+          placeholder="Tag group title"
           class="form-control width-100%" 
           type="text" 
           name="title" 
@@ -26,20 +26,20 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useTagGroupStore } from '@/domain/tags/store/useTagGroupStore'
+import { useTagStore } from '@/domain/tags/store/useTagStore'
 import AppModal from '@/app/components/AppModal.vue'
 
-const tagGroupStore = useTagGroupStore()
+const tagStore = useTagStore()
 
-const newGroup = ref({
+const tag = ref({
   title: '',
 })
 
-function store(newGroup) {
-  tagGroupStore.store(newGroup)
+function store(tag) {
+  tagStore.store(tag)
     .then(() => {
-      tagGroupStore.toggleCreateModal()
-      newGroup.title = ''
+      tagStore.toggleCreateModal()
+      tag.title = ''
     }).catch(error => {
       console.log('Error', error.response.data)
     })
