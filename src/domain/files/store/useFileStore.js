@@ -2,6 +2,9 @@ import { defineStore, acceptHMRUpdate } from 'pinia'
 import { fileApi as FileApi } from '@/domain/files/api/fileApi'
 import { cloudinaryApi as CloudinaryApi } from '@/domain/files/api/cloudinaryApi'
 
+import { useAuthStore } from '@/domain/auth/store/useAuthStore'
+import { useRoute } from 'vue-router'
+
 export const useFileStore = defineStore('fileStore', {
     state: () => ({
         files: [],
@@ -19,9 +22,12 @@ export const useFileStore = defineStore('fileStore', {
     
     actions: {
         index(params) {
+          // const auth = useAuthStore()
+          const route = useRoute()
+          
           this.files = []
           
-          FileApi.index(params)
+          FileApi.index(route.params.organization, params)
             .then(response => {
               this.files = response.data
             }).catch(error => {
@@ -30,9 +36,11 @@ export const useFileStore = defineStore('fileStore', {
         },
         
         async store(file, folder, group) {
+          const auth = useAuthStore()
+          
           let upload = await CloudinaryApi.upload(file, folder)
           
-          FileApi.store({
+          FileApi.store(auth.getOrganization, {
             group: group,
             type: upload.data.format ? upload.data.format : file.name.split('.').pop(),
             name: upload.data.original_filename,
@@ -54,9 +62,11 @@ export const useFileStore = defineStore('fileStore', {
         update() {},
         
         destroy(file) {
+          const auth = useAuthStore()
+          
           this.files = this.files.filter((f) => f.id !== file.id)
           
-          FileApi.destroy(file.id)
+          FileApi.destroy(auth.getOrganization, file.id)
             .then(response => {
               console.log('File successfully destroyed')
             }).catch(error => {

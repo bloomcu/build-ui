@@ -57,7 +57,7 @@ const progress = computed(() => {
 
 const groups = [
   {
-    name: 'brand-guide',
+    name: 'brand',
     title: 'Brand Guide',
     description: 'Upload your brand usage guide document(s) here.',
     todos: [

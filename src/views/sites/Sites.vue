@@ -2,7 +2,7 @@
   <div>
     <div class="container max-width-sm flex items-center justify-between padding-y-sm">
       <h1 class="text-lg">Sites</h1>
-      <button @click="siteStore.toggleCreateModal" class="btn btn--sm btn--subtle">
+      <button @click="siteStore.toggleCreateModal" class="btn btn--subtle">
         <IconPlus size="xxs" class="color-primary"/>
         <span class="margin-left-xxs">Add site</span>
       </button>
@@ -12,6 +12,12 @@
       <div class="card padding-md margin-bottom-sm">
         <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Primary Website</p>
         <h2 class="text-md margin-bottom-sm">redwoodcu.com</h2>
+        <p class="text-sm margin-bottom-xs">Crawled yesterday</p>
+      </div>
+      
+      <div class="card padding-md">
+        <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Blog</p>
+        <h2 class="text-md margin-bottom-sm">blog.redwoodcu.com</h2>
         <p class="text-sm color-success margin-bottom-xs">Crawl in progress</p>
         <AppProgressBar progress="40"/>
         
@@ -28,12 +34,6 @@
           <span class="text-sm text-bold color-contrast-lower">Archiving junk</span>
           <!-- <AppCircleLoader/> -->
         </div>
-      </div>
-      
-      <div class="card padding-md">
-        <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Blog</p>
-        <h2 class="text-md margin-bottom-sm">blog.redwoodcu.com</h2>
-        <p class="text-sm margin-bottom-xs">Last crawl: Yesterday</p>
       </div>
     </div>
 

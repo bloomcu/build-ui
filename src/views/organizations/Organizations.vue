@@ -2,7 +2,7 @@
   <div>
     <div class="container max-width-lg flex items-center justify-between padding-y-sm">
       <h1 class="text-lg">Organizations</h1>
-      <button @click="organizationStore.toggleCreateModal" class="btn btn--sm btn--subtle">
+      <button @click="organizationStore.toggleCreateModal" class="btn btn--subtle">
         <IconPlus size="xxs" class="color-primary"/>
         <span class="margin-left-xxs">Create organization</span>
       </button>
@@ -11,7 +11,7 @@
     <div class="container max-width-lg padding-y-sm">
       <div class="grid gap-sm">        
         <div v-for="(organization, index) in organizationStore.organizations" :key="index" class="col-3">
-          <AppCard v-bind="organization"/>
+          <AppCard v-bind="organization" :to="{ name: 'assets', params: { organization: organization.slug }}"/>
         </div>
       </div>
     </div>

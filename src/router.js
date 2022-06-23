@@ -40,6 +40,10 @@ const router = createRouter({
 * Redirect to login page if not logged in and trying to access a restricted page
 */
 router.beforeEach(async (to) => {
+  // TODO: Can I just isntantiate this store one in this file?
+  const authStore = useAuthStore()
+  
+    // TODO: Move this responsibility to the route definitions
     const publicRoutes = [
       '/register', 
       '/login', 
@@ -47,11 +51,25 @@ router.beforeEach(async (to) => {
     ]
     
     const authRequired = !publicRoutes.includes(to.path)
-    const auth = useAuthStore()
 
-    if (authRequired && !auth.user) {
-        auth.returnUrl = to.fullPath
+    if (!authStore.user && authRequired) {
+        // TODO: Set the return URL so that when the user logs in, they can return here
+        // authStore.returnUrl = to.fullPath
+        
         return '/login'
+    }
+})
+
+/**
+* Setup organization
+* Get organization from url, persist in auth store for use in api requests
+*/
+router.beforeEach(async (to) => {
+    // TODO: Can I just isntantiate this store one in this file?
+    const authStore = useAuthStore()
+    
+    if (to.params.organization) {
+        authStore.organization = to.params.organization
     }
 })
 

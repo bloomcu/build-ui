@@ -21,7 +21,16 @@
         
         <ul class="f-header__list margin-right-md">
           <!-- Organization(s) -->
-          <li class="f-header__item border-right padding-right-sm">
+          <li class="f-header__item border-right padding-right-xs">
+            <router-link 
+              :to="{ name: 'organizations'}" 
+              class="f-header__link"
+            >
+              Organizations
+            </router-link>
+          </li>
+          
+          <!-- <li class="f-header__item border-right padding-right-sm">
             <button class="f-header__link reset cursor-pointer">
               <span>BloomCU</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
@@ -43,7 +52,7 @@
                 <RouterLink :to="{ name: 'assets', params: { organization: 'tfcu' }}" class="f-header__dropdown-link">TFCU</RouterLink>
               </li>
             </ul>
-          </li>
+          </li> -->
           
           <!-- Main navigation -->
           <li class="f-header__item">
@@ -78,14 +87,14 @@
               Sites
             </router-link>
           </li>
-          <li class="f-header__item">
+          <!-- <li class="f-header__item">
             <router-link 
               :to="{ name: 'content', params: { organization: authStore.getOrganization, site: 1 }}" 
               class="f-header__link"
             >
               Content
             </router-link>
-          </li>
+          </li> -->
         </ul>
         
         <!-- Search -->
@@ -112,7 +121,7 @@
         <ul class="f-header__list">
           <li class="f-header__item margin-right-md">
             <button class="f-header__link reset cursor-pointer">
-              <span>Ryan Harmon</span>
+              <span>{{ authStore.user.name }}</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </button>
             <ul class="f-header__dropdown">

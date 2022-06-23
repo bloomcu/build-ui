@@ -7,8 +7,8 @@ const fileApi = {
      * @param Object params [Key/value params to query by]
      * @return promise
      */
-    index(params) {
-        return HttpClient.get(`/bloomcu/files`, { params: params })
+    index(organization, params) {
+        return HttpClient.get(`/${organization}/files`, { params: params })
     },
     
     /**
@@ -17,8 +17,8 @@ const fileApi = {
      * @param Object file [Object to create file from]
      * @return promise
      */
-    store(file) {
-        return HttpClient.post('/bloomcu/files', file)
+    store(organization, file) {
+        return HttpClient.post(`/${organization}/files`, file)
     },
     
     /**
@@ -27,8 +27,8 @@ const fileApi = {
      * @param Integer id [Id of the file you want to destroy]
      * @return promise
      */
-    destroy(id) {
-        return HttpClient.delete(`/bloomcu/files/${id}`)
+    destroy(organization, id) {
+        return HttpClient.delete(`/${organization}/files/${id}`)
     },
 }
 
