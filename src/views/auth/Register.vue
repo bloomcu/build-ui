@@ -1,7 +1,7 @@
 <template>
   <!-- <LayoutDefault> -->
     <div class="container max-width-xxs">
-      <form class="login-form" action="#" @submit.prevent="submit">
+      <form class="login-form" action="#" @submit.prevent="register()">
         <div class="text-component text-center margin-bottom-sm">
           <h2>Register</h2>
         </div>
@@ -97,14 +97,9 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
-const route = useRoute()
-// const router = getCurrentInstance().proxy.$router
-
 const authStore = useAuthStore()
-// const auth = getAuth()
 
 const inputs = ref({
   name: '',
@@ -113,22 +108,8 @@ const inputs = ref({
   password_confirmation: ''
 })
 
-const error = ref(null)
-
-const submit = () => {
-  console.log(inputs.value)
-  // authStore.register(inputs)
-  // createUserWithEmailAndPassword(auth, inputs.value.email, inputs.value.password)
-  //   .then((userCredential) => {
-  //     // Signed in 
-  //     router.replace({ name: 'pageDashboard' })
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     console.log(errorCode)
-  //     console.log(errorMessage)
-  //     // ..
-  //   });
+function register() {
+  const { name, email, password, password_confirmation } = inputs.value
+  authStore.register(name, email, password, password_confirmation)
 }
 </script>

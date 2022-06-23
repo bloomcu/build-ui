@@ -23,6 +23,10 @@ import AppCard from '@/app/components/AppCard.vue'
 
 const organizationStore = useOrganizationStore()
 
+// onMounted(() => {
+//     organizationStore.index()
+// })
+
 const organizations = [
   {
     title: 'TFCU',
@@ -37,8 +41,4 @@ const organizations = [
     subtitle: 'This is the description',
   },
 ]
-
-onMounted(() => {
-    organizationStore.index()
-})
 </script>

@@ -2,9 +2,8 @@ import Organizations from '@/views/organizations/Organizations.vue'
 
 export default [
   {
-    path: "/:organization/organizations",
+    path: "/organizations",
     name: "organizations",
     component: Organizations,
-    props: true,
   },
 ]

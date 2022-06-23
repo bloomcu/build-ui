@@ -1,7 +1,7 @@
 <template>
   <!-- <LayoutDefault> -->
     <div class="container max-width-xxs">
-      <form class="login-form" action="#" @submit.prevent="submit">
+      <form class="login-form" action="#" @submit.prevent="login()">
         <div class="text-component text-center margin-bottom-sm">
           <h2>Log in</h2>
         </div>
@@ -72,41 +72,17 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
-const route = useRoute()
-// const router = getCurrentInstance().proxy.$router
-
 const authStore = useAuthStore()
-// const auth = getAuth()
-
-// onAuthStateChanged(auth, (user) => {  
-//   if (user) {
-//     router.replace({ name: 'pageDashboard' })
-//   }
-// })
-
-const error = ref(null)
 
 const inputs = ref({
-  email: '',
-  password: ''
+  email: 'test@email.com',
+  password: 'password'
 })
     
-const submit = () => {
-  console.log(inputs.value)
-  // const auth = getAuth();
-  // 
-  // signInWithEmailAndPassword(auth, inputs.value.email, inputs.value.password)
-  //   .then((userCredential) => {
-  //     router.replace({ name: 'pageDashboard' })
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     console.log(errorCode)
-  //     console.log(errorMessage)
-  //   });
+function login() {
+  const { email, password } = inputs.value
+  authStore.login(email, password)
 }
 </script>

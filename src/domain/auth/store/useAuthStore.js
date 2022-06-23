@@ -13,12 +13,37 @@ export const useAuthStore = defineStore('authStore', {
     },
     
     actions: {
-      register() {
-        AuthApi.register(data)
+      register(name, email, password, password_confirmation) {
+        
+        AuthApi.register(name, email, password, password_confirmation)
           .then(response => {
             console.log(response)
             // this.user = response.data.user
             // this.access_token = response.data.access_token
+          }).catch(error => {
+            console.log('Error', error.response.data)
+          })
+      },
+      
+      login(email, password) {
+        AuthApi.login(email, password)
+          .then(response => {
+            console.log(response)
+            // this.user = response.data.user
+            // this.access_token = response.data.access_token
+          }).catch(error => {
+            console.log('Error', error.response.data)
+          })
+      },
+      
+      async logout() {
+        await AuthApi.logout()
+          .then(response => {
+            console.log(response)
+            
+            this.user = null
+            this.organization = ''
+            this.access_token = ''
           }).catch(error => {
             console.log('Error', error.response.data)
           })

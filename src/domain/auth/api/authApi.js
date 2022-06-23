@@ -1,25 +1,46 @@
 import { httpClient as HttpClient } from '@/app/api/httpClient'
 
-const authApi = {    
+const authApi = {
     /**
-     * List organizations
+     * Register new user
      *
-     * @param Object params [Key/value params to query by]
+     * @param String name
+     * @param String email
+     * @param String password
+     * @param String password_confirmation [repeated password]
      * @return promise
      */
-    register(data) {
-        return HttpClient.post(`/auth/register`, data)
+    register(name, email, password, password_confirmation) {
+        return HttpClient.post(`/auth/register`, {
+          name: name,
+          email: email,
+          password: password,
+          password_confirmation: password_confirmation, 
+        })
     },
     
     /**
-     * Store an organization
+     * Log in
      *
-     * @param Object organization [Properties to create file from]
+     * @param string email
+     * @param string password
      * @return promise
      */
-    store(organization) {
-        return HttpClient.post('/organizations', organization)
-    }
+    login(email, password) {
+        return HttpClient.post(`/auth/login`, {
+          email: email,
+          password: password,
+        })
+    },
+    
+    /**
+     * Log out
+     *
+     * @return promise
+     */
+    logout() {
+        return HttpClient.post(`/auth/logout`)
+    },
 }
 
 export { authApi }

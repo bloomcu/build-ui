@@ -14,15 +14,38 @@
       <div class="f-header__nav-grid container">
         
         <div class="f-header__nav-logo-wrapper margin-right-md">
-          <RouterLink :to="{ name: 'assets', params: { organization: authStore.organization }}" class="f-header__logo">
+          <RouterLink :to="{ name: 'organizations' }" class="f-header__logo">
             <svg width="104" height="30" viewBox="0 0 104 30"><title>Go to homepage</title><path d="M37.54 24.08V3.72h4.92v16.37h8.47v4zM60.47 24.37a7.82 7.82 0 01-5.73-2.25 8.36 8.36 0 01-2-5.62 8.32 8.32 0 012.08-5.71 8 8 0 015.64-2.18 8.07 8.07 0 015.68 2.2 8.49 8.49 0 012 5.69 8.63 8.63 0 01-1.78 5.38 7.6 7.6 0 01-5.89 2.49zm0-3.67c2.42 0 2.73-3 2.73-4.23s-.31-4.26-2.73-4.26-2.79 3-2.79 4.26.32 4.23 2.82 4.23zM95.49 24.37a7.82 7.82 0 01-5.73-2.25 8.36 8.36 0 01-2-5.62 8.32 8.32 0 012.08-5.71 8.4 8.4 0 0111.31 0 8.43 8.43 0 012 5.69 8.6 8.6 0 01-1.77 5.38 7.6 7.6 0 01-5.89 2.51zm0-3.67c2.42 0 2.73-3 2.73-4.23s-.31-4.26-2.73-4.26-2.8 3-2.8 4.26.31 4.23 2.83 4.23zM77.66 30c-5.74 0-7-3.25-7.23-4.52l4.6-.26c.41.91 1.17 1.41 2.76 1.41a2.45 2.45 0 002.82-2.53v-2.68a7 7 0 01-1.7 1.75 6.12 6.12 0 01-5.85-.08c-2.41-1.37-3-4.25-3-6.66 0-.89.12-3.67 1.45-5.42a5.67 5.67 0 014.64-2.4c1.2 0 3 .25 4.46 2.82V8.81h4.85v15.33a5.2 5.2 0 01-2.12 4.32A9.92 9.92 0 0177.66 30zm.15-9.66c2.53 0 2.81-2.69 2.81-3.91s-.31-4-2.81-4-2.81 2.8-2.81 4 .27 3.91 2.81 3.91zM55.56 3.72h9.81v2.41h-9.81z" fill="var(--color-contrast-higher)"/><circle cx="15" cy="15" r="15" fill="var(--color-primary)"/></svg>
           </RouterLink>
         </div>
         
         <ul class="f-header__list margin-right-md">
-          <!-- <li class="f-header__item">
-            <router-link :to="{ name: 'assets', params: { organization: route.params.organization }}" class="f-header__link">Pages</router-link>
-          </li> -->
+          <!-- Organization(s) -->
+          <li class="f-header__item border-right padding-right-sm">
+            <button class="f-header__link reset cursor-pointer">
+              <span>BloomCU</span>
+              <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
+            </button>
+            <ul class="f-header__dropdown">
+              <li>
+                <RouterLink :to="{ name: 'organizations' }" class="f-header__dropdown-link border-bottom">All Organizations</RouterLink>
+              </li>
+              <li>
+                <p class="text-xs text-uppercase letter-spacing-lg color-contrast-low margin-0 padding-top-sm padding-bottom-xxs padding-left-sm">Recent</p>
+              </li>
+              <li>
+                <RouterLink :to="{ name: 'assets', params: { organization: 'bloomcu' }}" class="f-header__dropdown-link">BloomCU</RouterLink>
+              </li>
+              <li>
+                <RouterLink :to="{ name: 'assets', params: { organization: 'socal' }}" class="f-header__dropdown-link">SoCal</RouterLink>
+              </li>
+              <li>
+                <RouterLink :to="{ name: 'assets', params: { organization: 'tfcu' }}" class="f-header__dropdown-link">TFCU</RouterLink>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- Main navigation -->
           <li class="f-header__item">
             <router-link 
               :to="{ name: 'assets', params: { organization: authStore.organization }}" 
@@ -64,43 +87,38 @@
             </router-link>
           </li>
         </ul>
-    
+        
+        <!-- Search -->
         <div class="f-header__search margin-right-md">
           <!-- <AppNavigationSearch /> -->
         </div>
         
-        <ul class="f-header__list">
+        <!-- Settings -->
+        <!-- <ul class="f-header__list">
           <li class="f-header__item margin-right-md">
             <button class="f-header__link reset cursor-pointer">
               <span>Settings</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </button>
-
             <ul class="f-header__dropdown">
               <li>
-                <RouterLink :to="{ name: 'tags', params: { organization: authStore.organization} }" class="f-header__dropdown-link">Tags</RouterLink>
+                <RouterLink :to="{ name: 'tags' }" class="f-header__dropdown-link">Tags</RouterLink>
               </li>
             </ul>
           </li>
-          
-          <li class="f-header__item">
+        </ul> -->
+        
+        <!-- User -->
+        <ul class="f-header__list">
+          <li class="f-header__item margin-right-md">
             <button class="f-header__link reset cursor-pointer">
-              <span>AcmeCU</span>
+              <span>Ryan Harmon</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </button>
-
             <ul class="f-header__dropdown">
               <li>
-                <RouterLink :to="{ name: 'organizations', params: { organization: authStore.organization }}" class="f-header__dropdown-link border-bottom">All Organizations</RouterLink>
-              </li>
-              <li>
-                <RouterLink :to="{ name: 'assets', params: { organization: 'bloomcu' }}" class="f-header__dropdown-link">BloomCU</RouterLink>
-              </li>
-              <li>
-                <RouterLink :to="{ name: 'assets', params: { organization: 'socal' }}" class="f-header__dropdown-link">SoCal</RouterLink>
-              </li>
-              <li>
-                <RouterLink :to="{ name: 'assets', params: { organization: 'tfcu' }}" class="f-header__dropdown-link">TFCU</RouterLink>
+                <RouterLink :to="{ name: 'logout' }" class="f-header__dropdown-link">Log out</RouterLink>
+                <!-- <a @click.prevent="logout()" href="" class="f-header__dropdown-link">Log out</a> -->
               </li>
             </ul>
           </li>
@@ -112,12 +130,19 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
+// import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 import AppNavigationSearch from '@/app/components/AppNavigationSearch.vue'
 
-const route = useRoute()
+// const router = useRouter()
 const authStore = useAuthStore()
+
+// function logout() {
+//   authStore.logout()
+//     .then(() => {
+//       router.push({ name: 'login' })
+//     })
+// }
 </script>
 
 <style lang="scss">
@@ -326,9 +351,9 @@ const authStore = useAuthStore()
     border-bottom: none;
     margin-right: var(--space-xs); /* margin between nav items */
 
-    &:last-child {
-      margin-right: 0;
-    }
+    // &:last-child {
+    //   margin-right: 0;
+    // }
   }
 
   .f-header__dropdown-icon {
@@ -364,7 +389,7 @@ const authStore = useAuthStore()
     position: absolute;
     top: 100%;
     width: 220px;
-    left: calc(50% - 110px);
+    left: calc(50% - 150px);
     padding: var(--space-xxxs) 0;
     background-color: var(--color-bg-light);
     border-radius: var(--radius-md);
