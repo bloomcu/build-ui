@@ -1,44 +1,39 @@
 <template>
   <div>
     <div class="container max-width-lg flex items-center justify-between padding-y-sm">
-      <h3>Organizations</h3>
-      <RouterLink to="" class="btn btn--primary">Create organization</RouterLink>
+      <h1 class="text-lg">Organizations</h1>
+      <button @click="organizationStore.toggleCreateModal" class="btn btn--sm btn--subtle">
+        <IconPlus size="xxs" class="color-primary"/>
+        <span class="margin-left-xxs">Create organization</span>
+      </button>
     </div>
 
     <div class="container max-width-lg padding-y-sm">
       <div class="grid gap-sm">        
-        <div v-for="(organization, index) in organizations" :key="index" class="col-3">
+        <div v-for="(organization, index) in organizationStore.organizations" :key="index" class="col-3">
           <AppCard v-bind="organization"/>
         </div>
       </div>
-
     </div>
+    
+    <CreateOrganizationModal/>
   </div>
 </template>
 
 <script setup>
+// TODO
+// TODO: Organizations index should derive from the user.
+// TODO
 import { onMounted } from 'vue'
 import { useOrganizationStore } from '@/domain/organizations/store/useOrganizationStore'
+
 import AppCard from '@/app/components/AppCard.vue'
+import IconPlus from '@/app/components/icons/IconPlus.vue'
+import CreateOrganizationModal from '@/views/organizations/components/CreateOrganizationModal.vue'
 
 const organizationStore = useOrganizationStore()
 
-// onMounted(() => {
-//     organizationStore.index()
-// })
-
-const organizations = [
-  {
-    title: 'TFCU',
-    subtitle: 'This is the description',
-  },
-  {
-    title: 'SoCal',
-    subtitle: 'This is the description',
-  },
-  {
-    title: 'San Antonio',
-    subtitle: 'This is the description',
-  },
-]
+onMounted(() => {
+    organizationStore.index()
+})
 </script>

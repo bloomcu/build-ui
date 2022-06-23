@@ -23,8 +23,8 @@ export const useSiteStore = defineStore('siteStore', {
             })
         },
         
-        store(site) {
-          SiteApi.store(site)
+        async store(site) {
+          await SiteApi.store(site)
             .then(response => {
               this.sites.unshift(response.data)
             }).catch(error => {

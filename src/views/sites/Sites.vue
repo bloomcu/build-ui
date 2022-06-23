@@ -2,13 +2,17 @@
   <div>
     <div class="container max-width-sm flex items-center justify-between padding-y-sm">
       <h1 class="text-lg">Sites</h1>
-      <button @click="siteStore.toggleCreateModal" class="btn btn--primary">Add site</button>
+      <button @click="siteStore.toggleCreateModal" class="btn btn--sm btn--subtle">
+        <IconPlus size="xxs" class="color-primary"/>
+        <span class="margin-left-xxs">Add site</span>
+      </button>
     </div>
 
     <div class="container max-width-sm padding-y-sm">
-      <div class="card text-component padding-md margin-bottom-sm">
-        <h2 class="text-md">redwoodcu.com</h2>
-        <p class="text-sm color-success">Crawl in progress</p>
+      <div class="card padding-md margin-bottom-sm">
+        <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Primary Website</p>
+        <h2 class="text-md margin-bottom-sm">redwoodcu.com</h2>
+        <p class="text-sm color-success margin-bottom-xs">Crawl in progress</p>
         <AppProgressBar progress="40"/>
         
         <div class="flex items-center justify-between margin-y-sm">
@@ -26,9 +30,10 @@
         </div>
       </div>
       
-      <div class="card text-component padding-md">
-        <h2 class="text-md">redwoodcu.com</h2>
-        <p class="text-sm">Last crawl: Yesterday</p>
+      <div class="card padding-md">
+        <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Blog</p>
+        <h2 class="text-md margin-bottom-sm">blog.redwoodcu.com</h2>
+        <p class="text-sm margin-bottom-xs">Last crawl: Yesterday</p>
       </div>
     </div>
 
@@ -40,10 +45,11 @@
 import { ref, onMounted } from 'vue'
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
 
-import CreateSiteModal from '@/views/sites/components/CreateSiteModal.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
 import AppCircleLoader from '@/app/components/AppCircleLoader.vue'
+import IconPlus from '@/app/components/icons/IconPlus.vue'
 import IconCheck from '@/app/components/icons/IconCheck.vue'
+import CreateSiteModal from '@/views/sites/components/CreateSiteModal.vue'
 
 const siteStore = useSiteStore()
 

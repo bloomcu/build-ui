@@ -6,6 +6,7 @@ export const useOrganizationStore = defineStore('organizationStore', {
         organizations: [],
         organization: {},
         isLoading: false,
+        createModalOpen: false,
     }),
     
     getters: {},
@@ -21,8 +22,8 @@ export const useOrganizationStore = defineStore('organizationStore', {
             })
         },
         
-        store(organization) {
-          OrganizationApi.store(organization)
+        async store(organization) {
+          await OrganizationApi.store(organization)
             .then(response => {
               this.organizations.unshift(response.data)
             }).catch(error => {
@@ -35,6 +36,10 @@ export const useOrganizationStore = defineStore('organizationStore', {
         update() {},
         
         destroy(id) {},
+        
+        toggleCreateModal() {
+          this.createModalOpen = !this.createModalOpen
+        }
     }
 })
 

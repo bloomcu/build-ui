@@ -35,9 +35,17 @@ const router = createRouter({
   routes: routes,
 })
 
+/**
+* Restrict unauthenticated access
+* Redirect to login page if not logged in and trying to access a restricted page
+*/
 router.beforeEach(async (to) => {
-    // Redirect to login page if not logged in and trying to access a restricted page
-    const publicRoutes = ['/register', '/login', '/forgot-password']
+    const publicRoutes = [
+      '/register', 
+      '/login', 
+      '/forgot-password'
+    ]
+    
     const authRequired = !publicRoutes.includes(to.path)
     const auth = useAuthStore()
 
