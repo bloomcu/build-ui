@@ -10,19 +10,28 @@ const httpClient = axios.create({
 })
 
 /**
+* Catch unauthorized requests
+* Logout if 401 Unauthorized or 403 Forbidden response returned from api
+*/
+httpClient.interceptors.response.use((response) => { return response }, (error) => {
+    if ([401, 403].includes(error.response.status)) {
+      document.location.href = '/logout';
+    }
+});
+
+/**
 * Authenticate requests
 * Return auth header with access token if user is logged in
 */
-httpClient.interceptors.request.use(
-  (config) => {
+httpClient.interceptors.request.use((config) => {
     const { user } = useAuthStore()
     if (!!user?.access_token) {
       config.headers.Authorization = `Bearer ${user.access_token}`
     }
     return config
-  },
-
-  (error) => { Promise.reject(error) }
+  }, (error) => { 
+    Promise.reject(error) 
+  }
 );
 
 export { httpClient }
