@@ -5,6 +5,5 @@ export default [
     path: "/:organization/sites/:site/content",
     name: "content",
     component: ContentInventory,
-    props: true,
   },
 ]

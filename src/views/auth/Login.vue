@@ -36,7 +36,7 @@
           <button class="btn btn--primary btn--md width-100%">Login with email</button>
         </div>
         
-        <p class="text-center margin-y-sm">or</p>
+        <!-- <p class="text-center margin-y-sm">or</p>
 
         <div class="grid gap-xs margin-bottom-md">
           <div class="col-6@xs">
@@ -52,7 +52,7 @@
               <span>Log in with Microsoft</span>
             </a>
           </div>
-        </div>
+        </div> -->
         
         <div class="text-center text-component">
           <p class="text-sm">
@@ -72,8 +72,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
+const router = useRouter()
 const authStore = useAuthStore()
 
 const inputs = ref({
@@ -83,6 +85,10 @@ const inputs = ref({
     
 function login() {
   const { email, password } = inputs.value
+
   authStore.login(email, password)
+    .then(() => {
+      router.push({ name: 'organizations' })
+    })
 }
 </script>

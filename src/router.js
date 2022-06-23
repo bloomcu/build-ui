@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
 // import Survey from '@/views/Survey.vue';
 // import Flowchart from '@/views/Flowchart.vue';
@@ -32,6 +33,18 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes: routes,
+})
+
+router.beforeEach(async (to) => {
+    // Redirect to login page if not logged in and trying to access a restricted page
+    const publicRoutes = ['/register', '/login', '/forgot-password']
+    const authRequired = !publicRoutes.includes(to.path)
+    const auth = useAuthStore()
+
+    if (authRequired && !auth.user) {
+        auth.returnUrl = to.fullPath
+        return '/login'
+    }
 })
 
 export default router

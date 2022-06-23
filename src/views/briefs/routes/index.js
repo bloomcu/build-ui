@@ -5,6 +5,5 @@ export default [
       path: "/:organization/briefs/style-tile",
       name: "styleTileBrief",
       component: StyleTileBrief,
-      props: true,
   },
 ]

@@ -45,18 +45,13 @@ import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
 const route = useRoute()
-// const router = getCurrentInstance().proxy.$router
-
 const authStore = useAuthStore()
-// const auth = getAuth();
 
 const inputs = ref({
   email: ''
 })
 
-const error = ref(null)
-
-const submit = () => {
+function submit() {
   console.log(inputs.value)
 }
 </script>

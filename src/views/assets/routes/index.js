@@ -6,12 +6,10 @@ export default [
     path: "/:organization/assets",
     name: "assets",
     component: Assets,
-    props: true,
   },
   {
     path: "/:organization/assets/intake",
     name: "assetsIntake",
     component: AssetsIntake,
-    props: true,
   },
 ]

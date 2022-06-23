@@ -5,6 +5,5 @@ export default [
     path: "/:organization/sites",
     name: "sites",
     component: Sites,
-    props: true,
   },
 ]

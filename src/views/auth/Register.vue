@@ -65,7 +65,7 @@
           <button class="btn btn--primary btn--md width-100%">Register with email</button>
         </div>
         
-        <p class="text-center margin-y-sm">or</p>
+        <!-- <p class="text-center margin-y-sm">or</p>
 
         <div class="grid gap-xs margin-bottom-md">
           <div class="col-6@xs">
@@ -81,7 +81,7 @@
               <span>Register with Microsoft</span>
             </a>
           </div>
-        </div>
+        </div> -->
         
         <div class="text-center">
           <p class="text-sm">

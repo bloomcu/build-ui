@@ -3,34 +3,36 @@ import { authApi as AuthApi } from '@/domain/auth/api/authApi'
 
 export const useAuthStore = defineStore('authStore', {
     state: () => ({
-      user: null,
+      user: JSON.parse(localStorage.getItem('user')),
       organization: 'bloomcu',
-      access_token: ''
     }),
     
     getters: {
-      getUser: (state) => state.user
+      getOrganization: (state) => state.organization,
     },
     
     actions: {
-      register(name, email, password, password_confirmation) {
-        
-        AuthApi.register(name, email, password, password_confirmation)
+      async register(name, email, password, password_confirmation) {
+        await AuthApi.register(name, email, password, password_confirmation)
           .then(response => {
-            console.log(response)
-            // this.user = response.data.user
-            // this.access_token = response.data.access_token
+            // console.log(response.data.data)
+            this.user = response.data.data
+            
+            // Store user details and jwt in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(response.data.data))
           }).catch(error => {
             console.log('Error', error.response.data)
           })
       },
       
-      login(email, password) {
-        AuthApi.login(email, password)
+      async login(email, password) {
+        await AuthApi.login(email, password)
           .then(response => {
-            console.log(response)
-            // this.user = response.data.user
-            // this.access_token = response.data.access_token
+            // console.log(response.data.data)
+            this.user = response.data.data
+            
+            // Store user details and jwt in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(response.data.data))
           }).catch(error => {
             console.log('Error', error.response.data)
           })
@@ -39,11 +41,12 @@ export const useAuthStore = defineStore('authStore', {
       async logout() {
         await AuthApi.logout()
           .then(response => {
-            console.log(response)
-            
+            // console.log(response.data.data)
             this.user = null
-            this.organization = ''
-            this.access_token = ''
+            // this.organization = ''
+            
+            // Remove user details from local storage
+            localStorage.removeItem('user');
           }).catch(error => {
             console.log('Error', error.response.data)
           })
