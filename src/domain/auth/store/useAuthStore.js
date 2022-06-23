@@ -8,6 +8,9 @@ export const useAuthStore = defineStore('authStore', {
     }),
     
     getters: {
+      isAuthenticated(state) {
+        if (state.user) { return state.user.access_token}
+      },
       getOrganization: (state) => state.organization,
     },
     
@@ -39,14 +42,11 @@ export const useAuthStore = defineStore('authStore', {
       },
       
       async logout() {
+        localStorage.removeItem('user');
+        
         await AuthApi.logout()
           .then(response => {
-            // console.log(response.data.data)
             this.user = null
-            // this.organization = ''
-            
-            // Remove user details from local storage
-            localStorage.removeItem('user');
           }).catch(error => {
             console.log('Error', error.response.data)
           })

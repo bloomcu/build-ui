@@ -1,7 +1,7 @@
 <template>
   <!-- <div v-if="route.params.organization"> -->
   <div>
-    <AppNavigation v-if="authStore.organization"/>
+    <AppNavigation v-if="authStore.isAuthenticated"/>
     <router-view />
   </div>
 </template>
