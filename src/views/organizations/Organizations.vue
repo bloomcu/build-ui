@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container max-width-lg flex items-center justify-between padding-y-sm">
+  <LayoutWithoutNavigation>
+    <div class="flex items-center justify-between padding-y-md">
       <h1 class="text-lg">Organizations</h1>
       <button @click="organizationStore.toggleCreateModal" class="btn btn--subtle">
         <IconPlus size="xxs" class="color-primary"/>
@@ -8,7 +8,7 @@
       </button>
     </div>
 
-    <div class="container max-width-lg padding-y-sm">
+    <div class="padding-y-sm">
       <div class="grid gap-sm">        
         <div v-for="(organization, index) in organizationStore.organizations" :key="index" class="col-3">
           <AppCard v-bind="organization" :to="{ name: 'assets', params: { organization: organization.slug }}"/>
@@ -17,7 +17,7 @@
     </div>
     
     <CreateOrganizationModal/>
-  </div>
+  </LayoutWithoutNavigation>
 </template>
 
 <script setup>
@@ -27,6 +27,7 @@
 import { onMounted } from 'vue'
 import { useOrganizationStore } from '@/domain/organizations/store/useOrganizationStore'
 
+import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
 import AppCard from '@/app/components/AppCard.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import CreateOrganizationModal from '@/views/organizations/components/CreateOrganizationModal.vue'

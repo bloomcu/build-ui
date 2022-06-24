@@ -1,24 +1,10 @@
-<script setup>
-import { onMounted } from 'vue'
-import { useFileStore } from '@/domain/files/store/useFileStore'
-
-import FileList from '@/domain/files/components/FileList.vue'
-import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
-
-const fileStore = useFileStore()
-
-onMounted(() => {
-    fileStore.index()
-})
-</script>
-
 <template>
-  <div>
-    <div class="container max-width-lg padding-y-sm">
+  <LayoutDefault>
+    <div class="padding-y-md">
       <h3>Style Tile Brief</h3>
     </div>
 
-    <div class="container max-width-lg padding-y-sm">
+    <div class="padding-y-md">
       <div class="grid gap-sm margin-bottom-lg padding-y-sm">
         <div class="col-4 text-component padding-right-md">
           <h4>Step 1 - Review the brand</h4>
@@ -77,5 +63,19 @@ onMounted(() => {
     </div>
 
     <!-- <FileModal/> -->
-  </div>
+  </LayoutDefault>
 </template>
+
+<script setup>
+import { onMounted } from 'vue'
+import { useFileStore } from '@/domain/files/store/useFileStore'
+import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
+import FileList from '@/domain/files/components/FileList.vue'
+import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
+
+const fileStore = useFileStore()
+
+onMounted(() => {
+    fileStore.index()
+})
+</script>

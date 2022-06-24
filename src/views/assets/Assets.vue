@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div class="container max-width-lg padding-y-sm">
+  <LayoutDefault>
+    <div class="padding-y-md">
       <h3>Assets</h3>
     </div>
     
-    <div class="container max-width-lg padding-y-sm">
+    <div class="padding-y-md">
       <div v-for="group in groups" :key="group.name" class="grid gap-sm margin-bottom-xl padding-y-sm border-top border-contrast-lower">
         <div class="col-4 padding-right-md">
           <h4 class="margin-bottom-sm">{{ group.title }}</h4>
@@ -19,7 +19,7 @@
     </div>
     
     <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
-  </div>
+  </LayoutDefault>
 </template>
 
 <script setup>
@@ -27,6 +27,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFileStore } from '@/domain/files/store/useFileStore'
 
+import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import FileUploader from '@/domain/files/components/FileUploader.vue'
 import FileList from '@/domain/files/components/FileList.vue'
 import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
@@ -34,6 +35,7 @@ import AppTodoList from '@/app/components/AppTodoList.vue'
 
 const route = useRoute()
 const fileStore = useFileStore()
+
 let modalData = ref(null)
 
 onMounted(() => {

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container max-width-sm flex items-center justify-between padding-y-sm">
+  <LayoutDefault>
+    <div class="container max-width-sm flex items-center justify-between padding-y-md">
       <h1 class="text-lg">Sites</h1>
       <button @click="siteStore.toggleCreateModal" class="btn btn--subtle">
         <IconPlus size="xxs" class="color-primary"/>
@@ -8,7 +8,7 @@
       </button>
     </div>
 
-    <div class="container max-width-sm padding-y-sm">
+    <div class="container max-width-sm padding-y-md">
       <div class="card padding-md margin-bottom-sm">
         <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Primary Website</p>
         <h2 class="text-md margin-bottom-sm">redwoodcu.com</h2>
@@ -38,13 +38,14 @@
     </div>
 
     <CreateSiteModal/>
-  </div>
+  </LayoutDefault>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
 
+import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
 import AppCircleLoader from '@/app/components/AppCircleLoader.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'

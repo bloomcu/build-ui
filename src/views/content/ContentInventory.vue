@@ -1,4 +1,5 @@
 <template>
+  
   <div class="flex">
     <aside class="flex-shrink-0 flex-grow position-relative z-index-1 width-100% max-width-xxxxs">
       <div class="padding-sm">
@@ -18,15 +19,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-// import { useRoute } from 'vue-router'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
 import { useTagStore } from '@/domain/tags/store/useTagStore'
+
 import ContentTable from '@/views/content/components/ContentTable.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 // import ContentItemModal from '@/domain/content/components/ContentItemModal.vue'
 
-
-// const route = useRoute()
 const pageStore = usePageStore()
 const tagStore = useTagStore()
 

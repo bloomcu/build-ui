@@ -1,6 +1,6 @@
 <template>
-  <!-- <LayoutDefault> -->
-    <div class="container max-width-xxs">
+  <LayoutWithoutNavigation>
+    <div class="container max-width-xxs padding-top-lg">
       <form class="login-form" action="#" @submit.prevent="submit">
         <div class="text-component text-center margin-bottom-sm">
           <h2>Forgot your password?</h2>
@@ -36,13 +36,14 @@
         
       </form>
     </div>
-  <!-- </LayoutDefault> -->
+  </LayoutWithoutNavigation>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
+import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
 
 const route = useRoute()
 const authStore = useAuthStore()

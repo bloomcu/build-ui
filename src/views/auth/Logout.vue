@@ -1,9 +1,5 @@
 <template>
-  <!-- <LayoutDefault> -->
-    <!-- <div class="container max-width-xxs text-center">
-      <h2>Log out</h2>
-    </div> -->
-  <!-- </LayoutDefault> -->
+
 </template>
 
 <script setup>
