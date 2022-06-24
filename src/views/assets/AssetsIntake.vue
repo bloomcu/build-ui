@@ -57,7 +57,7 @@ const progress = computed(() => {
 
 const groups = [
   {
-    name: 'brand',
+    name: 'guides',
     title: 'Brand Guide',
     description: 'Upload your brand usage guide document(s) here.',
     todos: [
@@ -68,7 +68,7 @@ const groups = [
     ]
   },
   {
-    name: 'logo',
+    name: 'logos',
     title: 'Logo',
     description: 'Upload your logo(s) here.',
     todos: [
@@ -84,7 +84,7 @@ const groups = [
   //   description: 'Upload an image or document containing your color palette.',
   // },
   {
-    name: 'font',
+    name: 'desktop-fonts',
     title: 'Desktop Fonts',
     description: 'Upload your fonts for desktop usage.',
     todos: [
@@ -95,7 +95,7 @@ const groups = [
     ]
   },
   {
-    name: 'font',
+    name: 'web-fonts',
     title: 'Web Fonts',
     description: 'Upload your fonts for web usage.',
     todos: [
@@ -106,7 +106,7 @@ const groups = [
     ]
   },
   {
-    name: 'photo',
+    name: 'photos',
     title: 'Photography',
     description: 'Upload your photography.',
     todos: [

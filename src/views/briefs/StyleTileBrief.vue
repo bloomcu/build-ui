@@ -26,7 +26,7 @@ onMounted(() => {
           <button type="button" name="button" class="btn btn--primary">Download All Assets</button>
         </div>
         <div class="col-8 padding-sm" style="height: fit-content; background-color: #f1f0ef; border-radius: 20px;">
-          <FileList :files="fileStore.filterByGroup('brand')"/>
+          <FileList :files="fileStore.filterByGroup('guides')"/>
         </div>
       </div>
       
@@ -35,16 +35,25 @@ onMounted(() => {
           <h4 class="text-bold padding-top-xs border-top border-contrast-lower">Logo</h4>
         </div>
         <div class="col-8 padding-sm" style="height: fit-content; background-color: #f1f0ef; border-radius: 20px;">
-          <FileList :files="fileStore.filterByGroup('logo')"/>
+          <FileList :files="fileStore.filterByGroup('logos')"/>
         </div>
       </div>
       
       <div class="grid gap-sm margin-bottom-lg">
         <div class="col-4 text-component padding-right-md">
-          <h4 class="text-bold padding-top-xs border-top border-contrast-lower">Fonts</h4>
+          <h4 class="text-bold padding-top-xs border-top border-contrast-lower">Desktop Fonts</h4>
         </div>
         <div class="col-8 padding-sm" style="height: fit-content; background-color: #f1f0ef; border-radius: 20px;">
-          <FileList :files="fileStore.filterByGroup('font')"/>
+          <FileList :files="fileStore.filterByGroup('desktop-fonts')"/>
+        </div>
+      </div>
+      
+      <div class="grid gap-sm margin-bottom-lg">
+        <div class="col-4 text-component padding-right-md">
+          <h4 class="text-bold padding-top-xs border-top border-contrast-lower">Web Fonts</h4>
+        </div>
+        <div class="col-8 padding-sm" style="height: fit-content; background-color: #f1f0ef; border-radius: 20px;">
+          <FileList :files="fileStore.filterByGroup('web-fonts')"/>
         </div>
       </div>
       
@@ -53,7 +62,7 @@ onMounted(() => {
           <h4 class="text-bold padding-top-xs border-top border-contrast-lower">Photography</h4>
         </div>
         <div class="col-8 padding-sm" style="height: fit-content; background-color: #f1f0ef; border-radius: 20px;">
-          <FileList :files="fileStore.filterByGroup('photo')"/>
+          <FileList :files="fileStore.filterByGroup('photos')"/>
         </div>
       </div>
       
