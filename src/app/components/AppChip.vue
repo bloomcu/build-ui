@@ -1,7 +1,10 @@
 <template>
-  <button class="chip chip--interactive">
-      <i class="chip__label">{{ label }}</i>
-    </button>
+  <button class="chip chip--white chip--interactive">
+    <em v-if="icon" class="chip__icon-wrapper bg-success">
+      <svg class="icon" viewBox="0 0 12 12"><polyline points="1.5 6 4.5 9 10.5 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </em>
+    <i class="chip__label">{{ label }}</i>
+  </button>
 </template>
 
 <script setup>
@@ -9,6 +12,10 @@ const props = defineProps({
   label: {
     type: String,
     required: true,
+  },
+  icon: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -26,13 +33,8 @@ const props = defineProps({
   border-radius: 50em;
   
   background-color: alpha(var(--color-contrast-higher), 0.1);
-  margin-right: var(--space-xs);
   
   @include fontSmooth;
-  
-  &:last-child {
-    margin-right: 0;
-  }
   
   /* 👇 you can ovveride this padding by using the padding utility classes */
   &:not([class^="padding-"]):not([class*=" padding-"]) {
@@ -43,6 +45,10 @@ const props = defineProps({
 .chip--outline {
   background-color: transparent;
   box-shadow: inset 0 0 0 1px alpha(var(--color-contrast-higher), 0.25);
+}
+
+.chip--white {
+  background-color: var(--color-white);
 }
 
 .chip--error {
@@ -85,5 +91,61 @@ const props = defineProps({
 
 .chip__label {
   padding: 0 var(--space-xxs);
+}
+
+.chip__img {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chip__icon-wrapper {
+  display: flex;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  // background-color: alpha(var(--color-contrast-higher), 0.95);
+  color: var(--color-bg); /* icon color */
+
+  .icon {
+    display: block;
+    margin: auto;
+  }
+}
+
+.chip__btn {
+  @include reset;
+  display: flex;
+  width: 1.5em;
+  height: 1.5em;
+  background-color: alpha(var(--color-contrast-higher), 0.2);
+  border-radius: 50%;
+  will-change: transform;
+  transition: background, box-shadow, transform;
+  transition-duration: .2s;
+
+  .icon {
+    display: block;
+    margin: auto;
+  }
+
+  &:hover {
+    background-color: alpha(var(--color-contrast-higher), 0.3);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px alpha(var(--color-contrast-higher), 0.5);
+  }
+
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
 }
 </style>

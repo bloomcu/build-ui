@@ -12,7 +12,7 @@
           <button type="button" name="button" class="btn btn--primary">Download All Assets</button>
         </div>
         <div class="col-8 padding-sm" style="height: fit-content; background-color: #f1f0ef; border-radius: 20px;">
-          <FileList :files="fileStore.filterByGroup('guides')"/>
+          <FileList :files="fileStore.filterByGroup('brand')"/>
         </div>
       </div>
       

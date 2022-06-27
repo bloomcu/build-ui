@@ -57,7 +57,7 @@ function destroyFile(file) {
 
 const groups = [
   {
-    name: 'guides',
+    name: 'brand',
     title: 'Brand Guide',
     description: 'Upload your brand usage guide document(s) here.',
     todos: [
