@@ -23,6 +23,7 @@ export const useFileStore = defineStore('fileStore', {
     actions: {
         index(params) {
           // const auth = useAuthStore()
+          // TODO: Why are we using route here and not store
           const route = useRoute()
           
           this.files = []

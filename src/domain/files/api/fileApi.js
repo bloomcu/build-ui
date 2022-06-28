@@ -4,6 +4,7 @@ const fileApi = {
     /**
      * List files
      *
+     * @param String organization [Slug of the organization]
      * @param Object params [Key/value params to query by]
      * @return promise
      */
@@ -14,6 +15,7 @@ const fileApi = {
     /**
      * Store a file
      *
+     * @param String organization [Slug of the organization]
      * @param Object file [Object to create file from]
      * @return promise
      */
@@ -24,6 +26,7 @@ const fileApi = {
     /**
      * Destroy a file
      *
+     * @param String organization [Slug of the organization]
      * @param Integer id [Id of the file you want to destroy]
      * @return promise
      */

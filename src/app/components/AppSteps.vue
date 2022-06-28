@@ -1,30 +1,46 @@
 <template>
   <div class="steps text-sm@md" aria-label="Multi-step indicator">
     <ol class="steps__list">
-      <li class="step step--completed">
-        <a class="step__label" href="#0">Brand</a>
+      <li 
+        :class="step === 'brand' ? 'step--current' : ''"
+        class="step cursor-pointer"
+        @click="changeStep(0)"
+      >
+        <p class="step__label">Brand</p>
 
         <span class="step__separator" aria-hidden="true">
           <svg class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="6.5,3.5 11,8 6.5,12.5 "></polyline></svg>
         </span>
 
         <div class="step__circle" aria-hidden="true">
-          <svg class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="1,9 5,13 15,3 "></polyline></svg>
+          <!-- <svg v-if="step < 2" class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="1,9 5,13 15,3 "></polyline></svg> -->
+          <span>1</span>
         </div>
       </li>
 
-      <li class="step step--current">
-        <a class="step__label">Logo</a>
+      <li 
+        :class="step === 'logos' ? 'step--current' : ''"
+        class="step cursor-pointer"
+        @click="changeStep(2)"
+      >
+        <p class="step__label">Logo</p>
 
         <span class="step__separator" aria-hidden="true">
           <svg class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="6.5,3.5 11,8 6.5,12.5 "></polyline></svg>
         </span>
 
-        <div class="step__circle" aria-hidden="true">2</div>
+        <div class="step__circle" aria-hidden="true">
+          <!-- <svg v-if="step < 4" class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="1,9 5,13 15,3 "></polyline></svg> -->
+          <span>2</span>
+        </div>
       </li>
 
-      <li class="step">
-        <a class="step__label">Fonts</a>
+      <li 
+        :class="step === 'desktop-fonts' || step === 'web-fonts' || step === 'fonts' ? 'step--current' : ''"
+        class="step cursor-pointer"
+        @click="changeStep(4)"
+      >
+        <p class="step__label">Fonts</p>
 
         <span class="step__separator" aria-hidden="true">
           <svg class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="6.5,3.5 11,8 6.5,12.5 "></polyline></svg>
@@ -33,8 +49,12 @@
         <div class="step__circle" aria-hidden="true">3</div>
       </li>
       
-      <li class="step">
-        <a class="step__label">Photography</a>
+      <li 
+        :class="step === 'photos' ? 'step--current' : ''"
+        class="step cursor-pointer"
+        @click="changeStep(7)"
+      >
+        <p class="step__label">Photos</p>
 
         <span class="step__separator" aria-hidden="true">
           <svg class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="6.5,3.5 11,8 6.5,12.5 "></polyline></svg>
@@ -43,8 +63,12 @@
         <div class="step__circle" aria-hidden="true">4</div>
       </li>
       
-      <li class="step">
-        <a class="step__label">Other</a>
+      <li 
+        :class="step === 'other' ? 'step--current' : ''"
+        class="step cursor-pointer"
+        @click="changeStep(9)"
+      >
+        <p class="step__label">Other</p>
 
         <div class="step__circle" aria-hidden="true">5</div>
       </li>
@@ -53,7 +77,15 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  step: { type: String }
+})
 
+function changeStep(number) {
+    emit('changeStep', number)
+}
+
+const emit = defineEmits(['changeStep'])
 </script>
 
 <style lang="scss">

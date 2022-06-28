@@ -1,9 +1,9 @@
 <template>
 <div class="entry-repeater" data-repeater-input-name="user[n]">
   <ul class="grid gap-xs">
-    <li>
+    <li v-for="(item, index) in items" :key="index">
       <div class="grid gap-xs">
-        <input class="form-control col bg-white" type="text" name="user[0][name]" id="user[0][name]" placeholder='Do this...'>
+        <input class="form-control col bg-white" type="text" :name="item" id="item" :value="item" placeholder='Do this...'>
 
         <button class="btn btn--subtle padding-x-xs col-content" type="button">
           <svg class="icon" viewBox="0 0 20 20">
@@ -25,5 +25,11 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  items: { type: Array }
+})
 
+function add() {
+  
+}
 </script>

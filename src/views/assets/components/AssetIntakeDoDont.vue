@@ -1,67 +1,99 @@
 <template>
   <div class="grid gap-lg">
+    <!-- Left -->
     <div class="col-6 padding-md radius-lg bg-white shadow-md">
       <p class="margin-bottom-sm"><span class="color-success text-bold">Do</span> this:</p>
-      <AppEntryRepeater/>
-    </div>
-    <div class="col-6 padding-md radius-lg bbg-white shadow-md">
-      <p class="margin-bottom-sm"><span class="color-error text-bold">Don't</span> do this:</p>
-      <AppEntryRepeater/>
-    </div>
-  </div>
-  
-  <!-- <div class="rate-cont bg-contrast-lower bg-opacity-50% radius-md js-rate-cont">
-    <div class="padding-md">
-      <div class="text-center flex flex-column gap-xs flex-row@sm items-center@sm justify-between@sm">
-        <p>Was this page helpful?</p>
-      
-        <ul class="inline-flex flex-center">
-          <li class="margin-right-xxs">
-            <div class="confetti-btn inline-block position-relative js-confetti-btn">
-              <input class="sr-only rate-cont__native-input" type="radio" name="rate-cont-options" id="rate-cont-option-yes">
-      
-              <label class="rate-cont__custom-input rate-cont__custom-input--yes js-confetti-btn__btn" for="rate-cont-option-yes">
-                <svg class="icon rate-cont__icon" viewBox="0 0 16 16" aria-hidden="true"><g stroke-width="1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="0.5" y="7.5" width="3" height="8"></rect><path d="M5.5,15.5h6.9a2,2,0,0,0,1.952-1.566l1.111-5A2,2,0,0,0,13.507,6.5H9.5v-4a2,2,0,0,0-2-2l-2,6"></path></g></svg>
-          
-                <span>Yes</span>
-      
-                <svg class="confetti-btn__icon color-primary js-confetti-btn__icon" viewBox="0 0 16 16" aria-hidden="true"><circle class="conf-btn-svg-item-0" fill="currentColor" cx="8" cy="8" r="8"/><path class="conf-btn-svg-item-1" fill="currentColor" d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z"/><path class="conf-btn-svg-item-2" fill="currentColor" d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z"/><path class="conf-btn-svg-item-3" fill="currentColor" d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z"/><path class="conf-btn-svg-item-4" fill="currentColor" d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z"/><path class="conf-btn-svg-item-5" fill="currentColor" d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z"/></svg>
-              </label>
-            </div>
-          </li>
-      
-          <li>
-            <input class="sr-only rate-cont__native-input" type="radio" name="rate-cont-options" id="rate-cont-option-no">
-      
-            <label class="rate-cont__custom-input rate-cont__custom-input--no" for="rate-cont-option-no">
-              <svg class="icon rate-cont__icon" viewBox="0 0 16 16" aria-hidden="true"><g stroke-width="1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="0.5" y="0.5" width="3" height="8"></rect><path d="M5.5.5h6.9a2,2,0,0,1,1.952,1.566l1.111,5A2,2,0,0,1,13.507,9.5H9.5v4a2,2,0,0,1-2,2l-2-6"></path></g></svg>
+      <!-- <AppEntryRepeater :items="organizationMetaStore.metas.do"/> -->
+      <div class="entry-repeater" data-repeater-input-name="user[n]">
+        <input class="form-control bg-white width-100% margin-bottom-xs" type="text" v-model="newDo.value">
+        <button @click="addDo()" class="btn btn--primary margin-bottom-sm width-100%" type="button">Add item</button>
         
-              <span>No</span>
-            </label>
+        <ul class="grid gap-xs">
+          <li v-for="item in organizationMetaStore.filterByKey(group + '-do')" :key="item.id">
+            <div class="flex justify-between items-center border-bottom padding-bottom-xs">
+              <span>{{ item.value }}</span>
+              <button @click="organizationMetaStore.destroy(item)" class="btn btn--subtle padding-x-xs" type="button">
+                <svg class="icon" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><line x1="1" y1="5" x2="19" y2="5"/><path d="M7,5V2A1,1,0,0,1,8,1h4a1,1,0,0,1,1,1V5"/><path d="M16,8l-.835,9.181A2,2,0,0,1,13.174,19H6.826a2,2,0,0,1-1.991-1.819L4,8"/></g></svg>
+              </button>
+            </div>
           </li>
         </ul>
       </div>
     </div>
-
-    <div class="overflow-hidden padding-bottom-md padding-x-md">
-      <label class="inline-block text-sm color-contrast-medium margin-bottom-xs" for="rate-cont-msg">Share your feedback:</label>
-
-      <textarea class="form-control width-100%" rows="4" name="rate-cont-msg" id="rate-cont-msg"></textarea>
-
-      <div class="margin-top-xs text-right">
-        <input focus class="btn btn--primary" type="button" value="Submit">
+    
+    <!-- Right -->
+    <div class="col-6 padding-md radius-lg bbg-white shadow-md">
+      <p class="margin-bottom-sm"><span class="color-error text-bold">Don't</span> do this:</p>
+      <!-- <AppEntryRepeater :items="organizationMetaStore.metas.dont"/> -->
+      <div class="entry-repeater" data-repeater-input-name="user[n]">
+        <input class="form-control bg-white width-100% margin-bottom-xs" type="text" v-model="newDont.value">
+        <button @click="addDont()" class="btn btn--primary margin-bottom-sm width-100%" type="button">Add item</button>
+        
+        <ul class="grid gap-xs">
+          <li v-for="item in organizationMetaStore.filterByKey(group + '-dont')" :key="item.id">
+            <div class="flex justify-between items-center border-bottom padding-bottom-xs">
+              <span>{{ item.value }}</span>
+              <button @click="organizationMetaStore.destroy(item)" class="btn btn--subtle padding-x-xs" type="button">
+                <svg class="icon" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><line x1="1" y1="5" x2="19" y2="5"/><path d="M7,5V2A1,1,0,0,1,8,1h4a1,1,0,0,1,1,1V5"/><path d="M16,8l-.835,9.181A2,2,0,0,1,13.174,19H6.826a2,2,0,0,1-1.991-1.819L4,8"/></g></svg>
+              </button>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <script setup>
-import AppEntryRepeater from '@/app/components/AppEntryRepeater.vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useOrganizationMetaStore } from '@/domain/organizations/store/useOrganizationMetaStore'
 
-// const props = defineProps({
-//   folder: { type: String },
-//   group: { type: String }
-// })
+// import AppEntryRepeater from '@/app/components/AppEntryRepeater.vue'
+
+const props = defineProps({
+  group: { type: String }
+})
+
+const organizationMetaStore = useOrganizationMetaStore()
+
+const newDo = ref({
+  key: props.group + '-do',
+  value: 'Do '
+})
+
+const newDont = ref({
+  key: props.group + '-dont',
+  value: 'Don\'t '
+})
+
+function addDo() {
+  organizationMetaStore.store(newDo.value)
+    .then((response) => {
+      organizationMetaStore.metas.unshift(newDo.value)
+      
+      newDo.value = {
+        key: props.group + '-do',
+        value: 'Do '
+      }
+    })
+}
+
+function addDont() {
+  organizationMetaStore.store(newDont.value)
+    .then((response) => {
+      organizationMetaStore.metas.unshift(newDont.value)
+      
+      newDont.value = {
+        key: props.group + '-dont',
+        value: 'Don\'t '
+      }
+    })
+}
+
+onMounted(() => {
+    const organizationMetaStore = useOrganizationMetaStore()
+    organizationMetaStore.index()
+})
 </script>
 
 <style lang="scss">

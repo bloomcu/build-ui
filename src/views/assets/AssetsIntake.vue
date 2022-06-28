@@ -3,13 +3,12 @@
     <!-- Left -->
     <div class="flex flex-column justify-between bg-primary bg-opacity-5% border-right padding-top-xs" style="flex: 1 0 25%; position: sticky; top: 0; left: 0;">
       <div class="_flex _contents padding-lg">
-        <AppSteps/>
+        <AppSteps :step="steps[step].name" @changeStep="changeStep"/>
       </div>
       
       <div class="_color-white padding-x-lg">
         <h1 class="_color-white margin-bottom-sm">{{ steps[step].title }}</h1>
         <p v-if="steps[step].description" class="margin-bottom-md" v-html="steps[step].description"></p>
-        <!-- <AppTodoList :todos="steps[step].todos" /> -->
       </div>
       
       <div class="flex justify-between bg border-top padding-y-sm padding-x-md">
@@ -31,16 +30,6 @@
             :is="component.name" 
             v-bind="component"
           />
-          <!-- <FileUploader folder="bloomcu" :group="steps[step].name"/>
-          <FileList @destroyed="destroyFile" :files="fileStore.filterByGroup(steps[step].name)"/> -->
-          <!-- <div class="grid gap-xl">
-            <div class="col-6">
-              <AppEntryRepeaterEmpty/>
-            </div>
-            <div class="col-6">
-              <AppEntryRepeater/>
-            </div>
-          </div> -->
         </div>
       </div>
       
@@ -52,15 +41,11 @@
 import { defineComponent } from 'vue'
 import AssetIntakeUploader from '@/views/assets/components/AssetIntakeUploader.vue'
 import AssetIntakeDoDont from '@/views/assets/components/AssetIntakeDoDont.vue'
-// import FileUploader from '@/domain/files/components/FileUploader.vue'
-// import FileList from '@/domain/files/components/FileList.vue'
 
 export default defineComponent({
     components: {
       AssetIntakeUploader,
       AssetIntakeDoDont,
-      // FileUploader,
-      // FileList,
     }
 })    
 </script>
@@ -70,28 +55,10 @@ import { ref, computed, onMounted } from 'vue'
 import { useFileStore } from '@/domain/files/store/useFileStore'
 
 import AppSteps from '@/app/components/AppSteps.vue'
-
-// import AppEntryRepeaterEmpty from '@/app/components/AppEntryRepeaterEmpty.vue'
-// import AppEntryRepeater from '@/app/components/AppEntryRepeater.vue'
-// import AppTodoList from '@/app/components/AppTodoList.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
-// import AssetIntakeUploader from '@/views/assets/components/AssetIntakeUploader.vue'
-
-// const AssetIntakeUploader = defineAsyncComponent(() => import('@/views/assets/components/AssetIntakeUploader.vue'))
-
-// const dynamicComponents = {
-//   uploader: AssetIntakeUploader,
-// };
-// const defaultComponent = 'uploader'
-// const dynamicComponent = computed(() => dynamicComponents[route.meta.layout] || defaultLayout])
-// const dynamicComponent = computed(() => AssetIntakeUploader)
-
-// const AssetIntakeUploader = defineAsyncComponent(() => import('@/views/assets/components/AssetIntakeUploader.vue'))
-// const assetIntakeUploader = shallowRef(AssetIntakeUploader);
-    
-const fileStore = useFileStore()
 
 onMounted(() => {
+    const fileStore = useFileStore()
     fileStore.index()
 })
 
@@ -107,6 +74,10 @@ function nextStep() {
 
 function previousStep() {
   step.value = step.value - 1
+}
+
+function changeStep(number) {
+  step.value = number
 }
 
 function destroyFile(file) {
@@ -141,6 +112,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
+        group: 'brand',
       }
     ],
     todos: []
@@ -172,6 +144,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
+        group: 'logos',
       }
     ],
     todos: []
@@ -222,6 +195,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
+        group: 'fonts',
       }
     ],
     todos: []
@@ -253,6 +227,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
+        group: 'photos',
       }
     ],
     todos: []
