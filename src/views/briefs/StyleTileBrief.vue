@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex justify-between padding-sm border-bottom">
-      <span class="text-sm">CU SoCal</span>
+      <span class="text-sm">Style Tile Brief</span>
     </div>
     
     <div class="flex container max-width-xxl">
