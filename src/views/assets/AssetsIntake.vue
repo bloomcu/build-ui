@@ -93,7 +93,6 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        folder: 'bloomcu',
         group: 'brand',
       }
     ],
@@ -118,15 +117,14 @@ const steps = [
     todos: []
   },
   {
-    name: 'logos',
+    name: 'logo',
     title: 'Logo',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'Upload your logo(s) here.',
     components: [
       {
         name: 'AssetIntakeUploader',
-        folder: 'bloomcu',
-        group: 'logos',
+        group: 'logo',
       }
     ],
     todos: [
@@ -137,14 +135,14 @@ const steps = [
     ]
   },
   {
-    name: 'logos',
+    name: 'logo',
     title: 'Logo Do\'s and Don\'ts',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'What Do\'s and Don\'ts should we know about for your logo?',
     components: [
       {
         name: 'AssetIntakeDoDont',
-        group: 'logos',
+        group: 'logo',
       }
     ],
     todos: []
@@ -157,7 +155,6 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        folder: 'bloomcu',
         group: 'desktop-fonts',
       }
     ],
@@ -176,7 +173,6 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        folder: 'bloomcu',
         group: 'web-fonts',
       }
     ],
@@ -208,7 +204,6 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        folder: 'bloomcu',
         group: 'photos',
       }
     ],
@@ -240,7 +235,6 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        folder: 'bloomcu',
         group: 'other',
       }
     ],

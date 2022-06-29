@@ -8,11 +8,11 @@
         <ul class="nested-menu__list">
 
             <!-- "All" option -->
-            <li class="nested-menu__item">
+            <!-- <li class="nested-menu__item">
                 <a @click.prevent="select(null)" :class="!toggled ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
                     <span class="nested-menu__text">All</span>
                 </a>
-            </li>
+            </li> -->
 
             <!-- Children -->
             <AppNestedMenuChildren :items="items" :selected="toggled" @selected="select" />

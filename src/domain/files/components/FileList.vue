@@ -1,14 +1,14 @@
 <template>
     <ul class="dow-list">
-      <li v-for="(file, index) in files" :key="index">
-        <div @click="select(file)" class="dow-list__item cursor-pointer padding-xxs">
+      <li v-for="(file, index) in files" :key="index" class="dow-list__item cursor-pointer padding-xxs">
+        <div @click="select(file)">
           <div class="flex flex-column gap-xs flex-row@xs justify-between@xs items-center@xs">
             <div class="flex items-center">
               <FileIcon :type="file.type" :source="file.src"/>
               
               <!-- file info -->
               <div>
-                <p class="text-sm line-height-1 margin-bottom-xxxs">{{ file.name }}</p>
+                <span class="text-sm line-height-1 margin-bottom-xxxs">{{ file.name }}</span>
                 <ul class="dow-list__metadata-list text-sm text-xs@md color-contrast-medium">
                   <li>Type: {{ file.type }}</li>
                   <li>Size: {{ formatFileSize(file.size) }}</li>
@@ -72,6 +72,7 @@ const formatFileSize = (bites) => {
   border-radius: var(--radius-md);
   background: var(--color-bg);
   box-shadow: var(--inner-glow), var(--shadow-sm);
+  list-style: none;
   transition: 0.2s;
   
   &:hover {
@@ -83,7 +84,8 @@ const formatFileSize = (bites) => {
   display: flex;
   align-items: center;
   line-height: 1;
-
+  padding: 0 !important;
+  
   > * {
     display: flex;
     align-items: center;
