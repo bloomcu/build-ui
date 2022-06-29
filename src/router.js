@@ -66,10 +66,10 @@ router.beforeEach(async (to) => {
 */
 router.beforeEach(async (to) => {
     // TODO: Can I just isntantiate this store one in this file?
-    const authStore = useAuthStore()
+    const auth = useAuthStore()
     
     if (to.params.organization) {
-        authStore.organization = to.params.organization
+        auth.organization = to.params.organization
     }
 })
 

@@ -21,7 +21,7 @@
     
     <!-- Right -->
     <div class="flex flex-column" style="flex: 1 0 50%; position: relative; overflow-y: scroll;">
-      <!-- Task -->
+      <!-- Steps -->
       <div class="padding-x-xl padding-top-lg">
         <div class="flex-grow padding-bottom-xxl">
           <h4 v-if="steps[step].instructions" class="margin-bottom-md" v-html="steps[step].instructions"></h4>

@@ -9,16 +9,16 @@ export const useAuthStore = defineStore('authStore', {
     
     getters: {
       isAuthenticated(state) {
-        if (state.user) { return state.user.access_token}
-      },
-      getOrganization: (state) => state.organization,
+        if (state.user) { 
+          return state.user.access_token
+        }
+      }
     },
     
     actions: {
       async register(name, email, password, password_confirmation) {
         await AuthApi.register(name, email, password, password_confirmation)
           .then(response => {
-            // console.log(response.data.data)
             this.user = response.data.data
             
             // Store user details and jwt in local storage to keep user logged in between page refreshes
@@ -31,7 +31,6 @@ export const useAuthStore = defineStore('authStore', {
       async login(email, password) {
         await AuthApi.login(email, password)
           .then(response => {
-            console.log(response.data.data)
             this.user = response.data.data
             
             // Store user details and jwt in local storage to keep user logged in between page refreshes

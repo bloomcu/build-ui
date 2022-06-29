@@ -3,7 +3,6 @@ import { fileApi as FileApi } from '@/domain/files/api/fileApi'
 import { cloudinaryApi as CloudinaryApi } from '@/domain/files/api/cloudinaryApi'
 
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
-import { useRoute } from 'vue-router'
 
 export const useFileStore = defineStore('fileStore', {
     state: () => ({
@@ -22,13 +21,11 @@ export const useFileStore = defineStore('fileStore', {
     
     actions: {
         index(params) {
-          // const auth = useAuthStore()
-          // TODO: Why are we using route here and not store
-          const route = useRoute()
+          const auth = useAuthStore()
           
           this.files = []
           
-          FileApi.index(route.params.organization, params)
+          FileApi.index(auth.organization, params)
             .then(response => {
               this.files = response.data
             }).catch(error => {
@@ -41,7 +38,7 @@ export const useFileStore = defineStore('fileStore', {
           
           let upload = await CloudinaryApi.upload(file, folder)
           
-          FileApi.store(auth.getOrganization, {
+          FileApi.store(auth.organization, {
             group: group,
             type: upload.data.format ? upload.data.format : file.name.split('.').pop(),
             name: upload.data.original_filename,
@@ -67,7 +64,7 @@ export const useFileStore = defineStore('fileStore', {
           
           this.files = this.files.filter((f) => f.id !== file.id)
           
-          FileApi.destroy(auth.getOrganization, file.id)
+          FileApi.destroy(auth.organization, file.id)
             .then(response => {
               console.log('File successfully destroyed')
             }).catch(error => {

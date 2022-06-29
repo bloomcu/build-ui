@@ -2,7 +2,6 @@ import { defineStore, acceptHMRUpdate } from 'pinia'
 import { organizationMetaApi as OrganizationMetaApi } from '@/domain/organizations/api/organizationMetaApi'
 
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
-import { useRoute } from 'vue-router'
 
 export const useOrganizationMetaStore = defineStore('organizationMetaStore', {
     state: () => ({
@@ -22,10 +21,10 @@ export const useOrganizationMetaStore = defineStore('organizationMetaStore', {
     actions: {        
         index(params) {
           const auth = useAuthStore()
-          const route = useRoute()
+          
           this.meta = []
           
-          OrganizationMetaApi.index(auth.getOrganization)
+          OrganizationMetaApi.index(auth.organization)
             .then(response => {
               // console.log(response)
               this.metas = response.data
@@ -36,9 +35,8 @@ export const useOrganizationMetaStore = defineStore('organizationMetaStore', {
         
         async store(meta) {
           const auth = useAuthStore()
-          const route = useRoute()
           
-          await OrganizationMetaApi.store(auth.getOrganization, meta)
+          await OrganizationMetaApi.store(auth.organization, meta)
             .then(response => {
               // this.metas.unshift(response.data)
             }).catch(error => {
@@ -48,9 +46,8 @@ export const useOrganizationMetaStore = defineStore('organizationMetaStore', {
         
         show(key) {
           const auth = useAuthStore()
-          const route = useRoute()
           
-          OrganizationMetaApi.show(auth.getOrganization, key)
+          OrganizationMetaApi.show(auth.organization, key)
             .then(response => {
               // console.log(response.data.value)
               this.meta = response.data.value
@@ -60,11 +57,11 @@ export const useOrganizationMetaStore = defineStore('organizationMetaStore', {
         },
         
         destroy(meta) {
-          const route = useRoute()
+          const auth = useAuthStore()
           
           this.metas = this.metas.filter((m) => m.id !== meta.id)
           
-          // OrganizationMetaApi.destroy(route.params.organization, meta.id)
+          // OrganizationMetaApi.destroy(auth.organization, meta.id)
           //   .then(response => {
           //     console.log('Meta successfully destroyed')
           //   }).catch(error => {
