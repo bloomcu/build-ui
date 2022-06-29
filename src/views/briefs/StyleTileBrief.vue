@@ -94,11 +94,11 @@
               </div>
               <div class="col-6">
                 <p><strong>Do's:</strong></p>
-                <p v-for="item in organizationMetaStore.filterByKey('logos-do')" :key="item.id">
+                <p v-for="item in organizationMetaStore.filterByKey('logo-do')" :key="item.id">
                   <span class="margin-right-xxxs">✅</span> {{ item.value }}
                 </p>
                 <p><strong>Don'ts:</strong></p>
-                <p v-for="item in organizationMetaStore.filterByKey('logos-dont')" :key="item.id">
+                <p v-for="item in organizationMetaStore.filterByKey('logo-dont')" :key="item.id">
                   <span class="margin-right-xxxs">❌</span> {{ item.value }}
                 </p>
               </div>
