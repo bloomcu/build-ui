@@ -19,7 +19,7 @@
       </li>
 
       <li 
-        :class="step === 'logos' ? 'step--current' : ''"
+        :class="step === 'logo' ? 'step--current' : ''"
         class="step cursor-pointer"
         @click="changeStep(2)"
       >
