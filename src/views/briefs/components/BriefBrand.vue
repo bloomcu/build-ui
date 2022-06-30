@@ -11,12 +11,12 @@
       </div>
       <div class="col-6">
         <p><strong>Do's:</strong></p>
-        <p v-for="item in organizationMetaStore.filterByKey('brand-do')" :key="item.id">
-          <span class="margin-right-xxxs">✅</span> {{ item.value }}
+        <p v-for="item in organizationCommentsStore.filterByGroup('brand-do')" :key="item.id">
+          <span class="margin-right-xxxs">✅</span> {{ item.body }}
         </p>
         <p><strong>Don'ts:</strong></p>
-        <p v-for="item in organizationMetaStore.filterByKey('brand-dont')" :key="item.id">
-          <span class="margin-right-xxxs">❌</span> {{ item.value }}
+        <p v-for="item in organizationCommentsStore.filterByGroup('brand-dont')" :key="item.id">
+          <span class="margin-right-xxxs">❌</span> {{ item.body }}
         </p>
       </div>
     </div>
@@ -39,9 +39,9 @@ import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
 
 // Stores
 import { useFileStore } from '@/domain/files/store/useFileStore'
-import { useOrganizationMetaStore } from '@/domain/organizations/store/useOrganizationMetaStore'
+import { useOrganizationCommentsStore } from '@/domain/organizations/store/useOrganizationCommentsStore'
 const fileStore = useFileStore()
-const organizationMetaStore = useOrganizationMetaStore()
+const organizationCommentsStore = useOrganizationCommentsStore()
 
 // Composables
 import useToggle from '@/app/composables/useToggle.js'
@@ -49,6 +49,6 @@ const { toggle, toggled } = useToggle()
 
 onMounted(() => {
   fileStore.index()
-  organizationMetaStore.index()
+  organizationCommentsStore.index()
 })
 </script>

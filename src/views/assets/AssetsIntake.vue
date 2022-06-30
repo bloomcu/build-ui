@@ -240,6 +240,19 @@ const steps = [
     ],
     todos: []
   },
+  {
+    name: 'other',
+    title: 'Other Media Do\'s and Don\'ts',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
+    instructions: 'What Do\'s and Don\'ts should we know about for your other media?',
+    components: [
+      {
+        name: 'AssetIntakeDoDont',
+        group: 'other',
+      }
+    ],
+    todos: []
+  },
 ]
 </script>
 
