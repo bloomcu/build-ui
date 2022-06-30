@@ -3,16 +3,15 @@
     <!-- Left -->
     <div class="col-6 padding-md radius-lg bg-white shadow-md">
       <p class="margin-bottom-sm"><span class="color-success text-bold">Do</span> this:</p>
-      <!-- <AppEntryRepeater :items="organizationMetaStore.metas.do"/> -->
       <div class="entry-repeater" data-repeater-input-name="user[n]">
-        <input class="form-control bg-white width-100% margin-bottom-xs" type="text" v-model="newDo.value">
+        <input class="form-control bg-white width-100% margin-bottom-xs" type="text" v-model="newDo.body">
         <button @click="addDo()" class="btn btn--primary margin-bottom-sm width-100%" type="button">Add item</button>
         
         <ul class="grid gap-xs">
-          <li v-for="item in organizationMetaStore.filterByKey(group + '-do')" :key="item.id">
+          <li v-for="item in organizationCommentsStore.filterByGroup(group + '-do')" :key="item.id">
             <div class="flex justify-between items-center border-bottom padding-bottom-xs">
-              <span>{{ item.value }}</span>
-              <button @click="organizationMetaStore.destroy(item)" class="btn btn--subtle padding-x-xs" type="button">
+              <span>{{ item.body }}</span>
+              <button @click="organizationCommentsStore.destroy(item)" class="btn btn--subtle padding-x-xs" type="button">
                 <svg class="icon" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><line x1="1" y1="5" x2="19" y2="5"/><path d="M7,5V2A1,1,0,0,1,8,1h4a1,1,0,0,1,1,1V5"/><path d="M16,8l-.835,9.181A2,2,0,0,1,13.174,19H6.826a2,2,0,0,1-1.991-1.819L4,8"/></g></svg>
               </button>
             </div>
@@ -24,16 +23,15 @@
     <!-- Right -->
     <div class="col-6 padding-md radius-lg bbg-white shadow-md">
       <p class="margin-bottom-sm"><span class="color-error text-bold">Don't</span> do this:</p>
-      <!-- <AppEntryRepeater :items="organizationMetaStore.metas.dont"/> -->
       <div class="entry-repeater" data-repeater-input-name="user[n]">
-        <input class="form-control bg-white width-100% margin-bottom-xs" type="text" v-model="newDont.value">
+        <input class="form-control bg-white width-100% margin-bottom-xs" type="text" v-model="newDont.body">
         <button @click="addDont()" class="btn btn--primary margin-bottom-sm width-100%" type="button">Add item</button>
         
         <ul class="grid gap-xs">
-          <li v-for="item in organizationMetaStore.filterByKey(group + '-dont')" :key="item.id">
+          <li v-for="item in organizationCommentsStore.filterByGroup(group + '-dont')" :key="item.id">
             <div class="flex justify-between items-center border-bottom padding-bottom-xs">
-              <span>{{ item.value }}</span>
-              <button @click="organizationMetaStore.destroy(item)" class="btn btn--subtle padding-x-xs" type="button">
+              <span>{{ item.body }}</span>
+              <button @click="organizationCommentsStore.destroy(item)" class="btn btn--subtle padding-x-xs" type="button">
                 <svg class="icon" viewBox="0 0 20 20"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><line x1="1" y1="5" x2="19" y2="5"/><path d="M7,5V2A1,1,0,0,1,8,1h4a1,1,0,0,1,1,1V5"/><path d="M16,8l-.835,9.181A2,2,0,0,1,13.174,19H6.826a2,2,0,0,1-1.991-1.819L4,8"/></g></svg>
               </button>
             </div>
@@ -46,53 +44,52 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { useOrganizationMetaStore } from '@/domain/organizations/store/useOrganizationMetaStore'
-
-// import AppEntryRepeater from '@/app/components/AppEntryRepeater.vue'
+import { useOrganizationCommentsStore } from '@/domain/organizations/store/useOrganizationCommentsStore'
 
 const props = defineProps({
   group: { type: String }
 })
 
-const organizationMetaStore = useOrganizationMetaStore()
+const organizationCommentsStore = useOrganizationCommentsStore()
 
 const newDo = ref({
-  key: props.group + '-do',
-  value: 'Do '
+  body: 'Do ',
+  group: props.group + '-do',
 })
 
 const newDont = ref({
-  key: props.group + '-dont',
-  value: 'Don\'t '
+  body: 'Don\'t ',
+  group: props.group + '-dont',
 })
 
 function addDo() {
-  organizationMetaStore.store(newDo.value)
+  organizationCommentsStore.store(newDo.value)
     .then((response) => {
-      organizationMetaStore.metas.unshift(newDo.value)
+      // TODO: Why are we doing this here rather than in the store?
+      organizationCommentsStore.comments.unshift(newDo.value)
       
       newDo.value = {
-        key: props.group + '-do',
-        value: 'Do '
+        body: 'Do ',
+        group: props.group + '-do',
       }
     })
 }
 
 function addDont() {
-  organizationMetaStore.store(newDont.value)
+  organizationCommentsStore.store(newDont.value)
     .then((response) => {
-      organizationMetaStore.metas.unshift(newDont.value)
+      // TODO: Why are we doing this here rather than in the store?
+      organizationCommentsStore.comments.unshift(newDont.value)
       
       newDont.value = {
-        key: props.group + '-dont',
-        value: 'Don\'t '
+        body: 'Don\'t ',
+        group: props.group + '-dont',
       }
     })
 }
 
 onMounted(() => {
-    const organizationMetaStore = useOrganizationMetaStore()
-    organizationMetaStore.index()
+    organizationCommentsStore.index()
 })
 </script>
 

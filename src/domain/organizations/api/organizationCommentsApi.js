@@ -22,7 +22,18 @@ const organizationCommentsApi = {
      */
     store(organization, comment) {
         return HttpClient.post(`/organizations/${organization}/comments`, comment)
-    }
+    },
+    
+    /**
+     * Destroy a comment
+     *
+     * @param {string}  organization  Slug of the organization
+     * @param {integer} id            Id of the file you want to destroy
+     * @return promise
+     */
+    destroy(organization, id) {
+        return HttpClient.delete(`/organizations/${organization}/comments/${id}`)
+    },
 }
 
 export { organizationCommentsApi }

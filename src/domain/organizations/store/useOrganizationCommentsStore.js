@@ -33,29 +33,29 @@ export const useOrganizationCommentsStore = defineStore('organizationCommentsSto
             })
         },
         
-        async store(meta) {
+        async store(comment) {
           const auth = useAuthStore()
           
-          await OrganizationCommentsApi.store(auth.organization, meta)
+          await OrganizationCommentsApi.store(auth.organization, comment)
             .then(response => {
-              // this.metas.unshift(response.data)
+              // this.comments.unshift(response.data)
             }).catch(error => {
               console.log('Error', error.response.data)
             })
         },
         
-        destroy(meta) {
+        destroy(comment) {
           const auth = useAuthStore()
           
-          this.comments = this.comments.filter((m) => m.id !== meta.id)
+          this.comments = this.comments.filter((m) => m.id !== comment.id)
           
-          // OrganizationCommentsApi.destroy(auth.organization, comment.id)
-          //   .then(response => {
-          //     console.log('Comment successfully destroyed')
-          //   }).catch(error => {
-          //     this.comments.unshift(comment)
-          //     console.log('Error', error.response.data)
-          //   })
+          OrganizationCommentsApi.destroy(auth.organization, comment.id)
+            .then(response => {
+              console.log('Comment successfully destroyed')
+            }).catch(error => {
+              this.comments.unshift(comment)
+              console.log('Error', error.response.data)
+            })
         },
     }
 })
