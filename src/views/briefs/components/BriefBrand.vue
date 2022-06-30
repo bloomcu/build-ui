@@ -7,7 +7,7 @@
     <h3 class="padding-y-xxxs">Brand Guide</h3>
     <div class="grid gap-md">
       <div class="col-6">
-        <FileList :files="fileStore.filterByGroup('brand')"/>
+        <FileList :files="fileStore.filterByGroup('brand')" :deleteable="false"/>
       </div>
       <div class="col-6">
         <p><strong>Do's:</strong></p>

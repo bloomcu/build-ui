@@ -18,7 +18,7 @@
 
             <!-- actions -->
             <div class="flex padding-right-xxxxs@xs">
-              <button @click.stop="destroy(file)" class="app-action-icon reset margin-right-xs" type="button" name="button">
+              <button v-if="deleteable" @click.stop="destroy(file)" class="app-action-icon reset margin-right-xs" type="button" name="button">
                 <svg class="icon" height="24" width="24" viewBox="0 0 24 24"><title>trash can</title><g stroke-linecap="round" stroke-width="2" fill="none" stroke="#000000" stroke-linejoin="round" class="nc-icon-wrapper"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5" stroke="#000000"></line><path data-cap="butt" d="M8,5V1h8V5" stroke="#000000"></path></g></svg>
               </button>
               <a @click.stop :href="`https://res.cloudinary.com/metrifi/image/upload/fl_attachment/${file.public_id}`" class="app-action-icon reset margin-right-sm">
@@ -36,6 +36,7 @@ import FileIcon from '@/domain/files/components/file-icon/FileIcon.vue'
 
 const props = defineProps({
     files: { type: Array },
+    deleteable: { type: Boolean, default: true },
     loading: { type: Boolean, default: false },
 })
 

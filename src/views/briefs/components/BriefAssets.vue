@@ -8,7 +8,7 @@
     <h3 class="padding-y-xxxs">Logo</h3>
     <div class="grid gap-md">
       <div class="col-6">
-        <FileList :files="fileStore.filterByGroup('logos')"/>
+        <FileList :files="fileStore.filterByGroup('logos')" :deleteable="false"/>
       </div>
       <div class="col-6">
         <p><strong>Do's:</strong></p>
@@ -26,7 +26,7 @@
     <h3 class="padding-y-xxxs">Fonts</h3>
     <div class="grid gap-md">
       <div class="col-6">
-        <FileList :files="fileStore.filterByGroup('desktop-fonts')"/>
+        <FileList :files="fileStore.filterByGroup('desktop-fonts')" :deleteable="false"/>
       </div>
       <div class="col-6">
         <p><strong>Do's:</strong></p>
@@ -44,7 +44,7 @@
     <h3 class="padding-y-xxxs">Photography</h3>
     <div class="grid gap-md">
       <div class="col-6">
-        <FileList :files="fileStore.filterByGroup('photos')"/>
+        <FileList :files="fileStore.filterByGroup('photos')" :deleteable="false"/>
       </div>
       <div class="col-6">
         <p><strong>Do's:</strong></p>
@@ -63,7 +63,7 @@
       <h3 class="padding-y-xxxs">Other</h3>
       <div class="grid gap-md">
         <div class="col-6">
-          <FileList :files="fileStore.filterByGroup('other')"/>
+          <FileList :files="fileStore.filterByGroup('other')" :deleteable="false"/>
         </div>
         <div class="col-6">
           <p><strong>Do's:</strong></p>

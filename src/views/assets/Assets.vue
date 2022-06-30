@@ -68,7 +68,7 @@ const groups = [
     ]
   },
   {
-    name: 'logos',
+    name: 'logo',
     title: 'Logo',
     description: 'Upload your logo(s) here.',
     todos: [
