@@ -1,8 +1,8 @@
 import { ref, computed } from 'vue'
 
+const toggled = ref()
+
 export default function useToggle() {
-    const toggled = ref()
-    
     function toggle(item) {
         item == toggled.value ? toggled.value = '' : toggled.value = item
     }

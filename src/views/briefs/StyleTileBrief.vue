@@ -6,24 +6,24 @@
     
     <div class="flex container max-width-xxl">
       <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
-        <AppNestedMenu :items="steps" @selected="changeStep"/>
+        <AppNestedMenu :items="steps"/>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
         <div class="text-component">
           <!-- Intro -->
-          <div v-if="currentStep == 0">
+          <div v-if="toggled == 0">
             <p class="text-xs text-uppercase letter-spacing-lg color-primary">Intro</p>
             <h1>Style Tile Brief</h1>
-            <p class="text-sm max-width-sm">You will be designing a style tile for a credit union. This document has the information you need to design the style tile, including a Sketch template for you to use.</p>
+            <p class="max-width-sm">You will be designing a style tile for a credit union. This document has the information you need to design the style tile, including a Sketch template for you to use.</p>
           
             <div class="flex gap-xs margin-top-md padding-y-md border-top">
-              <button @click="changeStep(1)" class="btn btn--primary">Start</button>
+              <button @click="toggle(1)" class="btn btn--primary">Start</button>
             </div>
           </div>
           
           <!-- Step 1: Sketch file -->
-          <div v-if="currentStep == 1">
+          <div v-if="toggled == 1">
             <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 1</p>
             <h1>Download the Sketch template</h1>
             <p>Instead of starting from scratch, we created a template for you:</p>
@@ -33,26 +33,26 @@
             </a>
             
             <div class="flex gap-xs margin-top-md padding-y-md border-top">
-              <button @click="changeStep(0)" class="btn btn--subtle">Back</button>
+              <button @click="toggle(0)" class="btn btn--subtle">Back</button>
               <button v-if="!sketchTemplateDownloaded" class="btn btn--primary btn--disabled">Next</button>
-              <button v-else @click="changeStep(2)" class="btn btn--primary">Next</button>
+              <button v-else @click="toggle(2)" class="btn btn--primary">Next</button>
             </div>
           </div>
           
           <!-- Step 2: Watch video -->
-          <div v-if="currentStep == 2">
+          <div v-if="toggled == 2">
             <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 2</p>
             <h1>Watch the video tutorial</h1>
             <iframe src="https://player.vimeo.com/video/711021881?h=f8e6454dd7" width="1024" height="576" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             
             <div class="flex gap-xs margin-top-md padding-y-md border-top">
-              <button @click="changeStep(1)" class="btn btn--subtle">Back</button>
-              <button @click="changeStep(3)" class="btn btn--primary">Next</button>
+              <button @click="toggle(1)" class="btn btn--subtle">Back</button>
+              <button @click="toggle(3)" class="btn btn--primary">Next</button>
             </div>
           </div>
           
           <!-- Step 3: Review the brand -->
-          <div v-if="currentStep == 3">
+          <div v-if="toggled == 3">
             <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 3</p>
             <h1>Review the brand guide</h1>
             <p>Review the brand guide so your style tile fits the credit union’s brand.</p>
@@ -75,13 +75,13 @@
             </div>
             
             <div class="flex gap-xs margin-top-md padding-y-md border-top">
-              <button @click="changeStep(2)" class="btn btn--subtle">Back</button>
-              <button @click="changeStep(4)" class="btn btn--primary">Next</button>
+              <button @click="toggle(2)" class="btn btn--subtle">Back</button>
+              <button @click="toggle(4)" class="btn btn--primary">Next</button>
             </div>
           </div>
           
           <!-- Step 4: Assets -->
-          <div v-if="currentStep == 4">
+          <div v-if="toggled == 4">
             <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 4</p>
             <h1>Download assets</h1>
             <p>Download the credit union's brand assets.</p>
@@ -161,25 +161,25 @@
             </div>
             
             <div class="flex gap-xs margin-top-md padding-y-md border-top">
-              <button @click="changeStep(3)" class="btn btn--subtle">Back</button>
-              <button @click="changeStep(5)" class="btn btn--primary">Next</button>
+              <button @click="toggle(3)" class="btn btn--subtle">Back</button>
+              <button @click="toggle(5)" class="btn btn--primary">Next</button>
             </div>
           </div>
           
           <!-- Step 5: Create -->
-          <div v-if="currentStep == 5">
+          <div v-if="toggled == 5">
             <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 5</p>
             <h1>Get creative!</h1>
             <p>Design the style tile by applying fonts, colors, images and other elements to the Sketch template. Get creative! <strong>The goal is to stay on-brand while elevating the design to be the best it can be</strong>.</p>
             
             <div class="flex gap-xs margin-top-md padding-y-md border-top">
-              <button @click="changeStep(4)" class="btn btn--subtle">Back</button>
-              <button @click="changeStep(6)" class="btn btn--primary">Do's, Don'ts, and Maybes</button>
+              <button @click="toggle(4)" class="btn btn--subtle">Back</button>
+              <button @click="toggle(6)" class="btn btn--primary">Do's, Don'ts, and Maybes</button>
             </div>
           </div>
           
           <!-- Step 6: Guidelines -->
-          <div v-if="currentStep == 6">
+          <div v-if="toggled == 6">
             <p class="text-xs text-uppercase letter-spacing-lg color-primary">Guidelines</p>
             <h1>Do's, Don'ts, and Maybes</h1>
             <p>Things you should do, things you shouldn’t do, and things you might do.</p>
@@ -208,7 +208,7 @@
             </div>
             
             <div class="flex gap-xs margin-top-md padding-y-md border-top">
-              <button @click="changeStep(5)" class="btn btn--subtle">Back</button>
+              <button @click="toggle(5)" class="btn btn--subtle">Back</button>
             </div>
           </div>
           
@@ -224,6 +224,7 @@
 import { ref, onMounted } from 'vue'
 import { useFileStore } from '@/domain/files/store/useFileStore'
 import { useOrganizationMetaStore } from '@/domain/organizations/store/useOrganizationMetaStore'
+import useToggle from '@/app/composables/useToggle.js'
 
 // import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
@@ -232,7 +233,9 @@ import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
 
 const fileStore = useFileStore()
 const organizationMetaStore = useOrganizationMetaStore()
-const currentStep = ref(0)
+
+const sketchTemplateDownloaded = ref(false)
+const { toggle, toggled } = useToggle()
 
 const steps = [
   {
@@ -250,12 +253,6 @@ const steps = [
   {
     id: 3, 
     title: 'Step 3 - Brand',
-    // children: [
-    //   {
-    //     id: 4,
-    //     title: 'Brand Guide'
-    //   }
-    // ]
   },
   {
     id: 4, 
@@ -271,13 +268,8 @@ const steps = [
   },
 ]
 
-const sketchTemplateDownloaded = ref(false)
-
-function changeStep(id) {
-    currentStep.value = id
-}
-
 onMounted(() => {
+  toggle(0)
   fileStore.index()
   organizationMetaStore.index()
 })

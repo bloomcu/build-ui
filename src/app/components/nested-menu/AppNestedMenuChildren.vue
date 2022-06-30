@@ -2,10 +2,10 @@
     <div>
         <li
             v-for="(item, index) in items" :key="index"
-            :class="toggled(item.id) ? 'nested-menu__item--expanded' : ''"
+            :class="selected == item.id ? 'nested-menu__item--expanded' : ''"
             class="nested-menu__item"
         >
-            <a @click.prevent="select(item.id)" :class="selected == item.id ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
+            <a @click.prevent="toggle(item.id)" :class="selected == item.id ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
                 <span class="nested-menu__text">{{ item.title }}</span>
             </a>
 
@@ -18,11 +18,7 @@
 
             <!-- Recursive children -->
             <ul v-if="item.children && item.children.length" class="nested-menu__list">
-                <AppNestedMenuChildren
-                    :items="item.children"
-                    :selected="selected"
-                    @selected="select"
-                />
+                <AppNestedMenuChildren :items="item.children" :selected="selected"/>
             </ul>
         </li>
     </div>
@@ -35,18 +31,12 @@ export default {
 </script>
 
 <script setup>
-import useToggleMultiple from '@/app/composables/useToggleMultiple.js'
+import useToggle from '@/app/composables/useToggle.js'
 
 const props = defineProps({
     items: { type: Array },
     selected: ''
 })
 
-const { toggle, toggled } = useToggleMultiple()
-
-const select = (id) => {
-    emit('selected', id)
-}
-
-const emit = defineEmits(['selected'])
+const { toggle, toggled } = useToggle()
 </script>

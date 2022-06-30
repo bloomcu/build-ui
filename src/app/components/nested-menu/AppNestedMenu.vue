@@ -9,18 +9,19 @@
 
             <!-- "All" option -->
             <!-- <li class="nested-menu__item">
-                <a @click.prevent="select(null)" :class="!toggled ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
+                <a @click.prevent="toggle(null)" :class="!toggled ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
                     <span class="nested-menu__text">All</span>
                 </a>
             </li> -->
 
             <!-- Children -->
-            <AppNestedMenuChildren :items="items" :selected="toggled" @selected="select" />
+            <AppNestedMenuChildren :items="items" :selected="toggled"/>
         </ul>
     </nav>
 </template>
 
 <script setup>
+import { watch } from 'vue'
 import useToggle from '@/app/composables/useToggle.js'
 
 // TODO: Implement loading ghost
@@ -38,13 +39,6 @@ const props = defineProps({
 })
 
 const { toggle, toggled } = useToggle()
-
-const select = (id) => {
-    toggle(id)
-    emit('selected', id)
-}
-
-const emit = defineEmits(['selected'])
 </script>
 
 <style media="screen">
