@@ -47,7 +47,9 @@ router.beforeEach(async (to) => {
     const publicRoutes = [
       '/register', 
       '/login', 
-      '/forgot-password'
+      '/forgot-password',
+      '/bloomcu/briefs/style-tile',
+      '/lone-star/briefs/style-tile',
     ]
     
     const authRequired = !publicRoutes.includes(to.path)

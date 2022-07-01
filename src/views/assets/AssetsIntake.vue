@@ -12,10 +12,10 @@
       </div>
       
       <div class="flex justify-between bg border-top padding-y-sm padding-x-md">
-        <router-link v-if="step == 0" :to="{ name: 'assets', params: { organization: 'bloomcu' }}" class="btn btn--subtle">Close</router-link>
+        <router-link v-if="step == 0" :to="{ name: 'assets', params: { organization: route.params.organization }}" class="btn btn--subtle">Close</router-link>
         <button v-if="step > 0" @click="previousStep()" type="button" name="button" class="btn btn--subtle">Back</button>
         <button v-if="step != (steps.length - 1)" @click="nextStep()" type="button" name="button" class="btn btn--primary margin-left-auto">Next Step</button>
-        <router-link v-else :to="{ name: 'assets', params: { organization: 'bloomcu' }}" class="btn btn--primary margin-left-auto">Complete</router-link>
+        <router-link v-else :to="{ name: 'assets', params: { organization: route.params.organization }}" class="btn btn--primary margin-left-auto">Complete</router-link>
       </div>
     </div>
     
@@ -53,6 +53,7 @@ export default defineComponent({
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useFileStore } from '@/domain/files/store/useFileStore'
+import { useRoute } from 'vue-router'
 
 import AppSteps from '@/app/components/AppSteps.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
@@ -61,6 +62,8 @@ onMounted(() => {
     const fileStore = useFileStore()
     fileStore.index()
 })
+
+const route = useRoute()
 
 const step = ref(0)
 

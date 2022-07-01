@@ -14,14 +14,18 @@
         />
       </div>
       <div class="col-6">
-        <p><strong>Do's:</strong></p>
-        <p v-for="item in organizationCommentsStore.filterByGroup('brand-do')" :key="item.id">
-          <span class="margin-right-xxxs">✅</span> {{ item.body }}
-        </p>
-        <p><strong>Don'ts:</strong></p>
-        <p v-for="item in organizationCommentsStore.filterByGroup('brand-dont')" :key="item.id">
-          <span class="margin-right-xxxs">❌</span> {{ item.body }}
-        </p>
+        <div v-if="organizationCommentsStore.filterByGroup('brand-do').length">
+          <p><strong>Do's:</strong></p>
+          <p v-for="item in organizationCommentsStore.filterByGroup('brand-do')" :key="item.id">
+            <span class="margin-right-xxxs">✅</span> {{ item.body }}
+          </p>
+        </div>
+        <div v-if="organizationCommentsStore.filterByGroup('brand-dont').length">
+          <p class="padding-top-sm"><strong>Don'ts:</strong></p>
+          <p v-for="item in organizationCommentsStore.filterByGroup('brand-dont')" :key="item.id">
+            <span class="margin-right-xxxs">❌</span> {{ item.body }}
+          </p>
+        </div>
       </div>
     </div>
     
