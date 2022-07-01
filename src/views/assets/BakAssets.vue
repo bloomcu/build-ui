@@ -1,22 +1,20 @@
 <template>
-  <LayoutDefault>
-    <div class="padding-y-md">
-      <h3>Assets</h3>
-    </div>
-    
-    <div class="padding-y-md">
-      <div v-for="group in groups" :key="group.name" class="grid gap-sm margin-bottom-xl padding-y-sm border-top border-contrast-lower">
-        <div class="col-4 padding-right-md">
-          <h4 class="margin-bottom-sm">{{ group.title }}</h4>
-          <p class="text-sm margin-bottom-sm" v-html="group.description"></p>
-          <AppTodoList :todos="group.todos" />
-        </div>
-        <div class="col-8 bg-dark radius-md padding-sm">
-          <FileUploader :folder="route.params.organization" :group="group.name"/>
-          <FileList @selected="openModal" @destroyed="destroyFile" :files="fileStore.filterByGroup(group.name)"/>
-        </div>
+  <LayoutDefault maxWidth="none">
+      <div class="flex">
+        <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
+          <AppNestedMenu :items="groups"/>
+        </aside>
+        
+        <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
+          <!-- <FileUploader :folder="route.params.organization" :group="groups[toggled].name"/> -->
+          <!-- <FileList @selected="openModal" @destroyed="destroyFile" :files="fileStore.filterByGroup(groups[toggled].name)"/> -->
+          <div class="grid gap-sm">        
+            <div v-for="file in fileStore.files" :key="file.id" class="col-4">
+              <AppCard :title="file.name" :subtitle="file.type" @selected="openModal"/>
+            </div>
+          </div>
+        </main>
       </div>
-    </div>
     
     <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
   </LayoutDefault>
@@ -28,6 +26,8 @@ import { useRoute } from 'vue-router'
 import { useFileStore } from '@/domain/files/store/useFileStore'
 
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
+import AppCard from '@/app/components/AppCard.vue'
+import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import FileUploader from '@/domain/files/components/FileUploader.vue'
 import FileList from '@/domain/files/components/FileList.vue'
 import FileModal from '@/domain/files/components/file-modal/FileModal.vue'

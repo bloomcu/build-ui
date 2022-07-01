@@ -11,7 +11,9 @@
     <div class="padding-y-sm">
       <div class="grid gap-sm">        
         <div v-for="(organization, index) in organizationStore.organizations" :key="index" class="col-3">
-          <AppCard v-bind="organization" :to="{ name: 'assets', params: { organization: organization.slug }}"/>
+          <RouterLink :to="{ name: 'assets', params: { organization: organization.slug }}" class="card padding-sm height-xxxl flex flex-column">
+            <h3 class="text-md">{{ organization.title }}</h3>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -28,7 +30,6 @@ import { onMounted } from 'vue'
 import { useOrganizationStore } from '@/domain/organizations/store/useOrganizationStore'
 
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
-import AppCard from '@/app/components/AppCard.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import CreateOrganizationModal from '@/views/organizations/components/CreateOrganizationModal.vue'
 

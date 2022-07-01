@@ -8,14 +8,14 @@
     <h3 class="padding-top-xxxs">Logo</h3>
     <hr>
     <div class="grid gap-md">
-      <div class="col-6">
+      <div class="col-6 padding-right-sm">
         <FileList 
           :files="fileStore.filterByGroup('logo')" 
           :deleteable="false"
           @selected="openModal"
         />
       </div>
-      <div class="col-6">
+      <div class="col-6 padding-left-md">
         <div v-if="organizationCommentsStore.filterByGroup('logo-do').length">
           <p><strong>Do's:</strong></p>
           <p v-for="item in organizationCommentsStore.filterByGroup('logo-do')" :key="item.id">
@@ -35,14 +35,14 @@
     <h3 class="padding-top-xxxs">Desktop Fonts</h3>
     <hr>
     <div class="grid gap-md">
-      <div class="col-6">
+      <div class="col-6 padding-right-sm">
         <FileList 
           :files="fileStore.filterByGroup('desktop-fonts')" 
           :deleteable="false"
           @selected="openModal"
         />
       </div>
-      <div class="col-6">
+      <div class="col-6 padding-left-md">
         <div v-if="organizationCommentsStore.filterByGroup('fonts-do').length" >
           <p><strong>Do's:</strong></p>
           <p v-for="item in organizationCommentsStore.filterByGroup('fonts-do')" :key="item.id">
@@ -62,14 +62,14 @@
     <h3 class="padding-top-xxxs">Photography</h3>
     <hr>
     <div class="grid gap-md">
-      <div class="col-6">
+      <div class="col-6 padding-right-sm">
         <FileList 
           :files="fileStore.filterByGroup('photos')" 
           :deleteable="false"
           @selected="openModal"
         />
       </div>
-      <div class="col-6">
+      <div class="col-6 padding-left-md">
         <div v-if="organizationCommentsStore.filterByGroup('photos-do').length">
           <p><strong>Do's:</strong></p>
           <p v-for="item in organizationCommentsStore.filterByGroup('photos-do')" :key="item.id">
@@ -90,14 +90,14 @@
       <h3 class="padding-top-xxxs">Other</h3>
       <hr>
       <div class="grid gap-md">
-        <div class="col-6">
+        <div class="col-6 padding-right-sm">
           <FileList 
             :files="fileStore.filterByGroup('other')" 
             :deleteable="false"
             @selected="openModal"
           />
         </div>
-        <div class="col-6">
+        <div class="col-6 padding-left-md">
           <div v-if="organizationCommentsStore.filterByGroup('other-do').length">
             <p><strong>Do's:</strong></p>
             <p v-for="item in organizationCommentsStore.filterByGroup('other-do')" :key="item.id">
