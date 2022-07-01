@@ -36,16 +36,19 @@ import AppTodoList from '@/app/components/AppTodoList.vue'
 const route = useRoute()
 const fileStore = useFileStore()
 
-let modalData = ref(null)
-
 onMounted(() => {
   fileStore.index()
 })
 
+// Extract to a view store
+let modalData = ref(null)
+
+// Extract to a view store
 function openModal(file) {
   modalData.value = file
 }
 
+// Extract to a view store
 function closeModal() {
   modalData.value = null
 }

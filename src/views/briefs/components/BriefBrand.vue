@@ -7,7 +7,11 @@
     <h3 class="padding-y-xxxs">Brand Guide</h3>
     <div class="grid gap-md">
       <div class="col-6">
-        <FileList :files="fileStore.filterByGroup('brand')" :deleteable="false"/>
+        <FileList 
+          :files="fileStore.filterByGroup('brand')" 
+          :deleteable="false" 
+          @selected="openModal"
+        />
       </div>
       <div class="col-6">
         <p><strong>Do's:</strong></p>
@@ -26,12 +30,12 @@
       <button @click="toggle(4)" class="btn btn--primary">Next</button>
     </div>
     
-    <FileModal/>
+    <FileModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 
 // Components
 import FileList from '@/domain/files/components/FileList.vue'
@@ -46,6 +50,16 @@ const organizationCommentsStore = useOrganizationCommentsStore()
 // Composables
 import useToggle from '@/app/composables/useToggle.js'
 const { toggle, toggled } = useToggle()
+
+// Extract to a view store
+let modalData = ref(null)
+
+function openModal(file) {
+  modalData.value = file
+}
+function closeModal() {
+  modalData.value = null
+}
 
 onMounted(() => {
   fileStore.index()
