@@ -12,7 +12,6 @@
             v-model="inputs.email" 
             required
             autofocus 
-            placeholder="email@email.com"
             class="form-control width-100%" 
             type="email" 
             name="email" 
@@ -80,8 +79,8 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 const inputs = ref({
-  email: 'test@email.com',
-  password: 'password'
+  email: '',
+  password: ''
 })
     
 function login() {
