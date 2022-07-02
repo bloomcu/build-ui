@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p class="text-xs text-uppercase letter-spacing-lg color-primary">Guidelines</p>
-    <h1>Do's, Don'ts, and Maybes</h1>
-    <p>Things you should do, things you shouldn’t do, and things you might do.</p>
+    <p class="text-xs text-uppercase letter-spacing-lg color-primary">More info</p>
+    <h1>More Do’s and Don'ts</h1>
+    <p>More things you should do, things you shouldn’t do, and things you might do.</p>
 
     <div class="max-width-sm">
       <h4 class="padding-top-sm">Do's</h4>
