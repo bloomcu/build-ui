@@ -58,8 +58,8 @@
       </div>
     </div>
 
-    <!-- Photography -->
-    <h3 class="padding-top-xxxs">Photography</h3>
+    <!-- Photographs -->
+    <h3 class="padding-top-xxxs">Photographs</h3>
     <hr>
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
