@@ -6,25 +6,27 @@
         </aside>
         
         <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-          <FileUploader :folder="route.params.organization" :group="groups[toggled].name"/>
-          <FileList @selected="openModal" @destroyed="destroyFile" :files="fileStore.filterByGroup(groups[toggled].name)"/>
+          <!-- <FileUploader :folder="route.params.organization" :group="groups[toggled].name"/> -->
+          <!-- <FileList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].name)"/> -->
+          <FileList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.files"/>
         </main>
       </div>
     
-    <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
+    <!-- <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/> -->
   </LayoutDefault>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 // Router
 import { useRoute } from 'vue-router'
 const route = useRoute()
 
 // Stores
-import { useFileStore } from '@/domain/files/store/useFileStore'
-const fileStore = useFileStore()
+import { useMediaStore } from '@/domain/media/store/useMediaStore'
+const mediaStore = useMediaStore()
+mediaStore.index()
 
 // Components
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
@@ -36,10 +38,6 @@ import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
 // Composables
 import useToggle from '@/app/composables/useToggle.js'
 const { toggle, toggled } = useToggle()
-
-onMounted(() => {
-  fileStore.index()
-})
 
 // Extract to a view store
 let modalData = ref(null)
