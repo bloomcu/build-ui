@@ -6,14 +6,14 @@
     
     <h3 class="padding-y-xxxs">Brand Guide</h3>
     <div class="grid gap-md">
-      <div class="col-6">
+      <div class="col-6 padding-right-sm">
         <FileList 
           :files="fileStore.filterByGroup('brand')" 
           :deleteable="false" 
           @selected="openModal"
         />
       </div>
-      <div class="col-6">
+      <div class="col-6 padding-left-md">
         <div v-if="organizationCommentsStore.filterByGroup('brand-do').length">
           <p><strong>Do's:</strong></p>
           <p v-for="item in organizationCommentsStore.filterByGroup('brand-do')" :key="item.id">

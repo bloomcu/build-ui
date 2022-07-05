@@ -28,7 +28,7 @@ import BriefVideo from '@/views/briefs/components/BriefVideo.vue'
 import BriefBrand from '@/views/briefs/components/BriefBrand.vue'
 import BriefAssets from '@/views/briefs/components/BriefAssets.vue'
 import BriefCreate from '@/views/briefs/components/BriefCreate.vue'
-import BriefGuidelines from '@/views/briefs/components/BriefGuidelines.vue'
+import BriefMoreInfo from '@/views/briefs/components/BriefMoreInfo.vue'
 
 export default defineComponent({
     components: {
@@ -38,7 +38,7 @@ export default defineComponent({
       BriefBrand,
       BriefAssets,
       BriefCreate,
-      BriefGuidelines,
+      BriefMoreInfo,
     }
 })    
 </script>
@@ -84,8 +84,8 @@ const steps = [
   },
   {
     id: 6, 
-    title: 'Guidelines',
-    component: 'BriefGuidelines',
+    title: 'More info',
+    component: 'BriefMoreInfo',
   },
 ]
 </script>

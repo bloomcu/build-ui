@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p class="text-xs text-uppercase letter-spacing-lg color-primary">Guidelines</p>
-    <h1>Do's, Don'ts, and Maybes</h1>
-    <p>Things you should do, things you shouldn’t do, and things you might do.</p>
+    <p class="text-xs text-uppercase letter-spacing-lg color-primary">More info</p>
+    <h1>More Do’s and Don'ts</h1>
+    <p>More things you should do, things you shouldn’t do, and things you might do.</p>
 
     <div class="max-width-sm">
       <h4 class="padding-top-sm">Do's</h4>
@@ -13,12 +13,10 @@
       
       <h4 class="padding-top-sm">Don'ts</h4>
       <p>Things you shouldn't do.</p>
+      <p class="text-sm"><strong>DON’T delete the variables, blocks, or anything else from the Sketch template. </strong>During the contest, you can submit just the style tile portion of the Sketch file. However, if you win the contest, we will need all of the variables, blocks, etc. that are in the Sketch file, so please don’t delete any of them.</p>
       <p class="text-sm"><strong>DON’T share the assets or your work anywhere—not even in your portfolio.</strong> You signed an NDA before viewing this project because it is Private and strictly confidential. Make sure to not share any of the assets in this brief or the work you produce for this project because we don’t want you to experience any legal consequences. Thanks!</p>
       <p class="text-sm"><strong>DON’T create the style tile outside of Sketch.</strong> The style tile must be completed using the Sketch template. Please do not create the style tile in any other application such as Illustrator, Photoshop, etc. (Also see <a href="#maybes">“MAYBE use other applications for images and graphics</a>.”</p>
       <p class="text-sm"><strong>DON’T modify the layout blocks in the Sketch template.</strong> Please style the layout blocks (e.g., Heroes, Features, etc.) in the template without changing the blocks in any way. Get creative with the ways you style the blocks, but please do not modify their structures.</p>
-      <p class="text-sm"><strong>DON’T use fonts that are not in the brand guidelines.</strong> Only use the fonts included in the brief. The only time you should recommend new fonts is if the brief specifically asks for that.</p>
-      <p class="text-sm"><strong>DON’T use colors that are not in the brand guidelines.</strong> Only use the colors included in the brief. That said, if the brand guidelines include lots of different colors, you’ll have to select just a few of them. (The only time you should recommend new colors is if the brief specifically asks for that.)</p>
-      <p class="text-sm"><strong>DON’T modify the logo.</strong> Use the logo as-is. (Logo modifications can be problematic because the changes would have to be applied across all our client’s brand assets and they almost certainly don’t want to do that as part of a website redesign project.)</p>
       
       <h4 class="padding-top-sm" id="maybes">Maybes</h4>
       <p>Things you might do.</p>

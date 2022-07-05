@@ -201,7 +201,7 @@ const steps = [
   },
   {
     name: 'photos',
-    title: 'Photography',
+    title: 'Photographs',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'Upload your photography.',
     components: [

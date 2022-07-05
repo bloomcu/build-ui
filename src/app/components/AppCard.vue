@@ -1,5 +1,5 @@
 <template>
-  <RouterLink class="card-v14 padding-sm flex flex-column">
+  <div class="card-v14 padding-sm flex flex-column">
     <figure class="card-v14__icon-wrapper margin-bottom-xs" aria-hidden="true">
       <svg class="card-v14__icon icon" viewBox="0 0 24 24">
         <rect x="1" y="1" width="10" height="10" rx="2"></rect>
@@ -12,7 +12,7 @@
     <h3 class="text-md">{{ title }}</h3>
     <p v-if="subtitle" class="color-contrast-medium line-height-md margin-y-xs">{{ subtitle }}</p>
     <!-- <p class="text-right color-primary margin-top-auto">Button Label →</p> -->
-  </RouterLink>
+  </div>
 </template>
 
 <script setup>

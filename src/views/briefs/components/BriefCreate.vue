@@ -6,7 +6,7 @@
 
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
       <button @click="toggle(4)" class="btn btn--subtle">Back</button>
-      <button @click="toggle(6)" class="btn btn--primary">Do's, Don'ts, and Maybes</button>
+      <button @click="toggle(6)" class="btn btn--primary">Next</button>
     </div>
   </div>
 </template>
