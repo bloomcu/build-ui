@@ -9,8 +9,8 @@
     <hr>
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
-        <FileList 
-          :files="fileStore.filterByGroup('logo')" 
+        <MediaList 
+          :files="mediaStore.filterByGroup('logo')" 
           :deleteable="false"
           @selected="openModal"
         />
@@ -36,8 +36,8 @@
     <hr>
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
-        <FileList 
-          :files="fileStore.filterByGroup('desktop-fonts')" 
+        <MediaList 
+          :files="mediaStore.filterByGroup('desktop-fonts')" 
           :deleteable="false"
           @selected="openModal"
         />
@@ -63,8 +63,8 @@
     <hr>
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
-        <FileList 
-          :files="fileStore.filterByGroup('photos')" 
+        <MediaList 
+          :files="mediaStore.filterByGroup('photos')" 
           :deleteable="false"
           @selected="openModal"
         />
@@ -86,13 +86,13 @@
     </div>
 
     <!-- Other -->
-    <div v-if="fileStore.filterByGroup('other').length">
+    <div v-if="mediaStore.filterByGroup('other').length">
       <h3 class="padding-top-xxxs">Other</h3>
       <hr>
       <div class="grid gap-md">
         <div class="col-6 padding-right-sm">
-          <FileList 
-            :files="fileStore.filterByGroup('other')" 
+          <MediaList 
+            :files="mediaStore.filterByGroup('other')" 
             :deleteable="false"
             @selected="openModal"
           />
@@ -127,13 +127,13 @@
 import { ref, onMounted } from 'vue'
 
 // Components
-import FileList from '@/domain/files/components/FileList.vue'
-import FileModal from '@/domain/files/components/FileModal.vue'
+import MediaList from '@/domain/media/components/MediaList.vue'
+import FileModal from '@/domain/media/components/FileModal.vue'
 
 // Stores
-import { useFileStore } from '@/domain/files/store/useFileStore'
+import { useMediaStore } from '@/domain/media/store/useMediaStore'
 import { useOrganizationCommentsStore } from '@/domain/organizations/store/useOrganizationCommentsStore'
-const fileStore = useFileStore()
+const mediaStore = useMediaStore()
 const organizationCommentsStore = useOrganizationCommentsStore()
 
 // Composables
@@ -151,7 +151,7 @@ function closeModal() {
 }
 
 onMounted(() => {
-  fileStore.index()
+  mediaStore.index()
   organizationCommentsStore.index()
 })
 </script>

@@ -6,9 +6,9 @@
         </aside>
         
         <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-          <FileUploader collection="assets" :tag="groups[toggled].tag"/>
-          <FileList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].tag)"/>
-          <!-- <FileList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.files"/> -->
+          <MediaUploader collection="assets" :tag="groups[toggled].tag"/>
+          <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].tag)"/>
+          <!-- <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.files"/> -->
         </main>
       </div>
     
@@ -31,9 +31,9 @@ mediaStore.index()
 // Components
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
-import FileUploader from '@/domain/files/components/FileUploader.vue'
-import FileList from '@/domain/files/components/FileList.vue'
-import FileModal from '@/domain/files/components/FileModal.vue'
+import MediaUploader from '@/domain/media/components/MediaUploader.vue'
+import MediaList from '@/domain/media/components/MediaList.vue'
+import FileModal from '@/domain/media/components/FileModal.vue'
 
 // Composables
 import useToggle from '@/app/composables/useToggle.js'
@@ -53,7 +53,7 @@ function closeModal() {
 }
 
 function destroyFile(file) {
-  fileStore.destroy(file)
+  mediaStore.destroy(file)
   closeModal()
 }
 
