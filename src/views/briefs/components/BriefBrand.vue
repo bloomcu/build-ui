@@ -43,7 +43,7 @@ import { ref, onMounted } from 'vue'
 
 // Components
 import FileList from '@/domain/files/components/FileList.vue'
-import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
+import FileModal from '@/domain/files/components/FileModal.vue'
 
 // Stores
 import { useFileStore } from '@/domain/files/store/useFileStore'

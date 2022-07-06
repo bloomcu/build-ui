@@ -1,18 +1,18 @@
 <template>
-  <LayoutDefault>
-      <div class="flex container border-top max-width-xxl">
+  <LayoutDefault maxWidth="none">
+      <div class="flex container max-width-xxl">
         <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
           <AppNestedMenu :items="groups"/>
         </aside>
         
         <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-          <!-- <FileUploader :folder="route.params.organization" :group="groups[toggled].name"/> -->
-          <!-- <FileList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].name)"/> -->
-          <FileList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.files"/>
+          <FileUploader collection="assets" :tag="groups[toggled].tag"/>
+          <FileList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].tag)"/>
+          <!-- <FileList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.files"/> -->
         </main>
       </div>
     
-    <!-- <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/> -->
+    <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
   </LayoutDefault>
 </template>
 
@@ -33,7 +33,7 @@ import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import FileUploader from '@/domain/files/components/FileUploader.vue'
 import FileList from '@/domain/files/components/FileList.vue'
-import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
+import FileModal from '@/domain/files/components/FileModal.vue'
 
 // Composables
 import useToggle from '@/app/composables/useToggle.js'
@@ -60,32 +60,32 @@ function destroyFile(file) {
 const groups = [
   {
     id: 0,
-    name: 'brand',
+    tag: 'brand',
     title: 'Brand Guide',
   },
   {
     id: 1,
-    name: 'logo',
+    tag: 'logo',
     title: 'Logo',
   },
   {
     id: 2,
-    name: 'desktop-fonts',
+    tag: 'desktop-fonts',
     title: 'Desktop Fonts',
   },
   {
     id: 3,
-    name: 'web-fonts',
+    tag: 'web-fonts',
     title: 'Web Fonts',
   },
   {
     id: 4,
-    name: 'photos',
+    tag: 'photos',
     title: 'Photography',
   },
   {
     id: 5,
-    name: 'other',
+    tag: 'other',
     title: 'Other Media',
   },
 ]

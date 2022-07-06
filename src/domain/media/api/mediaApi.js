@@ -19,8 +19,15 @@ const mediaApi = {
      * @param Object file [Object to create file from]
      * @return promise
      */
-    store(organization, file) {
-        return HttpClient.post(`/organizations/${organization}/media`, file)
+    store(organization, file, collection, tags) {
+        return HttpClient.post(`/organizations/${organization}/media`, {
+          file: file,
+          collection: collection,
+          tags: tags
+        },
+        {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
     },
     
     /**

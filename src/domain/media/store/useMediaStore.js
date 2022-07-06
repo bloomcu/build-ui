@@ -32,15 +32,15 @@ export const useMediaStore = defineStore('mediaStore', {
             })
         },
         
-        async store(file) {
+        async store(file, collection, tags) {
           const auth = useAuthStore()
-          
-          MediaApi.store(auth.organization, file)
-          .then(response => {
-            this.files.unshift(response.data.data)
-          }).catch(error => {
-            console.log('Error', error.response.data)
-          })
+
+          return await MediaApi.store(auth.organization, file, collection, tags)
+            .then(response => {
+              this.files.unshift(response.data.data)
+            }).catch(error => {
+              console.log('Error', error.response.data)
+            })
         },
         
         show(id) {},
