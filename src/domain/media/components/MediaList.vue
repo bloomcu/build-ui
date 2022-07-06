@@ -4,7 +4,7 @@
         <div @click="select(file)">
           <div class="flex flex-column gap-xs flex-row@xs justify-between@xs items-center@xs">
             <div class="flex items-center">
-              <FileIcon :type="file.extension" :source="file.original_url"/>
+              <MediaIcon :type="file.extension" :source="file.original_url"/>
               
               <!-- file info -->
               <div>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import FileIcon from '@/domain/media/components/file-icon/FileIcon.vue'
+import MediaIcon from '@/domain/media/components/media-icon/MediaIcon.vue'
 
 const props = defineProps({
     files: { 

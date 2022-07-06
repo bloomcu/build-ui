@@ -12,7 +12,7 @@
         </main>
       </div>
     
-    <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
+    <MediaModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
   </LayoutDefault>
 </template>
 
@@ -33,7 +33,7 @@ import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import MediaUploader from '@/domain/media/components/MediaUploader.vue'
 import MediaList from '@/domain/media/components/MediaList.vue'
-import FileModal from '@/domain/media/components/FileModal.vue'
+import MediaModal from '@/domain/media/components/MediaModal.vue'
 
 // Composables
 import useToggle from '@/app/composables/useToggle.js'

@@ -119,7 +119,7 @@
       <button @click="toggle(5)" class="btn btn--primary">Next</button>
     </div>
     
-    <FileModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>
+    <MediaModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>
   </div>
 </template>
 
@@ -128,7 +128,7 @@ import { ref, onMounted } from 'vue'
 
 // Components
 import MediaList from '@/domain/media/components/MediaList.vue'
-import FileModal from '@/domain/media/components/FileModal.vue'
+import MediaModal from '@/domain/media/components/MediaModal.vue'
 
 // Stores
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
