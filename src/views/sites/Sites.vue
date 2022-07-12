@@ -9,13 +9,13 @@
     </div>
 
     <div class="container max-width-sm padding-y-md">
-      <div class="card padding-md margin-bottom-sm">
+      <div class="app-card padding-md margin-bottom-sm">
         <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Primary Website</p>
         <h2 class="text-md margin-bottom-sm">redwoodcu.com</h2>
         <p class="text-sm margin-bottom-xs">Crawled yesterday</p>
       </div>
       
-      <div class="card padding-md">
+      <div class="app-card padding-md">
         <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Blog</p>
         <h2 class="text-md margin-bottom-sm">blog.redwoodcu.com</h2>
         <p class="text-sm color-success margin-bottom-xs">Crawl in progress</p>

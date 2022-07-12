@@ -20,6 +20,10 @@ const routes = [
   ...organizations,
   ...sites,
   ...tags,
+  {
+    path: '/',
+    redirect: 'organizations'
+  },
   // { 
   //   path: '/survey', 
   //   component: Survey 

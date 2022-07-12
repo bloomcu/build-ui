@@ -7,7 +7,17 @@
         
         <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
           <MediaUploader collection="assets" :tag="groups[toggled].tag"/>
-          <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].tag)"/>
+          <!-- <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].tag)"/> -->
+          <div class="grid gap-sm">
+            <AppCard 
+              v-for="file in mediaStore.filterByTag(groups[toggled].tag)" 
+              :key="file.id"
+              :image="file.original_url"
+              :title="file.name"
+              :subtitle="file.extension"
+              class="col-6@xs col-4@lg"
+            />
+          </div>
           <!-- <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.files"/> -->
         </main>
       </div>
@@ -31,6 +41,7 @@ mediaStore.index()
 // Components
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
+import AppCard from '@/app/components/AppCard.vue'
 import MediaUploader from '@/domain/media/components/MediaUploader.vue'
 import MediaList from '@/domain/media/components/MediaList.vue'
 import MediaModal from '@/domain/media/components/MediaModal.vue'
