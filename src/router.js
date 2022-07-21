@@ -50,6 +50,7 @@ router.beforeEach(async (to) => {
       '/forgot-password',
       '/bloomcu/briefs/style-tile',
       '/lone-star/briefs/style-tile',
+      '/cu-socal/briefs/style-tile',
     ]
     
     const authRequired = !publicRoutes.includes(to.path)
