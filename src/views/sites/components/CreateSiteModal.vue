@@ -47,7 +47,7 @@ const siteStore = useSiteStore()
 
 const newSite = ref({
   title: '',
-  url: '',
+  url: 'https://',
 })
 
 function create() {

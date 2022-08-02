@@ -17,7 +17,7 @@ export const useSiteStore = defineStore('siteStore', {
           
           SiteApi.index(params)
             .then(response => {
-              this.sites = response.data
+              this.sites = response.data.data
             }).catch(error => {
               console.log('Error', error.response.data)
             })
@@ -26,7 +26,7 @@ export const useSiteStore = defineStore('siteStore', {
         async store(site) {
           await SiteApi.store(site)
             .then(response => {
-              this.sites.unshift(response.data)
+              this.sites.push(response.data.data)
             }).catch(error => {
               console.log('Error', error.response.data)
             })
