@@ -63,21 +63,31 @@
         <p>
           Bryan Erwin - Lead<br>
           Email: <a href="mailto:bryan@bloomcu.com">bryan@bloomcu.com</a><br>
-          Cell: <a href="tel:(918) 645-1398">(918) 645-1398</a><br>
+          Mobile: <a href="tel:(918) 645-1398">(918) 645-1398</a><br>
+          Office: <a href="tel:(844) 334-3837">(844) 334-3837</a><br>
+        </p>
+      </div>
+      <div class="col text-component">
+        <p>
+          Ryan Harmon - Backup<br>
+          Email: <a href="mailto:ryan@bloomcu.com">ryan@bloomcu.com</a><br>
+          Mobile: <a href="tel:(385) 207-5487">(385) 207-5487</a><br>
           Office: <a href="tel:(844) 334-3837">(844) 334-3837</a><br>
         </p>
       </div>
       <div class="col text-component">
         <p>
           Devin Cuevas - Main<br>
-          Email: <a href="mailto:dcuevas@tfcu.coop">dcuevas@tfcu.coop</a> <br>
-          Phone: <a href="tel:(915) 926-3964">(915) 926-3964</a>
+          Email: <a href="mailto:dcuevas@tfcu.coop">dcuevas@tfcu.coop</a><br>
+          Mobile: <a href="tel:(915) 543-1705">(915) 543-1705</a><br>
+          Office: <a href="tel:(915) 926-3964">(915) 926-3964</a>
         </p>
       </div>
       <div class="col text-component">
         <p>
           Jason Vasquez - DNS<br>
-          Email: <a href="mailto:jvasquez@tfcu.coop">jvasquez@tfcu.coop</a> <br>
+          Email: <a href="mailto:jvasquez@tfcu.coop">jvasquez@tfcu.coop</a><br>
+          Mobile: <a href="tel:(915) 543-1705">(915) 422-5355</a><br>
           Phone: <a href="tel:(915) 926-2534">(915) 926-2534</a> <br>
         </p>
       </div>
