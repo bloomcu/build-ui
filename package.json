@@ -13,6 +13,7 @@
     "codyhouse-framework": "^3.0.5",
     "filepond": "^4.30.3",
     "moment": "^2.29.4",
+    "moment-timezone": "^0.5.34",
     "pinia": "^2.0.14",
     "vue": "^3.2.25",
     "vue-router": "^4.0.15"

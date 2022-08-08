@@ -23,15 +23,15 @@
       <div class="col text-component">
         <p>Launch Date</p>
         <h4>
-          {{ moment('2022-08-08 22:00:00').zone('-06:00').format('dddd') }}, 
-          {{ moment('2022-08-08 22:00:00').zone('-06:00').format('LL') }}
+          {{ moment('2022-08-08 22:00:00').utcOffset('-06:00').format('dddd') }}, 
+          {{ moment('2022-08-08 22:00:00').utcOffset('-06:00').format('LL') }}
         </h4>
       </div>
       <div class="col text-component">
         <p>Launch Time</p>
         <h4>
-          {{ moment('2022-08-08 22:00:00').zone('-06:00').format('h:mm A') }}
-          Mountain
+          {{ moment('2022-08-08 22:00:00').utcOffset('-06:00').format('h:mm A') }}
+          ({{ moment.tz.guess() }})
         </h4>
       </div>
     </div>
@@ -101,10 +101,10 @@
       <div class="col-8 text-component">
         <p class="text-bold">
           Content freeze:
-          ({{ moment('2022-08-08 18:00:00').zone('-06:00').format('dddd') }}, 
-          {{ moment('2022-08-08 18:00:00').zone('-06:00').format('LL') }} at
-          {{ moment('2022-08-08 18:00:00').zone('-06:00').format('h:mm A zz') }}
-          Mountain)
+          {{ moment('2022-08-08 18:00:00').utcOffset('-06:00').format('dddd') }}, 
+          {{ moment('2022-08-08 18:00:00').utcOffset('-06:00').format('LL') }} at
+          {{ moment('2022-08-08 18:00:00').utcOffset('-06:00').format('h:mm A') }}
+          ({{ moment.tz.guess() }})
         </p>
         <p>During the content free, we are migrating your data from the development site (<a href="https://tfcu.bloomcudev.com/" target="_blank">tfcu.bloomcudev.com</a>) to the production site (<a href="https://raiz.us" target="_blank">raiz.us</a>). At this time all changes within WordPress on the development site should stop.</p>
       </div>
@@ -221,7 +221,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import moment from "moment"
+import moment from "moment-timezone"
 
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
 import LaunchCountdown from '@/views/launch/components/LaunchCountdown.vue'
