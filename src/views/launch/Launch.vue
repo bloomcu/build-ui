@@ -23,14 +23,14 @@
       <div class="col text-component">
         <p>Launch Date</p>
         <h4>
-          {{ moment('2022-08-08 22:00:00').tz("America/Denver").format('dddd') }}, 
-          {{ moment('2022-08-08 22:00:00').tz("America/Denver").format('LL') }}
+          {{ moment.tz('2022-08-08 22:00:00', 'America/Denver').format('dddd') }}, 
+          {{ moment.tz('2022-08-08 22:00:00', 'America/Denver').format('LL') }}
         </h4>
       </div>
       <div class="col text-component">
         <p>Launch Time</p>
         <h4>
-          {{ moment('2022-08-08 22:00:00').tz("America/Denver").format('h:mm A') }}
+          {{ moment.tz('2022-08-08 22:00:00', 'America/Denver').format('h:mm A') }}
           ({{ moment.tz.guess() }})
         </h4>
       </div>
@@ -101,9 +101,9 @@
       <div class="col-8 text-component">
         <p class="text-bold">
           Content freeze:
-          {{ moment('2022-08-08 18:00:00').tz("America/Denver").format('dddd') }}, 
-          {{ moment('2022-08-08 18:00:00').tz("America/Denver").format('LL') }} at
-          {{ moment('2022-08-08 18:00:00').tz("America/Denver").format('h:mm A') }}
+          {{ moment.tz('2022-08-08 18:00:00', 'America/Denver').format('dddd') }}, 
+          {{ moment.tz('2022-08-08 18:00:00', 'America/Denver').format('LL') }} at
+          {{ moment.tz('2022-08-08 18:00:00', 'America/Denver').format('h:mm A') }}
           ({{ moment.tz.guess() }})
         </p>
         <p>During the content free, we are migrating your data from the development site (<a href="https://tfcu.bloomcudev.com/" target="_blank">tfcu.bloomcudev.com</a>) to the production site (<a href="https://raiz.us" target="_blank">raiz.us</a>). At this time all changes within WordPress on the development site should stop.</p>
