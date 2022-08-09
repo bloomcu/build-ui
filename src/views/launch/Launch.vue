@@ -181,26 +181,26 @@
       <div class="col-4">
         <p class="text-uppercase text-sm margin-bottom-sm">Configure Website</p>
         <ul style="list-style: none; padding-left: 0;">
-          <li>☐ Allow search engines to index site</li>
-          <li>☐ Test online banking</li>
-          <li>☐ Setup Google Analytics and GTM</li>
-          <li>☐ Setup uptime monitoring</li>
-          <li>☐ Replace dev urls in database</li>
+          <li>✅ Allow search engines to index site</li>
+          <li>✅ Test online banking</li>
+          <li>✅ Setup Google Analytics and GTM</li>
+          <li>✅ Setup uptime monitoring</li>
+          <li>✅ Replace dev urls in database</li>
         </ul>
       </div>
       <div class="col-4">
         <p class="text-uppercase text-sm margin-bottom-sm">Configure Plugins</p>
         <ul style="list-style: none; padding-left: 0;">
-          <li>☐ Yoast SEO</li>
-          <li>☐ Initiate daily backups</li>
-          <li>☐ Index Algolia instant search</li>
+          <li>✅ Yoast SEO</li>
+          <li>✅ Initiate daily backups</li>
+          <li>✅ Index Algolia instant search</li>
         </ul>
       </div>
       <div class="col-4">
         <p class="text-uppercase text-sm margin-bottom-sm">Configure Server</p>
         <ul style="list-style: none; padding-left: 0;">
-          <li>☐ Test that “https” is forced</li>
-          <li>☐ Test 301 Redirects</li>
+          <li>✅ Test that “https” is forced</li>
+          <li>✅ Test 301 Redirects</li>
         </ul>
       </div>
     </div>
