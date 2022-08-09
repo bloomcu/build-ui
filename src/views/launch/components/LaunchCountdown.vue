@@ -1,23 +1,28 @@
 <template>
-  <div v-if="loaded" class="flex gap-xxs items-center">
-    <div class="text-center">
-      <h4>{{ displayDays }}</h4>
-      <p class="text-sm">days</p>
+  <div>
+    <div v-if="expired">
+      <h4>Site has launched</h4>
     </div>
-    <h4 style="margin-top: -22px;">:</h4>
-    <div class="text-center">
-      <h4>{{ displayHours }}</h4>
-      <p class="text-sm">hours</p>
-    </div>
-    <h4 style="margin-top: -22px;">:</h4>
-    <div class="text-center">
-      <h4>{{ displayMinutes }}</h4>
-      <p class="text-sm">minutes</p>
-    </div>
-    <h4 style="margin-top: -22px;">:</h4>
-    <div class="text-center">
-      <h4>{{ displaySeconds }}</h4>
-      <p class="text-sm">seconds</p>
+    <div v-if="loaded & !expired" class="flex gap-xxs items-center">
+      <div class="text-center">
+        <h4>{{ displayDays }}</h4>
+        <p class="text-sm">days</p>
+      </div>
+      <h4 style="margin-top: -22px;">:</h4>
+      <div class="text-center">
+        <h4>{{ displayHours }}</h4>
+        <p class="text-sm">hours</p>
+      </div>
+      <h4 style="margin-top: -22px;">:</h4>
+      <div class="text-center">
+        <h4>{{ displayMinutes }}</h4>
+        <p class="text-sm">minutes</p>
+      </div>
+      <h4 style="margin-top: -22px;">:</h4>
+      <div class="text-center">
+        <h4>{{ displaySeconds }}</h4>
+        <p class="text-sm">seconds</p>
+      </div>
     </div>
   </div>
 </template>
@@ -36,7 +41,8 @@ const props = defineProps({
 })
 
 const loaded = ref(false)
- 
+const expired = ref(false)
+
 const displayDays = ref(0)
 const displayHours = ref(0)
 const displayMinutes = ref(0)
@@ -70,6 +76,7 @@ function showRemaining() {
     
     if (distance < 0) {
       clearInterval(timer)
+      expired.value = true
       return
     }
     
