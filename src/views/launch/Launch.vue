@@ -23,8 +23,6 @@
       <div class="col text-component">
         <p>Launch Date</p>
         <h4>
-          <!-- {{ moment.tz('2022-08-08 22:00:00', 'America/Denver').format('dddd') }}, 
-          {{ moment.tz('2022-08-08 22:00:00', 'America/Denver').format('LL') }} -->
           {{ moment('2022-08-08 22:00:00').format('dddd') }}, 
           {{ moment('2022-08-08 22:00:00').format('LL') }}
         </h4>
@@ -32,9 +30,6 @@
       <div class="col text-component">
         <p>Launch Time</p>
         <h4>
-          <!-- {{ moment.tz('2022-08-08 22:00:00', 'America/Denver').format('h:mm A') }} -->
-          <!-- ({{ moment.tz.guess() }}) -->
-          
           {{ moment('2022-08-08 22:00:00').format('h:mm A') }}
           Mountain Time (MT)
         </h4>
@@ -42,20 +37,9 @@
     </div>
     
     <!-- Progress -->
-    <!-- <div class="row" style="margin-bottom: 7rem;">
-        <div class="col-12" style="margin-bottom: 2rem;">
-            <p>PROGRESS</p>
-        </div>
+    <!-- <div class="grid margin-bottom-xl">
         <div class="col-12">
-            <AppSteps :step="steps[step].name" @changeStep="changeStep"/>
-            <ol class="steps">
-                <li class="step is-complete" data-step="1">Acquire Server</li>
-                <li class="step is-complete" data-step="2">Assign Contacts</li>
-                <li class="step is-complete" data-step="3">Pre-Launch</li>
-                <li class="step is-complete" data-step="4">Launch</li>
-                <li class="step is-complete" data-step="5">Propagation</li>
-                <li class="step is-complete" data-step="6">Post-Launch</li>
-            </ol>
+            <AppSteps :steps="steps" :active-step="step"/>
         </div>
     </div> -->
     
@@ -106,11 +90,6 @@
       <div class="col-8 text-component">
         <p class="text-bold">
           Content freeze:
-          <!-- {{ moment.tz('2022-08-08 18:00:00', 'America/Denver').format('dddd') }},  -->
-          <!-- {{ moment.tz('2022-08-08 18:00:00', 'America/Denver').format('LL') }} at -->
-          <!-- {{ moment.tz('2022-08-08 18:00:00', 'America/Denver').format('h:mm A') }} -->
-          <!-- ({{ moment.tz.guess() }}) -->
-          
           {{ moment('2022-08-08 18:00:00').format('dddd') }}, 
           {{ moment('2022-08-08 18:00:00').format('LL') }} at
           {{ moment('2022-08-08 18:00:00').format('h:mm A') }}
@@ -125,25 +104,25 @@
         <div class="col">
           <p class="text-uppercase text-sm margin-bottom-sm">Configure Website</p>
           <ul>
-            <li>☐ Set favicon</li>
-            <li>☐ Set admin email</li>
-            <li>☐ Set comments to manual approval</li>
-            <li>☐ Configure anti-spam and honeypot</li>
+            <li>✅ Set favicon</li>
+            <li>✅ Set admin email</li>
+            <li>✅ Set comments to manual approval</li>
+            <li>✅ Configure anti-spam and honeypot</li>
           </ul>
         </div>
         <div class="col">
           <p class="text-uppercase text-sm margin-bottom-sm">Configure Plugins</p>
           <ul>
-            <li>☐ Akismet Anti-Spam</li>
-            <li>☐ Image Compression</li>
-            <li>☐ Stream User Tracking</li>
+            <li>✅ Akismet Anti-Spam</li>
+            <li>✅ Image Compression</li>
+            <li>✅ Stream User Tracking</li>
           </ul>
         </div>
         <div class="col">
           <p class="text-uppercase text-sm margin-bottom-sm">Configure Security</p>
           <ul>
-            <li>☐ Configure security</li>
-            <li>☐ Whitelist CU branch and office IP’s</li>
+            <li>✅ Configure security</li>
+            <li>✅ Whitelist CU branch and office IP’s</li>
           </ul>
         </div>
       </div>
@@ -237,17 +216,17 @@ import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
 import LaunchCountdown from '@/views/launch/components/LaunchCountdown.vue'
 import AppSteps from '@/app/components/AppSteps.vue'
 
-// const step = ref(1)
-// 
-// const steps = [
-//   { name: 'Acquire Server' },
-//   { name: 'Assign Contacts' },
-//   { name: 'Pre-Launch' },
-//   { name: 'Launch' },
-//   { name: 'Propagation' },
-//   { name: 'Post-Launch' },
-// ]
-// 
+const step = ref(1)
+
+const steps = [
+  { name: 'Acquire Server' },
+  { name: 'Assign Contacts' },
+  { name: 'Pre-Launch' },
+  { name: 'Launch' },
+  { name: 'Propagation' },
+  { name: 'Post-Launch' },
+]
+
 // function changeStep(number) {
 //   step.value = number
 // }
