@@ -100,6 +100,16 @@ Card
 .card {
   border: 1px solid var(--color-contrast-lower);
   border-radius: var(--radius-lg);
+  padding: var(--space-sm);
+  
+  &--shadow {
+    box-shadow: var(--shadow-sm);
+  }
+  
+  &--dark {
+    border: none;
+    background-color: var(--color-bg-dark);
+  }
 }
 
 .card-header {

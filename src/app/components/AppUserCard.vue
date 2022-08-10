@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-dark radius-lg">
+  <div class="card card--dark cursor-pointer">
     <!-- Header -->
-    <div @click="open = !open" class="card-header flex items-center cursor-pointer padding-sm">
+    <div @click="open = !open" class="card-header flex items-center">
       <figure class="margin-right-xs">
         <AppUserAvatar :name="user.name" imageSize="md"/>
       </figure>
@@ -13,8 +13,8 @@
     </div>
     
     <!-- Footer -->
-    <div v-show="open" class="card-footer border-top">
-      <div class="flex flex-column gap-sm text-sm padding-sm">
+    <div v-show="open" class="card-footer border-top margin-top-sm padding-top-sm">
+      <div class="flex flex-column gap-sm text-sm">
         <a :href="`mailto:${user.email}`" class="flex items-center">
           <svg class="icon--xs icon color-primary margin-right-xxs" viewBox="0 0 16 16">
             <g fill="currentColor"><path d="M15,1H1C0.448,1,0,1.447,0,2v12c0,0.553,0.448,1,1,1h14c0.552,0,1-0.447,1-1V2C16,1.447,15.552,1,15,1z M14,13H2V6.723l5.504,3.145c0.308,0.176,0.685,0.176,0.992,0L14,6.723V13z M14,4.42L8,7.849L2,4.42V3h12V4.42z"></path></g>

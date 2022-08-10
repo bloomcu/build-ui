@@ -1,14 +1,14 @@
 <template>
   <div>
-    <!-- Hero -->
-    <div class="margin-bottom-lg">
+    <!-- Title -->
+    <div class="margin-bottom-md">
       <h3>Launch Dashboard</h3>
     </div>
     
     <!-- Vitals -->
     <div class="grid gap-sm margin-bottom-lg">
       <div class="col">
-        <div class="card shadow-sm padding-sm height-100% flex flex-column">
+        <div class="card card--shadow height-100% flex flex-column">
           <p class="text-sm margin-bottom-sm">Countdown</p>
           <LaunchCountdown
             :year="2022"
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="card shadow-sm padding-sm height-100% flex flex-column">
+        <div class="card card--shadow height-100% flex flex-column">
           <p class="text-sm margin-bottom-sm">Launch date</p>
           <h3 class="text-md color-primary margin-bottom-xxs">Monday, August 27, 2022</h3>
           <p class="text-sm">10:00 PM (Mountain)</p>
@@ -30,13 +30,14 @@
       </div>
     </div>
     
-    <div class="margin-bottom-xl">
+    <!-- <div class="margin-bottom-xl">
       <LaunchSteps/>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
+import moment from "moment-timezone"
 import LaunchCountdown from '@/views/launch/components/LaunchCountdown.vue'
 import LaunchSteps from '@/views/launch/components/LaunchSteps.vue'
 </script>
