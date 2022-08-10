@@ -88,7 +88,7 @@ function changeStep(number) {
 const emit = defineEmits(['changeStep'])
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 :root {
   --steps-number: 5;
   --step-separator-line-stroke: 3px;

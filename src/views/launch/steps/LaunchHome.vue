@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero -->
-    <div class="margin-bottom-md">
+    <div class="margin-bottom-lg">
       <h3>Launch Dashboard</h3>
     </div>
     
@@ -29,9 +29,14 @@
         </div>
       </div>
     </div>
+    
+    <div class="margin-bottom-xl">
+      <LaunchSteps/>
+    </div>
   </div>
 </template>
 
 <script setup>
 import LaunchCountdown from '@/views/launch/components/LaunchCountdown.vue'
+import LaunchSteps from '@/views/launch/components/LaunchSteps.vue'
 </script>

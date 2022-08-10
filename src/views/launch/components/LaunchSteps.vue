@@ -2,19 +2,23 @@
   <div class="steps text-sm@md" aria-label="Multi-step indicator">
     <ol class="steps__list">
       <li 
-        :class="step === 'brand' ? 'step--current' : ''"
         class="step cursor-pointer"
-        @click="changeStep(0)"
+        :class="step.id <= completed ? 'step--completed' : ''"
+        v-for="step in steps"
+        :key="step.id"
       >
-        <p class="step__label">Brand</p>
+        <p class="step__label">{{ step.title }}</p>
 
-        <span class="step__separator" aria-hidden="true">
+        <span v-if="step.id < steps.length" class="step__separator" aria-hidden="true">
           <svg class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="6.5,3.5 11,8 6.5,12.5 "></polyline></svg>
         </span>
 
         <div class="step__circle" aria-hidden="true">
-          <!-- <svg v-if="step < 2" class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="1,9 5,13 15,3 "></polyline></svg> -->
-          <span>1</span>
+          <svg v-if="step.id === current" class="icon" viewBox="0 0 16 16">
+            <g class="rotate-icon" fill="currentColor"><path d="M8 16a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8zM8 2a6 6 0 1 0 6 6 6.006 6.006 0 0 0-6-6z" opacity=".4"></path><path d="M8 0v2a6.006 6.006 0 0 1 6 6h2a8.009 8.009 0 0 0-8-8z" data-color="color-2"></path></g>
+          </svg>
+          <svg v-else-if="step.id <= completed" class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="1,9 5,13 15,3 "></polyline></svg>
+          <span v-else>{{ step.id }}</span>
         </div>
       </li>
     </ol>
@@ -22,15 +26,33 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  step: { type: String }
-})
+import { ref } from 'vue'
 
-function changeStep(number) {
-    emit('changeStep', number)
-}
+const completed = ref(2)
+const current = completed.value + 1
 
-const emit = defineEmits(['changeStep'])
+const steps = [
+  { 
+    id: 1, 
+    title: 'Content Freeze',
+  },
+  { 
+    id: 2, 
+    title: 'Pre-Launch',
+  },
+  { 
+    id: 3, 
+    title: 'Launch',
+  },
+  { 
+    id: 4, 
+    title: 'Propagation',
+  },
+  { 
+    id: 5, 
+    title: 'Post-Launch',
+  },
+]
 </script>
 
 <style lang="scss">
@@ -68,10 +90,6 @@ const emit = defineEmits(['changeStep'])
 
 .step--completed .step__label, .step--current .step__label {
   color: var(--color-primary);
-}
-
-.step--completed .step__label {
-  text-decoration: underline;
 }
 
 .step__separator { // on small devices -> icon separator
@@ -168,6 +186,12 @@ const emit = defineEmits(['changeStep'])
     .icon {
       width: var(--step-circle-font-size);
       height: var(--step-circle-font-size);
+      
+      .rotate-icon {
+        --animation-duration: 0.65s;
+        transform-origin: 8px 8px;
+        animation:rotate-icon var(--animation-duration) infinite cubic-bezier(.645,.045,.355,1)
+      }
     }
 
     .step--completed &, .step--current & {
@@ -178,19 +202,8 @@ const emit = defineEmits(['changeStep'])
   }
 }
 
-/* screen reader */
-.step--completed .step__label::after,
-.step--current .step__label::after {
-  position: absolute;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-}
-
-.step--completed .step__label::after {
-  content: 'step completed';
-}
-
-.step--current .step__label::after {
-  content: 'step current';
+@keyframes rotate-icon {
+  0% { transform:rotate(0) }
+  100% { transform:rotate(360deg) }
 }
 </style>

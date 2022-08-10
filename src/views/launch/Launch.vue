@@ -2,7 +2,7 @@
   <LayoutWithoutNavigation maxWidth="xxl">
     <div class="flex container">
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-        <component :is="steps[toggled].component"/>
+        <LaunchHome />
         
         <!-- Content freeze -->
         <div class="grid gap-sm margin-bottom-xl">
@@ -10,8 +10,8 @@
             <h4>Content freeze</h4>
             <p>At this time all changes within WordPress on the development site should stop.</p>
           </div>
-          <div class="col-6">
-            <div class="card shadow-sm padding-sm">
+          <div class="col-12">
+            <div class="">
               <h3 class="text-base color-primary margin-bottom-xxs">
                 {{ moment('2022-08-08 18:00:00').format('dddd') }}, 
                 {{ moment('2022-08-08 18:00:00').format('LL') }}
@@ -21,7 +21,7 @@
               </p>
             </div>
           </div>
-          <div class="col-10">
+          <div class="col-12">
             <p><small>During the content freeze, your data is migrated from (<a href="https://tfcu.bloomcudev.com/" target="_blank">tfcu.bloomcudev.com</a>) to (<a href="https://raiz.us" target="_blank">raiz.us</a>).</small></p>
           </div>
         </div>
@@ -153,38 +153,6 @@ import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import AppUserCard from '@/app/components/AppUserCard.vue'
 import AppList from '@/app/components/AppList.vue'
-
-// Composables
-import useToggle from '@/app/composables/useToggle.js'
-const { toggle, toggled } = useToggle()
-
-const steps = [
-  { 
-    id: 0, 
-    title: 'Home',
-    component: 'LaunchHome',
-  },
-  { 
-    id: 1, 
-    title: 'Pre-Launch',
-    component: '',
-  },
-  { 
-    id: 2, 
-    title: 'Launch',
-    component: '',
-  },
-  { 
-    id: 3, 
-    title: 'Propagation',
-    component: '',
-  },
-  { 
-    id: 4, 
-    title: 'Post-Launch',
-    component: '',
-  },
-]
 
 const contacts = [
   {
