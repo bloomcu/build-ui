@@ -1,23 +1,35 @@
 <template>
-  <div class="avatar avatar--md">
+  <div class="avatar" :class="`avatar--${imageSize}`">
     <figure class="avatar__figure" role="img">
-      <svg class="avatar__placeholder" aria-hidden="true" viewBox="0 0 20 20" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="6" r="2.5" stroke="currentColor"/><path d="M10,10.5a4.487,4.487,0,0,0-4.471,4.21L5.5,15.5h9l-.029-.79A4.487,4.487,0,0,0,10,10.5Z" stroke="currentColor"/></svg>
-      <img v-if="image" class="avatar__img" src="https://res.cloudinary.com/metrifi/image/upload/v1654152802/bloomcu/Screen_Shot_2022-06-01_at_12.24.02_AM_bjlnil.png" alt="Emily Ewing" title="Emily Ewing">
-      <div v-else class="avatar__initials"><span>{{ name }}</span></div>
+      <img v-if="image" :src="image" class="avatar__img" alt="User avatar" title="User avatar">
+      <div v-else class="avatar__initials"><span>{{ createInitials(name) }}</span></div>
     </figure>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
+  name: { 
+    type: String,
+  },
   image: { 
     type: String,
   },
-  name: { 
+  imageSize: {
     type: String,
-    default: 'RH'
+    default: 'md',
   },
 })
+
+function createInitials(name) {
+  const names = name.split(' ')
+  let initials = names[0].substring(0, 1).toUpperCase()
+  
+  if (names.length > 1) {
+    initials += names[names.length - 1].substring(0, 1).toUpperCase()
+  }
+  return initials
+}
 </script>
 
 <style lang="scss">
@@ -44,12 +56,6 @@ const props = defineProps({
   border-radius: inherit;
 }
 
-.avatar__placeholder {
-  // background-color: var(--color-contrast-lower); // icon background color
-  color: var(--color-bg); // icon stroke color
-  fill: transparent; // icon fill color
-}
-
 .avatar--btn {
   @include reset;
   cursor: pointer;
@@ -61,7 +67,7 @@ const props = defineProps({
 }
 
 .avatar--md {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .avatar--lg {
@@ -105,6 +111,7 @@ const props = defineProps({
 
 .avatar__initials { // initials - show letters if you don't have img
   text-align: center;
+  background: var(--color-white);
 
   span {
     font-size: 0.5em;

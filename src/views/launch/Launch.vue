@@ -1,210 +1,146 @@
 <template>
-  <LayoutWithoutNavigation>
-    <!-- Hero -->
-    <div class="padding-y-md">
-      <p>TFCU</p>
-      <h2>Launch Dashboard</h2>
-    </div>
-    
-    <!-- Overview -->
-    <div class="grid gap-sm margin-bottom-xl">
-      <div class="col">
-        <p class="margin-bottom-sm">Countdown</p>
-        <LaunchCountdown
-          :year="2022"
-          :month="7"
-          :day="8"
-          :hour="22"
-          :minute="0"
-          :second="0"
-          :millisecond="0"
-        />
-      </div>
-      <div class="col text-component">
-        <p>Launch Date</p>
-        <h4>
-          {{ moment('2022-08-08 22:00:00').format('dddd') }}, 
-          {{ moment('2022-08-08 22:00:00').format('LL') }}
-        </h4>
-      </div>
-      <div class="col text-component">
-        <p>Launch Time</p>
-        <h4>
-          {{ moment('2022-08-08 22:00:00').format('h:mm A') }}
-          Mountain Time (MT)
-        </h4>
-      </div>
-    </div>
-    
-    <!-- Progress -->
-    <!-- <div class="grid margin-bottom-xl">
-        <div class="col-12">
-            <AppSteps :steps="steps" :active-step="step"/>
+  <LayoutWithoutNavigation maxWidth="xxl">
+    <div class="flex container">
+      <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
+        <component :is="steps[toggled].component"/>
+        
+        <!-- Content freeze -->
+        <div class="grid gap-sm margin-bottom-xl">
+          <div class="col-10 text-component">
+            <h4>Content freeze</h4>
+            <p>At this time all changes within WordPress on the development site should stop.</p>
+          </div>
+          <div class="col-6">
+            <div class="card shadow-sm padding-sm">
+              <h3 class="text-base color-primary margin-bottom-xxs">
+                {{ moment('2022-08-08 18:00:00').format('dddd') }}, 
+                {{ moment('2022-08-08 18:00:00').format('LL') }}
+              </h3>
+              <p class="text-sm">
+                {{ moment('2022-08-08 18:00:00').format('h:mm A') }} (Mountain)
+              </p>
+            </div>
+          </div>
+          <div class="col-10">
+            <p><small>During the content freeze, your data is migrated from (<a href="https://tfcu.bloomcudev.com/" target="_blank">tfcu.bloomcudev.com</a>) to (<a href="https://raiz.us" target="_blank">raiz.us</a>).</small></p>
+          </div>
         </div>
-    </div> -->
-    
-    <!-- Contacts -->
-    <div class="grid gap-sm margin-bottom-xl">
-      <div class="col-12">
-        <h3>Contacts</h3>
-      </div>
-      <div class="col text-component">
-        <p>
-          Bryan Erwin - Lead<br>
-          Email: <a href="mailto:bryan@bloomcu.com">bryan@bloomcu.com</a><br>
-          Mobile: <a href="tel:(918) 645-1398">(918) 645-1398</a><br>
-          Office: <a href="tel:(844) 334-3837">(844) 334-3837</a><br>
-        </p>
-      </div>
-      <div class="col text-component">
-        <p>
-          Ryan Harmon - Backup<br>
-          Email: <a href="mailto:ryan@bloomcu.com">ryan@bloomcu.com</a><br>
-          Mobile: <a href="tel:(385) 207-5487">(385) 207-5487</a><br>
-          Office: <a href="tel:(844) 334-3837">(844) 334-3837</a><br>
-        </p>
-      </div>
-      <div class="col text-component">
-        <p>
-          Devin Cuevas - Main<br>
-          Email: <a href="mailto:dcuevas@tfcu.coop">dcuevas@tfcu.coop</a><br>
-          Mobile: <a href="tel:(915) 543-1705">(915) 543-1705</a><br>
-          Office: <a href="tel:(915) 926-3964">(915) 926-3964</a>
-        </p>
-      </div>
-      <div class="col text-component">
-        <p>
-          Jason Vasquez - DNS<br>
-          Email: <a href="mailto:jvasquez@tfcu.coop">jvasquez@tfcu.coop</a><br>
-          Mobile: <a href="tel:(915) 543-1705">(915) 422-5355</a><br>
-          Phone: <a href="tel:(915) 926-2534">(915) 926-2534</a> <br>
-        </p>
-      </div>
-    </div>
-    
-    <!-- Pre-launch -->
-    <div class="grid gap-sm margin-bottom-xl">
-      <div class="col-12">
-        <h3>Pre-Launch</h3>
-      </div>
-      <div class="col-8 text-component">
-        <p class="text-bold">
-          Content freeze:
-          {{ moment('2022-08-08 18:00:00').format('dddd') }}, 
-          {{ moment('2022-08-08 18:00:00').format('LL') }} at
-          {{ moment('2022-08-08 18:00:00').format('h:mm A') }}
-          Mountain Time (MT)
-        </p>
-        <p>During the content free, we are migrating your data from the development site (<a href="https://tfcu.bloomcudev.com/" target="_blank">tfcu.bloomcudev.com</a>) to the production site (<a href="https://raiz.us" target="_blank">raiz.us</a>). At this time all changes within WordPress on the development site should stop.</p>
-      </div>
-      <div class="col-12 text-component">
-        <p class="text-bold">Checklist</p>
-      </div>
-      <div class="grid gap-sm">
-        <div class="col">
-          <p class="text-uppercase text-sm margin-bottom-sm">Configure Website</p>
-          <ul>
-            <li>✅ Set favicon</li>
-            <li>✅ Set admin email</li>
-            <li>✅ Set comments to manual approval</li>
-            <li>✅ Configure anti-spam and honeypot</li>
-          </ul>
+        
+        <!-- Pre-launch -->
+        <div class="grid gap-sm margin-bottom-xl">
+          <div class="col-10 text-component">
+            <h4>Pre-Launch</h4>
+            <p>Before launch, we ensure the following is complete.</p>
+          </div>
+          <div class="grid gap-sm">
+            <div class="col-4">
+              <p class="text-uppercase text-sm margin-bottom-sm">CMS</p>
+              <AppList :list="[
+                { content: 'Set favicon' },
+                { content: 'Set admin email' },
+                { content: 'Set comments to manual approval' },
+                { content: 'Configure anti-spam and honeypot' },
+              ]"/>
+            </div>
+            <div class="col-4">
+              <p class="text-uppercase text-sm margin-bottom-sm">Plugins</p>
+              <AppList :list="[
+                { content: 'Akismet Anti-Spam' },
+                { content: 'Image Compression' },
+                { content: 'Stream User Tracking' },
+                { content: 'Mailgun API' },
+              ]"/>
+            </div>
+            <div class="col-4">
+              <p class="text-uppercase text-sm margin-bottom-sm">Security</p>
+              <AppList :list="[
+                { content: 'Configure security' },
+                { content: 'Whitelist internal IP’s' },
+              ]"/>
+            </div>
+          </div>
         </div>
-        <div class="col">
-          <p class="text-uppercase text-sm margin-bottom-sm">Configure Plugins</p>
-          <ul>
-            <li>✅ Akismet Anti-Spam</li>
-            <li>✅ Image Compression</li>
-            <li>✅ Stream User Tracking</li>
-          </ul>
-        </div>
-        <div class="col">
-          <p class="text-uppercase text-sm margin-bottom-sm">Configure Security</p>
-          <ul>
-            <li>✅ Configure security</li>
-            <li>✅ Whitelist CU branch and office IP’s</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <!-- Launch -->
-    <div class="grid gap-sm margin-bottom-xl">
-      <div class="col-12">
-        <h3>Launch</h3>
-      </div>
-      <div class="col-8 text-component">
-        <p class="text-bold">Change DNS Records</p>
-        <p>At the time of launch, the <strong>Primary DNS controller</strong> will change the DNS records for raiz.us and www.raiz.us as outlined below:</p>
-      </div>
-      <div class="col-12 border radius-md padding-sm shadow-sm text-component">
-        <p>Type “A”  |  Data "raiz.us"  |  Name “@”</p>
-        <p>Point to <u>69.167.186.183</u> for users who enter <u>raiz.us</u> without "www" before it.</p>
-        <div class="border-bottom margin-bottom-sm"></div>
-        <p>Type “A”  |  Data "www.raiz.us"  |  Name “www”</p>
-        <p>Point to <u>69.167.186.183</u> for users who enter <u>www.raiz.us</u>.</p>
-      </div>
-    </div>
+        <!-- Launch -->
+        <div class="grid gap-sm margin-bottom-xl">
+          <div class="col-10 text-component">
+            <h4>Launch</h4>
+            <p>At the time of launch, DNS records for <strong>raiz.us</strong> and <strong>www.raiz.us</strong> will be changed.</p>
+          </div>
+          <div class="col-12 border radius-md padding-sm shadow-sm text-component">
+            <p>Point <strong>raiz.us</strong> to <strong>69.167.186.183</strong></p>
+            <p><small>Type “A”  |  Data "raiz.us"  |  Name “@”</small></p>
+            <div class="border-bottom margin-bottom-sm"></div>
+            <p>Point <strong>www.raiz.us</strong> to <strong>69.167.186.183</strong></p>
+            <p><small>Type “A”  |  Data "www.raiz.us"  |  Name “www”</small></p>
+          </div>
+        </div>
 
-    <!-- Propagation -->
-    <div class="grid gap-sm margin-bottom-xl">
-      <div class="col-8 text-component">
-        <h3>Propagation</h3>
-        <p>When we launch, you can watch the DNS record change propagate across the globe using DNS checkers. We will be waiting for the returned IP address <u>50.28.14.50</u></p>
-      </div>
-      <div class="col-8 border radius-md padding-sm shadow-sm text-component">
-        <h5>raiz.us</h5>
-        <p><a href="https://www.whatsmydns.net/#A/raiz.us" target="_blank">DNS Checker 1</a> | <a href="https://dnschecker.org/#A/raiz.us" target="_blank">DNS Checker 2</a></p>
-        <div class="border-bottom margin-bottom-sm"></div>
-        <h5>www.raiz.us</h5>
-        <p><a href="https://www.whatsmydns.net/#A/www.raiz.us" target="_blank">DNS Checker 1</a> | <a href="https://dnschecker.org/#A/www.raiz.us" target="_blank">DNS Checker 2</a></p>
-      </div>
-      <div class="col-8 text-component">
-        <p>Propagation can take from 5-20 minutes to see a single change, and 2-24 hours to see global change. After these checks are successful, the site launch is complete.</p>
-        <p><i><small>BloomCU will monitor the propagation of the change until enough U.S. based servers have successfully propagated, allowing us to use the website locally and from other remote virtual machines across the U.S.. During this test we also verify that the SSL certificate, 301 redirects and site permalinks are working.</small></i></p>
-      </div>
-    </div>
+        <!-- Propagation -->
+        <div class="grid gap-sm margin-bottom-xl">
+          <div class="col-10 text-component">
+            <h4>Propagation</h4>
+            <p>When we launch, you can watch the DNS record changes propagate across the globe using DNS checkers. We will be watching for the IP address: <strong>69.167.186.183</strong>.</p>
+          </div>
+          <div class="col-12 border radius-md padding-sm shadow-sm text-component">
+            <h5>raiz.us</h5>
+            <p><a href="https://www.whatsmydns.net/#A/raiz.us" target="_blank">DNS Checker 1</a> | <a href="https://dnschecker.org/#A/raiz.us" target="_blank">DNS Checker 2</a></p>
+            <div class="border-bottom margin-bottom-sm"></div>
+            <h5>www.raiz.us</h5>
+            <p><a href="https://www.whatsmydns.net/#A/www.raiz.us" target="_blank">DNS Checker 1</a> | <a href="https://dnschecker.org/#A/www.raiz.us" target="_blank">DNS Checker 2</a></p>
+          </div>
+          <div class="col-8 text-component">
+            <p><small>Propagation can take 5-20 minutes to see changes, and 2-24 hours to see global change.</small></p>
+          </div>
+        </div>
 
-    <!-- Post-Launch -->
-    <div class="grid gap-sm margin-bottom-md">
-      <div class="col-8 text-component">
-        <h3>Post-Launch</h3>
-        <p>After launch we ensure the following is complete. Then, send an email out letting everyone involved know that the launch was successful.</p>
-      </div>
+        <!-- Post-Launch -->
+        <div class="grid gap-sm margin-bottom-xl">
+          <div class="col-10 text-component">
+            <h4>Post-Launch</h4>
+            <p>After launch, we ensure the following is complete. Then, we will send an email letting everyone involved know that the launch was successful.</p>
+          </div>
+          <div class="grid gap-md">
+            <div class="col-4">
+              <p class="text-uppercase text-sm margin-bottom-sm">CMS</p>
+              <AppList :list="[
+                { content: 'Allow search engine indexing' },
+                { content: 'Test online banking' },
+                { content: 'Setup GA/GTM' },
+                { content: 'Enable uptime monitoring' },
+                { content: 'Replace dev urls in database' },
+              ]"/>
+            </div>
+            <div class="col-4">
+              <p class="text-uppercase text-sm margin-bottom-sm">Plugins</p>
+              <AppList :list="[
+                { content: 'Enable Yoast' },
+                { content: 'Enable backups' },
+                { content: 'Index Algolia' },
+              ]"/>
+            </div>
+            <div class="col-4">
+              <p class="text-uppercase text-sm margin-bottom-sm">Server</p>
+              <AppList :list="[
+                { content: 'Test forced “https”' },
+                { content: 'Check mixed content' },
+                { content: 'Test 301 Redirects' },
+              ]"/>
+            </div>
+          </div>
+        </div>
+      </main>
       
-      <div class="col-12 text-component">
-        <p class="text-bold">Checklist</p>
-      </div>
+      <aside class="position-relative z-index-1 width-100% border-left max-width-xxxs padding-y-md padding-x-md">
+        <!-- <AppNestedMenu :items="steps"/> -->
+        <p class="text-bold margin-bottom-sm">Contacts</p>
+        <div class="flex flex-column gap-xs">
+          <div v-for="contact in contacts" :key="contact.id">
+            <AppUserCard :user="contact"/>
+          </div>
+        </div>
+      </aside>
     </div>
-    
-    <div class="grid gap-sm margin-bottom-lg">
-      <div class="col-4">
-        <p class="text-uppercase text-sm margin-bottom-sm">Configure Website</p>
-        <ul style="list-style: none; padding-left: 0;">
-          <li>✅ Allow search engines to index site</li>
-          <li>✅ Test online banking</li>
-          <li>✅ Setup Google Analytics and GTM</li>
-          <li>✅ Setup uptime monitoring</li>
-          <li>✅ Replace dev urls in database</li>
-        </ul>
-      </div>
-      <div class="col-4">
-        <p class="text-uppercase text-sm margin-bottom-sm">Configure Plugins</p>
-        <ul style="list-style: none; padding-left: 0;">
-          <li>✅ Yoast SEO</li>
-          <li>✅ Initiate daily backups</li>
-          <li>✅ Index Algolia instant search</li>
-        </ul>
-      </div>
-      <div class="col-4">
-        <p class="text-uppercase text-sm margin-bottom-sm">Configure Server</p>
-        <ul style="list-style: none; padding-left: 0;">
-          <li>✅ Test that “https” is forced</li>
-          <li>✅ Test 301 Redirects</li>
-        </ul>
-      </div>
-    </div>
-
   </LayoutWithoutNavigation>
 </template>
 
@@ -212,22 +148,101 @@
 import { ref } from 'vue'
 import moment from "moment-timezone"
 
+// Components
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
-import LaunchCountdown from '@/views/launch/components/LaunchCountdown.vue'
-import AppSteps from '@/app/components/AppSteps.vue'
+import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
+import AppUserCard from '@/app/components/AppUserCard.vue'
+import AppList from '@/app/components/AppList.vue'
 
-const step = ref(1)
+// Composables
+import useToggle from '@/app/composables/useToggle.js'
+const { toggle, toggled } = useToggle()
 
 const steps = [
-  { name: 'Acquire Server' },
-  { name: 'Assign Contacts' },
-  { name: 'Pre-Launch' },
-  { name: 'Launch' },
-  { name: 'Propagation' },
-  { name: 'Post-Launch' },
+  { 
+    id: 0, 
+    title: 'Home',
+    component: 'LaunchHome',
+  },
+  { 
+    id: 1, 
+    title: 'Pre-Launch',
+    component: '',
+  },
+  { 
+    id: 2, 
+    title: 'Launch',
+    component: '',
+  },
+  { 
+    id: 3, 
+    title: 'Propagation',
+    component: '',
+  },
+  { 
+    id: 4, 
+    title: 'Post-Launch',
+    component: '',
+  },
+]
+
+const contacts = [
+  {
+    id: 0,
+    avatar: '',
+    name: 'Bryan Erwin',
+    role: 'Lead Developer',
+    organization: 'BloomCU',
+    email: 'bryan@bloomcu.com',
+    mobile: '(918) 645-1398',
+    office: '(844) 334-3837',
+  },
+  {
+    id: 1,
+    avatar: '',
+    name: 'Ryan Harmon',
+    role: 'Director',
+    organization: 'BloomCU',
+    email: 'ryan@bloomcu.com',
+    mobile: '(385) 207-5487',
+    office: '(844) 334-3837',
+  },
+  {
+    id: 2,
+    avatar: '',
+    name: 'Devin Cuevas',
+    role: 'Director',
+    organization: 'Raiz',
+    email: 'dcuevas@tfcu.coop',
+    mobile: '(915) 543-1705',
+    office: '(915) 926-3964',
+  },
+  {
+    id: 3,
+    avatar: '',
+    name: 'Jason Vasquez',
+    role: 'DNS',
+    organization: 'Raiz',
+    email: 'jvasquez@tfcu.coop',
+    mobile: '(915) 422-5355',
+    office: '(915) 926-2534',
+  },
 ]
 
 // function changeStep(number) {
 //   step.value = number
 // }
+</script>
+
+<script>
+import { defineComponent } from 'vue'
+
+// Components
+import LaunchHome from '@/views/launch/steps/LaunchHome.vue'
+
+export default defineComponent({
+    components: {
+      LaunchHome,
+    }
+})    
 </script>

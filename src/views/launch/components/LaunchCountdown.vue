@@ -5,22 +5,22 @@
     </div>
     <div v-if="loaded & !expired" class="flex gap-xxs items-center">
       <div class="text-center">
-        <h4>{{ displayDays }}</h4>
+        <h4 class="color-primary">{{ displayDays }}</h4>
         <p class="text-sm">days</p>
       </div>
       <h4 style="margin-top: -22px;">:</h4>
       <div class="text-center">
-        <h4>{{ displayHours }}</h4>
+        <h4 class="color-primary">{{ displayHours }}</h4>
         <p class="text-sm">hours</p>
       </div>
       <h4 style="margin-top: -22px;">:</h4>
       <div class="text-center">
-        <h4>{{ displayMinutes }}</h4>
+        <h4 class="color-primary">{{ displayMinutes }}</h4>
         <p class="text-sm">minutes</p>
       </div>
       <h4 style="margin-top: -22px;">:</h4>
       <div class="text-center">
-        <h4>{{ displaySeconds }}</h4>
+        <h4 class="color-primary">{{ displaySeconds }}</h4>
         <p class="text-sm">seconds</p>
       </div>
     </div>
