@@ -3,24 +3,24 @@
     <div v-if="expired">
       <h4>Site has launched</h4>
     </div>
-    <div v-if="loaded & !expired" class="flex gap-xxs items-center">
+    <div v-if="loaded & !expired" class="flex gap-xxxs items-center">
       <div class="text-center">
-        <h4 class="color-primary">{{ displayDays }}</h4>
+        <h2 class="font-normal color-primary">{{ displayDays }}</h2>
         <p class="text-sm">days</p>
       </div>
       <h4 style="margin-top: -22px;">:</h4>
       <div class="text-center">
-        <h4 class="color-primary">{{ displayHours }}</h4>
+        <h2 class="font-normal color-primary">{{ displayHours }}</h2>
         <p class="text-sm">hours</p>
       </div>
       <h4 style="margin-top: -22px;">:</h4>
       <div class="text-center">
-        <h4 class="color-primary">{{ displayMinutes }}</h4>
+        <h2 class="font-normal color-primary">{{ displayMinutes }}</h2>
         <p class="text-sm">minutes</p>
       </div>
       <h4 style="margin-top: -22px;">:</h4>
       <div class="text-center">
-        <h4 class="color-primary">{{ displaySeconds }}</h4>
+        <h2 class="font-normal color-primary">{{ displaySeconds }}</h2>
         <p class="text-sm">seconds</p>
       </div>
     </div>
@@ -31,13 +31,7 @@
 import { ref, computed, onMounted } from 'vue'
 
 const props = defineProps({
-  year: { type: Number },
-  month: { type: Number },
-  day: { type: Number },
-  hour: { type: Number },
-  minute: { type: Number },
-  second: { type: Number },
-  millisecond: { type: Number },
+  date: { type: String }
 })
 
 const loaded = ref(false)
@@ -54,20 +48,8 @@ const _hours = computed(() => _minutes.value * 60 )
 const _days = computed(() => _hours.value * 24 )
 
 const end = computed(() => {
-  return new Date(
-    props.year,
-    props.month,
-    props.day,
-    props.hour,
-    props.minute,
-    props.second,
-    props.millisecond
-  )
+  return new Date(props.date)
 })
-
-function formatNumber(number) {
-  return number < 10 ? '0' + number : number
-}
   
 function showRemaining() {
   const timer = setInterval(() => {
@@ -85,10 +67,10 @@ function showRemaining() {
     const minutes = Math.floor((distance % _hours.value) / _minutes.value)
     const seconds = Math.floor((distance % _minutes.value) / _seconds.value)
     
-    displayDays.value = formatNumber(days)
-    displayHours.value = formatNumber(hours)
-    displayMinutes.value = formatNumber(minutes)
-    displaySeconds.value = formatNumber(seconds)
+    displayDays.value = days
+    displayHours.value = hours
+    displayMinutes.value = minutes
+    displaySeconds.value = seconds
     
     loaded.value = true
   }, 1000)

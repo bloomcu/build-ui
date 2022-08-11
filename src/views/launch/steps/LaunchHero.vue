@@ -10,22 +10,19 @@
       <div class="col">
         <div class="card card--shadow height-100% flex flex-column">
           <p class="text-sm margin-bottom-sm">Countdown</p>
-          <LaunchCountdown
-            :year="2022"
-            :month="8"
-            :day="8"
-            :hour="22"
-            :minute="0"
-            :second="0"
-            :millisecond="0"
-          />
+          <LaunchCountdown :date="meta.launch_date"/>
         </div>
       </div>
       <div class="col">
         <div class="card card--shadow height-100% flex flex-column">
           <p class="text-sm margin-bottom-sm">Launch date</p>
-          <h3 class="text-md color-primary margin-bottom-xxs">Monday, August 27, 2022</h3>
-          <p class="text-sm">10:00 PM (Mountain)</p>
+          <h3 class="font-normal color-primary margin-bottom-xxs">
+            {{ moment(meta.launch_date).format('dddd') }}, 
+            {{ moment(meta.launch_date).format('LL') }}
+          </h3>
+          <p class="text-sm">
+            {{ moment(meta.launch_date).format('h:mm A') }} (Mountain)
+          </p>
         </div>
       </div>
     </div>
@@ -37,7 +34,15 @@
 </template>
 
 <script setup>
+import { reactive } from 'vue'
 import moment from "moment-timezone"
 import LaunchCountdown from '@/views/launch/components/LaunchCountdown.vue'
-import LaunchSteps from '@/views/launch/components/LaunchSteps.vue'
+// import LaunchSteps from '@/views/launch/components/LaunchSteps.vue'
+
+const meta = reactive({
+  launch_date: '2022-08-14 08:00:00',
+  dev_domain: 'tfcu.bloomcudev.com',
+  prod_domain: 'raiz.us',
+  prod_ip: '69.167.186.183',
+})
 </script>

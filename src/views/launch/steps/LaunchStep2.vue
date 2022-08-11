@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <!-- Pre-launch -->
-    <div class="grid gap-sm margin-bottom-xl">
+  <div class="card card--shadow margin-bottom-md">
+    <div class="grid gap-sm">
       <div class="col-10 text-component">
-        <span class="text-sm text-uppercase color-contrast-low">Step 2</span>
+        <span class="text-sm text-uppercase color-primary">Step 2</span>
         <h4>Pre-Launch</h4>
         <p>Before launch, we ensure the following is complete.</p>
       </div>

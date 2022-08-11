@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <!-- Post-Launch -->
-    <div class="grid gap-sm margin-bottom-xl">
+  <div class="card card--shadow margin-bottom-md">
+    <div class="grid gap-sm">
       <div class="col-10 text-component">
-        <span class="text-sm text-uppercase color-contrast-low">Step 5</span>
+        <span class="text-sm text-uppercase color-primary">Step 5</span>
         <h4>Post-Launch</h4>
         <p>After launch, we ensure the following is complete. Then, we will send an email letting everyone involved know that the launch was successful.</p>
       </div>
