@@ -46,7 +46,7 @@ import { useLaunchStore } from '@/views/launch/store/useLaunchStore'
 const launchStore = useLaunchStore()
 
 const meta = reactive({
-  launch_date: '2022-08-14 08:00:00',
+  launch_date: '2022-08-08 22:00:00',
   dev_domain: 'tfcu.bloomcudev.com',
   prod_domain: 'raiz.us',
   prod_ip: '69.167.186.183',

@@ -29,7 +29,7 @@ import { reactive } from 'vue'
 import moment from "moment-timezone"
 
 const meta = reactive({
-  launch_date: '2022-08-14 08:00:00',
+  launch_date: '2022-08-08 22:00:00',
   dev_domain: 'tfcu.bloomcudev.com',
   prod_domain: 'raiz.us',
   prod_ip: '69.167.186.183',
