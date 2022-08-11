@@ -36,8 +36,14 @@
 <script setup>
 import { reactive } from 'vue'
 import moment from "moment-timezone"
+
+// Components
 import LaunchCountdown from '@/views/launch/components/LaunchCountdown.vue'
 // import LaunchSteps from '@/views/launch/components/LaunchSteps.vue'
+
+// Stores
+import { useLaunchStore } from '@/views/launch/store/useLaunchStore'
+const launchStore = useLaunchStore()
 
 const meta = reactive({
   launch_date: '2022-08-14 08:00:00',

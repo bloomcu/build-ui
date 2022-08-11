@@ -17,6 +17,9 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
+
+// Components
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
 import LaunchHero from '@/views/launch/components/LaunchHero.vue'
 import LaunchContacts from '@/views/launch/components/LaunchContacts.vue'
@@ -25,4 +28,13 @@ import LaunchStep2 from '@/views/launch/components/steps/LaunchStep2.vue'
 import LaunchStep3 from '@/views/launch/components/steps/LaunchStep3.vue'
 import LaunchStep4 from '@/views/launch/components/steps/LaunchStep4.vue'
 import LaunchStep5 from '@/views/launch/components/steps/LaunchStep5.vue'
+
+// Stores
+import { useLaunchStore } from '@/views/launch/store/useLaunchStore'
+
+const launchStore = useLaunchStore()
+
+onMounted(() => {
+    launchStore.index()
+})
 </script>

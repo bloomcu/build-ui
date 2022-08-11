@@ -1,6 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { organizationMetaApi as OrganizationMetaApi } from '@/domain/organizations/api/organizationMetaApi'
-
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
 export const useOrganizationMetaStore = defineStore('organizationMetaStore', {
@@ -20,9 +19,8 @@ export const useOrganizationMetaStore = defineStore('organizationMetaStore', {
     
     actions: {        
         index(params) {
-          const auth = useAuthStore()
-          
           this.meta = []
+          const auth = useAuthStore()
           
           OrganizationMetaApi.index(auth.organization)
             .then(response => {
