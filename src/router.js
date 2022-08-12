@@ -44,26 +44,26 @@ const router = createRouter({
 router.beforeEach(async (to) => {
   // TODO: Can I just isntantiate this store one in this file?
   const authStore = useAuthStore()
-  
-    // TODO: Move this responsibility to the route definitions
-    const publicRoutes = [
-      '/register', 
-      '/login', 
-      '/forgot-password',
-      '/bloomcu/briefs/style-tile',
-      '/lone-star/briefs/style-tile',
-      '/cu-socal/briefs/style-tile',
-      '/tfcu/launch'
-    ]
-    
-    const authRequired = !publicRoutes.includes(to.path)
 
-    if (!authStore.user && authRequired) {
-        // TODO: Set the return URL so that when the user logs in, they can return here
-        // authStore.returnUrl = to.fullPath
-        
-        return '/login'
-    }
+  // TODO: Move this responsibility to the route definitions
+  const publicRoutes = [
+    '/register', 
+    '/login', 
+    '/forgot-password',
+    '/bloomcu/briefs/style-tile',
+    '/lone-star/briefs/style-tile',
+    '/cu-socal/briefs/style-tile',
+    '/tfcu/launch'
+  ]
+
+  const authRequired = !publicRoutes.includes(to.path)
+
+  if (!authStore.user && authRequired) {
+    // TODO: Set the return URL so that when the user logs in, they can return here
+    // authStore.returnUrl = to.fullPath
+
+    return '/login'
+  }
 })
 
 /**
@@ -72,10 +72,10 @@ router.beforeEach(async (to) => {
 */
 router.beforeEach(async (to) => {
     // TODO: Can I just isntantiate this store one in this file?
-    const auth = useAuthStore()
+    const authStore = useAuthStore()
     
     if (to.params.organization) {
-        auth.organization = to.params.organization
+        authStore.organization = to.params.organization
     }
 })
 

@@ -16,7 +16,7 @@ export const useOrganizationStore = defineStore('organizationStore', {
           this.organizations = []
           OrganizationApi.index(params)
             .then(response => {
-              this.organizations = response.data
+              this.organizations = response.data.data
             }).catch(error => {
               console.log('Error', error.response.data)
             })
@@ -25,7 +25,7 @@ export const useOrganizationStore = defineStore('organizationStore', {
         async store(organization) {
           await OrganizationApi.store(organization)
             .then(response => {
-              this.organizations.unshift(response.data)
+              this.organizations.unshift(response.data.data)
             }).catch(error => {
               console.log('Error', error.response.data)
             })
