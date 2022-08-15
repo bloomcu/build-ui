@@ -1,53 +1,80 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { siteApi as SiteApi } from '@/domain/sites/api/siteApi'
 
+import { useAuthStore } from '@/domain/auth/store/useAuthStore'
+
 export const useSiteStore = defineStore('siteStore', {
     state: () => ({
-        sites: [],
-        site: {},
-        isLoading: false,
+        sites: null,
+        site: null,
+        isLoading: true,
         createModalOpen: false,
     }),
     
-    getters: {},
+    getters: {
+      launch: (state) => state.site.launch_info
+    },
     
     actions: {
         index(params) {
-          this.sites = []
+          const auth = useAuthStore()
+          this.isLoading = true
+          this.sites = null
           
-          SiteApi.index(params)
+          SiteApi.index(auth.organization, params)
             .then(response => {
-              this.sites = response.data
-            }).catch(error => {
-              console.log('Error', error.response.data)
+              this.sites = response.data.data
+              this.isLoading = false
             })
         },
         
         async store(site) {
-          await SiteApi.store(site)
+          const auth = useAuthStore()
+          this.isLoading = true
+          
+          await SiteApi.store(auth.organization, site)
             .then(response => {
-              this.sites.unshift(response.data)
-            }).catch(error => {
-              console.log('Error', error.response.data)
+              this.sites.push(response.data.data)
+              this.isLoading = false
             })
         },
         
-        show(id) {},
+        show(id) {
+          const auth = useAuthStore()
+          this.isLoading = true
+          
+          SiteApi.show(auth.organization, id)
+            .then(response => {
+              this.site = response.data.data
+              this.isLoading = false
+            })
+        },
         
-        update() {},
+        update() {
+          const auth = useAuthStore()
+          this.isLoading = true
+          
+          SiteApi.update(auth.organization, this.site.id, this.site)
+            .then(response => {
+              console.log('Site successfully updated')
+              this.isLoading = false
+            })
+        },
         
         destroy(id) {
-          SiteApi.destroy(id)
+          const auth = useAuthStore()
+          this.isLoading = true
+          
+          SiteApi.destroy(auth.organization, id)
             .then(response => {
               this.sites = this.sites.filter((site) => site.id !== id)
-            }).catch(error => {
-              console.log('Error', error.response.data)
+              this.isLoading = false
             })
         },
         
         toggleCreateModal() {
           this.createModalOpen = !this.createModalOpen
-        }
+        },
     }
 })
 

@@ -20,19 +20,19 @@
       </div>
       
       <div class="margin-bottom-sm">
-        <label class="form-label margin-bottom-xxxs" for="url">URL</label>
+        <label class="form-label margin-bottom-xxxs" for="domain">Domain</label>
         <input 
-          v-model="newSite.url" 
+          v-model="newSite.domain" 
           required
           placeholder="https://acmecu.com"
           class="form-control width-100%" 
           type="text" 
-          name="url" 
+          name="domain" 
         >
       </div>
 
       <div class="margin-top-md margin-bottom-sm">
-        <button class="btn btn--primary btn--md width-100%">Add</button>
+        <button type="submit" class="btn btn--primary btn--md width-100%">Add</button>
       </div>
     </form>
   </AppModal>
@@ -40,8 +40,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import AppModal from '@/app/components/AppModal.vue'
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
+import AppModal from '@/app/components/AppModal.vue'
 
 const siteStore = useSiteStore()
 

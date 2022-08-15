@@ -8,7 +8,6 @@ import auth from '@/views/auth/routes/index.js'
 import assets from '@/views/assets/routes/index.js'
 import briefs from '@/views/briefs/routes/index.js'
 import content from '@/views/content/routes/index.js'
-import launch from '@/views/launch/routes/index.js'
 import organizations from '@/views/organizations/routes/index.js'
 import sites from '@/views/sites/routes/index.js'
 import tags from '@/views/tags/routes/index.js'
@@ -18,7 +17,6 @@ const routes = [
   ...assets,
   ...briefs,
   ...content,
-  ...launch,
   ...organizations,
   ...sites,
   ...tags,
@@ -53,7 +51,7 @@ router.beforeEach(async (to) => {
     '/bloomcu/briefs/style-tile',
     '/lone-star/briefs/style-tile',
     '/cu-socal/briefs/style-tile',
-    '/tfcu/launch'
+    '/bloomcu/sites/1/launch'
   ]
 
   const authRequired = !publicRoutes.includes(to.path)

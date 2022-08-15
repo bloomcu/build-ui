@@ -9,13 +9,20 @@
     </div>
 
     <div class="container max-width-sm padding-y-md">
-      <div class="card padding-md margin-bottom-sm">
-        <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Primary Website</p>
-        <h2 class="text-md margin-bottom-sm">redwoodcu.com</h2>
-        <p class="text-sm margin-bottom-xs">Crawled yesterday</p>
+      <div v-for="site in siteStore.sites" :key="site.id" class="card card--shadow margin-bottom-sm">
+        <div class="card-header">
+          <p class="text-xs color-primary text-uppercase margin-bottom-xs">{{ site.title }}</p>
+          <h2 class="text-md margin-bottom-sm">{{ site.domain }}</h2>
+          <p class="text-sm margin-bottom-xs">Crawled yesterday</p>
+        </div>
+        
+        <div class="card-footer flex gap-xs border-top margin-top-sm padding-top-sm">
+          <RouterLink :to="{ name: 'sites-launch', params: { site: site.id } }" class="btn btn--sm btn--primary">Launch</RouterLink>
+          <RouterLink :to="{ name: 'sites-edit', params: { site: site.id } }" class="btn btn--sm btn--subtle">Edit</RouterLink>
+        </div>
       </div>
       
-      <div class="card padding-md">
+      <!-- <div class="card padding-md">
         <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Blog</p>
         <h2 class="text-md margin-bottom-sm">blog.redwoodcu.com</h2>
         <p class="text-sm color-success margin-bottom-xs">Crawl in progress</p>
@@ -24,7 +31,7 @@
         <div class="flex items-center justify-between margin-y-sm">
           <span class="text-sm text-bold">Crawling website</span>
           <IconCheck class="color-success" style="width: 26px; height: 26px;"/>
-          <!-- <AppCircleLoader/> -->
+          <AppCircleLoader/>
         </div>
         <div class="flex items-center justify-between margin-bottom-sm">
           <span class="text-sm text-bold">Classifying content</span>
@@ -32,9 +39,9 @@
         </div>
         <div class="flex items-center justify-between margin-bottom-sm">
           <span class="text-sm text-bold color-contrast-lower">Archiving junk</span>
-          <!-- <AppCircleLoader/> -->
+          <AppCircleLoader/>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <CreateSiteModal/>
@@ -44,7 +51,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
-
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
 import AppCircleLoader from '@/app/components/AppCircleLoader.vue'
@@ -53,15 +59,6 @@ import IconCheck from '@/app/components/icons/IconCheck.vue'
 import CreateSiteModal from '@/views/sites/components/CreateSiteModal.vue'
 
 const siteStore = useSiteStore()
-
-const sites = [
-  {
-    title: 'redwoodcu.com',
-  },
-  {
-    title: 'blog.redwoodcu.com',
-  },
-]
 
 onMounted(() => {
     siteStore.index()

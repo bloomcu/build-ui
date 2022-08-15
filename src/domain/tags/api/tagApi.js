@@ -24,7 +24,7 @@ const tagApi = {
   /**
    * Show a tag with it's children
    *
-   * @param Integer slug [Slug of the tag you want to show]
+   * @param String slug [Slug of the tag you want to show]
    * @return promise
    */
   show(slug) {
@@ -34,8 +34,8 @@ const tagApi = {
   /**
    * Update a tag
    *
-   * @param Integer slug [Slug of the tag you want to update]
-   * @param Object  tag [Properties to update tag with]
+   * @param String slug [Slug of the tag you want to update]
+   * @param Object tag [Properties to update tag with]
    * @return promise
    */
   update(slug, tag) {
