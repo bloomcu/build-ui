@@ -10,19 +10,7 @@
           <p class="text-sm">Enter the email address associated with your account, and we’ll email you a link to reset your password.</p>
         </div>
         
-        <div class="margin-bottom-sm">
-          <!-- <label class="form-label margin-bottom-xxxs" for="input-email">Email</label> -->
-          <input 
-            v-model="inputs.email" 
-            required
-            autofocus 
-            placeholder="email@email.com"
-            class="form-control width-100%" 
-            type="email" 
-            name="input-email" 
-            id="input-email" 
-          >
-        </div>
+        <AppInput v-model="inputs.email" label="Email" placeholder="email@email.com" required autofocus />
 
         <div class="margin-bottom-md">
           <button class="btn btn--primary btn--md width-100%">Send reset link</button>
@@ -44,6 +32,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
+import AppInput from '@/app/components/forms/AppInput.vue'
 
 const route = useRoute()
 const authStore = useAuthStore()
@@ -53,6 +42,6 @@ const inputs = ref({
 })
 
 function submit() {
-  console.log(inputs.value)
+  console.log('Password reset is not enabled')
 }
 </script>

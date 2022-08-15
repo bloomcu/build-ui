@@ -1,6 +1,6 @@
 <template>
   <LayoutDefault>
-    <div class="container max-width-sm flex items-center justify-between padding-y-md">
+    <div class="container max-width-sm flex items-center justify-between margin-y-md">
       <h1 class="text-lg">Sites</h1>
       <button @click="siteStore.toggleCreateModal" class="btn btn--subtle">
         <IconPlus size="xxs" class="color-primary"/>
@@ -8,7 +8,7 @@
       </button>
     </div>
 
-    <div class="container max-width-sm padding-y-md">
+    <div class="container max-width-sm margin-bottom-md">
       <div v-for="site in siteStore.sites" :key="site.id" class="card card--shadow margin-bottom-sm">
         <div class="card-header">
           <p class="text-xs color-primary text-uppercase margin-bottom-xs">{{ site.title }}</p>
@@ -17,7 +17,7 @@
         </div>
         
         <div class="card-footer flex gap-xs border-top margin-top-sm padding-top-sm">
-          <RouterLink :to="{ name: 'sites-launch', params: { site: site.id } }" class="btn btn--sm btn--primary">Launch</RouterLink>
+          <RouterLink :to="{ name: 'sites-launch', params: { site: site.id } }" class="btn btn--sm btn--subtle">Launch</RouterLink>
           <RouterLink :to="{ name: 'sites-edit', params: { site: site.id } }" class="btn btn--sm btn--subtle">Edit</RouterLink>
         </div>
       </div>

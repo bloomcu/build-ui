@@ -2,97 +2,42 @@
   <LayoutDefault v-if="siteStore.site">
     <div class="container max-width-sm padding-y-md">
       <div class="margin-bottom-md">
-        <RouterLink :to="{ name: 'sites' }" class="btn btn--subtle">
+        <RouterLink :to="{ name: 'sites' }" class="btn btn--subtle margin-bottom-md">
           <IconArrowLeft size="xxs" class="color-primary"/>
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
-        <h1 class="text-lg">{{ siteStore.site.host }}</h1>
+        
+        <h1 class="text-lg">{{ siteStore.site.domain }}</h1>
       </div>
       
-      <form action="#" @submit.prevent="update()">      
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="title">Title</label>
-          <input 
-            v-model="siteStore.site.title" 
-            required
-            class="form-control width-100%" 
-            type="text" 
-            name="title" 
-          >
-        </div>
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="domain">Domain</label>
-          <input 
-            v-model="siteStore.site.domain" 
-            required
-            class="form-control width-100%" 
-            type="text" 
-            name="domain" 
-          >
+      <form action="#" @submit.prevent="update()">
+        <!-- General -->
+        <div class="card card--shadow margin-bottom-md">
+          <div class="margin-bottom-sm">
+            <p class="text-bold">General</p>
+          </div>
+          
+          <AppInput v-model="siteStore.site.title" label="Title" required />
+          <AppInput v-model="siteStore.site.domain" label="Domain" required />
         </div>
         
-        <div class="margin-bottom-sm">
-          <p class="text-bold">Launch Info</p>
+        <!-- Launch info -->
+        <div class="card card--shadow margin-bottom-md">
+          <div class="margin-bottom-sm">
+            <p class="text-bold">Launch info</p>
+          </div>
+          
+          <!-- <AppDatePicker/> -->
+          <AppInput v-model="siteStore.launch.launch_date" label="Launch date" type="datetime-local"/>
+          <AppInput v-model="siteStore.launch.freeze_date" label="Freeze date" type="datetime-local"/>
+          <AppInput v-model="siteStore.launch.dev_domain" label="Development server domain" />
+          <AppInput v-model="siteStore.launch.prod_domain" label="Production server domain" />
+          <AppInput v-model="siteStore.launch.prod_ip" label="Production server IP" />
+          <AppRichtext v-model="siteStore.launch.notes"/>
         </div>
         
+        <!-- Submit -->
         <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="launch_date">Launch date</label>
-          <input 
-            v-model="siteStore.launch.launch_date" 
-            class="form-control width-100%" 
-            type="text" 
-            name="launch_date"
-          >
-        </div>
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="freeze_date">Freeze date</label>
-          <input 
-            v-model="siteStore.launch.freeze_date" 
-            class="form-control width-100%" 
-            type="text" 
-            name="freeze_date"
-          >
-        </div>
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="dev_domain">Development server domain</label>
-          <input 
-            v-model="siteStore.launch.dev_domain" 
-            class="form-control width-100%" 
-            type="text" 
-            name="dev_domain"
-          >
-        </div>
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="prod_domain">Production server domain</label>
-          <input 
-            v-model="siteStore.launch.prod_domain" 
-            class="form-control width-100%" 
-            type="text" 
-            name="prod_domain"
-          >
-        </div>
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="prod_ip">Production server IP</label>
-          <input 
-            v-model="siteStore.launch.prod_ip" 
-            class="form-control width-100%" 
-            type="text" 
-            name="prod_ip"
-          >
-        </div>  
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="launch_date">Notes</label>
-          <textarea 
-            v-model="siteStore.launch.notes" 
-            class="form-control width-100%" 
-            type="text" 
-            name="launch_date"
-            rows="6"
-          >
-          </textarea>
-        </div>
-
-        <div class="margin-top-md margin-bottom-sm">
           <button type="submit" class="btn btn--primary btn--md width-100%">Update</button>
         </div>
       </form>
@@ -106,6 +51,9 @@ import { useRoute } from 'vue-router'
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import IconArrowLeft from '@/app/components/icons/IconArrowLeft.vue'
+import AppInput from '@/app/components/forms/AppInput.vue'
+// import AppDatePicker from '@/app/components/forms/AppDatePicker.vue'
+import AppRichtext from '@/app/components/forms/AppRichtext.vue'
 
 const route = useRoute()
 const siteStore = useSiteStore()

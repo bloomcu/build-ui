@@ -6,60 +6,10 @@
           <h2>Register</h2>
         </div>
         
-        <!-- Name -->
-        <div class="margin-bottom-xs">
-          <label class="form-label margin-bottom-xxxs" for="name">Name</label>
-          <input 
-            v-model="inputs.name" 
-            required
-            autofocus 
-            placeholder="John Doe"
-            class="form-control width-100%" 
-            type="text" 
-            name="name" 
-            id="name" 
-          >
-        </div>
-        
-        <!-- Email -->
-        <div class="margin-bottom-xs">
-          <label class="form-label margin-bottom-xxxs" for="email">Email</label>
-          <input 
-            v-model="inputs.email" 
-            required
-            placeholder="john@email.com"
-            class="form-control width-100%" 
-            type="email" 
-            name="email" 
-            id="email" 
-          >
-        </div>
-        
-        <!-- Password -->
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="password">Password</label> 
-          <input 
-            v-model="inputs.password"
-            required
-            class="form-control width-100%" 
-            type="password" 
-            name="password" 
-            id="password"
-          >
-        </div>
-        
-        <!-- Confirm password -->
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="confirm-password">Confirm Password</label> 
-          <input 
-            v-model="inputs.password_confirmation"
-            required
-            class="form-control width-100%" 
-            type="password" 
-            name="confirm-password" 
-            id="confirm-password"
-          >
-        </div>
+        <AppInput v-model="inputs.name" label="Full name" required autofocus />
+        <AppInput v-model="inputs.email" label="Email" required />
+        <AppInput v-model="inputs.password" type="password" label="Password" required />
+        <AppInput v-model="inputs.password_confirmation" type="password" label="Confirm Password" required />
 
         <div class="margin-bottom-sm">
           <button class="btn btn--primary btn--md width-100%">Register with email</button>
@@ -99,6 +49,7 @@
 import { ref } from 'vue'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
+import AppInput from '@/app/components/forms/AppInput.vue'
 
 const authStore = useAuthStore()
 
@@ -110,7 +61,11 @@ const inputs = ref({
 })
 
 function register() {
-  const { name, email, password, password_confirmation } = inputs.value
-  authStore.register(name, email, password, password_confirmation)
+  // 👇 Uncomment when ready
+  // const { name, email, password, password_confirmation } = inputs.value
+  // authStore.register(name, email, password, password_confirmation)
+  
+  // 👇 Delete when ready
+  console.log('Registration is not enabled')
 }
 </script>

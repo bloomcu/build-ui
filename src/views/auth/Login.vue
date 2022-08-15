@@ -6,30 +6,8 @@
           <h2>Log in</h2>
         </div>
         
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="email">Email</label>
-          <input 
-            v-model="inputs.email" 
-            required
-            autofocus 
-            class="form-control width-100%" 
-            type="email" 
-            name="email" 
-            id="email" 
-          >
-        </div>
-
-        <div class="margin-bottom-sm">
-          <label class="form-label margin-bottom-xxxs" for="password">Password</label> 
-          <input 
-            v-model="inputs.password"
-            required
-            class="form-control width-100%" 
-            type="password" 
-            name="password" 
-            id="password"
-          >
-        </div>
+        <AppInput v-model="inputs.email" label="Email" required autofocus />
+        <AppInput v-model="inputs.password" label="Password" type="password" required />
 
         <div class="margin-bottom-sm">
           <button class="btn btn--primary btn--md width-100%">Login with email</button>
@@ -74,6 +52,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
+import AppInput from '@/app/components/forms/AppInput.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()

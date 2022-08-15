@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="expired">
-      <h4>Site has launched</h4>
+      <h3 class="font-normal color-primary">Site has launched</h3>
     </div>
     <div v-if="loaded & !expired" class="flex gap-xxxs items-center">
       <div class="text-center">
