@@ -33,7 +33,8 @@
           <AppInput v-model="siteStore.launch.dev_domain" label="Development server domain" />
           <AppInput v-model="siteStore.launch.prod_domain" label="Production server domain" />
           <AppInput v-model="siteStore.launch.prod_ip" label="Production server IP" />
-          <AppRichtext v-model="siteStore.launch.notes"/>
+          <AppRichtext v-model="siteStore.launch.notes" label="Notes"/>
+          <div v-html="siteStore.launch.notes" class="text-component"></div>
         </div>
         
         <!-- Submit -->

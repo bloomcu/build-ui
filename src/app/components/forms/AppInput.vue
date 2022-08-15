@@ -2,8 +2,8 @@
   <div class="margin-bottom-sm">
     <label v-if="label" class="form-label margin-bottom-xxs" :for="label">{{ label }}</label>
     <input 
-      :value="modelValue"
       @input="updateValue($event.target.value)"
+      :value="modelValue"
       :type="type" 
       :name="label" 
       :placeholder="placeholder"
