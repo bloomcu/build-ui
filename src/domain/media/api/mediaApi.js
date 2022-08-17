@@ -1,15 +1,15 @@
 import { httpClient as HttpClient } from '@/app/api/httpClient'
 
-const fileApi = {    
+const mediaApi = {    
     /**
-     * List files
+     * List media
      *
      * @param String organization [Slug of the organization]
      * @param Object params [Key/value params to query by]
      * @return promise
      */
     index(organization, params) {
-        return HttpClient.get(`/${organization}/files`, { params: params })
+        return HttpClient.get(`/organizations/${organization}/media`, { params: params })
     },
     
     /**
@@ -19,8 +19,15 @@ const fileApi = {
      * @param Object file [Object to create file from]
      * @return promise
      */
-    store(organization, file) {
-        return HttpClient.post(`/${organization}/files`, file)
+    store(organization, file, collection, tags) {
+        return HttpClient.post(`/organizations/${organization}/media`, {
+          file: file,
+          collection: collection,
+          tags: tags
+        },
+        {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
     },
     
     /**
@@ -31,8 +38,8 @@ const fileApi = {
      * @return promise
      */
     destroy(organization, id) {
-        return HttpClient.delete(`/${organization}/files/${id}`)
+        return HttpClient.delete(`/organizations/${organization}/media/${id}`)
     },
 }
 
-export { fileApi }
+export { mediaApi }

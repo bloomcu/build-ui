@@ -9,16 +9,21 @@ import axios from 'axios'
 import * as Filepond from 'filepond'
 
 import { ref, onMounted } from 'vue'
-import { useFileStore } from '@/domain/files/store/useFileStore'
+import { useMediaStore } from '@/domain/media/store/useMediaStore'
 
 const props = defineProps({
-  folder: { type: String },
-  group: { type: String }
+  collection: { 
+    type: String, 
+    default: 'default',
+  },
+  tag: { 
+    type: String,
+  },
 })
 
 const uploader = ref() // Input binding
 
-const fileStore = useFileStore()
+const mediaStore = useMediaStore()
 
 onMounted(() => {
     const pond = Filepond.create(uploader.value, {
@@ -28,8 +33,6 @@ onMounted(() => {
         server: {
             process: (fieldName, file, metadata, load, error, progress, abort) => {
                 const cancelToken = axios.CancelToken.source()
-                const folder = props.folder
-                const group = props.group
                 
                 const uploadConfig = {
                   onUploadProgress: event => {
@@ -38,9 +41,10 @@ onMounted(() => {
                   cancelToken: cancelToken.token
                 }
                 
-                fileStore.store(file, folder, group, uploadConfig).then((response) => {
-                  load(response.data.asset_id)
-                })
+                mediaStore.store(file, props.collection, props.tag, uploadConfig)
+                  .then((response) => {
+                    load(file.name)
+                  })
                 
                 return {
                     // Abort callback if canceling

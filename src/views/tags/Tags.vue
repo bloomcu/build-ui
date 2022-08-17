@@ -6,7 +6,7 @@
     </div>
 
     <div class="container max-width-xs padding-y-md">
-      <div v-for="tag in tagStore.tags" :key="tag.id" class="card text-component padding-md margin-bottom-sm">
+      <div v-for="tag in tagStore.tags" :key="tag.id" class="app-card text-component padding-md margin-bottom-sm">
         <h2 class="text-md">{{ tag.title }}</h2>
         <p class="text-sm">{{ tag.children_count }} tags</p>
       </div>

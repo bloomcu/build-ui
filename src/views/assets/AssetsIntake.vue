@@ -52,15 +52,15 @@ export default defineComponent({
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useFileStore } from '@/domain/files/store/useFileStore'
+import { useMediaStore } from '@/domain/media/store/useMediaStore'
 import { useRoute } from 'vue-router'
 
 import AppSteps from '@/app/components/AppSteps.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
 
 onMounted(() => {
-    const fileStore = useFileStore()
-    fileStore.index()
+    const mediaStore = useMediaStore()
+    mediaStore.index()
 })
 
 const route = useRoute()
@@ -84,7 +84,7 @@ function changeStep(number) {
 }
 
 function destroyFile(file) {
-  fileStore.destroy(file)
+  mediaStore.destroy(file)
 }
 
 const steps = [

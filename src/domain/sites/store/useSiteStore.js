@@ -25,6 +25,8 @@ export const useSiteStore = defineStore('siteStore', {
             .then(response => {
               this.sites = response.data.data
               this.isLoading = false
+            }).catch(error => {
+              console.log('Error', error.response.data)
             })
         },
         
@@ -35,7 +37,8 @@ export const useSiteStore = defineStore('siteStore', {
           await SiteApi.store(auth.organization, site)
             .then(response => {
               this.sites.push(response.data.data)
-              this.isLoading = false
+            }).catch(error => {
+              console.log('Error', error.response.data)
             })
         },
         

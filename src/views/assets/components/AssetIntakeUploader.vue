@@ -1,23 +1,23 @@
 <template>
   <div>
-    <FileUploader :folder="route.params.organization" :group="group"/>
-    <FileList :files="fileStore.filterByGroup(group)"/>
+    <MediaUploader :folder="route.params.organization" :group="group"/>
+    <MediaList :files="mediaStore.filterByGroup(group)"/>
   </div>
 </template>
 
 <script setup>
-import { useFileStore } from '@/domain/files/store/useFileStore'
+import { useMediaStore } from '@/domain/media/store/useMediaStore'
 import { useRoute } from 'vue-router'
 
-import FileUploader from '@/domain/files/components/FileUploader.vue'
-import FileList from '@/domain/files/components/FileList.vue'
+import MediaUploader from '@/domain/media/components/MediaUploader.vue'
+import MediaList from '@/domain/media/components/MediaList.vue'
 
 const props = defineProps({
   folder: { type: String },
   group: { type: String }
 })
 
-const fileStore = useFileStore()
+const mediaStore = useMediaStore()
 const route = useRoute()
 </script>
 

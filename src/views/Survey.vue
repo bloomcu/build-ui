@@ -66,7 +66,7 @@ const handleVote = (option) => {
       <div class="grid gap-sm">
         
         <div v-for="option in options" :key="option.id" class="col-6">
-          <div @click="handleVote(option)" class="card card--is-link">
+          <div @click="handleVote(option)" class="app-card card--is-link">
             {{ option.id }}
             <div href="card__link">
               <figure class="card__img">

@@ -7,8 +7,8 @@
     <h3 class="padding-y-xxxs">Brand Guide</h3>
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
-        <FileList 
-          :files="fileStore.filterByGroup('brand')" 
+        <MediaList 
+          :files="mediaStore.filterByGroup('brand')" 
           :deleteable="false" 
           @selected="openModal"
         />
@@ -34,7 +34,7 @@
       <button @click="toggle(4)" class="btn btn--primary">Next</button>
     </div>
     
-    <FileModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>
+    <MediaModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>
   </div>
 </template>
 
@@ -42,13 +42,13 @@
 import { ref, onMounted } from 'vue'
 
 // Components
-import FileList from '@/domain/files/components/FileList.vue'
-import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
+import MediaList from '@/domain/media/components/MediaList.vue'
+import MediaModal from '@/domain/media/components/MediaModal.vue'
 
 // Stores
-import { useFileStore } from '@/domain/files/store/useFileStore'
+import { useMediaStore } from '@/domain/media/store/useMediaStore'
 import { useOrganizationCommentsStore } from '@/domain/organizations/store/useOrganizationCommentsStore'
-const fileStore = useFileStore()
+const mediaStore = useMediaStore()
 const organizationCommentsStore = useOrganizationCommentsStore()
 
 // Composables
@@ -66,7 +66,7 @@ function closeModal() {
 }
 
 onMounted(() => {
-  fileStore.index()
+  mediaStore.index()
   organizationCommentsStore.index()
 })
 </script>

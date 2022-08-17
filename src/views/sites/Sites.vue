@@ -50,6 +50,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import moment from "moment"
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'

@@ -87,14 +87,14 @@
               Sites
             </router-link>
           </li>
-          <!-- <li class="f-header__item">
+          <li class="f-header__item">
             <router-link 
               :to="{ name: 'content', params: { organization: auth.organization, site: 1 }}" 
               class="f-header__link"
             >
               Content
             </router-link>
-          </li> -->
+          </li>
         </ul>
         
         <!-- Search -->

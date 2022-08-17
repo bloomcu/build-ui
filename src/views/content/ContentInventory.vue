@@ -31,6 +31,6 @@ const tagStore = useTagStore()
 
 onMounted(() => {
   pageStore.index()
-  tagStore.show('content-categories')
+  tagStore.show('content-tags')
 })
 </script>

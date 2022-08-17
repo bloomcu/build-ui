@@ -1,44 +1,54 @@
 <template>
-  <LayoutDefault>
-    <div class="padding-y-md">
-      <h3>Assets</h3>
-    </div>
-    
-    <div class="padding-y-md">
-      <div v-for="group in groups" :key="group.name" class="grid gap-sm margin-bottom-xl padding-y-sm border-top border-contrast-lower">
-        <div class="col-4 padding-right-md">
-          <h4 class="margin-bottom-sm">{{ group.title }}</h4>
-          <p class="text-sm margin-bottom-sm" v-html="group.description"></p>
-          <AppTodoList :todos="group.todos" />
-        </div>
-        <div class="col-8 bg-dark radius-md padding-sm">
-          <FileUploader :folder="route.params.organization" :group="group.name"/>
-          <FileList @selected="openModal" @destroyed="destroyFile" :files="fileStore.filterByGroup(group.name)"/>
-        </div>
+  <LayoutDefault maxWidth="none">
+      <div class="flex container max-width-xxl">
+        <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
+          <AppNestedMenu :items="groups"/>
+        </aside>
+        
+        <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
+          <MediaUploader collection="assets" :tag="groups[toggled].tag"/>
+          <!-- <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].tag)"/> -->
+          <div class="grid gap-sm">
+            <AppCard 
+              v-for="file in mediaStore.filterByTag(groups[toggled].tag)" 
+              :key="file.id"
+              :image="file.original_url"
+              :title="file.name"
+              :subtitle="file.extension"
+              class="col-6@xs col-4@lg"
+            />
+          </div>
+          <!-- <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.files"/> -->
+        </main>
       </div>
-    </div>
     
-    <FileModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
+    <MediaModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
   </LayoutDefault>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+
+// Router
 import { useRoute } from 'vue-router'
-import { useFileStore } from '@/domain/files/store/useFileStore'
-
-import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
-import FileUploader from '@/domain/files/components/FileUploader.vue'
-import FileList from '@/domain/files/components/FileList.vue'
-import FileModal from '@/domain/files/components/file-modal/FileModal.vue'
-import AppTodoList from '@/app/components/AppTodoList.vue'
-
 const route = useRoute()
-const fileStore = useFileStore()
 
-onMounted(() => {
-  fileStore.index()
-})
+// Stores
+import { useMediaStore } from '@/domain/media/store/useMediaStore'
+const mediaStore = useMediaStore()
+mediaStore.index()
+
+// Components
+import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
+import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
+import AppCard from '@/app/components/AppCard.vue'
+import MediaUploader from '@/domain/media/components/MediaUploader.vue'
+import MediaList from '@/domain/media/components/MediaList.vue'
+import MediaModal from '@/domain/media/components/MediaModal.vue'
+
+// Composables
+import useToggle from '@/app/composables/useToggle.js'
+const { toggle, toggled } = useToggle()
 
 // Extract to a view store
 let modalData = ref(null)
@@ -54,76 +64,40 @@ function closeModal() {
 }
 
 function destroyFile(file) {
-  fileStore.destroy(file)
+  mediaStore.destroy(file)
   closeModal()
 }
 
 const groups = [
   {
-    name: 'brand',
+    id: 0,
+    tag: 'brand',
     title: 'Brand Guide',
-    description: 'Upload your brand usage guide document(s) here.',
-    todos: [
-      {
-        title: 'Format: PDF',
-        formats: ['pdf'],
-      }
-    ]
   },
   {
-    name: 'logo',
+    id: 1,
+    tag: 'logo',
     title: 'Logo',
-    description: 'Upload your logo(s) here.',
-    todos: [
-      {
-        title: 'Format: SVG and EPS',
-        formats: ['svg', 'eps'],
-      }
-    ]
   },
-  // {
-  //   name: 'color',
-  //   title: 'Color Palette',
-  //   description: 'Upload an image or document containing your color palette.',
-  // },
   {
-    name: 'desktop-fonts',
+    id: 2,
+    tag: 'desktop-fonts',
     title: 'Desktop Fonts',
-    description: 'Upload your fonts for desktop usage.',
-    todos: [
-      {
-        title: 'Format: TTF, TTC or OTF',
-        formats: ['ttf', 'ttc', 'otf'],
-      }
-    ]
   },
   {
-    name: 'web-fonts',
+    id: 3,
+    tag: 'web-fonts',
     title: 'Web Fonts',
-    description: 'Upload your fonts for web usage.',
-    todos: [
-      {
-        title: 'Format: TTF, OTF, WOFF, WOFF2 or EOT',
-        formats: ['ttf', 'otf', 'woff', 'woff2', 'eot'],
-      }
-    ]
   },
   {
-    name: 'photos',
+    id: 4,
+    tag: 'photos',
     title: 'Photography',
-    description: 'Upload your photography.',
-    todos: [
-      {
-        title: 'Format: JPG, JPEG or PNG',
-        formats: ['jpg', 'jpeg', 'png'],
-      }
-    ]
   },
   {
-    name: 'other',
+    id: 5,
+    tag: 'other',
     title: 'Other Media',
-    description: 'Upload other brand media such as patterns, icons or other graphics.',
-    todos: []
   },
 ]
 </script>
