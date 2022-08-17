@@ -12,9 +12,14 @@ export const useMediaStore = defineStore('mediaStore', {
     
     getters: {
       filterByTag: (state) => {
-        return (tag) => state.files.filter((file) => {
-          return file.tags.includes(tag)
-        })
+        if (tag) {
+          return (tag) => state.files.filter((file) => {
+            return file.tags.includes(tag)
+          })
+        }
+        // return (tag) => state.files.filter((file) => {
+        //   return file.tags.includes(tag)
+        // })
       }
     },
     

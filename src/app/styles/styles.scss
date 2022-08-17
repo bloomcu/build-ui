@@ -1,7 +1,6 @@
 @import 'node_modules/codyhouse-framework/main/assets/css/base';
 @import 'custom-style';
 
-
 /* --------------------------------
 
 Title: App Utility Classes
@@ -97,7 +96,7 @@ Title: Button Group
 Card
 
 -------------------------------- */
-.app-card {
+.card {
   border: 1px solid var(--color-contrast-lower);
   border-radius: var(--radius-lg);
   padding: var(--space-sm);
@@ -115,8 +114,6 @@ Card
 .card-header {
   border-radius: var(--radius-lg);
 }
-
-.card-footer {}
 
 /* --------------------------------
 

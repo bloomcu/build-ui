@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MediaUploader :folder="route.params.organization" :group="group"/>
+    <MediaUploader :folder="route.params.organization" :tag="group"/>
     <MediaList :files="mediaStore.filterByTag(group)"/>
   </div>
 </template>

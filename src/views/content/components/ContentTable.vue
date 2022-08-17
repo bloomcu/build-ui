@@ -23,7 +23,7 @@
     </div><!-- End top bar -->
     
     <!-- Table -->
-    <ul class="table card text-sm">
+    <ul class="table border radius-md text-sm">
         <!-- Page -->
         <li v-for="page in pageStore.pages" :key="page.id" class="table-item flex padding-sm">
           <!-- Checkbox -->

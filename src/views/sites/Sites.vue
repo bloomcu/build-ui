@@ -17,8 +17,8 @@
         </div>
         
         <div class="card-footer flex gap-xs border-top margin-top-sm padding-top-sm">
-          <RouterLink :to="{ name: 'sites-launch', params: { site: site.id } }" class="btn btn--sm btn--subtle">Launch</RouterLink>
-          <RouterLink :to="{ name: 'sites-edit', params: { site: site.id } }" class="btn btn--sm btn--subtle">Edit</RouterLink>
+          <RouterLink :to="{ name: 'sites-launch', params: { site: site.id } }" class="btn btn--sm btn--primary">Launch</RouterLink>
+          <RouterLink :to="{ name: 'sites-edit', params: { site: site.id } }" class="btn btn--sm btn--subtle margin-left-auto">Edit</RouterLink>
         </div>
       </div>
       

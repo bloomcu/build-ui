@@ -12,7 +12,7 @@ import { ref, onMounted } from 'vue'
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
 
 const props = defineProps({
-  collection: { 
+  collection: {
     type: String, 
     default: 'default',
   },
@@ -34,17 +34,15 @@ onMounted(() => {
             process: (fieldName, file, metadata, load, error, progress, abort) => {
                 const cancelToken = axios.CancelToken.source()
                 
-                const uploadConfig = {
+                mediaStore.store(file, props.collection, props.tag, {
                   onUploadProgress: event => {
                       progress(e.lengthComputable, e.loaded, e.total)
                   },
                   cancelToken: cancelToken.token
-                }
-                
-                mediaStore.store(file, props.collection, props.tag, uploadConfig)
-                  .then((response) => {
-                    load(file.name)
-                  })
+                })
+                .then((response) => {
+                  load(file.name)
+                })
                 
                 return {
                     // Abort callback if canceling

@@ -2,10 +2,10 @@
     <div>
         <li
             v-for="(item, index) in items" :key="index"
-            :class="selected == item.id ? 'nested-menu__item--expanded' : ''"
+            :class="selected === item.id ? 'nested-menu__item--expanded' : ''"
             class="nested-menu__item"
         >
-            <a @click.prevent="toggle(item.id)" :class="selected == item.id ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
+            <a @click.prevent="toggle(item.id)" :class="selected === item.id ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
                 <span class="nested-menu__text">{{ item.title }}</span>
             </a>
 

@@ -31,13 +31,6 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
-.card {
-  background-color: var(--color-bg-light);
-  box-shadow: var(--inner-glow), var(--shadow-sm);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
 .card__img {
   img {
     display: block;

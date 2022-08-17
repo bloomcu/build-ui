@@ -96,7 +96,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        group: 'brand',
+        collection: 'brand',
       }
     ],
     todos: [
@@ -114,7 +114,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
-        group: 'brand',
+        collection: 'brand',
       }
     ],
     todos: []
@@ -127,7 +127,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        group: 'logo',
+        collection: 'logo',
       }
     ],
     todos: [
@@ -145,7 +145,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
-        group: 'logo',
+        collection: 'logo',
       }
     ],
     todos: []
@@ -158,7 +158,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        group: 'desktop-fonts',
+        collection: 'desktop-fonts',
       }
     ],
     todos: [
@@ -176,7 +176,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        group: 'web-fonts',
+        collection: 'web-fonts',
       }
     ],
     todos: [
@@ -194,7 +194,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
-        group: 'fonts',
+        collection: 'fonts',
       }
     ],
     todos: []
@@ -207,7 +207,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        group: 'photos',
+        collection: 'photos',
       }
     ],
     todos: [
@@ -225,7 +225,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
-        group: 'photos',
+        collection: 'photos',
       }
     ],
     todos: []
@@ -238,7 +238,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        group: 'other',
+        collection: 'other',
       }
     ],
     todos: []
@@ -251,7 +251,7 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
-        group: 'other',
+        collection: 'other',
       }
     ],
     todos: []
