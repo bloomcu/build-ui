@@ -10,7 +10,7 @@
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
         <MediaList 
-          :files="mediaStore.filterByGroup('logo')" 
+          :files="mediaStore.filterByTag('logo')" 
           :deleteable="false"
           @selected="openModal"
         />
@@ -37,7 +37,7 @@
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
         <MediaList 
-          :files="mediaStore.filterByGroup('desktop-fonts')" 
+          :files="mediaStore.filterByTag('desktop-fonts')" 
           :deleteable="false"
           @selected="openModal"
         />
@@ -64,7 +64,7 @@
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
         <MediaList 
-          :files="mediaStore.filterByGroup('photos')" 
+          :files="mediaStore.filterByTag('photos')" 
           :deleteable="false"
           @selected="openModal"
         />
@@ -86,13 +86,13 @@
     </div>
 
     <!-- Other -->
-    <div v-if="mediaStore.filterByGroup('other').length">
+    <div v-if="mediaStore.filterByTag('other').length">
       <h3 class="padding-top-xxxs">Other</h3>
       <hr>
       <div class="grid gap-md">
         <div class="col-6 padding-right-sm">
           <MediaList 
-            :files="mediaStore.filterByGroup('other')" 
+            :files="mediaStore.filterByTag('other')" 
             :deleteable="false"
             @selected="openModal"
           />

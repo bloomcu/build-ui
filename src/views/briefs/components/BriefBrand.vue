@@ -8,7 +8,7 @@
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
         <MediaList 
-          :files="mediaStore.filterByGroup('brand')" 
+          :files="mediaStore.filterByTag('brand')" 
           :deleteable="false" 
           @selected="openModal"
         />

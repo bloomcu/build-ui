@@ -1,7 +1,7 @@
 <template>
   <div>
     <MediaUploader :folder="route.params.organization" :group="group"/>
-    <MediaList :files="mediaStore.filterByGroup(group)"/>
+    <MediaList :files="mediaStore.filterByTag(group)"/>
   </div>
 </template>
 
