@@ -2,10 +2,10 @@
   <LayoutDefault>
     <div class="container max-width-sm flex items-center justify-between margin-y-md">
       <h1 class="text-lg">Designs</h1>
-      <!-- <button @click="siteStore.toggleCreateModal" class="btn btn--subtle">
+      <button @click="siteStore.toggleCreateModal" class="btn btn--subtle">
         <IconPlus size="xxs" class="color-primary"/>
         <span class="margin-left-xxs">Add site</span>
-      </button> -->
+      </button>
     </div>
 
     <div class="container max-width-sm margin-bottom-md">

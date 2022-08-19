@@ -8,6 +8,7 @@ export const useDesignStore = defineStore('designStore', {
         designs: null,
         design: null,
         isLoading: true,
+        createModalOpen: false,
     }),
     
     getters: {
@@ -72,6 +73,10 @@ export const useDesignStore = defineStore('designStore', {
               this.designs = this.designs.filter((design) => design.id !== id)
               this.isLoading = false
             })
+        },
+        
+        toggleCreateModal() {
+          this.createModalOpen = !this.createModalOpen
         },
     }
 })
