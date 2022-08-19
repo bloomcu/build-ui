@@ -5,7 +5,7 @@
     <p class="max-width-sm">You will be designing a style tile for a credit union. This document has the information you need to design the style tile, including a Sketch template for you to use.</p>
 
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle(1)" class="btn btn--primary">Start</button>
+      <button @click="toggle('BriefSketch')" class="btn btn--primary">Start</button>
     </div>
   </div>
 </template>

@@ -5,8 +5,8 @@
     <iframe src="https://player.vimeo.com/video/711021881?h=f8e6454dd7" width="1024" height="576" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle(1)" class="btn btn--subtle">Back</button>
-      <button @click="toggle(3)" class="btn btn--primary">Next</button>
+      <button @click="toggle('BriefSketch')" class="btn btn--subtle">Back</button>
+      <button @click="toggle('BriefBrand')" class="btn btn--primary">Next</button>
     </div>
   </div>
 </template>

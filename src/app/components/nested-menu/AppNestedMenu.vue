@@ -8,7 +8,7 @@
         <ul class="nested-menu__list">
 
             <!-- "All" option -->
-            <li class="nested-menu__item">
+            <li v-if="enableAllItem" class="nested-menu__item">
                 <a @click.prevent="toggle(null)" :class="toggled === null ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
                     <span class="nested-menu__text">All</span>
                 </a>
@@ -35,6 +35,10 @@ const props = defineProps({
     items: { 
       type: Array,
       required: true
+    },
+    enableAllItem: {
+      type: Boolean,
+      default: false
     }
 })
 

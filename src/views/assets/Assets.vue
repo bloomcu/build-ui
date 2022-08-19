@@ -2,7 +2,7 @@
   <LayoutDefault maxWidth="none">
     <div class="flex container max-width-xxl">
       <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
-        <AppNestedMenu title="tags" :items="tags"/>
+        <AppNestedMenu title="tags" :items="tags" enableAllItem="true"/>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">

@@ -11,7 +11,7 @@
       
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
         <div class="text-component">
-          <component :is="steps[toggled].component"/>
+          <component :is="toggled"/>
         </div>
       </main>
     </div>
@@ -44,6 +44,8 @@ export default defineComponent({
 </script>
 
 <script setup>
+import { onMounted } from 'vue'
+
 // Components
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 
@@ -51,41 +53,76 @@ import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import useToggle from '@/app/composables/useToggle.js'
 const { toggle, toggled } = useToggle()
 
+onMounted(() => {
+    toggle(steps[0].slug)
+})
+
 const steps = [
   {
-    id: 0, 
     title: 'Intro',
-    component: 'BriefIntro',
+    slug: 'BriefIntro',
   },
   {
-    id: 1, 
     title: 'Step 1 - Sketch',
-    component: 'BriefSketch',
+    slug: 'BriefSketch',
   },
   {
-    id: 2, 
     title: 'Step 2 - Video',
-    component: 'BriefVideo',
+    slug: 'BriefVideo',
   },
   {
-    id: 3, 
     title: 'Step 3 - Brand',
-    component: 'BriefBrand',
+    slug: 'BriefBrand',
   },
   {
-    id: 4, 
     title: 'Step 4 - Assets',
-    component: 'BriefAssets',
+    slug: 'BriefAssets',
   },
   {
-    id: 5, 
     title: 'Step 5 - Create',
-    component: 'BriefCreate',
+    slug: 'BriefCreate',
   },
   {
-    id: 6, 
     title: 'More info',
-    component: 'BriefMoreInfo',
+    slug: 'BriefMoreInfo',
   },
 ]
+
+// const steps = [
+//   {
+//     slug: 'intro', 
+//     title: 'Intro',
+//     component: 'BriefIntro',
+//   },
+//   {
+//     slug: 'step-1', 
+//     title: 'Step 1 - Sketch',
+//     component: 'BriefSketch',
+//   },
+//   {
+//     slug: 'step-2', 
+//     title: 'Step 2 - Video',
+//     component: 'BriefVideo',
+//   },
+//   {
+//     slug: 'step-3', 
+//     title: 'Step 3 - Brand',
+//     component: 'BriefBrand',
+//   },
+//   {
+//     slug: 'step-4', 
+//     title: 'Step 4 - Assets',
+//     component: 'BriefAssets',
+//   },
+//   {
+//     slug: 'step-5', 
+//     title: 'Step 5 - Create',
+//     component: 'BriefCreate',
+//   },
+//   {
+//     slug: 'more-info', 
+//     title: 'More info',
+//     component: 'BriefMoreInfo',
+//   },
+// ]
 </script>

@@ -32,12 +32,12 @@
     </div>
 
     <!-- Fonts -->
-    <h3 class="padding-top-xxxs">Desktop Fonts</h3>
+    <h3 class="padding-top-xxxs">Fonts</h3>
     <hr>
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
         <MediaList 
-          :files="mediaStore.filterByTag('desktop-fonts')" 
+          :files="mediaStore.filterByTag('font')" 
           :deleteable="false"
           @selected="openModal"
         />
@@ -64,7 +64,7 @@
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
         <MediaList 
-          :files="mediaStore.filterByTag('photos')" 
+          :files="mediaStore.filterByTag('photo')" 
           :deleteable="false"
           @selected="openModal"
         />
@@ -115,8 +115,8 @@
     </div>
 
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle(3)" class="btn btn--subtle">Back</button>
-      <button @click="toggle(5)" class="btn btn--primary">Next</button>
+      <button @click="toggle('BriefBrand')" class="btn btn--subtle">Back</button>
+      <button @click="toggle('BriefCreate')" class="btn btn--primary">Next</button>
     </div>
     
     <MediaModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>

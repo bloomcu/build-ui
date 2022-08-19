@@ -11,11 +11,11 @@ export const useMediaStore = defineStore('mediaStore', {
     }),
     
     getters: {
-      // filterByTag: (state) => {
-      //   return (tag) => state.files.filter((file) => {
-      //     return file.tags.includes(tag)
-      //   })
-      // }
+      filterByTag: (state) => {
+        return (tag) => state.files.filter((file) => {
+          return file.tags.includes(tag)
+        })
+      }
     },
     
     actions: {

@@ -10,9 +10,9 @@
     <p class="max-width-sm"><strong>IMPORTANT:</strong> Please don’t delete the variables, blocks, or anything else that’s part of the Sketch template (also don’t disconnect the symbols). We will need all of those things during the next stage of our project. Thanks!﻿</p>
     
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle(0)" class="btn btn--subtle">Back</button>
+      <button @click="toggle('BriefIntro')" class="btn btn--subtle">Back</button>
       <button v-if="!sketchTemplateDownloaded" class="btn btn--primary btn--disabled">Next</button>
-      <button v-else @click="toggle(2)" class="btn btn--primary">Next</button>
+      <button v-else @click="toggle('BriefVideo')" class="btn btn--primary">Next</button>
     </div>
   </div>
 </template>

@@ -8,7 +8,7 @@
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
         <MediaList 
-          :files="mediaStore.filterByTag('brand')" 
+          :files="mediaStore.files" 
           :deleteable="false" 
           @selected="openModal"
         />
@@ -30,8 +30,8 @@
     </div>
     
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle(2)" class="btn btn--subtle">Back</button>
-      <button @click="toggle(4)" class="btn btn--primary">Next</button>
+      <button @click="toggle('BriefVideo')" class="btn btn--subtle">Back</button>
+      <button @click="toggle('BriefAssets')" class="btn btn--primary">Next</button>
     </div>
     
     <MediaModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>
@@ -66,7 +66,7 @@ function closeModal() {
 }
 
 onMounted(() => {
-  mediaStore.index()
+  mediaStore.index({ 'filter[tags.slug]': 'brand' })
   organizationCommentsStore.index()
 })
 </script>

@@ -26,7 +26,7 @@
     </div>
 
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle(5)" class="btn btn--subtle">Back</button>
+      <button @click="toggle('BriefCreate')" class="btn btn--subtle">Back</button>
     </div>
   </div>
 </template>
