@@ -1,20 +1,28 @@
 <template>
   <div class="card card--is-link">
-    <a class="card__link" href="#0" aria-label="Description of the link">
-      <figure class="card__img">
-        <img :src="image">
-      </figure>
-    
-      <div class="card__content">
+    <figure class="card-img">
+      <img :src="image">
+    </figure>
+  
+    <div class="card-content">
+      <div class="card-content__header">
         <p class="text-bold margin-bottom-xxxs">{{ title }}</p>
-        <p class="text-sm color-contrast-medium">{{ subtitle }}</p>
+        <p class="text-sm color-contrast-medium margin-bottom-sm">{{ subtitle }}</p>
       </div>
-    </a>
+      <div class="flex items-center gap-xs">
+        <button class="btn btn--sm btn--primary">View</button>
+        <a @click.stop="download()" class="btn btn--sm btn--subtle">Download</a>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
+// TODO: Change this component to be MediaCard.vue
 const props = defineProps({
+  uuid: {
+    type: String,
+  },
   title: { 
     type: String,
     required: true,
@@ -26,6 +34,12 @@ const props = defineProps({
     type: String,
   },
 })
+
+function download() {
+  window.open(`${baseURL}/media/${props.uuid}`)
+}
+
+const baseURL = import.meta.env.VITE_API_BASE_URL
 </script>
 
 <style lang="scss" scoped>
@@ -33,34 +47,38 @@ const props = defineProps({
   padding: 0;
 }
 
-.card__img {
-  
-  
+.card-img {
   img {
-    display: block;
-    border-radius: var(--space-xxs) var(--space-xxs) 0 0;
+    object-fit: fill;
     width: 100%;
+    height: 180px;
+    border-radius: var(--space-xxs) var(--space-xxs) 0 0;
   }
 }
 
-.card__content {
+.card-content {
+  // margin-top: var(--space-sm);
   padding: var(--space-xs);
+  
+  &__header {
+    height: 80px;
+  }
 }
 
-// --link
 .card--is-link {
   will-change: box-shadow;
   transition: box-shadow 0.2s;
-
+  cursor: pointer;
+  
   &:hover {
     box-shadow: var(--inner-glow), var(--shadow-md);
 
-    .card__img::after {
+    .card-img::after {
       opacity: 1;
     }
   }
 
-  .card__img {
+  .card-img {
     position: relative;
     
     img {
@@ -79,11 +97,5 @@ const props = defineProps({
       transition: opacity 0.2s;
     }
   }
-}
-
-.card__link {
-  text-decoration: none;
-  display: block;
-  color: inherit;
 }
 </style>

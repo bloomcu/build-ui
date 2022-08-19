@@ -1,26 +1,27 @@
 <template>
   <LayoutDefault maxWidth="none">
-      <div class="flex container max-width-xxl">
-        <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
-          <AppNestedMenu title="tags" :items="tags"/>
-        </aside>
-        
-        <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-          <MediaUploader v-if="selectedTag" collection="assets" :tag="selectedTag"/>
+    <div class="flex container max-width-xxl">
+      <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
+        <AppNestedMenu title="tags" :items="tags"/>
+      </aside>
+      
+      <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
+        <MediaUploader v-if="selectedTag" collection="assets" :tag="selectedTag"/>
 
-          <div class="grid gap-sm">
-            <AppCard 
-              v-for="file in mediaStore.files"
-              :key="file.id"
-              :title="file.name"
-              :image="file.original_url"
-              :subtitle="file.extension"
-              @click="openModal(file)"
-              class="col-6@xs col-3@lg"
-            />
-          </div>
-        </main>
-      </div>
+        <div class="grid gap-sm">
+          <AppCard 
+            v-for="file in mediaStore.files"
+            :key="file.id"
+            :uuid="file.uuid"
+            :title="file.name"
+            :image="file.original_url"
+            :subtitle="file.extension"
+            @click="openModal(file)"
+            class="col-6@xs col-3@lg"
+          />
+        </div>
+      </main>
+    </div>
     
     <MediaModal @closed="closeModal" @destroyed="destroyFile" :file="modalData" :class="modalData ? 'modal--is-visible' : ''"/>
   </LayoutDefault>
