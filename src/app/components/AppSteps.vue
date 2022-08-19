@@ -36,7 +36,7 @@
       </li>
 
       <li 
-        :class="step === 'desktop-fonts' || step === 'web-fonts' || step === 'fonts' ? 'step--current' : ''"
+        :class="step === 'font' ? 'step--current' : ''"
         class="step cursor-pointer"
         @click="changeStep(4)"
       >
@@ -50,7 +50,7 @@
       </li>
       
       <li 
-        :class="step === 'photos' ? 'step--current' : ''"
+        :class="step === 'photo' ? 'step--current' : ''"
         class="step cursor-pointer"
         @click="changeStep(7)"
       >
@@ -88,7 +88,7 @@ function changeStep(number) {
 const emit = defineEmits(['changeStep'])
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 :root {
   --steps-number: 5;
   --step-separator-line-stroke: 3px;
@@ -150,7 +150,6 @@ const emit = defineEmits(['changeStep'])
     background-color: transparent;
     padding: calc(var(--step-circle-size)/2) 0 0;
     border-radius: 0px;
-    margin-left: -20px;
   }
 
   .steps__list {

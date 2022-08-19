@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MediaUploader collection="assets" :tag="group"/>
-    <MediaList :files="mediaStore.filterByTag(group)"/>
+    <MediaUploader collection="assets" :tag="tag"/>
+    <MediaList :files="mediaStore.files"/>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ import MediaList from '@/domain/media/components/MediaList.vue'
 
 const props = defineProps({
   collection: { type: String },
-  group: { type: String }
+  tag: { type: String }
 })
 
 const mediaStore = useMediaStore()

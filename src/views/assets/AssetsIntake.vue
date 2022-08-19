@@ -1,8 +1,8 @@
 <template>  
-  <div class="flex margin-auto height-100vh">
+  <div v-if="mediaStore.files" class="flex margin-auto height-100vh">
     <!-- Left -->
     <div class="flex flex-column justify-between bg-primary bg-opacity-5% border-right padding-top-xs" style="flex: 1 0 25%; position: sticky; top: 0; left: 0;">
-      <div class="_flex _contents padding-lg">
+      <div class="flex contents padding-lg">
         <AppSteps :step="steps[step].name" @changeStep="changeStep"/>
       </div>
       
@@ -51,21 +51,26 @@ export default defineComponent({
 </script>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
 import { useRoute } from 'vue-router'
 
 import AppSteps from '@/app/components/AppSteps.vue'
 import AppProgressBar from '@/app/components/AppProgressBar.vue'
 
-onMounted(() => {
-    const mediaStore = useMediaStore()
-    mediaStore.index()
-})
+const mediaStore = useMediaStore()
 
 const route = useRoute()
 
 const step = ref(0)
+
+watch(step, () => {
+  mediaStore.index({ 'filter[tags.slug]': steps[step.value].name })
+})
+
+onMounted(() => {
+  mediaStore.index({ 'filter[tags.slug]': steps[step.value].name })
+})
 
 const progress = computed(() => {
   return (step.value + 1) / steps.length * 100
@@ -96,7 +101,8 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        collection: 'brand',
+        collection: 'assets',
+        tag: 'brand',
       }
     ],
     todos: [
@@ -114,7 +120,8 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
-        collection: 'brand',
+        collection: 'assets',
+        tag: 'brand',
       }
     ],
     todos: []
@@ -127,7 +134,8 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        collection: 'logo',
+        collection: 'assets',
+        tag: 'logo',
       }
     ],
     todos: [
@@ -145,20 +153,22 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
-        collection: 'logo',
+        collection: 'assets',
+        tag: 'logo',
       }
     ],
     todos: []
   },
   {
-    name: 'desktop-fonts',
+    name: 'font',
     title: 'Desktop Fonts',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'Upload your fonts for desktop usage.',
     components: [
       {
         name: 'AssetIntakeUploader',
-        collection: 'desktop-fonts',
+        collection: 'assets',
+        tag: 'font',
       }
     ],
     todos: [
@@ -169,14 +179,15 @@ const steps = [
     ]
   },
   {
-    name: 'web-fonts',
+    name: 'font',
     title: 'Web Fonts',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'Upload your fonts for web usage.',
     components: [
       {
         name: 'AssetIntakeUploader',
-        collection: 'web-fonts',
+        collection: 'assets',
+        tag: 'font',
       }
     ],
     todos: [
@@ -187,27 +198,29 @@ const steps = [
     ]
   },
   {
-    name: 'fonts',
+    name: 'font',
     title: 'Font Do\'s and Don\'ts',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'What Do\'s and Don\'ts should we know about for your fonts?',
     components: [
       {
         name: 'AssetIntakeDoDont',
-        collection: 'fonts',
+        collection: 'assets',
+        tag: 'font',
       }
     ],
     todos: []
   },
   {
-    name: 'photos',
+    name: 'photo',
     title: 'Photographs',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'Upload your photography.',
     components: [
       {
         name: 'AssetIntakeUploader',
-        collection: 'photos',
+        collection: 'assets',
+        tag: 'photo',
       }
     ],
     todos: [
@@ -218,14 +231,15 @@ const steps = [
     ]
   },
   {
-    name: 'photos',
+    name: 'photo',
     title: 'Photography Do\'s and Don\'ts',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'What Do\'s and Don\'ts should we know about for your photography?',
     components: [
       {
         name: 'AssetIntakeDoDont',
-        collection: 'photos',
+        collection: 'assets',
+        tag: 'photo',
       }
     ],
     todos: []
@@ -238,7 +252,8 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeUploader',
-        collection: 'other',
+        collection: 'assets',
+        tag: 'other',
       }
     ],
     todos: []
@@ -251,7 +266,8 @@ const steps = [
     components: [
       {
         name: 'AssetIntakeDoDont',
-        collection: 'other',
+        collection: 'assets',
+        tag: 'other',
       }
     ],
     todos: []
