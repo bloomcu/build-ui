@@ -6,7 +6,7 @@
         </aside>
         
         <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-          <MediaUploader v-if="selectedTag" :folder="route.params.organization" :tag="selectedTag"/>
+          <MediaUploader v-if="selectedTag" collection="assets" :tag="selectedTag"/>
 
           <div class="grid gap-sm">
             <AppCard 

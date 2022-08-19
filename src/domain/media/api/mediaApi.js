@@ -9,7 +9,7 @@ const mediaApi = {
      * @return promise
      */
     index(organization, params) {
-        return HttpClient.get(`/organizations/${organization}/media`, { params: params })
+        return HttpClient.get(`/${organization}/media`, { params: params })
     },
     
     /**
@@ -20,7 +20,7 @@ const mediaApi = {
      * @return promise
      */
     store(organization, file, collection, tags) {
-        return HttpClient.post(`/organizations/${organization}/media`, {
+        return HttpClient.post(`/${organization}/media`, {
           file: file,
           collection: collection,
           tags: tags
@@ -38,7 +38,7 @@ const mediaApi = {
      * @return promise
      */
     destroy(organization, id) {
-        return HttpClient.delete(`/organizations/${organization}/media/${id}`)
+        return HttpClient.delete(`/${organization}/media/${id}`)
     },
 }
 

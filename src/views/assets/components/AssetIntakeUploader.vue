@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MediaUploader :folder="route.params.organization" :tag="group"/>
+    <MediaUploader collection="assets" :tag="group"/>
     <MediaList :files="mediaStore.filterByTag(group)"/>
   </div>
 </template>
@@ -13,7 +13,7 @@ import MediaUploader from '@/domain/media/components/MediaUploader.vue'
 import MediaList from '@/domain/media/components/MediaList.vue'
 
 const props = defineProps({
-  folder: { type: String },
+  collection: { type: String },
   group: { type: String }
 })
 
