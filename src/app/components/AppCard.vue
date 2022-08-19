@@ -2,14 +2,12 @@
   <div class="card card--is-link">
     <a class="card__link" href="#0" aria-label="Description of the link">
       <figure class="card__img">
-        <img :src="image" class="height-xxxxl">
+        <img :src="image">
       </figure>
     
       <div class="card__content">
-        <div class="text-component">
-          <h4>{{ title }}</h4>
-          <p class="text-sm color-contrast-medium">{{ subtitle }}</p>
-        </div>
+        <p class="text-bold margin-bottom-xxxs">{{ title }}</p>
+        <p class="text-sm color-contrast-medium">{{ subtitle }}</p>
       </div>
     </a>
   </div>
@@ -17,12 +15,12 @@
 
 <script setup>
 const props = defineProps({
-  image: {
-    type: String,
-  },
   title: { 
     type: String,
     required: true,
+  },
+  image: {
+    type: String,
   },
   subtitle: { 
     type: String,
@@ -30,10 +28,17 @@ const props = defineProps({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.card {
+  padding: 0;
+}
+
 .card__img {
+  
+  
   img {
     display: block;
+    border-radius: var(--space-xxs) var(--space-xxs) 0 0;
     width: 100%;
   }
 }
@@ -57,6 +62,10 @@ const props = defineProps({
 
   .card__img {
     position: relative;
+    
+    img {
+      height: 200px;
+    }
 
     &::after { // overlay layer
       content: '';

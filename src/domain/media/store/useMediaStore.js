@@ -26,7 +26,7 @@ export const useMediaStore = defineStore('mediaStore', {
     actions: {
         index(params) {
           const auth = useAuthStore()
-          
+
           this.files = []
           
           MediaApi.index(auth.organization, params)

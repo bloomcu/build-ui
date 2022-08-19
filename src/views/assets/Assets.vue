@@ -2,23 +2,23 @@
   <LayoutDefault maxWidth="none">
       <div class="flex container max-width-xxl">
         <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
-          <AppNestedMenu title="tags" :items="groups"/>
+          <AppNestedMenu title="tags" :items="tags"/>
         </aside>
         
         <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-          <!-- <MediaUploader :folder="route.params.organization" :tag="groups[toggled]"/> -->
-          <!-- <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.filterByTag(groups[toggled].tag)"/> -->
+          <MediaUploader v-if="selectedTag" :folder="route.params.organization" :tag="selectedTag"/>
+
           <div class="grid gap-sm">
             <AppCard 
               v-for="file in mediaStore.files"
               :key="file.id"
-              :image="file.original_url"
               :title="file.name"
+              :image="file.original_url"
               :subtitle="file.extension"
-              class="col-6@xs col-4@lg"
+              @click="openModal(file)"
+              class="col-6@xs col-3@lg"
             />
           </div>
-          <!-- <MediaList @selected="openModal" @destroyed="destroyFile" :files="mediaStore.files"/> -->
         </main>
       </div>
     
@@ -27,18 +27,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
 import useToggle from '@/app/composables/useToggle.js'
 
 const route = useRoute()
 const mediaStore = useMediaStore()
-const { toggle, toggled } = useToggle()
+const { toggled: selectedTag } = useToggle()
 
-function filterFiles(tagId) {
-    store.index({ 'filter[tags.id]': tagId })
-}
+watch(selectedTag, () => {
+  mediaStore.index({ 'filter[tags.slug]': selectedTag.value })
+})
 
 function destroyFile(file) {
   mediaStore.destroy(file)
@@ -54,31 +54,31 @@ function closeModal() {
   modalData.value = null
 }
 
-const groups = [
+const tags = [
   {
-    id: 0,
-    title: 'Brand Guide',
-    tag: 'brand',
+    id: 15,
+    title: 'Brand',
+    slug: 'brand',
   },
   {
-    id: 1,
+    id: 16,
     title: 'Logo',
-    tag: 'logo',
+    slug: 'logo',
   },
   {
-    id: 2,
-    title: 'Fonts',
-    tag: 'fonts',
+    id: 17,
+    title: 'Font',
+    slug: 'font',
   },
   {
-    id: 3,
-    title: 'Photos',
-    tag: 'photos',
+    id: 18,
+    title: 'Photo',
+    slug: 'photo',
   },
   {
-    id: 4,
-    title: 'Other Media',
-    tag: 'other-media',
+    id: 19,
+    title: 'Other',
+    slug: 'other',
   },
 ]
 

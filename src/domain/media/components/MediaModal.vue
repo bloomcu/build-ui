@@ -3,7 +3,7 @@
     <div class="modal__content width-100% max-width-lg max-height-100% overflow-auto bg padding-x-md radius-md inner-glow shadow-md" role="alertdialog" aria-labelledby="modal-title-1" aria-describedby="modal-description-1">
       <header class="flex justify-between padding-top-md">
         <div class="flex gap-sm items-center">
-          <AppUserAvatar/>
+          <!-- <AppUserAvatar/> -->
           <div class="text-component">
             <h1 class="text-base">{{ file.name }}</h1>
             <p class="text-xs">{{ file.extension }}</p>
