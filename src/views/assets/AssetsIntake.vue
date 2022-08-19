@@ -121,7 +121,7 @@ const steps = [
       {
         name: 'AssetIntakeDoDont',
         collection: 'assets',
-        tag: 'brand',
+        group: 'brand',
       }
     ],
     todos: []
@@ -154,7 +154,7 @@ const steps = [
       {
         name: 'AssetIntakeDoDont',
         collection: 'assets',
-        tag: 'logo',
+        group: 'logo',
       }
     ],
     todos: []
@@ -206,7 +206,7 @@ const steps = [
       {
         name: 'AssetIntakeDoDont',
         collection: 'assets',
-        tag: 'font',
+        group: 'font',
       }
     ],
     todos: []
@@ -239,7 +239,7 @@ const steps = [
       {
         name: 'AssetIntakeDoDont',
         collection: 'assets',
-        tag: 'photo',
+        group: 'photo',
       }
     ],
     todos: []
@@ -267,7 +267,7 @@ const steps = [
       {
         name: 'AssetIntakeDoDont',
         collection: 'assets',
-        tag: 'other',
+        group: 'other',
       }
     ],
     todos: []
