@@ -4,7 +4,7 @@
       <h1 class="text-lg">Designs</h1>
       <button @click="siteStore.toggleCreateModal" class="btn btn--subtle">
         <IconPlus size="xxs" class="color-primary"/>
-        <span class="margin-left-xxs">Add site</span>
+        <span class="margin-left-xxs">Add design</span>
       </button>
     </div>
 
