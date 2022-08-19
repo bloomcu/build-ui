@@ -19,7 +19,7 @@
         </div>
         
         <div class="card-footer flex gap-xs border-top margin-top-sm padding-top-sm">
-          <a href="" class="btn btn--sm btn--primary">View</a>
+          <a href="https://base.bloomcudev.com/" target="_blank" class="btn btn--sm btn--primary">View</a>
           <!-- <RouterLink :to="{ name: 'designs-edit', params: { design: design.id } }" class="btn btn--sm btn--subtle margin-left-auto">Edit</RouterLink> -->
         </div>
       </div>
