@@ -2,7 +2,7 @@
   <LayoutDefault maxWidth="none">
     <div class="flex container max-width-xxl">
       <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
-        <AppNestedMenu title="tags" :items="tags" enableAllItem="true"/>
+        <AppNestedMenu title="tags" :items="tags" enableAllItem/>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
@@ -28,14 +28,19 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
 import useToggle from '@/app/composables/useToggle.js'
 
 const route = useRoute()
 const mediaStore = useMediaStore()
-const { toggled: selectedTag } = useToggle()
+const { toggle, toggled: selectedTag } = useToggle()
+
+onMounted(() => {
+  mediaStore.index()
+  toggle(null)
+})
 
 watch(selectedTag, () => {
   mediaStore.index({ 'filter[tags.slug]': selectedTag.value })
@@ -82,8 +87,6 @@ const tags = [
     slug: 'other',
   },
 ]
-
-mediaStore.index()
 </script>
 
 <script>
