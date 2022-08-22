@@ -37,7 +37,7 @@ const props = defineProps({
       required: true
     },
     enableAllItem: {
-      type: String,
+      type: Boolean,
       default: false
     }
 })
