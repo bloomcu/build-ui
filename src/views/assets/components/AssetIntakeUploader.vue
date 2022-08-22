@@ -1,7 +1,7 @@
 <template>
   <div>
     <MediaUploader collection="assets" :tag="tag"/>
-    <MediaList :files="mediaStore.files"/>
+    <MediaList :files="mediaStore.files" @destroyed="mediaStore.destroy"/>
   </div>
 </template>
 
