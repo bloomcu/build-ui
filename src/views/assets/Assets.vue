@@ -6,19 +6,21 @@
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-        <MediaUploader v-if="selectedTag" collection="assets" :tag="selectedTag"/>
-
-        <div class="grid gap-sm">
-          <AppCard 
-            v-for="file in mediaStore.files"
-            :key="file.id"
-            :uuid="file.uuid"
-            :title="file.name"
-            :image="file.original_url"
-            :subtitle="file.extension"
-            @click="openModal(file)"
-            class="col-6@xs col-3@lg"
-          />
+        <AppCircleLoader v-if="mediaStore.isLoading"/>
+        <div v-else>
+          <MediaUploader v-if="selectedTag" collection="assets" :tag="selectedTag"/>
+          
+          <div class="grid gap-sm">
+            <AppCard 
+              v-for="file in mediaStore.files"
+              :key="file.id"
+              :file="file"
+              @selected="openModal(file)"
+              @destroyed="mediaStore.destroy"
+              class="col-6@xs col-3@lg"
+              deleteable
+            />
+          </div>
         </div>
       </main>
     </div>
@@ -53,9 +55,11 @@ function destroyFile(file) {
 
 // Extract to a view store
 let modalData = ref(null)
+
 function openModal(file) {
   modalData.value = file
 }
+
 function closeModal() {
   modalData.value = null
 }
@@ -91,6 +95,7 @@ const tags = [
 
 <script>
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
+import AppCircleLoader from '@/app/components/AppCircleLoader.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import AppCard from '@/app/components/AppCard.vue'
 import MediaUploader from '@/domain/media/components/MediaUploader.vue'
@@ -100,6 +105,7 @@ import MediaModal from '@/domain/media/components/MediaModal.vue'
 export default {
     components: [
       LayoutDefault,
+      AppCircleLoader,
       AppNestedMenu,
       AppCard,
       MediaUploader,

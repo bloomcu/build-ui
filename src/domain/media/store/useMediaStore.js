@@ -21,11 +21,13 @@ export const useMediaStore = defineStore('mediaStore', {
     actions: {
         index(params) {
           const auth = useAuthStore()
-
+          
+          this.isLoading = true
           this.files = []
           
           MediaApi.index(auth.organization, params)
             .then(response => {
+              this.isLoading = false
               this.files = response.data.data
             }).catch(error => {
               console.log('Error', error.response.data)
