@@ -32,6 +32,7 @@ export const useAuthStore = defineStore('authStore', {
         await AuthApi.login(email, password)
           .then(response => {
             this.user = response.data.data
+            this.organization = response.data.data.organization.slug
             
             // Store user details and jwt in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(response.data.data))

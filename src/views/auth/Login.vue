@@ -31,7 +31,7 @@
           </div>
         </div> -->
         
-        <div class="text-center text-component">
+        <!-- <div class="text-center text-component">
           <p class="text-sm">
             Forgot password?
             <RouterLink :to="{ name: 'forgotPassword' }">Reset password</RouterLink>
@@ -40,7 +40,7 @@
             Don't have an account? 
             <RouterLink :to="{ name: 'register' }">Get started</RouterLink>
           </p>
-        </div>
+        </div> -->
         
       </form>
     </div>
@@ -67,7 +67,9 @@ function login() {
 
   authStore.login(email, password)
     .then(() => {
-      router.push({ name: 'organizations' })
+      // TODO: Push me to an organization dashboard with next steps
+      router.push({ name: 'assetsIntake', params: { organization: authStore.organization } })
+      // router.push({ name: 'organizations' })
     })
 }
 </script>
