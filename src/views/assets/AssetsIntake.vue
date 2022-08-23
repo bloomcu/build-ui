@@ -8,7 +8,7 @@
       
       <div class="_color-white padding-x-lg">
         <h1 class="_color-white margin-bottom-sm">{{ steps[step].title }}</h1>
-        <p v-if="steps[step].description" class="margin-bottom-md" v-html="steps[step].description"></p>
+        <!-- <p v-if="steps[step].description" class="margin-bottom-md" v-html="steps[step].description"></p> -->
       </div>
       
       <div class="flex justify-between bg border-top padding-y-sm padding-x-md">
@@ -24,7 +24,8 @@
       <!-- Steps -->
       <div class="padding-x-xl padding-top-lg">
         <div class="flex-grow padding-bottom-xxl">
-          <h4 v-if="steps[step].instructions" class="margin-bottom-md" v-html="steps[step].instructions"></h4>
+          <h4 v-if="steps[step].instructions" class="margin-bottom-sm" v-html="steps[step].instructions"></h4>
+          <p v-if="steps[step].description" class="margin-bottom-md" v-html="steps[step].description"></p>
           <component 
             v-for="(component, index) in steps[step].components"
             :is="component.name" 
@@ -96,8 +97,8 @@ const steps = [
   {
     name: 'brand',
     title: 'Brand Guide',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'Upload your brand usage guide document(s) here.',
+    description: 'Format: PDF',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -105,18 +106,12 @@ const steps = [
         tag: 'brand',
       }
     ],
-    todos: [
-      {
-        title: 'Format: PDF',
-        formats: ['pdf'],
-      }
-    ]
   },
   {
     name: 'brand',
     title: 'Brand Do\'s and Don\'ts',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'What Do\'s and Don\'ts should we know about for your brand?',
+    description: '',
     components: [
       {
         name: 'AssetIntakeDoDont',
@@ -124,13 +119,12 @@ const steps = [
         group: 'brand',
       }
     ],
-    todos: []
   },
   {
     name: 'logo',
     title: 'Logo',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'Upload your logo(s) here.',
+    description: 'Formats: SVG or EPS',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -138,18 +132,12 @@ const steps = [
         tag: 'logo',
       }
     ],
-    todos: [
-      {
-        title: 'Format: SVG and EPS',
-        formats: ['svg', 'eps'],
-      }
-    ]
   },
   {
     name: 'logo',
     title: 'Logo Do\'s and Don\'ts',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'What Do\'s and Don\'ts should we know about for your logo?',
+    description: '',
     components: [
       {
         name: 'AssetIntakeDoDont',
@@ -157,13 +145,12 @@ const steps = [
         group: 'logo',
       }
     ],
-    todos: []
   },
   {
     name: 'font',
     title: 'Desktop Fonts',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
-    instructions: 'Upload your fonts for desktop usage.',
+    instructions: 'Upload your fonts for desktop use.',
+    description: 'Formats: TTF, TTC or OTF',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -171,18 +158,12 @@ const steps = [
         tag: 'font',
       }
     ],
-    todos: [
-      {
-        title: 'Format: TTF, TTC or OTF',
-        formats: ['ttf', 'ttc', 'otf'],
-      }
-    ]
   },
   {
     name: 'font',
     title: 'Web Fonts',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
-    instructions: 'Upload your fonts for web usage.',
+    instructions: 'Upload your fonts for web use.',
+    description: 'Formats: TTF, OTF, WOFF, WOFF2 or EOT',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -190,18 +171,12 @@ const steps = [
         tag: 'font',
       }
     ],
-    todos: [
-      {
-        title: 'Format: TTF, OTF, WOFF, WOFF2 or EOT',
-        formats: ['ttf', 'otf', 'woff', 'woff2', 'eot'],
-      }
-    ]
   },
   {
     name: 'font',
     title: 'Font Do\'s and Don\'ts',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'What Do\'s and Don\'ts should we know about for your fonts?',
+    description: '',
     components: [
       {
         name: 'AssetIntakeDoDont',
@@ -209,13 +184,12 @@ const steps = [
         group: 'font',
       }
     ],
-    todos: []
   },
   {
     name: 'photo',
-    title: 'Photographs',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
+    title: 'Photography',
     instructions: 'Upload your photography.',
+    description: 'Formats: JPG, JPEG or PNG',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -223,18 +197,12 @@ const steps = [
         tag: 'photo',
       }
     ],
-    todos: [
-      {
-        title: 'Format: JPG, JPEG or PNG',
-        formats: ['jpg', 'jpeg', 'png'],
-      }
-    ]
   },
   {
     name: 'photo',
     title: 'Photography Do\'s and Don\'ts',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'What Do\'s and Don\'ts should we know about for your photography?',
+    description: '',
     components: [
       {
         name: 'AssetIntakeDoDont',
@@ -242,13 +210,12 @@ const steps = [
         group: 'photo',
       }
     ],
-    todos: []
   },
   {
     name: 'other',
     title: 'Other Media',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'Upload other brand media such as patterns, icons or other graphics.',
+    description: '',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -256,13 +223,12 @@ const steps = [
         tag: 'other',
       }
     ],
-    todos: []
   },
   {
     name: 'other',
     title: 'Other Media Do\'s and Don\'ts',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio tempus lectus',
     instructions: 'What Do\'s and Don\'ts should we know about for your other media?',
+    description: '',
     components: [
       {
         name: 'AssetIntakeDoDont',
@@ -270,13 +236,6 @@ const steps = [
         group: 'other',
       }
     ],
-    todos: []
   },
 ]
 </script>
-
-<style lang="scss" scoped>
-.todo__checkbox {
-  background-color: #fff !important;
-}
-</style>
