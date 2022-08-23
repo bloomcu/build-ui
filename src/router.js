@@ -48,19 +48,16 @@ const router = createRouter({
 router.beforeEach(async (to) => {
   // TODO: Can I just isntantiate this store one in this file?
   const authStore = useAuthStore()
-
-  // TODO: Move this responsibility to the route definitions
-  const publicRoutes = [
-    '/register', 
-    '/login', 
-    '/forgot-password',
-    '/bloomcu/briefs/style-tile',
-    '/lone-star/briefs/style-tile',
-    '/cu-socal/briefs/style-tile',
-    '/bloomcu/sites/1/launch'
+  
+  const publicRouteNames = [
+    'register', 
+    'login', 
+    'forgotPassword',
+    'styleTileBrief',
+    'sitesLaunch',
   ]
 
-  const authRequired = !publicRoutes.includes(to.path)
+  const authRequired = !publicRouteNames.includes(to.name)
 
   if (!authStore.user && authRequired) {
     // TODO: Set the return URL so that when the user logs in, they can return here

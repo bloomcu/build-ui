@@ -10,12 +10,12 @@ export default [
   },
   {
     path: "/:organization/sites/:site",
-    name: "sites-edit",
+    name: "sitesEdit",
     component: SitesEdit,
   },
   {
     path: "/:organization/sites/:site/launch",
-    name: "sites-launch",
+    name: "sitesLaunch",
     component: SitesLaunch,
   },
 ]
