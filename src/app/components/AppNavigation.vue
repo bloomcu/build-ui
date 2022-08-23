@@ -21,14 +21,14 @@
         
         <ul class="f-header__list margin-right-md">
           <!-- Organization(s) -->
-          <li class="f-header__item border-right padding-right-xs">
+          <!-- <li class="f-header__item border-right padding-right-xs">
             <router-link 
               :to="{ name: 'organizations'}" 
               class="f-header__link"
             >
               Organizations
             </router-link>
-          </li>
+          </li> -->
           
           <!-- <li class="f-header__item border-right padding-right-sm">
             <button class="f-header__link reset cursor-pointer">
