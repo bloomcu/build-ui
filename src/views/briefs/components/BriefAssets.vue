@@ -43,15 +43,15 @@
         />
       </div>
       <div class="col-6 padding-left-md">
-        <div v-if="organizationCommentsStore.filterByGroup('fonts-do').length" >
+        <div v-if="organizationCommentsStore.filterByGroup('font-do').length" >
           <p><strong>Do's:</strong></p>
-          <p v-for="item in organizationCommentsStore.filterByGroup('fonts-do')" :key="item.id">
+          <p v-for="item in organizationCommentsStore.filterByGroup('font-do')" :key="item.id">
             <span class="margin-right-xxxs">✅</span> {{ item.body }}
           </p>
         </div>
-        <div v-if="organizationCommentsStore.filterByGroup('fonts-dont').length">
+        <div v-if="organizationCommentsStore.filterByGroup('font-dont').length">
           <p class="padding-top-sm"><strong>Don'ts:</strong></p>
-          <p v-for="item in organizationCommentsStore.filterByGroup('fonts-dont')" :key="item.id">
+          <p v-for="item in organizationCommentsStore.filterByGroup('font-dont')" :key="item.id">
             <span class="margin-right-xxxs">❌</span> {{ item.body }}
           </p>
         </div>
@@ -70,15 +70,15 @@
         />
       </div>
       <div class="col-6 padding-left-md">
-        <div v-if="organizationCommentsStore.filterByGroup('photos-do').length">
+        <div v-if="organizationCommentsStore.filterByGroup('photo-do').length">
           <p><strong>Do's:</strong></p>
-          <p v-for="item in organizationCommentsStore.filterByGroup('photos-do')" :key="item.id">
+          <p v-for="item in organizationCommentsStore.filterByGroup('photo-do')" :key="item.id">
             <span class="margin-right-xxxs">✅</span> {{ item.body }}
           </p>
         </div>
-        <div v-if="organizationCommentsStore.filterByGroup('photos-dont').length">
+        <div v-if="organizationCommentsStore.filterByGroup('photo-dont').length">
           <p class="padding-top-sm"><strong>Don'ts:</strong></p>
-          <p v-for="item in organizationCommentsStore.filterByGroup('photos-dont')" :key="item.id">
+          <p v-for="item in organizationCommentsStore.filterByGroup('photo-dont')" :key="item.id">
             <span class="margin-right-xxxs">❌</span> {{ item.body }}
           </p>
         </div>
