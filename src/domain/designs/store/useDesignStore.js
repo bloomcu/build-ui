@@ -36,17 +36,17 @@ export const useDesignStore = defineStore('designStore', {
           
           await DesignApi.store(auth.organization, design)
             .then(response => {
-              this.designs.push(response.data.data)
+              this.designs.unshift(response.data.data)
             }).catch(error => {
               console.log('Error', error.response.data)
             })
         },
         
-        show(id) {
+        show(uuid) {
           const auth = useAuthStore()
           this.isLoading = true
           
-          DesignApi.show(auth.organization, id)
+          DesignApi.show(auth.organization, uuid)
             .then(response => {
               this.design = response.data.data
               this.isLoading = false
@@ -57,20 +57,20 @@ export const useDesignStore = defineStore('designStore', {
           const auth = useAuthStore()
           this.isLoading = true
           
-          DesignApi.update(auth.organization, this.design.id, this.design)
+          DesignApi.update(auth.organization, this.design.uuid, this.design)
             .then(response => {
               console.log('Design successfully updated')
               this.isLoading = false
             })
         },
         
-        destroy(id) {
+        destroy(uuid) {
           const auth = useAuthStore()
           this.isLoading = true
           
-          DesignApi.destroy(auth.organization, id)
+          DesignApi.destroy(auth.organization, uuid)
             .then(response => {
-              this.designs = this.designs.filter((design) => design.id !== id)
+              this.designs = this.designs.filter((design) => design.uuid !== uuid)
               this.isLoading = false
             })
         },
