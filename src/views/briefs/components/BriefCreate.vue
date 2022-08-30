@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 5</p>
+    <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 4</p>
     <h1>Get creative!</h1>
     <p>Design the style by applying fonts, colors, images and other elements. Get creative! <strong>The goal is to stay on-brand while elevating the design to be the best it can be</strong>.</p>
 

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 3</p>
+    <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 2</p>
     <h1>Review the brand guide</h1>
-    <p>Review the brand guide so your style tile fits the credit union’s brand.</p>
+    <p>Review the brand guide so your webpage design fits the credit union’s brand.</p>
     
-    <h3 class="padding-y-xxxs">Brand Guide</h3>
+    <h3 class="padding-y-xxxs">Brand guide</h3>
     <div class="grid gap-md">
       <div class="col-6 padding-right-sm">
         <MediaList 

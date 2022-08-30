@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 4</p>
+    <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 3</p>
     <h1>Download assets</h1>
     <p>Download the credit union's brand assets.</p>
 

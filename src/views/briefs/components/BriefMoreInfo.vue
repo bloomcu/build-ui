@@ -1,22 +1,19 @@
 <template>
   <div>
     <p class="text-xs text-uppercase letter-spacing-lg color-primary">More info</p>
-    <h1>More Do’s and Don'ts</h1>
+    <h1>More Do’s and Dont's</h1>
     <p>More things you should do, things you shouldn’t do, and things you might do.</p>
 
     <div class="max-width-sm">
       <h4 class="padding-top-sm">Do's</h4>
       <p>Things you should do.</p>
-      <!-- <p class="text-sm"><strong>DO use the Sketch template.</strong> Please use the Sketch template provided.</p> -->
-      <p class="text-sm"><strong>DO get creative with the styles.</strong> While you shouldn’t create new layout blocks on the page, you should get creative with the ways you work within the brand guidelines to style the blocks provided. </p>
       <p class="text-sm"><strong>DO stay within the brand guidelines.</strong> Make sure to stay within the brand guidelines, but get creative with how you use them.</p>
       
       <h4 class="padding-top-sm">Don'ts</h4>
       <p>Things you shouldn't do.</p>
       <p class="text-sm"><strong>DON’T delete or reorder blocks. </strong>During the project, you can change block layouts, backgrounds and hero images. However, please don’t delete or reorder any of them.</p>
       <p class="text-sm"><strong>DON’T share the assets or your work anywhere—not even in your portfolio.</strong> You signed an NDA before viewing this project because it is Private and strictly confidential. Make sure to not share any of the assets in this brief or the work you produce for this project because we don’t want you to experience any legal consequences. Thanks!</p>
-      <p class="text-sm"><strong>DON’T create the style tile outside of our design tool.</strong> The style design must be completed using our design tool. Please do not create the style tile in any other application such as Illustrator, Photoshop, etc. (Also see <a href="#maybes">“MAYBE use other applications for images and graphics</a>.”</p>
-      <!-- <p class="text-sm"><strong>DON’T modify the layout blocks in the Sketch template.</strong> Please style the layout blocks (e.g., Heroes, Features, etc.) in the template without changing the blocks in any way. Get creative with the ways you style the blocks, but please do not modify their structures.</p> -->
+      <p class="text-sm"><strong>DON’T create the style tile outside of our design tool.</strong> The style design must be completed using our design tool. Please do not create the style tile in any other application such as Illustrator, Photoshop, etc. (Also see <a href="#maybes">“MAYBE use other applications for images and graphics</a>.”)</p>
       
       <h4 class="padding-top-sm" id="maybes">Maybes</h4>
       <p>Things you might do.</p>

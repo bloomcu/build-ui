@@ -23,8 +23,7 @@ import { defineComponent } from 'vue'
 
 // Components
 import BriefIntro from '@/views/briefs/components/BriefIntro.vue'
-import BriefVideo from '@/views/briefs/components/BriefVideo.vue'
-import BriefDesignTool from '@/views/briefs/components/BriefDesignTool.vue'
+import BriefTutorial from '@/views/briefs/components/BriefTutorial.vue'
 import BriefBrand from '@/views/briefs/components/BriefBrand.vue'
 import BriefAssets from '@/views/briefs/components/BriefAssets.vue'
 import BriefCreate from '@/views/briefs/components/BriefCreate.vue'
@@ -33,8 +32,7 @@ import BriefMoreInfo from '@/views/briefs/components/BriefMoreInfo.vue'
 export default defineComponent({
     components: {
       BriefIntro,
-      BriefVideo,
-      BriefDesignTool,
+      BriefTutorial,
       BriefBrand,
       BriefAssets,
       BriefCreate,
@@ -63,23 +61,19 @@ const steps = [
     slug: 'BriefIntro',
   },
   {
-    title: 'Step 1 - Video',
-    slug: 'BriefVideo',
+    title: 'Step 1 - Tutorial',
+    slug: 'BriefTutorial',
   },
   {
-    title: 'Step 2 - Design Tool',
-    slug: 'BriefDesignTool',
-  },
-  {
-    title: 'Step 3 - Brand',
+    title: 'Step 2 - Brand',
     slug: 'BriefBrand',
   },
   {
-    title: 'Step 4 - Assets',
+    title: 'Step 3 - Assets',
     slug: 'BriefAssets',
   },
   {
-    title: 'Step 5 - Create',
+    title: 'Step 4 - Create',
     slug: 'BriefCreate',
   },
   {
