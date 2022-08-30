@@ -23,7 +23,8 @@
         
         <!-- Submit -->
         <div class="margin-bottom-sm">
-          <button type="submit" class="btn btn--primary btn--md width-100%">Update</button>
+          <button v-if="updated" type="submit" class="btn btn--primary btn--md width-100%" disabled>Design Updated</button>
+          <button v-else type="submit" class="btn btn--primary btn--md width-100%">Update</button>
         </div>
       </form>
     </div>
@@ -31,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDesignStore } from '@/domain/designs/store/useDesignStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
@@ -40,6 +41,7 @@ import AppInput from '@/app/components/forms/AppInput.vue'
 
 const route = useRoute()
 const designStore = useDesignStore()
+const updated = ref(false)
 
 onMounted(() => {
     designStore.show(route.params.design)
@@ -47,5 +49,6 @@ onMounted(() => {
 
 function update() {
   designStore.update()
+  updated.value = true
 }
 </script>

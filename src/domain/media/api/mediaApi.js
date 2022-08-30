@@ -17,6 +17,8 @@ const mediaApi = {
      *
      * @param String organization [Slug of the organization]
      * @param Object file [Object to create file from]
+     * @param String collection [Collection to associate media with]
+     * @param String tags [Tags to attach to media]
      * @return promise
      */
     store(organization, file, collection, tags) {
