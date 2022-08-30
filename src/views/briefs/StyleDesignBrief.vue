@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex justify-between padding-sm border-bottom">
-      <span class="text-sm">Style Tile Brief</span>
+      <span class="text-sm">Style Design Brief</span>
     </div>
     
     <div class="flex container max-width-xxl">
@@ -23,8 +23,8 @@ import { defineComponent } from 'vue'
 
 // Components
 import BriefIntro from '@/views/briefs/components/BriefIntro.vue'
-import BriefSketch from '@/views/briefs/components/BriefSketch.vue'
 import BriefVideo from '@/views/briefs/components/BriefVideo.vue'
+import BriefDesignTool from '@/views/briefs/components/BriefDesignTool.vue'
 import BriefBrand from '@/views/briefs/components/BriefBrand.vue'
 import BriefAssets from '@/views/briefs/components/BriefAssets.vue'
 import BriefCreate from '@/views/briefs/components/BriefCreate.vue'
@@ -33,8 +33,8 @@ import BriefMoreInfo from '@/views/briefs/components/BriefMoreInfo.vue'
 export default defineComponent({
     components: {
       BriefIntro,
-      BriefSketch,
       BriefVideo,
+      BriefDesignTool,
       BriefBrand,
       BriefAssets,
       BriefCreate,
@@ -63,12 +63,12 @@ const steps = [
     slug: 'BriefIntro',
   },
   {
-    title: 'Step 1 - Sketch',
-    slug: 'BriefSketch',
+    title: 'Step 1 - Video',
+    slug: 'BriefVideo',
   },
   {
-    title: 'Step 2 - Video',
-    slug: 'BriefVideo',
+    title: 'Step 2 - Design Tool',
+    slug: 'BriefDesignTool',
   },
   {
     title: 'Step 3 - Brand',
@@ -87,42 +87,4 @@ const steps = [
     slug: 'BriefMoreInfo',
   },
 ]
-
-// const steps = [
-//   {
-//     slug: 'intro', 
-//     title: 'Intro',
-//     component: 'BriefIntro',
-//   },
-//   {
-//     slug: 'step-1', 
-//     title: 'Step 1 - Sketch',
-//     component: 'BriefSketch',
-//   },
-//   {
-//     slug: 'step-2', 
-//     title: 'Step 2 - Video',
-//     component: 'BriefVideo',
-//   },
-//   {
-//     slug: 'step-3', 
-//     title: 'Step 3 - Brand',
-//     component: 'BriefBrand',
-//   },
-//   {
-//     slug: 'step-4', 
-//     title: 'Step 4 - Assets',
-//     component: 'BriefAssets',
-//   },
-//   {
-//     slug: 'step-5', 
-//     title: 'Step 5 - Create',
-//     component: 'BriefCreate',
-//   },
-//   {
-//     slug: 'more-info', 
-//     title: 'More info',
-//     component: 'BriefMoreInfo',
-//   },
-// ]
 </script>

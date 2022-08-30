@@ -53,7 +53,7 @@ router.beforeEach(async (to) => {
     'register', 
     'login', 
     'forgotPassword',
-    'styleTileBrief',
+    'styleDesignBrief',
     'sitesLaunch',
   ]
 

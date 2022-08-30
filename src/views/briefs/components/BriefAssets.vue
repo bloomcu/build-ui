@@ -114,7 +114,7 @@
       </div>
     </div>
 
-    <div class="flex gap-xs margin-top-md padding-y-md border-top">
+    <div class="flex gap-xs margin-top-md padding-y-md">
       <button @click="toggle('BriefBrand')" class="btn btn--subtle">Back</button>
       <button @click="toggle('BriefCreate')" class="btn btn--primary">Next</button>
     </div>

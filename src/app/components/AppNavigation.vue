@@ -73,7 +73,7 @@
           </li>
           <li class="f-header__item">
             <router-link 
-              :to="{ name: 'styleTileBrief', params: { organization: auth.organization }}" 
+              :to="{ name: 'styleDesignBrief', params: { organization: auth.organization }}" 
               class="f-header__link"
             >
               Brief

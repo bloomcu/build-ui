@@ -2,11 +2,12 @@
   <div>
     <p class="text-xs text-uppercase letter-spacing-lg color-primary">Step 2</p>
     <h1>Watch the video tutorial</h1>
-    <iframe src="https://player.vimeo.com/video/711021881?h=f8e6454dd7" width="1024" height="576" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <!-- <iframe src="https://player.vimeo.com/video/711021881?h=f8e6454dd7" width="1024" height="576" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe> -->
+    <iframe src="https://player.vimeo.com/video/743548172?h=4bd1787217" width="1024" height="576" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle('BriefSketch')" class="btn btn--subtle">Back</button>
-      <button @click="toggle('BriefBrand')" class="btn btn--primary">Next</button>
+      <button @click="toggle('BriefIntro')" class="btn btn--subtle">Back</button>
+      <button @click="toggle('BriefDesignTool')" class="btn btn--primary">Next</button>
     </div>
   </div>
 </template>

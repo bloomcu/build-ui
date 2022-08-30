@@ -1,9 +1,9 @@
-import StyleTileBrief from '@/views/briefs/StyleTileBrief.vue'
+import StyleDesignBrief from '@/views/briefs/StyleDesignBrief.vue'
 
 export default [
   {
-      path: "/:organization/briefs/style-tile",
-      name: "styleTileBrief",
-      component: StyleTileBrief,
+      path: "/:organization/briefs/style-design",
+      name: "styleDesignBrief",
+      component: StyleDesignBrief,
   },
 ]
