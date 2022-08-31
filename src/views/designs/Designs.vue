@@ -4,7 +4,7 @@
       <h1 class="text-lg">Designs</h1>
       <button @click="designStore.toggleCreateModal()" class="btn btn--subtle">
         <IconPlus size="xxs" class="color-primary"/>
-        <span class="margin-left-xxs">Add design</span>
+        <span class="margin-left-xxs">New design</span>
       </button>
     </div>
 
@@ -20,10 +20,10 @@
         
         <div class="card-footer flex justify-between items-center border-top margin-top-sm padding-top-sm">
           <div class="flex gap-xs">
-            <button @click.stop.prevent="copyToClipboard(`https://base.bloomcudev.com/style-tile-template?design=${design.uuid}&mode=view`), copied = `${design.uuid}-view`" class="btn btn--sm btn--primary">
+            <button @click.stop.prevent="copyToClipboard(`https://sidney.bloomcudev.com/style-tile-template?design=${design.uuid}&mode=view`), copied = `${design.uuid}-view`" class="btn btn--sm btn--primary">
               {{ copied === `${design.uuid}-view` ? 'Copied!' : 'Viewer URL' }}
             </button>
-            <button @click.stop.prevent="copyToClipboard(`https://base.bloomcudev.com/style-tile-template?design=${design.uuid}&mode=edit`), copied = `${design.uuid}-edit`" class="btn btn--sm btn--primary">
+            <button @click.stop.prevent="copyToClipboard(`https://sidney.bloomcudev.com/style-tile-template?design=${design.uuid}&mode=edit`), copied = `${design.uuid}-edit`" class="btn btn--sm btn--primary">
               {{ copied === `${design.uuid}-edit` ? 'Copied!' : 'Editor URL' }}
             </button>
           </div>
