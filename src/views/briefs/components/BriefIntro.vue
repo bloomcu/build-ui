@@ -5,7 +5,7 @@
     <p class="max-width-sm">You will be designing a webpage for a credit union. This document has the information you need to get started.</p>
     
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle('BriefVideo')" class="btn btn--primary">Start</button>
+      <button @click="toggle('BriefTutorial')" class="btn btn--primary">Start</button>
     </div>
   </div>
 </template>

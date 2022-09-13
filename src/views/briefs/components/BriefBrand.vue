@@ -30,7 +30,7 @@
     </div>
     
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle('BriefDesignTool')" class="btn btn--subtle">Back</button>
+      <button @click="toggle('BriefTutorial')" class="btn btn--subtle">Back</button>
       <button @click="toggle('BriefAssets')" class="btn btn--primary">Next</button>
     </div>
     

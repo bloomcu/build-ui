@@ -7,7 +7,7 @@
     
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
       <button @click="toggle('BriefIntro')" class="btn btn--subtle">Back</button>
-      <button @click="toggle('BriefDesignTool')" class="btn btn--primary">Next</button>
+      <button @click="toggle('BriefBrand')" class="btn btn--primary">Next</button>
     </div>
   </div>
 </template>
