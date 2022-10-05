@@ -25,21 +25,17 @@
       <!-- <div class="card padding-md">
         <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Blog</p>
         <h2 class="text-md margin-bottom-sm">blog.redwoodcu.com</h2>
-        <p class="text-sm color-success margin-bottom-xs">Crawl in progress</p>
-        <AppProgressBar progress="40"/>
         
         <div class="flex items-center justify-between margin-y-sm">
           <span class="text-sm text-bold">Crawling website</span>
           <IconCheck class="color-success" style="width: 26px; height: 26px;"/>
-          <AppCircleLoader/>
         </div>
         <div class="flex items-center justify-between margin-bottom-sm">
           <span class="text-sm text-bold">Classifying content</span>
           <AppCircleLoader/>
         </div>
         <div class="flex items-center justify-between margin-bottom-sm">
-          <span class="text-sm text-bold color-contrast-lower">Archiving junk</span>
-          <AppCircleLoader/>
+          <span class="text-sm text-bold color-contrast-low">Archiving junk</span>
         </div>
       </div> -->
     </div>

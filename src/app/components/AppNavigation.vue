@@ -81,18 +81,18 @@
           </li>
           <li class="f-header__item">
             <router-link 
-              :to="{ name: 'sites', params: { organization: auth.organization}}" 
-              class="f-header__link"
-            >
-              Sites
-            </router-link>
-          </li>
-          <li class="f-header__item">
-            <router-link 
               :to="{ name: 'designs', params: { organization: auth.organization}}" 
               class="f-header__link"
             >
               Designs
+            </router-link>
+          </li>
+          <li class="f-header__item">
+            <router-link 
+              :to="{ name: 'sites', params: { organization: auth.organization}}" 
+              class="f-header__link"
+            >
+              Sites
             </router-link>
           </li>
           <li class="f-header__item">

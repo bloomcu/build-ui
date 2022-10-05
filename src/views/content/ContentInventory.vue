@@ -3,7 +3,8 @@
   <div class="flex">
     <aside class="flex-shrink-0 flex-grow position-relative z-index-1 width-100% max-width-xxxxs">
       <div class="padding-sm">
-        <AppNestedMenu title="Categories" :items="tagStore.children"/>
+        <AppNestedMenu title="Status" :items="statuses"/>
+        <AppNestedMenu title="Category" :items="tagStore.children"/>
       </div>
     </aside>
     
@@ -28,6 +29,24 @@ import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 
 const pageStore = usePageStore()
 const tagStore = useTagStore()
+
+const statuses = [
+  {
+    title: 'Needs review',
+    slug: 'needs-review',
+    children: []
+  },
+  {
+    title: 'Looks good',
+    slug: 'looks-good',
+    children: []
+  },
+  {
+    title: 'Not sure',
+    slug: 'not-sure',
+    children: []
+  }
+]
 
 onMounted(() => {
   pageStore.index()
