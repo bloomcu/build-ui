@@ -98,7 +98,7 @@ const steps = [
     name: 'brand',
     title: 'Brand Guide',
     instructions: 'Upload your brand usage guide document(s) here.',
-    description: 'Format: PDF',
+    description: 'Format: PDF • Max file size: 100MB',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -124,7 +124,7 @@ const steps = [
     name: 'logo',
     title: 'Logo',
     instructions: 'Upload your logo(s) here.',
-    description: 'Formats: SVG or EPS',
+    description: 'Formats: SVG or EPS • Max file size: 100MB',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -150,7 +150,7 @@ const steps = [
     name: 'font',
     title: 'Desktop Fonts',
     instructions: 'Upload your fonts for desktop use.',
-    description: 'Formats: TTF, TTC or OTF',
+    description: 'Formats: TTF, TTC or OTF • Max file size: 100MB',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -163,7 +163,7 @@ const steps = [
     name: 'font',
     title: 'Web Fonts',
     instructions: 'Upload your fonts for web use.',
-    description: 'Formats: TTF, OTF, WOFF, WOFF2 or EOT',
+    description: 'Formats: TTF, OTF, WOFF, WOFF2 or EOT • Max file size: 100MB',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -189,7 +189,7 @@ const steps = [
     name: 'photo',
     title: 'Photography',
     instructions: 'Upload your photography.',
-    description: 'Formats: JPG, JPEG or PNG',
+    description: 'Formats: JPG, JPEG or PNG • Max file size: 100MB',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -215,7 +215,7 @@ const steps = [
     name: 'other',
     title: 'Other Media',
     instructions: 'Upload other brand media such as patterns, icons or other graphics.',
-    description: '',
+    description: 'Max file size: 100MB',
     components: [
       {
         name: 'AssetIntakeUploader',
