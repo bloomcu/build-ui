@@ -1,10 +1,9 @@
 <template>
-  
   <div class="flex">
     <aside class="flex-shrink-0 flex-grow position-relative z-index-1 width-100% max-width-xxxxs">
       <div class="padding-sm">
-        <AppNestedMenu title="Status" :items="statuses"/>
-        <AppNestedMenu title="Category" :items="tagStore.children"/>
+        <AppNestedMenu title="status" :items="statuses.status"/>
+        <AppNestedMenu title="category" :items="tags.children"/>
       </div>
     </aside>
     
@@ -19,37 +18,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
+// import { useRoute } from 'vue-router'
+
 import { usePageStore } from '@/domain/pages/store/usePageStore'
+import { useStatusStore } from '@/domain/statuses/store/useStatusStore'
 import { useTagStore } from '@/domain/tags/store/useTagStore'
 
 import ContentTable from '@/views/content/components/ContentTable.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 // import ContentItemModal from '@/domain/content/components/ContentItemModal.vue'
 
-const pageStore = usePageStore()
-const tagStore = useTagStore()
-
-const statuses = [
-  {
-    title: 'Needs review',
-    slug: 'needs-review',
-    children: []
-  },
-  {
-    title: 'Looks good',
-    slug: 'looks-good',
-    children: []
-  },
-  {
-    title: 'Not sure',
-    slug: 'not-sure',
-    children: []
-  }
-]
+// const route = useRoute()
+const pages = usePageStore()
+const statuses = useStatusStore()
+const tags = useTagStore()
 
 onMounted(() => {
-  pageStore.index()
-  tagStore.show('content-tags')
+  pages.index()
+  statuses.show('content-statuses')
+  tags.show('content-tags')
 })
 </script>

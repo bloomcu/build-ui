@@ -34,9 +34,9 @@
           
           <!-- Title & URL -->
           <div class="flex-grow margin-right-xs padding-y-xxxs">
-            <h3 class="text-sm margin-bottom-xxxs">{{ page.title }}</h3>
-            <a v-if="page.url" :href="page.url" target="_blank" class="text-xs">{{ page.url }}</a>
-            <p v-else class="text-xs text-underline cursor-pointer">Add URL</p>
+            <h3 class="width-fit text-sm margin-bottom-xxxs">{{ page.title }}</h3>
+            <a v-if="page.url" :href="page.url" target="_blank" class="width-fit text-xs">{{ page.url }}</a>
+            <p v-else class="width-fit text-xs text-underline cursor-pointer">Add URL</p>
           </div>
           
           <!-- Statuses -->
@@ -51,7 +51,7 @@
           
           <!-- Destroy -->
           <div class="flex items-center margin-left-auto">
-            <button @click="destroy(page.id)" class="app-action-icon reset" type="button" name="button">
+            <button @click="destroy(page)" class="app-action-icon reset" type="button" name="button">
               <svg class="icon" viewBox="0 0 24 24">
                 <g stroke-linecap="square" stroke-miterlimit="10" fill="none" stroke="currentColor" stroke-linejoin="miter"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5"></line><path data-cap="butt" d="M8,5V1h8V5" stroke-linecap="butt"></path></g>
               </svg>
@@ -65,6 +65,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
+
 // import LoadingGhost from '@/components/loading/LoadingGhost.vue'
 import AppButtonsRadio from '@/app/components/AppButtonsRadio.vue'
 import AppChip from '@/app/components/AppChip.vue'
@@ -80,19 +81,14 @@ function store() {
   })
 }
 
-function destroy(id) {
-  console.log('Destroying page with id:', id)
-  // pageStore.destroy(page.id)
+function destroy(page) {
+  pageStore.destroy(page)
 }
-
-onMounted(() => {
-  pageStore.index()
-})
 </script>
 
 <style>
 :root {
-    --item-figure-size: 30px;
+  --item-figure-size: 30px;
 }
 </style>
 

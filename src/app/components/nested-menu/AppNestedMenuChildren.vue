@@ -2,15 +2,24 @@
     <div>
         <li
             v-for="(item, index) in items" :key="index"
-            :class="selected === item.slug ? 'nested-menu__item--expanded' : ''"
+            :class="isToggled(item.slug) ? 'nested-menu__item--expanded' : ''"
             class="nested-menu__item"
         >
-            <a @click.prevent="toggle(item.slug)" :class="selected === item.slug ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
-                <span class="nested-menu__text">{{ item.title }}</span>
+            <a 
+              @click.prevent="set(title, item.slug)" 
+              :class="query[title] === item.slug ? 'nested-menu__link--current' : ''" 
+              class="nested-menu__link" 
+              href=""
+            >
+              <span class="nested-menu__text">{{ item.title }}</span>
             </a>
 
             <!-- Arrow -->
-            <button v-if="item.children && item.children.length" @click="toggle(item.slug)" class="reset nested-menu__sublist-control">
+            <button 
+              v-if="item.children && item.children.length" 
+              @click="toggle(item.slug)" 
+              class="reset nested-menu__sublist-control"
+            >
                 <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -18,7 +27,7 @@
 
             <!-- Recursive children -->
             <ul v-if="item.children && item.children.length" class="nested-menu__list">
-                <AppNestedMenuChildren :items="item.children" :selected="selected"/>
+                <AppNestedMenuChildren :title="title" :items="item.children"/>
             </ul>
         </li>
     </div>
@@ -26,17 +35,23 @@
 
 <script>
 export default {
-    name: 'AppNestedMenuChildren'
+  name: 'AppNestedMenuChildren'
 }
 </script>
 
 <script setup>
-import useToggle from '@/app/composables/useToggle.js'
+import useToggleMultiple from '@/app/composables/useToggleMultiple.js'
+import useQuery from '@/app/composables/useQuery.js'
+
+const { toggle, isToggled } = useToggleMultiple()
+const { query, set, unset } = useQuery()
 
 const props = defineProps({
-    items: { type: Array },
-    selected: ''
+  title: { 
+    type: String
+  },
+  items: { 
+    type: Object 
+  },
 })
-
-const { toggle, toggled } = useToggle()
 </script>

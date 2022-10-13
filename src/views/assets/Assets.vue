@@ -2,13 +2,13 @@
   <LayoutDefault maxWidth="none">
     <div class="flex container max-width-xxl">
       <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
-        <AppNestedMenu title="tags" :items="tags" enableAllItem/>
+        <AppNestedMenu title="tags" :items="tags"/>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
         <AppCircleLoader v-if="mediaStore.isLoading"/>
         <div v-else>
-          <MediaUploader v-if="selectedTag" collection="assets" :tag="selectedTag"/>
+          <MediaUploader v-if="query.tags" collection="assets" :tag="query.tags"/>
           
           <div class="grid gap-sm">
             <AppCard 
@@ -33,20 +33,15 @@
 import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
-import useToggle from '@/app/composables/useToggle.js'
+import useQuery from '@/app/composables/useQuery.js'
 
 const route = useRoute()
 const mediaStore = useMediaStore()
-const { toggle, toggled: selectedTag } = useToggle()
+const { query, set, unset } = useQuery()
 
-onMounted(() => {
-  mediaStore.index()
-  toggle(null)
-})
-
-watch(selectedTag, () => {
-  mediaStore.index({ 'filter[tags.slug]': selectedTag.value })
-})
+function indexFiles() {
+  mediaStore.index({ 'filter[tags.slug]': query.value.tags })
+}
 
 function destroyFile(file) {
   mediaStore.destroy(file)
@@ -63,6 +58,14 @@ function openModal(file) {
 function closeModal() {
   modalData.value = null
 }
+
+onMounted(() => {
+  indexFiles()
+})
+
+watch(query, () => {
+  indexFiles()
+}, { deep: true })
 
 const tags = [
   {

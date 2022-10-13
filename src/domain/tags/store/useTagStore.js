@@ -34,8 +34,8 @@ export const useTagStore = defineStore('tagStore', {
           })
       },
       
-      show(id) {
-        TagApi.show(id)
+      show(slug) {
+        TagApi.show(slug)
           .then(response => {
             this.tag = response.data.data
           }).catch(error => {

@@ -1,48 +1,56 @@
 <template>
     <nav v-if="items" class="nested-menu margin-bottom-md">
         <!-- Title -->
-        <div class="padding-bottom-sm">
+        <div v-if="showTitle" class="padding-bottom-sm">
           <span class="text-xs text-uppercase letter-spacing-lg color-primary">{{ title }}</span>
         </div>
         
         <ul class="nested-menu__list">
 
             <!-- "All" option -->
-            <li v-if="enableAllItem" class="nested-menu__item">
-                <a @click.prevent="toggle(null)" :class="toggled === null ? 'nested-menu__link--current' : ''" class="nested-menu__link" href="">
-                    <span class="nested-menu__text">All</span>
+            <li v-if="showAllOption" class="nested-menu__item">
+                <a 
+                  @click.prevent="unset(title)" 
+                  :class="query[title] === undefined ? 'nested-menu__link--current' : ''" 
+                  class="nested-menu__link" 
+                  href=""
+                >
+                  <span class="nested-menu__text">All</span>
                 </a>
             </li>
 
             <!-- Children -->
-            <AppNestedMenuChildren :items="items" :selected="toggled"/>
+            <AppNestedMenuChildren :title="title" :items="items" />
         </ul>
     </nav>
 </template>
 
 <script setup>
-// import { watch } from 'vue'
-import useToggle from '@/app/composables/useToggle.js'
-
 // TODO: Implement loading ghost
 // import LoadingGhost from '@/components/loading/LoadingGhost.vue'
 import AppNestedMenuChildren from '@/app/components/nested-menu/AppNestedMenuChildren.vue'
+
+import useQuery from '@/app/composables/useQuery.js'
+
+const { query, set, unset } = useQuery()
 
 const props = defineProps({
     title: { 
       type: String
     },
     items: { 
-      type: Array,
+      type: Object,
       required: true
     },
-    enableAllItem: {
+    showTitle: {
       type: Boolean,
-      default: false
+      default: true
+    },
+    showAllOption: {
+      type: Boolean,
+      default: true
     }
 })
-
-const { toggle, toggled } = useToggle()
 </script>
 
 <style media="screen">

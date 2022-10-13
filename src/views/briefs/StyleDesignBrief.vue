@@ -6,7 +6,15 @@
     
     <div class="flex container max-width-xxl">
       <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
-        <AppNestedMenu :items="steps"/>
+        <nav class="nested-menu margin-bottom-md">
+          <ul class="nested-menu__list">
+              <li v-for="(step, index) in steps" :key="index" class="nested-menu__item">
+                <a @click.prevent="toggle(step.slug)" :class="toggled === step.slug ? 'nested-menu__link--current' : ''" class="nested-menu__link"  href="">
+                  <span class="nested-menu__text">{{ step.title }}</span>
+                </a>
+              </li>
+            </ul>
+        </nav>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
@@ -17,6 +25,45 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
+
+import useToggle from '@/app/composables/useToggle.js'
+const { toggle, toggled } = useToggle()
+
+onMounted(() => {
+  toggle('brief-intro')
+})
+
+const steps = [
+  {
+    title: 'Intro',
+    slug: 'brief-intro',
+  },
+  {
+    title: 'Step 1 - Tutorial',
+    slug: 'brief-tutorial',
+  },
+  {
+    title: 'Step 2 - Brand',
+    slug: 'brief-brand',
+  },
+  {
+    title: 'Step 3 - Assets',
+    slug: 'brief-assets',
+  },
+  {
+    title: 'Step 4 - Create',
+    slug: 'brief-create',
+  },
+  {
+    title: 'More info',
+    slug: 'brief-more-info',
+  },
+]
+</script>
 
 <script>
 import { defineComponent } from 'vue'
@@ -39,46 +86,4 @@ export default defineComponent({
       BriefMoreInfo,
     }
 })    
-</script>
-
-<script setup>
-import { onMounted } from 'vue'
-
-// Components
-import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
-
-// Composables
-import useToggle from '@/app/composables/useToggle.js'
-const { toggle, toggled } = useToggle()
-
-onMounted(() => {
-    toggle(steps[0].slug)
-})
-
-const steps = [
-  {
-    title: 'Intro',
-    slug: 'BriefIntro',
-  },
-  {
-    title: 'Step 1 - Tutorial',
-    slug: 'BriefTutorial',
-  },
-  {
-    title: 'Step 2 - Brand',
-    slug: 'BriefBrand',
-  },
-  {
-    title: 'Step 3 - Assets',
-    slug: 'BriefAssets',
-  },
-  {
-    title: 'Step 4 - Create',
-    slug: 'BriefCreate',
-  },
-  {
-    title: 'More info',
-    slug: 'BriefMoreInfo',
-  },
-]
 </script>

@@ -1,15 +1,15 @@
 import { ref, computed } from 'vue'
 
-const toggled = ref(null)
+const toggled = ref()
 
 export default function useToggle() {
-    function toggle(item) {
-        // toggled.value = toggled.value === item ? null : item
-        toggled.value = item
-    }
+  
+  function toggle(item) {
+    item == toggled.value ? toggled.value = '' : toggled.value = item
+  }
 
-    return {
-        toggled: computed(() => toggled.value),
-        toggle
-    }
+  return {
+    toggled: computed(() => toggled.value),
+    toggle
+  }
 }

@@ -30,8 +30,8 @@
     </div>
     
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle('BriefTutorial')" class="btn btn--subtle">Back</button>
-      <button @click="toggle('BriefAssets')" class="btn btn--primary">Next</button>
+      <button @click="toggle('brief-tutorial')" class="btn btn--subtle">Back</button>
+      <button @click="toggle('brief-assets')" class="btn btn--primary">Next</button>
     </div>
     
     <MediaModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>
@@ -53,7 +53,7 @@ const organizationCommentsStore = useOrganizationCommentsStore()
 
 // Composables
 import useToggle from '@/app/composables/useToggle.js'
-const { toggle, toggled } = useToggle()
+const { toggle } = useToggle()
 
 // Extract to a view store
 let modalData = ref(null)

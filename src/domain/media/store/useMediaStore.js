@@ -50,6 +50,8 @@ export const useMediaStore = defineStore('mediaStore', {
         update() {},
         
         destroy(file) {
+          // TODO: Let's not accept the whole file
+          // Find it and cache it here instead
           const auth = useAuthStore()
           
           this.files = this.files.filter((f) => f.id !== file.id)

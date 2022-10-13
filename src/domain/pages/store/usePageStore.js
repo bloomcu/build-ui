@@ -3,6 +3,8 @@ import { pageApi as PageApi } from '@/domain/pages/api/pageApi'
 
 export const usePageStore = defineStore('pageStore', {
     state: () => ({
+        // We now get the current route in all stores.
+        // Use the this.router.currentRoute to get the site.
         site: {
           id: 1
         },
@@ -17,6 +19,8 @@ export const usePageStore = defineStore('pageStore', {
         index(params) {
           this.items = []
           
+          // console.log('Route in store: ', this.route)
+          
           PageApi.index(this.site.id, params)
             .then(response => {
               this.pages = response.data
@@ -25,8 +29,8 @@ export const usePageStore = defineStore('pageStore', {
             })
         },
         
-        store(page) {
-          PageApi.store(this.site.id, page)
+        async store(page) {
+          await PageApi.store(this.site.id, page)
             .then(response => {
               this.pages.unshift(response.data)
             }).catch(error => {
@@ -34,11 +38,45 @@ export const usePageStore = defineStore('pageStore', {
             })
         },
         
-        show(id) {},
+        show(pageId) {
+          this.isLoading = true
+          
+          PageApi.show(this.site.id, pageId)
+            .then(response => {
+              this.page = response.data
+              this.isLoading = false
+            }).catch(error => {
+              console.log('Error', error.response.data)
+            })
+        },
         
-        update() {},
+        update(pageId, page) {
+          this.isLoading = true
+          
+          PageApi.update(this.site.id, pageId, page)
+            .then(response => {
+              console.log('Page successfully updated')
+              this.isLoading = false
+            })
+        },
         
-        destroy(id) {},
+        destroy(page) {
+          // TODO: Let's not accept the whole page
+          // Find it and cache it here instead
+          this.isLoading = true
+          
+          this.pages = this.pages.filter((p) => p.id !== page.id)
+          
+          PageApi.destroy(this.site.id, page.id)
+            .then(response => {
+              console.log('Page successfully destroyed')
+              this.loading = false
+            }).catch(error => {
+              this.pages.unshift(page)
+              this.loading = false
+              console.log('Error', error.response.data)
+            })
+        },
     }
 })
 

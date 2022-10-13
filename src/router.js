@@ -26,6 +26,11 @@ const routes = [
     path: '/',
     redirect: 'organizations'
   },
+  // {
+  //   path: '/:catchAll(.*)*',
+  //   name: 'NotFound',
+  //   component: NotFound,
+  // }
   // { 
   //   path: '/survey', 
   //   component: Survey 
