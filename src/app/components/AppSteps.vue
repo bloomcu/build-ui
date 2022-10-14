@@ -54,7 +54,7 @@
         class="step cursor-pointer"
         @click="changeStep(7)"
       >
-        <p class="step__label">Photos</p>
+        <p class="step__label">Images</p>
 
         <span class="step__separator" aria-hidden="true">
           <svg class="icon" viewBox="0 0 16 16"><polyline fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" points="6.5,3.5 11,8 6.5,12.5 "></polyline></svg>

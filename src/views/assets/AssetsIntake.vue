@@ -124,7 +124,7 @@ const steps = [
     name: 'logo',
     title: 'Logo',
     instructions: 'Upload your logo(s) here.',
-    description: 'Formats: SVG or EPS • Max file size: 100MB',
+    description: 'Formats: SVG • Max file size: 100MB',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -187,9 +187,9 @@ const steps = [
   },
   {
     name: 'photo',
-    title: 'Photography',
-    instructions: 'Upload your photography.',
-    description: 'Formats: JPG, JPEG or PNG • Max file size: 100MB',
+    title: 'Images',
+    instructions: 'Upload 5-10 sample images',
+    description: 'Upload 5-10 images that are good examples of the kinds of images you want on your website. <br><br> Formats: JPG, JPEG or PNG • Max file size: 100MB',
     components: [
       {
         name: 'AssetIntakeUploader',
@@ -200,8 +200,8 @@ const steps = [
   },
   {
     name: 'photo',
-    title: 'Photography Do\'s and Don\'ts',
-    instructions: 'What Do\'s and Don\'ts should we know about for your photography?',
+    title: 'Images Do\'s and Don\'ts',
+    instructions: 'What Do\'s and Don\'ts should we know about for your images?',
     description: '',
     components: [
       {
