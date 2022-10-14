@@ -38,7 +38,7 @@ export const useOrganizationCommentsStore = defineStore('organizationCommentsSto
           
           await OrganizationCommentsApi.store(auth.organization, comment)
             .then(response => {
-              // this.comments.unshift(response.data)
+              this.comments.unshift(response.data.data)
             }).catch(error => {
               console.log('Error', error.response.data)
             })

@@ -65,9 +65,6 @@ const newDont = ref({
 function addDo() {
   organizationCommentsStore.store(newDo.value)
     .then((response) => {
-      // TODO: Why are we doing this here rather than in the store?
-      organizationCommentsStore.comments.unshift(newDo.value)
-      
       newDo.value = {
         body: 'Do ',
         group: props.group + '-do',
@@ -78,9 +75,6 @@ function addDo() {
 function addDont() {
   organizationCommentsStore.store(newDont.value)
     .then((response) => {
-      // TODO: Why are we doing this here rather than in the store?
-      organizationCommentsStore.comments.unshift(newDont.value)
-      
       newDont.value = {
         body: 'Don\'t ',
         group: props.group + '-dont',
