@@ -5,23 +5,24 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import * as Filepond from 'filepond'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
-
-import { ref, onMounted } from 'vue'
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
 
 const uploader = ref() // Input binding
 const mediaStore = useMediaStore()
 
 Filepond.registerPlugin(FilePondPluginFileValidateSize)
+Filepond.registerPlugin(FilePondPluginFileValidateType)
 
 onMounted(() => {
   const pond = Filepond.create(uploader.value, {
-    allowRevert: false,
-    allowFileSizeValidation: true,
-    maxFileSize: '100MB',
+    maxFileSize: props.maxFileSize,
+    acceptedFileTypes: props.acceptedFileTypes,
+    fileValidateTypeDetectType: detectCustomFileType,
 
     // Process files
     server: {
@@ -65,14 +66,37 @@ onMounted(() => {
   })
 }) // End onMounted
 
+function detectCustomFileType(source, type) {
+  return new Promise((resolve, reject) => {
+    if (source.name.endsWith('ttf')) resolve('font/ttf')
+    if (source.name.endsWith('ttc')) resolve('font/ttc')
+    if (source.name.endsWith('otf')) resolve('font/otf')
+    if (source.name.endsWith('woff')) resolve('font/woff')
+    if (source.name.endsWith('woff2')) resolve('font/woff2')
+    if (source.name.endsWith('eot')) resolve('font/eot')
+    resolve(type)
+  })
+}
+
 const props = defineProps({
   collection: {
     type: String, 
-    default: 'default',
+    default: 'default'
   },
   tag: { 
-    type: String,
+    type: String
   },
+  maxFileSize: {
+    type: String,
+    default: '100MB'
+  },
+  acceptedFileTypes: {
+    type: Array,
+    default: [
+      'image/jpeg',
+      'image/png'
+    ]
+  }
 })
 </script>
 

@@ -28,7 +28,8 @@
           <p v-if="steps[step].description" class="margin-bottom-md" v-html="steps[step].description"></p>
           <component 
             v-for="(component, index) in steps[step].components"
-            :is="component.name" 
+            :is="component.name"
+            :key="component.key"
             v-bind="component"
           />
         </div>
@@ -101,9 +102,11 @@ const steps = [
     description: 'Format: PDF • Max file size: 100MB',
     components: [
       {
+        key: 1,
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'brand',
+        acceptedFileTypes: ['application/pdf'],
       }
     ],
   },
@@ -114,6 +117,7 @@ const steps = [
     description: '',
     components: [
       {
+        key: 2,
         name: 'AssetIntakeDoDont',
         collection: 'assets',
         group: 'brand',
@@ -127,9 +131,11 @@ const steps = [
     description: 'Formats: SVG • Max file size: 100MB',
     components: [
       {
+        key: 3,
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'logo',
+        acceptedFileTypes: ['image/svg+xml'],
       }
     ],
   },
@@ -140,6 +146,7 @@ const steps = [
     description: '',
     components: [
       {
+        key: 4,
         name: 'AssetIntakeDoDont',
         collection: 'assets',
         group: 'logo',
@@ -153,9 +160,11 @@ const steps = [
     description: 'Formats: TTF, TTC or OTF • Max file size: 100MB',
     components: [
       {
+        key: 5,
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'font',
+        acceptedFileTypes: ['font/ttf', 'font/ttc', 'font/otf'],
       }
     ],
   },
@@ -166,9 +175,11 @@ const steps = [
     description: 'Formats: TTF, OTF, WOFF, WOFF2 or EOT • Max file size: 100MB',
     components: [
       {
+        key: 6,
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'font',
+        acceptedFileTypes: ['font/ttf', 'font/otf', 'font/woff', 'font/woff2', 'font/eot'],
       }
     ],
   },
@@ -179,6 +190,7 @@ const steps = [
     description: '',
     components: [
       {
+        key: 7,
         name: 'AssetIntakeDoDont',
         collection: 'assets',
         group: 'font',
@@ -192,9 +204,11 @@ const steps = [
     description: 'Upload 5-10 images that are good examples of the kinds of images you want on your website. <br><br> Formats: JPG, JPEG or PNG • Max file size: 100MB',
     components: [
       {
+        key: 8,
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'photo',
+        acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
       }
     ],
   },
@@ -205,6 +219,7 @@ const steps = [
     description: '',
     components: [
       {
+        key: 9,
         name: 'AssetIntakeDoDont',
         collection: 'assets',
         group: 'photo',
@@ -218,6 +233,7 @@ const steps = [
     description: 'Max file size: 100MB',
     components: [
       {
+        key: 10,
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'other',
@@ -231,6 +247,7 @@ const steps = [
     description: '',
     components: [
       {
+        key: 11,
         name: 'AssetIntakeDoDont',
         collection: 'assets',
         group: 'other',
