@@ -23,6 +23,7 @@ onMounted(() => {
     maxFileSize: props.maxFileSize,
     acceptedFileTypes: props.acceptedFileTypes,
     fileValidateTypeDetectType: detectCustomFileType,
+    labelFileTypeNotAllowed: 'Wrong file type',
 
     // Process files
     server: {

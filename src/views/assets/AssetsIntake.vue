@@ -99,14 +99,14 @@ const steps = [
     name: 'brand',
     title: 'Brand Guide',
     instructions: 'Upload your brand usage guide document(s) here.',
-    description: 'Format: PDF • Max file size: 100MB',
+    description: 'Max file size: 100MB',
     components: [
       {
         key: 1,
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'brand',
-        acceptedFileTypes: ['application/pdf'],
+        acceptedFileTypes: [],
       }
     ],
   },
@@ -201,14 +201,14 @@ const steps = [
     name: 'photo',
     title: 'Images',
     instructions: 'Upload 5-10 sample images',
-    description: 'Upload 5-10 images that are good examples of the kinds of images you want on your website. <br><br> Formats: JPG, JPEG or PNG • Max file size: 100MB',
+    description: 'Upload 5-10 images that are good examples of the kinds of images you want on your website. <br><br> Formats: JPG, JPEG, PNG or SVG • Max file size: 100MB',
     components: [
       {
         key: 8,
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'photo',
-        acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
+        acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml'],
       }
     ],
   },
@@ -237,6 +237,7 @@ const steps = [
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'other',
+        acceptedFileTypes: [],
       }
     ],
   },
