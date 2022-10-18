@@ -106,7 +106,6 @@ const steps = [
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'brand',
-        acceptedFileTypes: [],
       }
     ],
   },
@@ -237,7 +236,6 @@ const steps = [
         name: 'AssetIntakeUploader',
         collection: 'assets',
         tag: 'other',
-        acceptedFileTypes: [],
       }
     ],
   },
