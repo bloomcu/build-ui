@@ -110,7 +110,7 @@ const props = defineProps({
 
 .filepond--panel-root {
   border-radius: var(--radius-lg);
-  background: var(--color-bg-dark);
+  background-color: var(--color-bg-dark);
 }
 
 .filepond--credits {

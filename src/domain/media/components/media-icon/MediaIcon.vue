@@ -1,17 +1,17 @@
 <template>
   <!-- Raster -->
-  <figure v-if="type === 'jpg' || type === 'jpeg' || type === 'png'" class="file-icon">
+  <figure v-if="type === 'jpg' || type === 'jpeg' || type === 'png'" class="media-icon media-icon__raster">
     <img :src="source">
   </figure>
   
   <!-- Vector -->
-  <figure v-else-if="type === 'svg'" class="file-icon">
+  <figure v-else-if="type === 'svg'" class="media-icon media-icon__vector">
     <img :src="source">
   </figure>
   
   <!-- Other -->
-  <figure v-else class="file-icon">
-    <svg viewBox="0 0 48 48" class="icon">
+  <figure v-else class="media-icon media-icon__other">
+    <svg viewBox="0 0 48 48">
       <component :is="dynamicIcon"/>
     </svg>
   </figure>
@@ -89,9 +89,7 @@ const dynamicIcon = computed(() => {
 </script>
 
 <style lang="scss">
-.file-icon {
-  height: 60px;
-  width: 60px;
+.media-icon {
   display: flex;
   justify-content: center; 
   align-items: center;
@@ -100,17 +98,11 @@ const dynamicIcon = computed(() => {
   border-radius: var(--radius-md);
   margin-right: var(--space-xs);
   
-  
   img {
     display: block;
     object-fit: fit;
     width: 100%;
     height: 100%;
-  }
-  
-  svg {
-     width: 40px;
-     height: 40px;
   }
 }
 </style>

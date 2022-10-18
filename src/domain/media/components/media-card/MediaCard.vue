@@ -1,9 +1,9 @@
 <template>
-  <div class="card card--is-link">
-    <div class="card__link">
+  <div class="media-card card card--is-link">
+    <div class="card-link">
       <figure @click="select()" class="card-img cursor-pointer">
-        <img :src="file.original_url">
-        <div class="card__link-icon" aria-hidden="true">
+        <MediaIcon :type="file.extension" :source="file.original_url"/>
+        <div class="card-link__icon" aria-hidden="true">
           <svg class="icon" viewBox="0 0 32 32"><g stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor" stroke-linejoin="round"><line x1="13" y1="9" x2="13" y2="17"></line><line x1="17" y1="13" x2="9" y2="13"></line><line x1="29" y1="29" x2="24" y2="24"></line><circle cx="13" cy="13" r="11"></circle></g></svg>
         </div>
       </figure>
@@ -28,7 +28,8 @@
 </template>
 
 <script setup>
-// TODO: Change this component to be MediaCard.vue
+import MediaIcon from '@/domain/media/components/media-icon/MediaIcon.vue'
+
 function select() {
     emit('selected', props.file)
 }
@@ -53,88 +54,25 @@ const props = defineProps({
 })
 </script>
 
-<style lang="scss" scoped>
-.card {
-  padding: 0;
-}
-
-.card-img {
-  img {
-    object-fit: fill;
-    width: 100%;
-    height: 180px;
-    border-radius: var(--space-xxs) var(--space-xxs) 0 0;
-  }
-}
-
-.card-content {
-  padding: var(--space-xs);
+<style lang="scss">
+.media-card {
+  padding: 0 !important;
   
-  &__header {
-    height: 80px;
-  }
-}
-
-.card--is-link {
-  will-change: box-shadow;
-  transition: box-shadow 0.2s;
-  
-  &:hover {
-    box-shadow: var(--inner-glow), var(--shadow-md);
-
-    .card-img::after {
-      opacity: 1;
+  .card-img {
+    figure {
+      background-color: var(--color-bg-dark);
+    }
+    
+    .media-icon__vector {
+      padding: var(--space-md);
+    }
+    
+    .media-icon__other {
+      svg {
+        width: 60px;
+        height: 60px;
+      }
     }
   }
-
-  .card-img {
-    position: relative;
-
-    // &::after { // overlay layer
-    //   content: '';
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   width: 100%;
-    //   height: 100%;
-    //   background-color: alpha(var(--color-black), 0.4);
-    //   opacity: 0;
-    //   transition: opacity 0.2s;
-    // }
-  }
-}
-
-.card__link {
-  text-decoration: none;
-  display: block;
-  color: inherit;
-}
-
-.card__link-icon {
-  position: absolute;
-  z-index: 1;
-  width: 64px;
-  height: 64px;
-  top: calc(50% - 32px);
-  left: calc(50% - 32px);
-  background-color: alpha(var(--color-white), 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  transition: opacity 0.2s;
-
-  .icon {
-    display: block;
-    width: 32px;
-    height: 32px;
-    color: var(--color-black); // icon color
-  }
-}
-
-.card--is-link:hover .card__link-icon {
-  opacity: 1;
 }
 </style>

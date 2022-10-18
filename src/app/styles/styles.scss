@@ -103,30 +103,6 @@ Title: Button Group
 
 /* --------------------------------
 
-Card
-
--------------------------------- */
-.card {
-  border: 1px solid var(--color-contrast-lower);
-  border-radius: var(--radius-lg);
-  padding: var(--space-sm);
-  
-  &--shadow {
-    box-shadow: var(--shadow-sm);
-  }
-  
-  &--dark {
-    border: none;
-    background-color: var(--color-bg-dark);
-  }
-}
-
-.card-header {
-  border-radius: var(--radius-lg);
-}
-
-/* --------------------------------
-
 Title: Action icon
 
 -------------------------------- */
@@ -299,4 +275,101 @@ Descr: Custom radio and checkbox buttons
 .radio--bg:focus + label,
 .checkbox--bg:focus + label {
   background-color: alpha(var(--color-primary), 0.1);
+}
+
+/* --------------------------------
+
+Title: Card
+
+-------------------------------- */
+.card {
+  border: 1px solid var(--color-contrast-lower);
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm);
+  
+  &--shadow {
+    box-shadow: var(--shadow-sm);
+  }
+
+  &--dark {
+    border: none;
+    background-color: var(--color-bg-dark);
+  }
+}
+
+.card-img {
+  figure {
+    object-fit: fill;
+    width: 100%;
+    height: 180px;
+    border-radius: var(--space-xxs) var(--space-xxs) 0 0;
+  }
+}
+
+.card-content {
+  padding: var(--space-xs);
+  
+  &__header {
+    height: 80px;
+  }
+}
+
+.card--is-link {
+  will-change: box-shadow;
+  transition: box-shadow 0.2s;
+  
+  &:hover {
+    box-shadow: var(--inner-glow), var(--shadow-md);
+
+    .card-img::after {
+      opacity: 1;
+    }
+  }
+
+  .card-img {
+    position: relative;
+
+    &::after { // overlay layer
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: alpha(var(--color-black), 0.2);
+      border-radius: var(--space-xxs) var(--space-xxs) 0 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+  }
+}
+
+.card-link {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.card-link__icon {
+  position: absolute;
+  z-index: 1;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  .icon {
+    display: block;
+    width: 28px;
+    height: 28px;
+    color: var(--color-white); // icon color
+  }
+}
+
+.card--is-link:hover .card-link__icon {
+  opacity: 1;
 }

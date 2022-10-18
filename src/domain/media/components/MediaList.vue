@@ -1,15 +1,17 @@
 <template>
-    <ul class="dow-list">
-      <li v-for="(file, index) in files" :key="index" class="dow-list__item cursor-pointer padding-xxs">
+    <ul class="media-list">
+      <li v-for="(file, index) in files" :key="index" class="media-list__item cursor-pointer padding-xxs">
         <div @click="select(file)">
           <div class="flex flex-column gap-xs flex-row@xs justify-between@xs items-center@xs">
             <div class="flex items-center">
-              <MediaIcon :type="file.extension" :source="file.original_url"/>
+              <div class="media-list__img">
+                <MediaIcon :type="file.extension" :source="file.original_url"/>
+              </div>
               
               <!-- file info -->
               <div>
                 <span class="text-sm line-height-1 margin-bottom-xxxs">{{ file.name }}</span>
-                <ul class="dow-list__metadata-list text-sm text-xs@md color-contrast-medium">
+                <ul class="media-list__metadata-list text-sm text-xs@md color-contrast-medium">
                   <li>Type: {{ file.extension }}</li>
                   <li>Size: {{ formatFileSize(file.size) }}</li>
                 </ul>
@@ -78,12 +80,12 @@ const formatFileSize = (bites) => {
 </script>
 
 <style lang="scss">
-.dow-list {
+.media-list {
   display: grid;
   gap: var(--space-xs);
 }
 
-.dow-list__item {
+.media-list__item {
   border-radius: var(--radius-md);
   background: var(--color-bg);
   box-shadow: var(--inner-glow), var(--shadow-sm);
@@ -95,7 +97,24 @@ const formatFileSize = (bites) => {
   }
 }
 
-.dow-list__metadata-list {
+.media-list__img {
+
+  .media-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .media-icon__vector {
+    padding: 8px;
+  }
+  
+  .media-icon__other {
+    padding: 10px;
+  }
+  
+}
+
+.media-list__metadata-list {
   display: flex;
   align-items: center;
   line-height: 1;

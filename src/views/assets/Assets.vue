@@ -11,7 +11,7 @@
           <MediaUploader v-if="query.tags" collection="assets" :tag="query.tags"/>
           
           <div class="grid gap-sm">
-            <AppCard 
+            <MediaCard 
               v-for="file in mediaStore.files"
               :key="file.id"
               :file="file"
@@ -100,7 +100,7 @@ const tags = [
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppCircleLoader from '@/app/components/AppCircleLoader.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
-import AppCard from '@/app/components/AppCard.vue'
+import MediaCard from '@/domain/media/components/media-card/MediaCard.vue'
 import MediaUploader from '@/domain/media/components/MediaUploader.vue'
 import MediaList from '@/domain/media/components/MediaList.vue'
 import MediaModal from '@/domain/media/components/MediaModal.vue'
@@ -110,7 +110,7 @@ export default {
       LayoutDefault,
       AppCircleLoader,
       AppNestedMenu,
-      AppCard,
+      MediaCard,
       MediaUploader,
       MediaList,
       MediaModal,
