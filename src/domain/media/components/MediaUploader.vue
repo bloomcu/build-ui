@@ -93,10 +93,7 @@ const props = defineProps({
   },
   acceptedFileTypes: {
     type: Array,
-    default: [
-      'image/jpeg',
-      'image/png'
-    ]
+    default: []
   }
 })
 </script>
