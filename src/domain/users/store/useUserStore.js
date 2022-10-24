@@ -27,17 +27,17 @@ export const useUserStore = defineStore('userStore', {
             })
         },
         
-        async store(user) {
-          const auth = useAuthStore()
-          this.isLoading = true
-          
-          await UserApi.store(auth.organization, user)
-            .then(response => {
-              this.users.push(response.data.data)
-            }).catch(error => {
-              console.log('Error', error.response.data)
-            })
-        },
+        // async store(user) {
+        //   const auth = useAuthStore()
+        //   this.isLoading = true
+        // 
+        //   await UserApi.store(auth.organization, user)
+        //     .then(response => {
+        //       this.users.push(response.data.data)
+        //     }).catch(error => {
+        //       console.log('Error', error.response.data)
+        //     })
+        // },
         
         // show(id) {
         //   const auth = useAuthStore()
@@ -61,16 +61,16 @@ export const useUserStore = defineStore('userStore', {
         //     })
         // },
         
-        destroy(id) {
-          const auth = useAuthStore()
-          this.isLoading = true
-          
-          UserApi.destroy(auth.organization, id)
-            .then(response => {
-              this.users = this.users.filter((user) => user.id !== id)
-              this.isLoading = false
-            })
-        }
+        // destroy(id) {
+        //   const auth = useAuthStore()
+        //   this.isLoading = true
+        // 
+        //   UserApi.destroy(auth.organization, id)
+        //     .then(response => {
+        //       this.users = this.users.filter((user) => user.id !== id)
+        //       this.isLoading = false
+        //     })
+        // }
     }
 })
 

@@ -68,12 +68,8 @@
           </thead>
           <tbody class="table__body">
             <tr 
-              v-for="user in [
-                { id: 1, name: 'Ryan Harmon', email: 'ryan@bloomcu.com', role: 'admin', joined: '2 days ago' },
-                { id: 2, name: 'Derik Kraus', email: 'derik@bloomcu.com', role: 'admin', joined: '4 hours ago' },
-                { id: 3, name: 'Jane Doe', email: 'jane@client.com', role: 'editor', joined: '1 minute ago' },
-              ]" 
-              :key="user.id" 
+              v-for="user in userStore.users"
+              :key="user.id"
               class="table__row"
             >
               <td class="table__cell flex items-center" role="cell">
@@ -84,10 +80,10 @@
                 </div>
               </td>
               <td class="table__cell" role="cell">
-                <AppChip :label="user.role" color="outline" interactive="true"/>
+                <AppChip :label="user.role" color="outline"/>
               </td>
               <td class="table__cell text-right" role="cell">
-                {{ user.joined }}
+                {{ moment(user.created_at).fromNow() }}
               </td>
             </tr>
           </tbody>
@@ -127,5 +123,6 @@ function submit() {
 
 onMounted(() => {
   inviteStore.index()
+  userStore.index()
 })
 </script>

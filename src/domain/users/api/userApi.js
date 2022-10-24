@@ -11,15 +11,15 @@ const userApi = {
         return HttpClient.get(`/${organization}/users`, { params: params })
     },
     
-    /**
-     * Store a user
-     *
-     * @param Object user [Properties to create user from]
-     * @return promise
-     */
-    store(organization, user) {
-        return HttpClient.post(`/${organization}/users`, user)
-    },
+    // /**
+    //  * Store a user
+    //  *
+    //  * @param Object user [Properties to create user from]
+    //  * @return promise
+    //  */
+    // store(organization, user) {
+    //     return HttpClient.post(`/${organization}/users`, user)
+    // },
     
     // /**
     //  * Show a user
@@ -42,15 +42,15 @@ const userApi = {
     //   return HttpClient.put(`/${organization}/users/${id}`, user)
     // },
     
-    /**
-     * Destroy a user
-     *
-     * @param Integer id [Id of the user you want to destroy]
-     * @return promise
-     */
-    destroy(organization, id) {
-        return HttpClient.delete(`/${organization}/users/${id}`)
-    },
+    // /**
+    //  * Destroy a user
+    //  *
+    //  * @param Integer id [Id of the user you want to destroy]
+    //  * @return promise
+    //  */
+    // destroy(organization, id) {
+    //     return HttpClient.delete(`/${organization}/users/${id}`)
+    // },
 }
 
 export { userApi }
