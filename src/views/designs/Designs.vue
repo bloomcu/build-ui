@@ -20,12 +20,12 @@
         
         <div class="card-footer flex justify-between items-center border-top margin-top-sm padding-top-sm">
           <div class="flex gap-xs">
-            <button @click.stop.prevent="copyToClipboard(`?design=${design.uuid}&mode=view`), copied = `${design.uuid}-view`" class="btn btn--sm btn--primary">
-              {{ copied === `${design.uuid}-view` ? 'Copied!' : 'Viewer URL' }}
-            </button>
-            <button @click.stop.prevent="copyToClipboard(`?design=${design.uuid}&mode=edit`), copied = `${design.uuid}-edit`" class="btn btn--sm btn--primary">
-              {{ copied === `${design.uuid}-edit` ? 'Copied!' : 'Editor URL' }}
-            </button>
+            <ButtonCopyToClipboard :value="`?design=${design.uuid}&mode=view`" class="btn btn--sm btn--subtle width-100%">
+              Viewer URL
+            </ButtonCopyToClipboard>
+            <ButtonCopyToClipboard :value="`?design=${design.uuid}&mode=edit`" class="btn btn--sm btn--subtle width-100%">
+              Editor URL
+            </ButtonCopyToClipboard>
           </div>
           <RouterLink :to="{ name: 'designsEdit', params: { design: design.uuid } }" class="btn btn--sm btn--subtle margin-left-auto">Edit</RouterLink>
         </div>
@@ -43,24 +43,9 @@ import { useDesignStore } from '@/domain/designs/store/useDesignStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import CreateDesignModal from '@/views/designs/components/CreateDesignModal.vue'
+import ButtonCopyToClipboard from '@/app/components/buttons/ButtonCopyToClipboard.vue'
 
 const designStore = useDesignStore()
-
-const copied = ref('')
-
-// TODO: Make this a composable
-// Ref: https://codepen.io/PJCHENder/pen/jamJpj?editors=1010
-const copyToClipboard = (value) => {
-  var tempInput = document.createElement("input");
-  tempInput.value = value;
-  document.body.appendChild(tempInput);
-  tempInput.select();
-  
-  document.execCommand("copy");
-  document.body.removeChild(tempInput);
-  
-  // alert("Copied the text: " + tempInput.value);
-}
 
 onMounted(() => {
     designStore.index()

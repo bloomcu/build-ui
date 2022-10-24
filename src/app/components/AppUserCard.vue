@@ -3,7 +3,7 @@
     <!-- Header -->
     <div @click="open = !open" class="card-header flex items-center">
       <figure class="margin-right-xs">
-        <AppUserAvatar :name="user.name" imageSize="md"/>
+        <AppUserAvatar :name="user.name" size="md"/>
       </figure>
     
       <div class="text-component text-sm line-height-sm text-space-y-xxs">

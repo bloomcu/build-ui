@@ -9,6 +9,7 @@
       :placeholder="placeholder"
       :required="required"
       :autofocus="autofocus"
+      :disabled="disabled"
       class="form-control width-100%" 
     >
   </div>
@@ -34,6 +35,10 @@ const props = defineProps({
     default: false
   },
   autofocus: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
     type: Boolean,
     default: false
   }

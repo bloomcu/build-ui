@@ -1,5 +1,5 @@
 <template>
-  <div class="avatar" :class="`avatar--${imageSize}`">
+  <div class="avatar" :class="`avatar--${size}`">
     <figure class="avatar__figure" role="img">
       <img v-if="image" :src="image" class="avatar__img" alt="User avatar" title="User avatar">
       <div v-else class="avatar__initials"><span>{{ createInitials(name) }}</span></div>
@@ -15,7 +15,7 @@ const props = defineProps({
   image: { 
     type: String,
   },
-  imageSize: {
+  size: {
     type: String,
     default: 'md',
   },
@@ -67,11 +67,11 @@ function createInitials(name) {
 }
 
 .avatar--md {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .avatar--lg {
-  font-size: 3em;
+  font-size: 2em;
 }
 
 // status

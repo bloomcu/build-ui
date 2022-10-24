@@ -1,5 +1,5 @@
 <template>
-  <button class="chip chip--white chip--interactive">
+  <button class="chip" :class="`chip--${color}`">
     <em v-if="icon" class="chip__icon-wrapper bg-success">
       <svg class="icon" viewBox="0 0 12 12"><polyline points="1.5 6 4.5 9 10.5 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </em>
@@ -12,6 +12,14 @@ const props = defineProps({
   label: {
     type: String,
     required: true,
+  },
+  color: {
+    type: String,
+    default: 'white',
+  },
+  interactive: {
+    type: Boolean,
+    default: false,
   },
   icon: {
     type: Boolean,
@@ -44,7 +52,7 @@ const props = defineProps({
 
 .chip--outline {
   background-color: transparent;
-  box-shadow: inset 0 0 0 1px alpha(var(--color-contrast-higher), 0.25);
+  box-shadow: inset 0 0 0 1px alpha(var(--color-contrast-high), 0.15);
 }
 
 .chip--white {

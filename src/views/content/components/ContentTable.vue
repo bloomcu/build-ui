@@ -23,9 +23,9 @@
     </div><!-- End top bar -->
     
     <!-- Table -->
-    <ul class="table border radius-md text-sm">
+    <ul class="content-table border radius-md text-sm">
         <!-- Page -->
-        <li v-for="page in pageStore.pages" :key="page.id" class="table-item flex padding-sm">
+        <li v-for="page in pageStore.pages" :key="page.id" class="content-table-item flex padding-sm">
           <!-- Checkbox -->
           <div class="flex items-center border-right padding-left-xs padding-right-sm margin-right-md">
             <input class="checkbox" type="checkbox" :id="page.id">
@@ -58,7 +58,7 @@
             </button>
           </div>
         </li><!-- End item -->
-    </ul><!-- End table -->
+    </ul><!-- End content-table -->
   </div>
 </template>
 
@@ -93,11 +93,11 @@ function destroy(page) {
 </style>
 
 <style lang="scss">
-.table {
+.content-table {
   position: relative;
 }
 
-.table-item {
+.content-table-item {
   transition: .1s;
   border-bottom: 1px solid var(--color-contrast-lower);
     
@@ -110,11 +110,11 @@ function destroy(page) {
   }
 }
 
-.table-item__action {
+.content-table-item__action {
   cursor: pointer;
 }
 
-.table-item__figure {
+.content-table-item__figure {
   position: relative;
   display: flex;
   justify-content: center;
