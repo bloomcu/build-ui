@@ -16,25 +16,11 @@ export const useAuthStore = defineStore('authStore', {
     },
     
     actions: {
-      async register(name, email, password, password_confirmation) {
-        await AuthApi.register(name, email, password, password_confirmation)
-          .then(response => {
-            this.user = response.data.data
-            
-            // Store user details and jwt in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(response.data.data))
-          }).catch(error => {
-            console.log('Error', error.response.data)
-          })
-      },
-      
       async login(email, password) {
         await AuthApi.login(email, password)
           .then(response => {
             this.user = response.data.data
             this.organization = response.data.data.organization.slug
-            
-            // Store user details and jwt in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(response.data.data))
           }).catch(error => {
             console.log('Error', error.response.data)
@@ -50,7 +36,27 @@ export const useAuthStore = defineStore('authStore', {
           }).catch(error => {
             console.log('Error', error.response.data)
           })
-      }
+      },
+      
+      async register(name, email, password, password_confirmation) {
+        await AuthApi.register(name, email, password, password_confirmation)
+          .then(response => {
+            this.user = response.data.data
+            localStorage.setItem('user', JSON.stringify(response.data.data))
+          }).catch(error => {
+            console.log('Error', error.response.data)
+          })
+      },
+      
+      async registerWithInvitation(invitation_uuid, name, email, password, password_confirmation) {
+        await AuthApi.registerWithInvitation(invitation_uuid, name, email, password, password_confirmation)
+          .then(response => {
+            this.user = response.data.data
+            localStorage.setItem('user', JSON.stringify(response.data.data))
+          }).catch(error => {
+            console.log('Error', error.response.data)
+          })
+      },
     }
 })
 

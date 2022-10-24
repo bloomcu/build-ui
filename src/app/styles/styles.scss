@@ -135,7 +135,6 @@ Title: Radios and Checkboxes
 Descr: Custom radio and checkbox buttons
 
 -------------------------------- */
-
 :root {
   /* radios + checkboxes */
   --checkbox-radio-size: 18px;
@@ -279,13 +278,13 @@ Descr: Custom radio and checkbox buttons
 
 /* --------------------------------
 
-Title: Card
+Cards
 
 -------------------------------- */
 .card {
   border: 1px solid var(--color-contrast-lower);
   border-radius: var(--radius-lg);
-  padding: var(--space-sm);
+  padding: calc(var(--space-sm) + 5px);
   
   &--shadow {
     box-shadow: var(--shadow-sm);
@@ -372,4 +371,196 @@ Title: Card
 
 .card--is-link:hover .card-link__icon {
   opacity: 1;
+}
+
+/* --------------------------------
+
+Tables
+
+-------------------------------- */
+// >>> style affecting all (block + expanded) versions 👇
+.table {
+  position: relative;
+  z-index: 1;
+}
+// <<< end style affecting all versions
+
+// >>> block version only (mobile) 👇
+.table:not(.table--expanded) {
+  border-collapse: separate;
+  border-spacing: 0 var(--space-md); // row gap
+  margin-top: calc(-2 * var(--space-md)); // set spacing variable = row gap ☝️
+
+  .table__header { // hide table header - but keep it accessible to SR
+    @include srHide;
+  }
+
+  .table__row {
+    .table__cell:first-child {
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+  
+    .table__cell:last-child {
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      
+      &::after { // hide border bottom
+        display: none;
+      }
+    }
+  }
+
+  .table__cell {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    text-align: right;
+    padding: var(--space-md);
+    background-color: var(--color-bg-light);
+
+    &::after { // border bottom
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: var(--space-md);
+      width: calc(100% - (2 * var(--space-md)));
+      height: 1px;
+      background-color: var(--color-contrast-lower);
+    }
+  }
+}
+// <<< end block version
+
+// >>> expanded version only (desktop) 👇 -> show standard rows and cols
+.table--expanded {
+  .table__header {
+    .table__cell { // header cell style
+      position: relative;
+      z-index: 10;
+      background-color: var(--color-bg);
+      border-bottom: 1px solid var(--color-contrast-lower); // header border bottom
+      font-size: var(--text-sm);
+      color: var(--color-contrast-higher);
+    }
+  }
+  
+  .table__row {
+    border-bottom: 1px solid var(--color-contrast-lower);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .table__cell {
+    padding: calc(var(--space-sm) + 7px) var(--space-sm);
+  }
+
+  // --header-sticky
+  .table__header--sticky {
+    .table__cell { // header cell style
+      position: sticky;
+      top: 0;
+    }
+  }
+}
+// <<< end expanded version
+
+@each $breakpoint, $value in $breakpoints {
+  .table--expanded\@#{$breakpoint}::before {
+    content: 'collapsed';
+    @include breakpoint(#{$breakpoint}) {
+      content: 'expanded';
+    }
+  }
+}
+
+/* --------------------------------
+
+Skeleton Loaders
+
+-------------------------------- */
+:root {
+  // all
+  --ske-animation-duration: 1s;
+
+  // rectangle + text
+  --ske-radius: var(--radius-md);
+}
+
+.ske {
+  position: relative;
+  background-color: alpha(var(--color-contrast-higher), 0.1);
+  overflow: hidden;
+
+  &::after { // animated background effect
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, alpha(var(--color-contrast-higher), 0), alpha(var(--color-contrast-higher), 0.1), alpha(var(--color-contrast-higher), 0));
+    background-repeat: no-repeat;
+    background-size: 500px 100%;
+    background-position: -500px 0;
+    will-change: background-position;
+    animation: ske-background var(--ske-animation-duration) infinite; 
+  }
+}
+
+@keyframes ske-background {
+  from {
+    background-position: -500px 0;
+  }
+
+  to {
+    background-position: calc(100% + 500px) 0;
+  }
+}
+
+// --circle
+.ske--circle {
+  height: 0;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+}
+
+// --rectangle
+.ske--rect, 
+[class*="ske--rect-"], 
+.ske--square {
+  border-radius: var(--ske-radius);
+  clip-path: inset(0% 0% 0% 0% round var(--ske-radius));
+}
+
+[class*="ske--rect-"], 
+.ske--square {
+  height: 0;
+  padding-bottom: calc(100%/(var(--ske-aspect-ratio)));
+}
+
+.ske--rect-16\:9 {
+  --ske-aspect-ratio: 16/9;
+}
+
+.ske--rect-4\:3 {
+  --ske-aspect-ratio: 4/3;
+}
+
+.ske--square, .ske--rect-1\:1 {
+  --ske-aspect-ratio: 1/1;
+}
+
+.ske--text {
+  height: 1em;
+  border-radius: var(--ske-radius);
+  clip-path: inset(0% 0% 0% 0% round var(--ske-radius));
+}
+
+.ske--heading {
+  height: 2.5em;
+  border-radius: var(--ske-radius);
+  clip-path: inset(0% 0% 0% 0% round var(--ske-radius));
 }

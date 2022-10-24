@@ -68,6 +68,7 @@ function login() {
   authStore.login(email, password)
     .then(() => {
       // TODO: Push me to an organization dashboard with next steps
+      // TODO: Do this in the store method
       router.push({ name: 'assetsIntake', params: { organization: authStore.organization } })
       // router.push({ name: 'organizations' })
     })

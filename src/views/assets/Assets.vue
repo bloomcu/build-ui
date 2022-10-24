@@ -6,10 +6,10 @@
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-auto padding-y-md padding-x-lg">
-        <AppCircleLoader v-if="mediaStore.isLoading"/>
+        <AssetSkeletonLoader v-if="mediaStore.isLoading"/>
+        
         <div v-else>
-          <MediaUploader v-if="query.tags" collection="assets" :tag="query.tags"/>
-          
+          <MediaUploader v-if="query.tags" collection="assets" :tag="query.tags"/>  
           <div class="grid gap-sm">
             <MediaCard 
               v-for="file in mediaStore.files"
@@ -98,7 +98,7 @@ const tags = [
 
 <script>
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
-import AppCircleLoader from '@/app/components/AppCircleLoader.vue'
+import AssetSkeletonLoader from '@/views/assets/components/AssetSkeletonLoader.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import MediaCard from '@/domain/media/components/media-card/MediaCard.vue'
 import MediaUploader from '@/domain/media/components/MediaUploader.vue'
@@ -108,7 +108,7 @@ import MediaModal from '@/domain/media/components/MediaModal.vue'
 export default {
     components: [
       LayoutDefault,
-      AppCircleLoader,
+      AssetSkeletonLoader,
       AppNestedMenu,
       MediaCard,
       MediaUploader,
