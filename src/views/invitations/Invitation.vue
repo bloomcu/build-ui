@@ -30,7 +30,7 @@
           <form class="login-form" action="#" @submit.prevent="register()">
             <div class="grid gap-x-sm">
               <AppInput v-model="inputs.name" label="Full name" required autofocus />
-              <AppInput v-model="inputs.email" label="Email" required />
+              <AppInput v-model="inputs.email" label="Email" required disabled />
               <AppInput v-model="inputs.password" type="password" label="Password" required />
               <AppInput v-model="inputs.password_confirmation" type="password" label="Confirm password" required />
             </div>
