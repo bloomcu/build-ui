@@ -7,14 +7,6 @@ export const useAuthStore = defineStore('authStore', {
       organization: 'bloomcu',
     }),
     
-    getters: {
-      isAuthenticated(state) {
-        if (state.user) { 
-          return state.user.access_token
-        }
-      }
-    },
-    
     actions: {
       async login(email, password) {
         await AuthApi.login(email, password)

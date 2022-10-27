@@ -1,4 +1,5 @@
 import axios from 'axios'
+// import { useErrorStore } from '@/app/store/useErrorStore'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
 /**
@@ -10,28 +11,64 @@ const httpClient = axios.create({
 })
 
 /**
-* Authenticate requests
-* Return auth header with access token if user is logged in
+* Intercept requests
 */
-httpClient.interceptors.request.use((config) => {
-    const { user } = useAuthStore()
-    if (!!user?.access_token) {
-      config.headers.Authorization = `Bearer ${user.access_token}`
-    }
-    return config
-  }, (error) => { 
-    Promise.reject(error) 
+httpClient.interceptors.request.use((config) => {  
+  /**
+  * Authenticate request
+  * Return auth header with access token if user is logged in
+  */
+  const { user } = useAuthStore()
+  if (!!user?.access_token) {
+    config.headers.Authorization = `Bearer ${user.access_token}`
   }
-);
+  
+  return config
+  
+}, (error) => {
+  
+  Promise.reject(error) 
+})
 
 /**
-* Catch unauthorized requests
-* Logout if 401 Unauthorized or 403 Forbidden response returned from api
+* Intercept responses
 */
-httpClient.interceptors.response.use((response) => { return response }, (error) => {
-    if ([401, 403].includes(error.response.status)) {
-      document.location.href = '/logout';
-    }
-});
+httpClient.interceptors.response.use((response) => {
+  return response 
+  
+}, (error) => {
+  console.log('Error status: ', error.response.status)
+  console.log('Error message: ', error.response.data.message)
+  console.log('Error errors: ', error.response.data.errors)
+  
+  /**
+  * Catch validation errors
+  * Commit validation errors to the global app error store
+  */
+  if ([422].includes(error.response.status)) {
+    // const { setErrors } = useErrorStore()
+    // errorStore.setErrors(error.response.data)
+  }
+  
+  /**
+  * Catch unauthorized request
+  * Logout if 401 Unauthorized or 403 Forbidden response is returned from api
+  */
+  if ([401, 403].includes(error.response.status)) {
+    // Todo: Send user to an "Unauthorized" page
+    document.location.href = '/logout'
+  }
+  
+  /**
+  * Catch not found request
+  * Redirect to 404 page if 404 Not Found response is returned from api
+  */
+  if ([404].includes(error.response.status)) {
+    document.location.href = '/404'
+  }
+  
+  // return error
+  return Promise.reject(error)
+})
 
 export { httpClient }

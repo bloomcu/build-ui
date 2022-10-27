@@ -7,6 +7,7 @@ export const useInvitationStore = defineStore('invitationStore', {
     state: () => ({
         invitations: [],
         invitation: null,
+        errors: [],
         isLoading: false,
     }),
     
@@ -29,16 +30,16 @@ export const useInvitationStore = defineStore('invitationStore', {
         
         async store(email) {
           const auth = useAuthStore()
-          this.isLoading = true
+          // this.isLoading = true
           
           await InvitationApi.store(auth.organization, {
             email: email.value,
             role: 'editor'
-          })
-          .then((response) => {
+          }).then(response => {
             this.invitations.unshift(response.data.data)
+            // this.isLoading = false
           }).catch((error) => {
-            console.log('Error', error)
+            return Promise.reject(error)
           })
         },
         

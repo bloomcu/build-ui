@@ -112,12 +112,11 @@ const sendingInvite = ref(false)
 function submit() {
   sendingInvite.value = true
   
-  inviteStore.store(email)
-  .then(() => {
-    setTimeout(function () {
-      email.value = ''
-      sendingInvite.value = false
-    }.bind(this), 1000)
+  inviteStore.store(email).then(() => {
+    email.value = ''
+    sendingInvite.value = false
+  }).catch((error) => {
+    sendingInvite.value = false
   })
 }
 

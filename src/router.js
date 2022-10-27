@@ -7,6 +7,7 @@ import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 import assets from '@/views/assets/routes/index.js'
 import auth from '@/views/auth/routes/index.js'
 import briefs from '@/views/briefs/routes/index.js'
+import common from '@/views/common/routes/index.js'
 import content from '@/views/content/routes/index.js'
 import designs from '@/views/designs/routes/index.js'
 import invitations from '@/views/invitations/routes/index.js'
@@ -19,6 +20,7 @@ const routes = [
   ...assets,
   ...auth,
   ...briefs,
+  ...common,
   ...content,
   ...designs,
   ...invitations,
@@ -55,7 +57,7 @@ const router = createRouter({
 * Redirect to login page if not logged in and trying to access a restricted page
 */
 router.beforeEach(async (to) => {
-  // TODO: Can I just isntantiate this store one in this file?
+  // TODO: Can I just instantiate this store one in this file?
   const authStore = useAuthStore()
   
   const publicRouteNames = [
@@ -82,7 +84,7 @@ router.beforeEach(async (to) => {
 * Get organization from url, persist in auth store for use in api requests
 */
 router.beforeEach(async (to) => {
-    // TODO: Can I just isntantiate this store one in this file?
+    // TODO: Can I just instantiate this store one in this file?
     const authStore = useAuthStore()
     
     if (to.params.organization) {
