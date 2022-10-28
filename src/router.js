@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useErrorStore } from '@/app/store/useErrorStore'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
 // import Survey from '@/views/Survey.vue';
@@ -53,12 +54,21 @@ const router = createRouter({
 })
 
 /**
+* Clear any validation errors
+* When routing to another view, we don't want form validations errors following us
+*/
+router.beforeEach(async (to) => {
+  const { emptyErrors } = useErrorStore()
+  emptyErrors()
+})
+
+/**
 * Restrict unauthenticated access
 * Redirect to login page if not logged in and trying to access a restricted page
 */
 router.beforeEach(async (to) => {
   // TODO: Can I just instantiate this store one in this file?
-  const authStore = useAuthStore()
+  const { user } = useAuthStore()
   
   const publicRouteNames = [
     'forgotPassword',
@@ -71,7 +81,7 @@ router.beforeEach(async (to) => {
 
   const authRequired = !publicRouteNames.includes(to.name)
 
-  if (!authStore.user && authRequired) {
+  if (!user && authRequired) {
     // TODO: Set the return URL so that when the user logs in, they can return here
     // authStore.returnUrl = to.fullPath
 
@@ -85,10 +95,10 @@ router.beforeEach(async (to) => {
 */
 router.beforeEach(async (to) => {
     // TODO: Can I just instantiate this store one in this file?
-    const authStore = useAuthStore()
+    let { organization } = useAuthStore()
     
     if (to.params.organization) {
-        authStore.organization = to.params.organization
+        organization = to.params.organization
     }
 })
 

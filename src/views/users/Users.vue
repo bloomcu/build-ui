@@ -13,14 +13,16 @@
         <form @submit.prevent="submit()">
           <h2 class="text-base margin-bottom-xs">Invite teammates</h2>
           <p class="text-sm color-contrast-medium margin-bottom-sm">Provide the email address of a teammate, and an invitation will be sent to them.</p>
-          <div class="grid gap-sm">
-            <div class="col-9@md">
-              <input v-model="email" class="form-control width-100%" type="text" name="invitee-email" placeholder="Email" required>
+          <div class="grid gap-x-sm">
+            <div class="col-9">
+              <input v-model="email" :class="errorStore.errors.email ? 'form-control--error' : ''" class="form-control width-100%" type="text" name="invitee-email" placeholder="Email" required>
             </div>
-            <div class="col-3@md">
-              
+            <div class="col-3">
               <button v-if="sendingInvite" class="btn btn--primary width-100% height-100%" disabled>Sending...</button>
               <button v-else class="btn btn--primary width-100% height-100%">Send invite</button>
+            </div>
+            <div v-if="errorStore.errors.email" class="bg-error bg-opacity-20% padding-xs radius-md text-sm color-contrast-higher margin-top-xxs" role="alert">
+              <p>{{ errorStore.errors.email[0] }}</p>
             </div>
           </div>
         </form>
@@ -96,6 +98,7 @@
 <script setup>
 import moment from "moment"
 import { ref, onMounted } from 'vue'
+import { useErrorStore } from '@/app/store/useErrorStore'
 import { useInvitationStore } from '@/domain/invitations/store/useInvitationStore'
 import { useUserStore } from '@/domain/users/store/useUserStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
@@ -104,8 +107,10 @@ import AppChip from '@/app/components/AppChip.vue'
 import ButtonDestroy from '@/app/components/buttons/ButtonDestroy.vue'
 import ButtonCopyToClipboard from '@/app/components/buttons/ButtonCopyToClipboard.vue'
 
+const errorStore = useErrorStore()
 const inviteStore = useInvitationStore()
 const userStore = useUserStore()
+
 const email = ref('')
 const sendingInvite = ref(false)
 

@@ -2,8 +2,7 @@ import { defineStore, acceptHMRUpdate } from 'pinia'
 
 export const useErrorStore = defineStore('errorStore', {
   state: () => ({
-      errors: [],
-      loading: false,
+      errors: []
   }),
 
   actions: {
@@ -11,8 +10,8 @@ export const useErrorStore = defineStore('errorStore', {
       this.errors = errors
     },
     
-    setLoading(isLoading) {
-      this.loading = isLoading
+    emptyErrors() {
+      this.errors = []
     }
   }
 })

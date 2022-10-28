@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import { useErrorStore } from '@/app/store/useErrorStore'
+import { useErrorStore } from '@/app/store/useErrorStore'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
 /**
@@ -34,6 +34,9 @@ httpClient.interceptors.request.use((config) => {
 * Intercept responses
 */
 httpClient.interceptors.response.use((response) => {
+  const { emptyErrors } = useErrorStore()
+  emptyErrors()
+  
   return response 
   
 }, (error) => {
@@ -46,8 +49,8 @@ httpClient.interceptors.response.use((response) => {
   * Commit validation errors to the global app error store
   */
   if ([422].includes(error.response.status)) {
-    // const { setErrors } = useErrorStore()
-    // errorStore.setErrors(error.response.data)
+    const { setErrors } = useErrorStore()
+    setErrors(error.response.data.errors)
   }
   
   /**
