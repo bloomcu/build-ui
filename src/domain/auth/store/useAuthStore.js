@@ -1,6 +1,9 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { authApi as AuthApi } from '@/domain/auth/api/authApi'
 
+// We now get the current route in all stores.
+// Use the this.router.currentRoute to get the site.
+
 export const useAuthStore = defineStore('authStore', {
     state: () => ({
       user: JSON.parse(localStorage.getItem('user')),
@@ -10,13 +13,15 @@ export const useAuthStore = defineStore('authStore', {
     actions: {
       async login(email, password) {
         await AuthApi.login(email, password)
-          .then(response => {
-            this.user = response.data.data
+          .then(response => {      
+            // TODO: Do I need to do this if we set the organization in httpClient? No.
             this.organization = response.data.data.organization.slug
+            this.user = response.data.data
             localStorage.setItem('user', JSON.stringify(response.data.data))
-          }).catch(error => {
-            console.log('Error', error.response.data)
+            
+            this.router.push({ name: 'assets', params: { organization: response.data.data.organization.slug } })
           })
+          .catch(error => {})
       },
       
       async logout() {
@@ -25,29 +30,31 @@ export const useAuthStore = defineStore('authStore', {
         await AuthApi.logout()
           .then(response => {
             this.user = null
-          }).catch(error => {
-            console.log('Error', error.response.data)
+            this.router.push({ name: 'login' })
           })
+          .catch(error => {})
       },
       
       async register(name, email, password, password_confirmation) {
         await AuthApi.register(name, email, password, password_confirmation)
           .then(response => {
-            this.user = response.data.data
             localStorage.setItem('user', JSON.stringify(response.data.data))
-          }).catch(error => {
-            console.log('Error', error.response.data)
+            this.user = response.data.data
+            
+            // TODO: The next step for user will be to setup their organization
+            // this.router.push({ name: 'onboardOrganization' })
           })
+          .catch(error => {})
       },
       
       async registerWithInvitation(invitation_uuid, name, email, password, password_confirmation) {
         await AuthApi.registerWithInvitation(invitation_uuid, name, email, password, password_confirmation)
           .then(response => {
-            this.user = response.data.data
             localStorage.setItem('user', JSON.stringify(response.data.data))
-          }).catch(error => {
-            console.log('Error', error.response.data)
+            this.user = response.data.data
+            this.router.push({ name: 'assets', params: { organization: response.data.data.organization.slug } })
           })
+          .catch(error => {})
       },
     }
 })

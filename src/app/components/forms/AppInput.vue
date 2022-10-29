@@ -4,14 +4,18 @@
     <input 
       @input="updateValue($event.target.value)"
       :value="modelValue"
-      :type="type" 
-      :name="label" 
+      :type="type"
+      :name="label"
       :placeholder="placeholder"
       :required="required"
       :autofocus="autofocus"
       :disabled="disabled"
+      :class="error ? 'form-control--error' : ''"
       class="form-control width-100%" 
     >
+    <div v-if="error" class="bg-error bg-opacity-20% padding-xs radius-md text-sm color-contrast-higher margin-top-xxxs" role="alert">
+      <p>{{ error[0] }}</p>
+    </div>
   </div>
 </template>
 
@@ -28,6 +32,9 @@ const props = defineProps({
     type: String
   },
   placeholder: {
+    type: String
+  },
+  error: {
     type: String
   },
   required: {

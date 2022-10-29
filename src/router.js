@@ -80,11 +80,11 @@ router.beforeEach(async (to) => {
   ]
 
   const authRequired = !publicRouteNames.includes(to.name)
-
+  
   if (!user && authRequired) {
     // TODO: Set the return URL so that when the user logs in, they can return here
     // authStore.returnUrl = to.fullPath
-
+    
     return '/login'
   }
 })

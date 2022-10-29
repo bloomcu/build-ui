@@ -29,9 +29,9 @@
         <div class="col-5">
           <form class="login-form" action="#" @submit.prevent="register()">
             <div class="grid gap-x-sm">
-              <AppInput v-model="inputs.name" label="Full name" required autofocus />
+              <AppInput v-model="inputs.name" label="Full name" :error="errorStore.errors.name" required autofocus />
               <AppInput v-model="inputs.email" label="Email" required disabled />
-              <AppInput v-model="inputs.password" type="password" label="Password" required />
+              <AppInput v-model="inputs.password" type="password" label="Password" :error="errorStore.errors.password" required />
               <AppInput v-model="inputs.password_confirmation" type="password" label="Confirm password" required />
             </div>
 
@@ -49,19 +49,18 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
+import { useErrorStore } from '@/app/store/useErrorStore'
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 import { useInvitationStore } from '@/domain/invitations/store/useInvitationStore'
-import useQuery from '@/app/composables/useQuery.js'
 import AppInput from '@/app/components/forms/AppInput.vue'
 import AppUserAvatar from '@/app/components/AppUserAvatar.vue'
 import InvitationSkeletonLoader from '@/views/invitations/components/InvitationSkeletonLoader.vue'
 
-const router = useRouter()
 const route = useRoute()
+const errorStore = useErrorStore()
 const authStore = useAuthStore()
 const invitationStore = useInvitationStore()
-const { query } = useQuery()
 
 const inputs = ref({
   name: '',
@@ -72,13 +71,7 @@ const inputs = ref({
 
 function register() {
   const { name, email, password, password_confirmation } = inputs.value
-  
   authStore.registerWithInvitation(route.params.invitation, name, email, password, password_confirmation)
-    .then(() => {
-      // TODO: Push me to an organization dashboard with next steps
-      // TODO: Do this in the store method
-      router.push({ name: 'assets', params: { organization: authStore.organization } })
-    })
 }
 
 onMounted(() => {

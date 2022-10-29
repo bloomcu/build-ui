@@ -19,8 +19,6 @@ export const usePageStore = defineStore('pageStore', {
         index(params) {
           this.items = []
           
-          // console.log('Route in store: ', this.route)
-          
           PageApi.index(this.site.id, params)
             .then(response => {
               this.pages = response.data
