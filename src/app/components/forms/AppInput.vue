@@ -13,8 +13,11 @@
       :class="error ? 'form-control--error' : ''"
       class="form-control width-100%" 
     >
-    <div v-if="error" class="bg-error bg-opacity-20% padding-xs radius-md text-sm color-contrast-higher margin-top-xxxs" role="alert">
-      <p>{{ error[0] }}</p>
+    <div v-if="errors" class="bg-error bg-opacity-20% padding-xs radius-md text-sm color-contrast-higher margin-top-xxxs" role="alert">
+      <ul v-if="errors.length > 1" class="list list--ul">
+        <li v-for="error in errors" :key="error">{{ error }}</li>
+      </ul>
+      <p v-else>{{ errors[0] }}</p>
     </div>
   </div>
 </template>
@@ -34,8 +37,8 @@ const props = defineProps({
   placeholder: {
     type: String
   },
-  error: {
-    type: String
+  errors: {
+    type: Array
   },
   required: {
     type: Boolean,

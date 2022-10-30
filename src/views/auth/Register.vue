@@ -5,9 +5,9 @@
         <h2>Register</h2>
       </div>
       
-      <AppInput v-model="inputs.name" label="Full name" :error="errorStore.errors.name" required autofocus />
-      <AppInput v-model="inputs.email" label="Email" :error="errorStore.errors.email" required />
-      <AppInput v-model="inputs.password" :error="errorStore.errors.password" type="password" label="Password" required />
+      <AppInput v-model="inputs.name" label="Full name" :errors="errorStore.errors.name" required autofocus />
+      <AppInput v-model="inputs.email" label="Email" :errors="errorStore.errors.email" required />
+      <AppInput v-model="inputs.password" :errors="errorStore.errors.password" type="password" label="Password" required />
       <AppInput v-model="inputs.password_confirmation" type="password" label="Confirm Password" required />
 
       <div class="margin-bottom-sm">

@@ -29,9 +29,9 @@
         <div class="col-5">
           <form class="login-form" action="#" @submit.prevent="register()">
             <div class="grid gap-x-sm">
-              <AppInput v-model="inputs.name" label="Full name" :error="errorStore.errors.name" required autofocus />
+              <AppInput v-model="inputs.name" label="Full name" :errors="errorStore.errors.name" required autofocus />
               <AppInput v-model="inputs.email" label="Email" required disabled />
-              <AppInput v-model="inputs.password" type="password" label="Password" :error="errorStore.errors.password" required />
+              <AppInput v-model="inputs.password" type="password" label="Password" :errors="errorStore.errors.password" required />
               <AppInput v-model="inputs.password_confirmation" type="password" label="Confirm password" required />
             </div>
 

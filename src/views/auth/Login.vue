@@ -9,8 +9,8 @@
         <p>{{ errorStore.errors.credentials[0] }}</p>
       </div>
       
-      <AppInput v-model="inputs.email" label="Email" required autofocus :error="errorStore.errors.email" />
-      <AppInput v-model="inputs.password" label="Password" type="password" :error="errorStore.errors.password" required />
+      <AppInput v-model="inputs.email" label="Email" required autofocus :errors="errorStore.errors.email" />
+      <AppInput v-model="inputs.password" label="Password" type="password" :errors="errorStore.errors.password" required />
       
       <div class="margin-bottom-sm">
         <button class="btn btn--primary btn--md width-100%">Login with email</button>
