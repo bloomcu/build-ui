@@ -37,8 +37,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
 import moment from "moment"
+import { ref, onMounted } from 'vue'
 import { useDesignStore } from '@/domain/designs/store/useDesignStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'

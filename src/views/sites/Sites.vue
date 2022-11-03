@@ -13,7 +13,19 @@
         <div class="card-header">
           <p class="text-xs color-primary text-uppercase margin-bottom-xs">{{ site.title }}</p>
           <h2 class="text-md margin-bottom-sm">{{ site.domain }}</h2>
-          <p class="text-sm margin-bottom-xs">Crawled yesterday</p>
+          
+          <div v-if="site.last_crawl.status === 'RUNNING'" class="flex items-center margin-y-sm">
+            <span class="text-sm margin-right-xxs">Crawling website</span>
+            <AppCircleLoader/>
+          </div>
+          
+          <div v-if="site.last_crawl.status === 'SUCCEEDED'" class="flex items-center margin-y-sm">
+            <span class="text-sm">Crawled {{ moment(site.last_crawl.created_at).fromNow() }}</span>
+          </div>
+          
+          <div v-if="site.last_crawl.status === 'FAILED'" class="flex items-center margin-y-sm">
+            <span class="text-sm">Last crawl failed {{ moment(site.last_crawl.created_at).fromNow() }}</span>
+          </div>
         </div>
         
         <div class="card-footer flex gap-xs border-top margin-top-sm padding-top-sm">
@@ -21,23 +33,6 @@
           <RouterLink :to="{ name: 'sitesEdit', params: { site: site.id } }" class="btn btn--sm btn--subtle margin-left-auto">Edit</RouterLink>
         </div>
       </div>
-      
-      <!-- <div class="card padding-md">
-        <p class="text-xs color-contrast-low text-uppercase margin-bottom-xs">Blog</p>
-        <h2 class="text-md margin-bottom-sm">blog.redwoodcu.com</h2>
-        
-        <div class="flex items-center justify-between margin-y-sm">
-          <span class="text-sm text-bold">Crawling website</span>
-          <IconCheck class="color-success" style="width: 26px; height: 26px;"/>
-        </div>
-        <div class="flex items-center justify-between margin-bottom-sm">
-          <span class="text-sm text-bold">Classifying content</span>
-          <AppCircleLoader/>
-        </div>
-        <div class="flex items-center justify-between margin-bottom-sm">
-          <span class="text-sm text-bold color-contrast-low">Archiving junk</span>
-        </div>
-      </div> -->
     </div>
 
     <CreateSiteModal/>
@@ -45,13 +40,12 @@
 </template>
 
 <script setup>
+import moment from "moment"
 import { ref, onMounted } from 'vue'
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
-import AppProgressBar from '@/app/components/AppProgressBar.vue'
 import AppCircleLoader from '@/app/components/loaders/AppCircleLoader.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
-import IconCheck from '@/app/components/icons/IconCheck.vue'
 import CreateSiteModal from '@/views/sites/components/CreateSiteModal.vue'
 
 const siteStore = useSiteStore()
