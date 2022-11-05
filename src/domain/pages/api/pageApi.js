@@ -4,52 +4,57 @@ const pageApi = {
     /**
      * List pages
      *
+     * @param String organization [Organization slug]
      * @param Object params [Key/value params to query by]
      * @return promise
      */
-    index(siteId, params) {
-        return HttpClient.get(`/sites/${siteId}/pages`, { params: params })
+    index(organization, params) {
+        return HttpClient.get(`/${organization}/pages`, { params: params })
     },
     
     /**
      * Store a page
      *
+     * @param String organization [Organization slug]
      * @param Object page [Properties to create page from]
      * @return promise
      */
-    store(siteId, page) {
-        return HttpClient.post(`/sites/${siteId}/pages`, page)
+    store(organization, page) {
+        return HttpClient.post(`/${organization}/pages`, page)
     },
     
     /**
-     * Show a site
+     * Show a page
      *
-     * @param Integer id [Slug of the site you want to show]
+     * @param String organization [Organization slug]
+     * @param Integer id [Page id]
      * @return promise
      */
-    show(siteId, pageId) {
-      return HttpClient.get(`/sites/${siteId}/pages/${pageId}`)
+    show(organization, id) {
+      return HttpClient.get(`/${organization}/pages/${id}`)
     },
     
     /**
-     * Update a site
+     * Update a page
      *
-     * @param Integer id [Id of the site you want to update]
-     * @param Object  site [Properties to update site with]
+     * @param String organization [Organization slug]
+     * @param Integer id [Page id]
+     * @param Object  page [Properties to update page with]
      * @return promise
      */
-    update(siteId, pageId, page) {
-      return HttpClient.put(`/sites/${siteId}/pages/${pageId}`, page)
+    update(organization, id, page) {
+      return HttpClient.put(`/${organization}/pages/${id}`, page)
     },
     
     /**
      * Destroy a page
      *
-     * @param Integer id [Id of the page you want to destroy]
+     * @param String organization [Organization slug]
+     * @param Integer id [Page id]
      * @return promise
      */
-    destroy(siteId, pageId) {
-        return HttpClient.delete(`/sites/${siteId}/pages/${pageId}`)
+    destroy(organization, id) {
+        return HttpClient.delete(`/${organization}/pages/${id}`)
     },
 }
 

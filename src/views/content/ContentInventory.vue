@@ -18,8 +18,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
-// import { useRoute } from 'vue-router'
+import { onMounted } from 'vue'
 
 import { usePageStore } from '@/domain/pages/store/usePageStore'
 import { useStatusStore } from '@/domain/statuses/store/useStatusStore'
@@ -29,7 +28,6 @@ import ContentTable from '@/views/content/components/ContentTable.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 // import ContentItemModal from '@/domain/content/components/ContentItemModal.vue'
 
-// const route = useRoute()
 const pages = usePageStore()
 const statuses = useStatusStore()
 const tags = useTagStore()

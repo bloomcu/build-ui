@@ -1,80 +1,82 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { pageApi as PageApi } from '@/domain/pages/api/pageApi'
+import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
 export const usePageStore = defineStore('pageStore', {
     state: () => ({
-        // We now get the current route in all stores.
-        // Use the this.router.currentRoute to get the site.
-        site: {
-          id: 1
-        },
         pages: [],
-        page: {},
+        page: null,
         isLoading: false,
     }),
     
-    getters: {},
-    
     actions: {
         index(params) {
-          this.items = []
+          const auth = useAuthStore()
+          this.items = null
+          this.isLoading = true
           
-          PageApi.index(this.site.id, params)
+          PageApi.index(auth.organization, params)
             .then(response => {
-              this.pages = response.data
+              this.pages = response.data.data
+              this.isLoading = false
             }).catch(error => {
               console.log('Error', error.response.data)
             })
         },
         
         async store(page) {
-          await PageApi.store(this.site.id, page)
+          const auth = useAuthStore()
+          
+          await PageApi.store(auth.organization, page)
             .then(response => {
-              this.pages.unshift(response.data)
+              this.pages.unshift(response.data.data)
             }).catch(error => {
-              console.log('Error', error.response.data)
+              return Promise.reject(error)
             })
         },
         
-        show(pageId) {
+        show(id) {
+          const auth = useAuthStore()
           this.isLoading = true
           
-          PageApi.show(this.site.id, pageId)
+          PageApi.show(auth.organization, id)
             .then(response => {
-              this.page = response.data
+              this.page = response.data.data
               this.isLoading = false
             }).catch(error => {
               console.log('Error', error.response.data)
             })
         },
         
-        update(pageId, page) {
+        update(id, page) {
+          const auth = useAuthStore()
           this.isLoading = true
           
-          PageApi.update(this.site.id, pageId, page)
+          PageApi.update(auth.organization, id, page)
             .then(response => {
               console.log('Page successfully updated')
               this.isLoading = false
             })
         },
         
-        destroy(page) {
-          // TODO: Let's not accept the whole page
-          // Find it and cache it here instead
+        async destroy(id) {
+          const auth = useAuthStore()
           this.isLoading = true
           
-          this.pages = this.pages.filter((p) => p.id !== page.id)
+          let page = this.pages.find(p => p.id == id) // cache resource
+          this.pages = this.pages.filter((p) => p.id !== id) // remove resource
           
-          PageApi.destroy(this.site.id, page.id)
-            .then(response => {
-              console.log('Page successfully destroyed')
-              this.loading = false
-            }).catch(error => {
-              this.pages.unshift(page)
-              this.loading = false
-              console.log('Error', error.response.data)
-            })
-        },
+          try {
+            const response = await PageApi.destroy(auth.organization, id)
+            console.log('Page successfully destroyed')
+            this.loading = false
+          }
+          catch (error) {
+            this.pages.unshift(page) // restore resource
+            this.loading = false
+            console.log('Error', error.response.data)
+          }
+        }
     }
 })
 

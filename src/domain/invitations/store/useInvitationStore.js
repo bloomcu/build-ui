@@ -1,23 +1,19 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { invitationApi as InvitationApi } from '@/domain/invitations/api/invitationApi'
-
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
 export const useInvitationStore = defineStore('invitationStore', {
     state: () => ({
         invitations: [],
         invitation: null,
-        errors: [],
         isLoading: false,
     }),
-    
-    getters: {},
     
     actions: {
         index(params) {
           const auth = useAuthStore()
-          this.isLoading = true
           this.invitations = null
+          this.isLoading = true
           
           InvitationApi.index(auth.organization, params)
             .then(response => {
@@ -30,14 +26,12 @@ export const useInvitationStore = defineStore('invitationStore', {
         
         async store(email) {
           const auth = useAuthStore()
-          // this.isLoading = true
           
           await InvitationApi.store(auth.organization, {
             email: email.value,
             role: 'editor'
           }).then(response => {
             this.invitations.unshift(response.data.data)
-            // this.isLoading = false
           }).catch((error) => {
             return Promise.reject(error)
           })
@@ -78,17 +72,16 @@ export const useInvitationStore = defineStore('invitationStore', {
           const auth = useAuthStore()
           this.isLoading = true
           
-          let invitation = this.invitations.find(invite => invite.uuid == uuid)
-          this.invitations = this.invitations.filter((invite) => invite.uuid !== uuid)
+          let invitation = this.invitations.find(invite => invite.uuid == uuid) // cache resource
+          this.invitations = this.invitations.filter((invite) => invite.uuid !== uuid) // remove resource
           
           try {
             const response = await InvitationApi.destroy(auth.organization, uuid)
-            console.log(response)
             console.log('Invitation successfully destroyed')
             this.loading = false
           }
           catch (error) {
-            this.invitations.unshift(invitation)
+            this.invitations.unshift(invitation) // restore resource
             this.loading = false
             console.log('Error', error.response.data)
           }

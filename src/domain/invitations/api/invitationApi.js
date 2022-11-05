@@ -1,5 +1,4 @@
 import { httpClient as HttpClient } from '@/app/api/httpClient'
-import axios from 'axios'
 
 const invitationApi = {
     /**
