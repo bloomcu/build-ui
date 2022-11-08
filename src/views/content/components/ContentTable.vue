@@ -6,11 +6,12 @@
     <div class="flex items-center justify-between padding-bottom-sm margin-bottom-sm">
       <!-- Left -->
       <div class="flex items-center">
-        <span class="text-sm">12 Pages</span>
-        <button class="btn btn--sm margin-left-sm">
-          <span class="margin-right-xxs">1 Selected</span>
+        <span class="text-sm">{{ pageStore.pages.length }} Page(s)</span>
+        <button @click="pageStore.clearSelectedPages()" class="btn btn--sm margin-left-sm">
+          <span class="margin-right-xxs">{{ pageStore.selected.length }} Selected</span>
           <IconClose size="xxs" class="color-primary"/>
         </button>
+        {{ pageStore.selected }}
       </div>
       
       <!-- Right -->
@@ -25,10 +26,15 @@
     <!-- Table -->
     <ul class="content-table border radius-md text-sm">
         <!-- Page -->
-        <li v-for="page in pageStore.pages" :key="page.id" class="content-table-item flex padding-sm">
+        <li 
+          v-for="page in pageStore.pages" :key="page.id" 
+          @click.stop="pageStore.selectPage(page.id, $event)"
+          class="content-table-item flex cursor-pointer padding-sm"
+          style="user-select: none;"
+        >
           <!-- Checkbox -->
           <div class="flex items-center border-right padding-left-xs padding-right-sm margin-right-md">
-            <input class="checkbox" type="checkbox" :id="page.id">
+            <input :checked="pageStore.selected.includes(page.id)" class="checkbox" type="checkbox" :id="page.id">
             <label :for="page.id"/>
           </div>
           

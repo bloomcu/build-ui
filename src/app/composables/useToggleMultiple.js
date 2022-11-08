@@ -1,23 +1,24 @@
 import { ref, onUnmounted } from 'vue'
 
-const collection = ref([])
+const toggled = ref([])
 
 export default function useToggleMultiple() {
 
   function toggle(item) {
-    const index = collection.value.indexOf(item)
-    index === -1 ? collection.value.push(item) : collection.value.splice(index, 1)
+    const index = toggled.value.indexOf(item)
+    index === -1 ? toggled.value.push(item) : toggled.value.splice(index, 1)
   }
   
   function isToggled(item) {
-    return collection.value.includes(item)
+    return toggled.value.includes(item)
   }
   
   onUnmounted(() => {
-    collection.value = []
+    toggled.value = []
   })
 
   return {
+    toggled,
     toggle,
     isToggled,
   }
