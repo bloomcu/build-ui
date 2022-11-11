@@ -11,7 +11,7 @@
       <input 
         type="radio" 
         @click="update(option.slug)"
-        :checked="status === option.slug"
+        :checked="activeStatus && activeStatus.slug === option.slug"
         :id="`${id}-${option.slug}`"
       >
       <label class="btns__btn" :for="`${id}-${option.slug}`">{{ option.title }}</label>
@@ -31,13 +31,14 @@ const props = defineProps({
   },
   status: {
     type: Object,
+    default: {slug: ''}
   }
 })
 
-const status = ref(props.status)
+const activeStatus = ref(props.status)
 
-function update(s) {
-  status.value = s
-  emit('updated', props.id, s)
+function update(status) {
+  activeStatus.value = {slug: status}
+  emit('updated', props.id, status)
 }
 </script>
