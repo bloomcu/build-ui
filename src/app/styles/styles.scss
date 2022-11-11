@@ -101,6 +101,106 @@ Title: Button Group
   text-decoration: line-through;
 }
 
+.btns__btn--icon {
+  padding: var(--btns-button-padding-y);
+
+  .icon {
+    display: block;
+  }
+}
+
+/* --------------------------------
+
+Title: Button radio group
+
+-------------------------------- */
+.btns--radio, .btns--checkbox {
+  > * {
+    position: relative;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    /* hide native buttons */
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+  }
+
+  input[type="radio"] + label,
+  input[type="checkbox"] + label {
+    user-select: none;
+  }
+
+  input[type="radio"]:focus + label,
+  input[type="checkbox"]:focus + label {
+    z-index: 1;
+  }
+
+  input[type="radio"]:checked + label,
+  input[type="checkbox"]:checked + label {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.btns__btn--icon {
+  padding: var(--btns-button-padding-y);
+
+  .icon {
+    display: block;
+  }
+}
+
+/* --------------------------------
+
+Title: Radio button group
+
+-------------------------------- */
+// .btns--radio, .btns--checkbox {
+//   > * {
+//     position: relative;
+//   }
+// 
+//   input[type="radio"],
+//   input[type="checkbox"] {
+//     /* hide native buttons */
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     margin: 0;
+//     padding: 0;
+//     opacity: 0;
+//     height: 0;
+//     width: 0;
+//     pointer-events: none;
+//   }
+// 
+//   input[type="radio"] + label,
+//   input[type="checkbox"] + label {
+//     user-select: none;
+//   }
+// 
+//   input[type="radio"]:focus + label,
+//   input[type="checkbox"]:focus + label {
+//     z-index: 1;
+//   }
+// 
+//   input[type="radio"]:checked + label,
+//   input[type="checkbox"]:checked + label {
+//     background-color: var(--color-primary);
+//     color: var(--color-bg);
+//     box-shadow: var(--shadow-sm);
+//   }
+// }
+
 /* --------------------------------
 
 Title: Action icon
@@ -278,7 +378,7 @@ Descr: Custom radio and checkbox buttons
 
 /* --------------------------------
 
-Cards
+Title: Cards
 
 -------------------------------- */
 .card {
@@ -375,7 +475,7 @@ Cards
 
 /* --------------------------------
 
-Tables
+Title: Tables
 
 -------------------------------- */
 // >>> style affecting all (block + expanded) versions 👇
@@ -477,7 +577,7 @@ Tables
 
 /* --------------------------------
 
-Skeleton Loaders
+Title: Skeleton Loaders
 
 -------------------------------- */
 :root {
@@ -567,7 +667,7 @@ Skeleton Loaders
 
 /* --------------------------------
 
-Lists
+Title: Lists
 
 -------------------------------- */
 :root {

@@ -1,69 +1,43 @@
 <template>
   <div class="btns btns--radio inline-flex">
-    <div>
-      <input type="radio" name="radio-btns" id="radio-1" checked>
-      <label class="btns__btn" for="radio-1">Review</label>
-    </div>
-    
-    <div>
-      <input type="radio" name="radio-btns" id="radio-2">
-      <label class="btns__btn" for="radio-2">Good</label>
-    </div>
-
-    <div>
-      <input type="radio" name="radio-btns" id="radio-3">
-      <label class="btns__btn" for="radio-3">Unsure</label>
+    <div 
+      v-for="option in [
+       {title: 'Needs review', slug: 'needs-review'},
+       {title: 'Looks good', slug: 'looks-good'},
+       {title: 'Not sure', slug: 'not-sure'},
+      ]" 
+      :key="option.slug"
+    >
+      <input 
+        type="radio" 
+        @click="update(option.slug)"
+        :checked="status === option.slug"
+        :id="`${id}-${option.slug}`"
+      >
+      <label class="btns__btn" :for="`${id}-${option.slug}`">{{ option.title }}</label>
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({})
+import { ref } from 'vue'
+
+const emit = defineEmits(['updated'])
+
+const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: Object,
+  }
+})
+
+const status = ref(props.status)
+
+function update(s) {
+  status.value = s
+  emit('updated', props.id, s)
+}
 </script>
-
-<style lang="scss">
-.btns--radio, .btns--checkbox {
-  > * {
-    position: relative;
-  }
-
-  input[type="radio"],
-  input[type="checkbox"] {
-    /* hide native buttons */
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    height: 0;
-    width: 0;
-    pointer-events: none;
-  }
-
-  input[type="radio"] + label,
-  input[type="checkbox"] + label {
-    user-select: none;
-  }
-
-  input[type="radio"]:focus + label,
-  input[type="checkbox"]:focus + label {
-    z-index: 1;
-  }
-
-  input[type="radio"]:checked + label,
-  input[type="checkbox"]:checked + label {
-    background-color: var(--color-primary);
-    color: var(--color-bg);
-    box-shadow: var(--shadow-sm);
-  }
-}
-
-.btns__btn--icon {
-  padding: var(--btns-button-padding-y);
-
-  .icon {
-    display: block;
-  }
-}
-</style>

@@ -1,7 +1,7 @@
 <template>
   <LayoutDefault maxWidth="none">
-    <div class="flex container max-width-xxl">
-      <aside class="position-relative z-index-1 width-100% border-right max-width-xxxxs padding-y-sm padding-x-md">
+    <div class="flex">
+      <aside class="position-relative z-index-1 width-100% max-width-xxxxs padding-y-sm padding-right-md border-right">
         <AppNestedMenu title="tags" :items="tags"/>
       </aside>
       

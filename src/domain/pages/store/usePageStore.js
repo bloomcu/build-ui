@@ -50,11 +50,11 @@ export const usePageStore = defineStore('pageStore', {
         })
     },
 
-    update(id, page) {
+    update(id, payload) {
       const auth = useAuthStore()
       this.isLoading = true
 
-      PageApi.update(auth.organization, id, page)
+      PageApi.update(auth.organization, id, payload)
         .then(response => {
           console.log('Page successfully updated')
           this.isLoading = false
