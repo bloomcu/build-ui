@@ -60,7 +60,7 @@
           <div class="flex items-center">
             <!-- Status -->
             <div class="flex items-center border-right padding-right-md margin-right-md margin-left-auto">
-              <AppButtonsRadio
+              <ContentStatus
                 :id="page.id"
                 :status="page.status ? page.status.slug : null"
                 @updated="updatePageStatus"
@@ -94,7 +94,7 @@ import { usePageStore } from '@/domain/pages/store/usePageStore'
 
 // import LoadingGhost from '@/components/loading/LoadingGhost.vue'
 import AppInlineEditor from '@/app/components/AppInlineEditor.vue'
-import AppButtonsRadio from '@/app/components/AppButtonsRadio.vue'
+import ContentStatus from '@/views/content/components/ContentStatus.vue'
 import AppChip from '@/app/components/AppChip.vue'
 import IconClose from '@/app/components/icons/IconClose.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
