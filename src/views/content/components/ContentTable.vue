@@ -62,10 +62,10 @@
             <div class="flex items-center border-right padding-right-md margin-right-md margin-left-auto">
               <ContentStatus
                 :id="page.id"
-                :status="page.status ? page.status.slug : null"
+                :status="page.status"
                 @updated="updatePageStatus"
-                @mouseover="handleHighlight(page.id)"
-                @mouseleave="isHighlighting = false"
+                @mouseover="highlightSelected(page.id)"
+                @mouseleave="stopHighlighting()"
               />
             </div>
             
@@ -105,7 +105,7 @@ const isHighlighting = ref(false)
 
 function addNewPage() {
   pageStore.store({
-    title: 'New page'
+    title: 'New page',
   })
 }
 
@@ -117,8 +117,12 @@ function updatePageStatus(id, status) {
   pageStore.update(id, {status: status})
 }
 
-function handleHighlight(id) {
+function highlightSelected(id) {
   pageStore.selected.includes(id) ? isHighlighting.value = true : isHighlighting.value = false
+}
+
+function stopHighlighting() {
+  isHighlighting.value = false
 }
 </script>
 
