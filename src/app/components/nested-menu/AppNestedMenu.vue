@@ -49,7 +49,11 @@ const props = defineProps({
     showAllOption: {
       type: Boolean,
       default: true
-    }
+    },
+    // updateQueryParams: {
+    //   type: Boolean,
+    //   default: true
+    // }
 })
 </script>
 

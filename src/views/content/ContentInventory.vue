@@ -1,13 +1,13 @@
 <template>
   <LayoutDefault maxWidth="none">
     <div class="flex">
-      <aside class="position-relative z-index-1 width-100% max-width-xxxxs padding-y-sm padding-right-md border-right">
+      <aside class="position-relative z-index-1 width-100% padding-y-sm padding-right-md border-right" style="max-width: 280px;">
         <AppNestedMenu title="status" :items="statuses.status"/>
         <AppNestedMenu title="category" :items="tags.children"/>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-100vh">
-        <div class="padding-y-sm padding-x-md">
+        <div class="padding-y-sm padding-left-md">
           <ContentTable/>
         </div>
       </main>

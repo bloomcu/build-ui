@@ -4,6 +4,7 @@
     spellcheck="false" 
     @blur="update($event)"
     @keydown.enter="update($event)"
+    class="app-inline-editor"
   >
     <slot/>
   </div>
@@ -26,5 +27,7 @@ function update(event) {
 </script>
 
 <style lang="scss">
-
+.app-inline-editor {
+  cursor: text;
+}
 </style>

@@ -53,5 +53,9 @@ const props = defineProps({
   items: { 
     type: Object 
   },
+  // updateQueryParams: {
+  //   type: Boolean,
+  //   default: true
+  // }
 })
 </script>
