@@ -21,8 +21,15 @@
 
 <script setup>
 import { ref } from 'vue'
+import { usePageStore } from '@/domain/pages/store/usePageStore'
 
-const emit = defineEmits(['updated'])
+const pageStore = usePageStore()
+const activeStatus = ref(props.status)
+
+function update(status) {
+  activeStatus.value = {slug: status}
+  pageStore.update(props.id, {status: status})
+}
 
 const props = defineProps({
   id: {
@@ -31,14 +38,6 @@ const props = defineProps({
   },
   status: {
     type: Object,
-    default: {slug: ''}
   }
 })
-
-const activeStatus = ref(props.status)
-
-function update(status) {
-  activeStatus.value = {slug: status}
-  emit('updated', props.id, status)
-}
 </script>

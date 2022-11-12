@@ -67,14 +67,16 @@
           <!-- Right -->
           <div class="flex gap-sm items-center">
             <!-- Category -->
-            <ContentCategory :id="page.id" :category="page.category" class="border-right padding-right-sm"/>
+            <ContentCategory 
+              :id="page.id" 
+              :category="page.category" 
+              class="border-right padding-right-sm"
+            />
             
             <!-- Status -->
             <ContentStatus
-              v-if="page.status"
               :id="page.id"
               :status="page.status"
-              @updated="updateStatus"
               @mouseover="highlight(page.id)"
               @mouseleave="unhighlight()"
               class="border-right padding-right-sm"
@@ -109,10 +111,6 @@ const isHighlighting = ref(false)
 
 function updateTitle(id, titleSlug) {
   pageStore.update(id, {title: titleSlug})
-}
-
-function updateStatus(id, status) {
-  pageStore.update(id, {status: status})
 }
 
 function highlight(id) {
