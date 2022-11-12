@@ -11,9 +11,9 @@
           <ContentTable/>
         </div>
       </main>
-      
-      <!-- <ContentItemModal @closed="closeModal" @destroyed="destroyItem" :item="modalData" :class="modalData ? 'modal--is-visible' : ''"/> -->
     </div>
+    
+    <ContentCategoryModal/>
   </LayoutDefault>
 </template>
 
@@ -26,8 +26,8 @@ import { useTagStore } from '@/domain/tags/store/useTagStore'
 
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import ContentTable from '@/views/content/components/ContentTable.vue'
+import ContentCategoryModal from '@/views/content/components/ContentCategoryModal.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
-// import ContentItemModal from '@/domain/content/components/ContentItemModal.vue'
 
 const pages = usePageStore()
 const statuses = useStatusStore()

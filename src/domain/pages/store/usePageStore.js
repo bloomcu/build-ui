@@ -9,6 +9,7 @@ export const usePageStore = defineStore('pageStore', {
     isLoading: false,
     selected: [],
     lastSelected: null,
+    categoryModalOpen: false,
   }),
 
   actions: {
@@ -115,6 +116,10 @@ export const usePageStore = defineStore('pageStore', {
 
     clearSelectedPages() {
       this.selected = []
+    },
+    
+    toggleCategoryModal() {
+      this.categoryModalOpen = !this.categoryModalOpen
     },
   }
 })

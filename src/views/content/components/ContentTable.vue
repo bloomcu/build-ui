@@ -11,11 +11,17 @@
           <span class="margin-right-xxs">{{ pageStore.selected.length }} Selected</span>
           <IconClose size="xxs" class="color-primary"/>
         </button>
+        
         <span class="margin-left-xxs">{{ pageStore.selected }}</span>
       </div>
       
       <!-- Right -->
       <div class="flex items-center">
+        <button v-if="pageStore.selected.length" @click="pageStore.toggleCategoryModal()" class="btn btn--sm btn--subtle margin-right-xxs">
+          <IconEdit size="xxs" class="color-primary"/>
+          <span class="margin-left-xxs">Edit</span>
+        </button>
+        
         <button @click="addNewPage()" class="btn btn--sm btn--subtle">
           <IconPlus size="xxs" class="color-primary"/>
           <span class="margin-left-xxs">Add Page</span>
