@@ -4,7 +4,7 @@
     
     <!-- Top bar -->
     <div class="flex items-center justify-between padding-bottom-sm">
-      <!-- Left -->
+      <!-- Top bar: left -->
       <div class="flex items-center">
         <span class="text-sm">{{ pageStore.pages.length }} Page(s)</span>
         <button @click="pageStore.clearSelectedPages()" class="btn btn--sm margin-left-sm">
@@ -15,12 +15,12 @@
         <span class="margin-left-xxs">{{ pageStore.selected }}</span>
       </div>
       
-      <!-- Right -->
+      <!-- Top bar: right -->
       <div class="flex items-center">
-        <!-- <button v-if="pageStore.selected.length" @click="pageStore.toggleCategoryModal()" class="btn btn--sm btn--subtle margin-right-xxs">
+        <button v-if="pageStore.selected.length" @click="pageStore.toggleCategoryModal()" class="btn btn--sm btn--subtle margin-right-xxs">
           <IconEdit size="xxs" class="color-primary"/>
           <span class="margin-left-xxs">Edit</span>
-        </button> -->
+        </button>
         
         <button @click="addNewPage()" class="btn btn--sm btn--subtle">
           <IconPlus size="xxs" class="color-primary"/>
@@ -67,14 +67,14 @@
           <!-- Right -->
           <div class="flex gap-sm items-center">
             <!-- Category -->
-            <ContentCategory 
+            <ContentCategoryChip 
               :id="page.id" 
               :category="page.category" 
               class="border-right padding-right-sm"
             />
             
             <!-- Status -->
-            <ContentStatus
+            <ContentStatusToggle
               :id="page.id"
               :status="page.status"
               @mouseover="highlight(page.id)"
@@ -83,12 +83,10 @@
             />
             
             <!-- Destroy -->
-            <button @click="pageStore.destroy(page.id)" class="app-action-icon reset" type="button" name="button">
-              <svg class="icon" viewBox="0 0 24 24">
-                <g stroke-linecap="square" stroke-miterlimit="10" fill="none" stroke="currentColor" stroke-linejoin="miter"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5"></line><path data-cap="butt" d="M8,5V1h8V5" stroke-linecap="butt"></path></g>
-              </svg>
+            <button @click="pageStore.destroy(page.id)" class="app-action-icon reset">
+              <svg class="icon" viewBox="0 0 24 24"><g stroke-linecap="square" stroke-miterlimit="10" fill="none" stroke="currentColor" stroke-linejoin="miter"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5"></line><path data-cap="butt" d="M8,5V1h8V5" stroke-linecap="butt"></path></g></svg>
             </button>
-          </div>
+          </div><!-- End right -->
         </li><!-- End item -->
     </ul><!-- End content-table -->
   </div>
@@ -100,8 +98,8 @@ import { usePageStore } from '@/domain/pages/store/usePageStore'
 
 // import LoadingGhost from '@/components/loading/LoadingGhost.vue'
 import AppInlineEditor from '@/app/components/AppInlineEditor.vue'
-import ContentStatus from '@/views/content/components/ContentStatus.vue'
-import ContentCategory from '@/views/content/components/ContentCategory.vue'
+import ContentStatusToggle from '@/views/content/components/ContentStatusToggle.vue'
+import ContentCategoryChip from '@/views/content/components/ContentCategoryChip.vue'
 import IconClose from '@/app/components/icons/IconClose.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import IconEdit from '@/app/components/icons/IconEdit.vue'
