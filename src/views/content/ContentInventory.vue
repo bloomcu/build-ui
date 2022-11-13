@@ -47,9 +47,9 @@ function indexPages() {
   })
 }
 watch(route, (newValue) => {
-  let emoty = Object.keys(newValue.query).length === 0
+  let noQuery = Object.keys(newValue.query).length === 0
   
-  if (newValue.query.status || newValue.query.category || emoty) {
+  if (newValue.query.status || newValue.query.category || noQuery) {
     indexPages()  
   }
 }, { deep: true })

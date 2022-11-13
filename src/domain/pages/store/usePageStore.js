@@ -6,10 +6,10 @@ export const usePageStore = defineStore('pageStore', {
   state: () => ({
     pages: [],
     page: null,
-    isLoading: false,
     selected: [],
     lastSelected: null,
     categoryModalOpen: false,
+    isLoading: false,
   }),
 
   actions: {
@@ -56,7 +56,6 @@ export const usePageStore = defineStore('pageStore', {
 
       PageApi.update(auth.organization, id, payload)
         .then(response => {
-          console.log('Page successfully updated')
           this.isLoading = false
         })
     },
@@ -70,13 +69,24 @@ export const usePageStore = defineStore('pageStore', {
 
       try {
         const response = await PageApi.destroy(auth.organization, id)
-        console.log('Page successfully destroyed')
-        this.loading = false
+        this.isLoading = false
       } catch (error) {
         this.pages.unshift(page) // restore resource
-        this.loading = false
+        this.isLoading = false
         console.log('Error', error.response.data)
       }
+    },
+    
+    async destroyBatch() {
+      const auth = useAuthStore()
+      this.isLoading = true
+
+      await PageApi.destroyBatch(auth.organization, this.selected)
+        .then(response => {
+          this.pages = this.pages.filter((p) => !this.selected.includes(p.id)) // remove resources
+          this.selected = []
+          this.isLoading = false
+        })
     },
 
     selectPage(id, event) {

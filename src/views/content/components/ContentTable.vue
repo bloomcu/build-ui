@@ -81,7 +81,7 @@
             />
             
             <!-- Destroy -->
-            <button @click="pageStore.destroy(page.id)" class="app-action-icon reset">
+            <button @click="destroy(page.id)" class="app-action-icon reset">
               <svg class="icon" viewBox="0 0 24 24"><g stroke-linecap="square" stroke-miterlimit="10" fill="none" stroke="currentColor" stroke-linejoin="miter"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5"></line><path data-cap="butt" d="M8,5V1h8V5" stroke-linecap="butt"></path></g></svg>
             </button>
           </div><!-- End right -->
@@ -109,18 +109,24 @@ function updateTitle(id, titleSlug) {
   pageStore.update(id, {title: titleSlug})
 }
 
+function destroy(id) {
+  if (pageStore.selected.length > 1) {
+    pageStore.destroyBatch()
+  } else {
+    pageStore.destroy(id)
+  }
+}
+
+function addNewPage() {
+  pageStore.store({title: 'New page'})
+}
+
 function highlight(id) {
   pageStore.selected.includes(id) ? isHighlighting.value = true : isHighlighting.value = false
 }
 
 function unhighlight() {
   isHighlighting.value = false
-}
-
-function addNewPage() {
-  pageStore.store({
-    title: 'New page',
-  })
 }
 </script>
 

@@ -56,6 +56,17 @@ const pageApi = {
     destroy(organization, id) {
         return HttpClient.delete(`/${organization}/pages/${id}`)
     },
+    
+    /**
+     * Destroy a batch of pages
+     *
+     * @param String organization [Organization slug]
+     * @param Array ids [Page ids]
+     * @return promise
+     */
+    destroyBatch(organization, ids) {
+        return HttpClient.post(`/${organization}/pages-batch`, {ids: ids})
+    },
 }
 
 export { pageApi }
