@@ -7,7 +7,6 @@
 
 <script setup>
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
-import { useRoute } from 'vue-router'
 
 import MediaUploader from '@/domain/media/components/MediaUploader.vue'
 import MediaList from '@/domain/media/components/MediaList.vue'
@@ -28,7 +27,6 @@ const props = defineProps({
 })
 
 const mediaStore = useMediaStore()
-const route = useRoute()
 </script>
 
 <style lang="scss">

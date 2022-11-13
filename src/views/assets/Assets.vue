@@ -31,16 +31,14 @@
 
 <script setup>
 import { ref, watch, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
 import { useMediaStore } from '@/domain/media/store/useMediaStore'
 import useQuery from '@/app/composables/useQuery.js'
 
-const route = useRoute()
 const mediaStore = useMediaStore()
-const { query, set, unset } = useQuery()
+const { query, set, unset } = useQuery() // TODO: Import in one line
 
 function indexFiles() {
-  mediaStore.index({ 'filter[tags.slug]': query.value.tags })
+  mediaStore.index({'filter[tags.slug]': query.value.tags})
 }
 
 function destroyFile(file) {
