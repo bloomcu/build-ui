@@ -15,7 +15,6 @@ export const usePageStore = defineStore('pageStore', {
   actions: {
     index(params) {
       const auth = useAuthStore()
-      this.items = null
       this.isLoading = true
 
       PageApi.index(auth.organization, params)

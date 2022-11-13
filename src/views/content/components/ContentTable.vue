@@ -1,18 +1,16 @@
 <template>
   <div>
-    <!-- <LoadingGhost v-if="loading"/> -->
-    
     <!-- Top bar -->
     <div class="flex items-center justify-between padding-bottom-sm">
       <!-- Top bar: left -->
       <div class="flex items-center">
         <span class="text-sm">{{ pageStore.pages.length }} Page(s)</span>
-        <button @click="pageStore.clearSelectedPages()" class="btn btn--sm margin-left-sm">
+        <button v-if="pageStore.selected.length" @click="pageStore.clearSelectedPages()" class="btn btn--sm margin-left-sm">
           <span class="margin-right-xxs">{{ pageStore.selected.length }} Selected</span>
           <IconClose size="xxs" class="color-primary"/>
         </button>
         
-        <span class="margin-left-xxs">{{ pageStore.selected }}</span>
+        <!-- <span class="margin-left-xxs">{{ pageStore.selected }}</span> -->
       </div>
       
       <!-- Top bar: right -->

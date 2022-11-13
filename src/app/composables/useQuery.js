@@ -20,10 +20,6 @@ export default function useQuery() {
     router.replace({ query: query.value })
   }
   
-  // watch(query, () => {
-  //   indexFiles()
-  // }, { deep: true })
-  
   onMounted(() => {
     let route = useRoute()
     Object.assign(query.value, route.query)
