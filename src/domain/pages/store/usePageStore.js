@@ -50,13 +50,36 @@ export const usePageStore = defineStore('pageStore', {
         })
     },
 
-    update(id, payload) {
+    update(id, object) {
       const auth = useAuthStore()
-      this.isLoading = true
+      // this.isLoading = true
 
-      PageApi.update(auth.organization, id, payload)
+      PageApi.update(auth.organization, id, object)
         .then(response => {
-          this.isLoading = false
+          // this.isLoading = false
+          console.log('Page updated')
+        })
+    },
+    
+    updateBatch(property) {
+      const auth = useAuthStore()
+      // this.isLoading = true
+      
+      // Iterate selected pages and update 
+      // TODO: Abstract this away
+      this.pages.forEach((page) => {
+        if (this.selected.includes(page.id)) {
+          Object.keys(property).forEach(key => {
+            page[key]['slug'] = property[key]
+          })
+        }
+      })
+      
+      PageApi.updateBatch(auth.organization, this.selected, property)
+        .then(response => {
+          this.selected = []
+          // this.isLoading = false
+          console.log('Page batch updated')
         })
     },
 
@@ -70,6 +93,7 @@ export const usePageStore = defineStore('pageStore', {
       try {
         const response = await PageApi.destroy(auth.organization, id)
         this.isLoading = false
+        console.log('Page deleted')
       } catch (error) {
         this.pages.unshift(page) // restore resource
         this.isLoading = false
@@ -79,13 +103,14 @@ export const usePageStore = defineStore('pageStore', {
     
     async destroyBatch() {
       const auth = useAuthStore()
-      this.isLoading = true
+      // this.isLoading = true
 
       await PageApi.destroyBatch(auth.organization, this.selected)
         .then(response => {
           this.pages = this.pages.filter((p) => !this.selected.includes(p.id)) // remove resources
           this.selected = []
-          this.isLoading = false
+          // this.isLoading = false
+          console.log('Page batch deleted')
         })
     },
 

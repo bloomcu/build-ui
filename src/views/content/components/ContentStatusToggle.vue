@@ -1,12 +1,12 @@
 <template>
   <div class="btns btns--radio inline-flex">
     <div 
-      v-for="option in [
+      v-for="(option, index) in [
        {title: 'Needs review', slug: 'needs-review'},
        {title: 'Looks good', slug: 'looks-good'},
        {title: 'Not sure', slug: 'not-sure'},
       ]" 
-      :key="option.slug"
+      :key="index"
     >
       <input 
         type="radio" 
@@ -28,7 +28,12 @@ const activeStatus = ref(props.status)
 
 function update(status) {
   activeStatus.value = {slug: status}
-  pageStore.update(props.id, {status: status})
+  
+  if (pageStore.selected.length <= 1) {
+    pageStore.update(props.id, {status: status})
+  } else {
+    pageStore.updateBatch({status: status})
+  }
 }
 
 const props = defineProps({

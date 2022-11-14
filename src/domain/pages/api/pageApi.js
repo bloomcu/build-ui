@@ -39,11 +39,26 @@ const pageApi = {
      *
      * @param String organization [Organization slug]
      * @param Integer id [Page id]
-     * @param Object  page [Properties to update page with]
+     * @param Object  payload [Properties to update page with]
      * @return promise
      */
-    update(organization, id, page) {
-      return HttpClient.put(`/${organization}/pages/${id}`, page)
+    update(organization, id, payload) {
+      return HttpClient.put(`/${organization}/pages/${id}`, payload)
+    },
+    
+    /**
+     * Update a batch of pages
+     *
+     * @param String organization [Organization slug]
+     * @param Integer ids [Page ids]
+     * @param Object payload [Properties to update page with]
+     * @return promise
+     */
+    updateBatch(organization, ids, payload) {
+      return HttpClient.put(`/${organization}/pages-batch`, {
+        ids: ids,
+        ...payload
+      })
     },
     
     /**

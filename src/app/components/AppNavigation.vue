@@ -11,7 +11,7 @@
     </div> -->
 
     <div class="f-header__nav" role="navigation">
-      <div class="f-header__nav-grid container max-width-xxl">
+      <div class="f-header__nav-grid container">
         
         <!-- <div class="f-header__nav-logo-wrapper margin-right-md">
           <RouterLink :to="{ name: 'organizations' }" class="f-header__logo">

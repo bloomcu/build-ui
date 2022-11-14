@@ -112,15 +112,15 @@ import IconEdit from '@/app/components/icons/IconEdit.vue'
 const pageStore = usePageStore()
 const isHighlighting = ref(false)
 
-function updateTitle(id, titleSlug) {
-  pageStore.update(id, {title: titleSlug})
+function updateTitle(id, title) {
+  pageStore.update(id, {title: title})
 }
 
 function destroy(id) {
-  if (pageStore.selected.length > 1) {
-    pageStore.destroyBatch()
-  } else {
+  if (pageStore.selected.length <= 1) {
     pageStore.destroy(id)
+  } else {
+    pageStore.destroyBatch()
   }
 }
 
