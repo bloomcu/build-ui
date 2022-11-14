@@ -49,75 +49,44 @@ export const usePageStore = defineStore('pageStore', {
           console.log('Error', error.response.data)
         })
     },
-
-    update(id, object) {
-      const auth = useAuthStore()
-      // this.isLoading = true
-
-      PageApi.update(auth.organization, id, object)
-        .then(response => {
-          // this.isLoading = false
-          console.log('Page updated')
-        })
-    },
     
-    updateBatch(property) {
+    update(ids, properties) {
       const auth = useAuthStore()
-      // this.isLoading = true
       
-      // Iterate selected pages and update 
-      // TODO: Abstract this away
-      this.pages.forEach((page) => {
-        if (this.selected.includes(page.id)) {
-          Object.keys(property).forEach(key => {
-            page[key]['slug'] = property[key]
-          })
-        }
-      })
-      
-      PageApi.updateBatch(auth.organization, this.selected, property)
+      PageApi.update(auth.organization, ids, properties)
         .then(response => {
+          console.log(this.selected.length + ' page(s) updated')
           this.selected = []
-          // this.isLoading = false
-          console.log('Page batch updated')
         })
+        
+      // TODO: Catch error and re-index pages if error
     },
 
-    async destroy(id) {
+    async destroy(ids) {
       const auth = useAuthStore()
-      this.isLoading = true
-
-      let page = this.pages.find(p => p.id == id) // cache resource
-      this.pages = this.pages.filter((p) => p.id !== id) // remove resource
-
-      try {
-        const response = await PageApi.destroy(auth.organization, id)
-        this.isLoading = false
-        console.log('Page deleted')
-      } catch (error) {
-        this.pages.unshift(page) // restore resource
-        this.isLoading = false
-        console.log('Error', error.response.data)
-      }
-    },
-    
-    async destroyBatch() {
-      const auth = useAuthStore()
-      // this.isLoading = true
-
-      await PageApi.destroyBatch(auth.organization, this.selected)
+      
+      await PageApi.destroy(auth.organization, ids)
         .then(response => {
+          console.log(this.selected.length + ' page(s) deleted')
           this.pages = this.pages.filter((p) => !this.selected.includes(p.id)) // remove resources
           this.selected = []
-          // this.isLoading = false
-          console.log('Page batch deleted')
         })
+        
+      // TODO: Catch error and re-index pages if error
+      // try {
+      //   const response = await PageApi.destroy(auth.organization, id)
+      //   console.log('Page deleted')
+      // } catch (error) {
+      //   this.pages.unshift(page) // restore resource
+      //   console.log('Error', error.response.data)
+      // }
     },
 
     selectPage(id, event) {
-      // Select page
+      // Add to selected if not present, else remove from selected
+      // TODO: Make this a utility composable
       let index = this.selected.indexOf(id)
-      index === -1 ? this.selected.push(id) : this.selected.splice(index, 1)
+          index === -1 ? this.selected.push(id) : this.selected.splice(index, 1)
 
       // Handle multiselect
       if (event.shiftKey) {

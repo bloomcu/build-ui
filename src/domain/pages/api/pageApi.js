@@ -35,29 +35,17 @@ const pageApi = {
     },
     
     /**
-     * Update a page
-     *
-     * @param String organization [Organization slug]
-     * @param Integer id [Page id]
-     * @param Object  payload [Properties to update page with]
-     * @return promise
-     */
-    update(organization, id, payload) {
-      return HttpClient.put(`/${organization}/pages/${id}`, payload)
-    },
-    
-    /**
-     * Update a batch of pages
+     * Update page(s)
      *
      * @param String organization [Organization slug]
      * @param Integer ids [Page ids]
-     * @param Object payload [Properties to update page with]
+     * @param Object properties [Properties to update page with]
      * @return promise
      */
-    updateBatch(organization, ids, payload) {
-      return HttpClient.put(`/${organization}/pages-batch`, {
+    update(organization, ids, properties) {
+      return HttpClient.put(`/${organization}/pages`, {
         ids: ids,
-        ...payload
+        ...properties
       })
     },
     
@@ -65,22 +53,11 @@ const pageApi = {
      * Destroy a page
      *
      * @param String organization [Organization slug]
-     * @param Integer id [Page id]
+     * @param Integer ids [Page ids]
      * @return promise
      */
-    destroy(organization, id) {
-        return HttpClient.delete(`/${organization}/pages/${id}`)
-    },
-    
-    /**
-     * Destroy a batch of pages
-     *
-     * @param String organization [Organization slug]
-     * @param Array ids [Page ids]
-     * @return promise
-     */
-    destroyBatch(organization, ids) {
-        return HttpClient.post(`/${organization}/pages-batch`, {ids: ids})
+    destroy(organization, ids) {
+        return HttpClient.post(`/${organization}/pages/destroy`, {ids: ids})
     },
 }
 

@@ -117,11 +117,12 @@ function updateTitle(id, title) {
 }
 
 function destroy(id) {
-  if (pageStore.selected.length <= 1) {
-    pageStore.destroy(id)
-  } else {
-    pageStore.destroyBatch()
-  }
+  // Add to selected if not present
+  // TODO: Abstract this away
+  let index = pageStore.selected.indexOf(id)
+      index === -1 ? pageStore.selected.push(id) : null
+      
+  pageStore.destroy(pageStore.selected)
 }
 
 function addNewPage() {

@@ -1,17 +1,17 @@
 <template>
   <div class="btns btns--radio inline-flex">
     <div 
-      v-for="(option, index) in [
+      v-for="option in [
        {title: 'Needs review', slug: 'needs-review'},
        {title: 'Looks good', slug: 'looks-good'},
        {title: 'Not sure', slug: 'not-sure'},
       ]" 
-      :key="index"
+      :key="option.slug"
     >
       <input 
         type="radio" 
-        @click="update(option.slug)"
-        :checked="activeStatus && activeStatus.slug === option.slug"
+        @click="updateStatus(id, option)"
+        :checked="status && status.slug === option.slug"
         :id="`${id}-${option.slug}`"
       >
       <label class="btns__btn" :for="`${id}-${option.slug}`">{{ option.title }}</label>
@@ -20,20 +20,29 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
 
 const pageStore = usePageStore()
-const activeStatus = ref(props.status)
 
-function update(status) {
-  activeStatus.value = {slug: status}
+function updateStatus(id, status) {
+  props.status = status
   
-  if (pageStore.selected.length <= 1) {
-    pageStore.update(props.id, {status: status})
-  } else {
-    pageStore.updateBatch({status: status})
-  }
+  // Add to selected if not present
+  // TODO: Abstract this away
+  let index = pageStore.selected.indexOf(id)
+      index === -1 ? pageStore.selected.push(id) : null
+      
+  // Iterate selected pages and update 
+  // TODO: Abstract this away
+  pageStore.pages.forEach((page) => {
+    if (pageStore.selected.includes(page.id)) {
+      page.status = status
+    }
+  })
+  
+  pageStore.update(pageStore.selected, {
+    status: status.slug
+  })
 }
 
 const props = defineProps({
