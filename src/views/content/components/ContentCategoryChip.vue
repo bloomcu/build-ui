@@ -1,5 +1,5 @@
 <template>
-  <div @click="pageStore.toggleCategoryModal(), pageStore.selectPage(id, $event)">
+  <div @click="handleClick(id)">
     <AppChip v-if="category" color="outline" :label="category.title" />
     <AppChip v-else color="grey" label="Uncategorized" />
   </div>
@@ -10,6 +10,15 @@ import { usePageStore } from '@/domain/pages/store/usePageStore'
 import AppChip from '@/app/components/AppChip.vue'
 
 const pageStore = usePageStore()
+
+function handleClick(id) {
+  // Add to array if not present.
+  // TODO: Abstract this away
+  let index = pageStore.selected.indexOf(id)
+      index === -1 ? pageStore.selected.push(id) : null
+    
+  pageStore.toggleCategoryModal()
+}
 
 const props = defineProps({
   id: {

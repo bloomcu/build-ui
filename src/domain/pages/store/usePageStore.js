@@ -50,10 +50,10 @@ export const usePageStore = defineStore('pageStore', {
         })
     },
     
-    update(ids, properties) {
+    async update(ids, properties) {
       const auth = useAuthStore()
       
-      PageApi.update(auth.organization, ids, properties)
+      await PageApi.update(auth.organization, ids, properties)
         .then(response => {
           console.log(this.selected.length + ' page(s) updated')
           this.selected = []
@@ -83,8 +83,8 @@ export const usePageStore = defineStore('pageStore', {
     },
 
     selectPage(id, event) {
-      // Add to selected if not present, else remove from selected
-      // TODO: Make this a utility composable
+      // Add to array if not present. Remove if already present.
+      // TODO: Abstract this away
       let index = this.selected.indexOf(id)
           index === -1 ? this.selected.push(id) : this.selected.splice(index, 1)
 

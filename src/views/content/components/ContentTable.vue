@@ -117,7 +117,7 @@ function updateTitle(id, title) {
 }
 
 function destroy(id) {
-  // Add to selected if not present
+  // Add to array if not present.
   // TODO: Abstract this away
   let index = pageStore.selected.indexOf(id)
       index === -1 ? pageStore.selected.push(id) : null

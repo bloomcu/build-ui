@@ -27,7 +27,7 @@ const pageStore = usePageStore()
 function updateStatus(id, status) {
   props.status = status
   
-  // Add to selected if not present
+  // Add to array if not present. Do not remove if already present.
   // TODO: Abstract this away
   let index = pageStore.selected.indexOf(id)
       index === -1 ? pageStore.selected.push(id) : null

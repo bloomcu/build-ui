@@ -46,12 +46,13 @@ function indexPages() {
     'filter[status.slug]': query.value.status,
   })
 }
+
 watch(route, (newValue) => {
-  let noQuery = Object.keys(newValue.query).length === 0
+  // let noQuery = Object.keys(newValue.query).length === 0
   
-  if (newValue.query.status || newValue.query.category || noQuery) {
-    indexPages()  
-  }
+  // if (newValue.query.status || newValue.query.category || noQuery) {
+    indexPages()
+  // }
 }, { deep: true })
 
 onMounted(() => {
