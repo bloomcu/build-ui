@@ -1,5 +1,5 @@
 <template>
-  <button class="chip chip--interactive" :class="`chip--${color}`">
+  <button class="chip chip--interactive text-sm" :class="`chip--${color}`">
     <em v-if="icon" class="chip__icon-wrapper bg-success">
       <svg class="icon" viewBox="0 0 12 12"><polyline points="1.5 6 4.5 9 10.5 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </em>

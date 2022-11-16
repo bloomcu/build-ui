@@ -1,9 +1,9 @@
 <template>
-  <LayoutDefault>
-    <div class="container max-width-sm flex items-center justify-between margin-y-md">
+  <LayoutDefault maxWidth="sm">
+    <div class="container flex items-center justify-between margin-y-md">
       <h1 class="text-lg">Designs</h1>
       <button @click="designStore.toggleCreateModal()" class="btn btn--subtle">
-        <IconPlus size="xxs" class="color-primary"/>
+        <IconPlus size="xs" class="color-primary"/>
         <span class="margin-left-xxs">New design</span>
       </button>
     </div>
@@ -38,8 +38,9 @@
 
 <script setup>
 import moment from "moment"
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useDesignStore } from '@/domain/designs/store/useDesignStore'
+
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import CreateDesignModal from '@/views/designs/components/CreateDesignModal.vue'

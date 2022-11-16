@@ -9,20 +9,23 @@
           <span class="margin-right-xxs">{{ pageStore.selected.length }} Selected</span>
           <IconClose size="xxs" class="color-primary"/>
         </button>
-        
-        <!-- <span class="margin-left-xxs">{{ pageStore.selected }}</span> -->
       </div>
       
       <!-- Top bar: right -->
       <div class="flex items-center">
-        <button v-if="pageStore.selected.length" @click="pageStore.toggleCategoryModal()" class="btn btn--sm btn--subtle margin-right-xxs">
-          <IconEdit size="xxs" class="color-primary"/>
+        <button v-if="pageStore.selected.length" @click="pageStore.toggleContentCategoryModal()" class="btn btn--sm btn--subtle margin-right-xxs">
+          <IconEdit size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Edit</span>
         </button>
         
         <button @click="addNewPage()" class="btn btn--sm btn--subtle">
-          <IconPlus size="xxs" class="color-primary"/>
+          <IconPlus size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Add Page</span>
+        </button>
+        
+        <button @click="pageStore.toggleContentExportModal()" class="btn btn--sm btn--primary margin-left-xxs">
+          <IconExport size="xs" class="color-white"/>
+          <span class="margin-left-xxs">Export</span>
         </button>
       </div>
     </div><!-- End top bar -->
@@ -36,7 +39,11 @@
           class="content-table-item flex justify-between padding-sm"
         >
           <!-- Left -->
-          <div class="flex items-center">
+          <!-- TODO: Take care of the inline style below -->
+          <div 
+            class="flex items-center"
+            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 46%;"
+          >
             <!-- Checkbox -->
             <div class="flex items-center border-right padding-left-xs padding-right-sm margin-right-md">
               <input
@@ -101,13 +108,13 @@
 import { ref } from 'vue'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
 
-// import LoadingGhost from '@/components/loading/LoadingGhost.vue'
 import AppInlineEditor from '@/app/components/AppInlineEditor.vue'
 import ContentStatusToggle from '@/views/content/components/ContentStatusToggle.vue'
 import ContentCategoryChip from '@/views/content/components/ContentCategoryChip.vue'
 import IconClose from '@/app/components/icons/IconClose.vue'
-import IconPlus from '@/app/components/icons/IconPlus.vue'
 import IconEdit from '@/app/components/icons/IconEdit.vue'
+import IconExport from '@/app/components/icons/IconExport.vue'
+import IconPlus from '@/app/components/icons/IconPlus.vue'
 
 const pageStore = usePageStore()
 const isHighlighting = ref(false)

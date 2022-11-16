@@ -1,9 +1,9 @@
 <template>
-  <LayoutDefault v-if="designStore.design">
-    <div class="container max-width-sm padding-y-md">
+  <LayoutDefault v-if="designStore.design" maxWidth="sm">
+    <div class="container padding-y-md">
       <div class="margin-bottom-md">
         <RouterLink :to="{ name: 'designs' }" class="btn btn--subtle margin-bottom-md">
-          <IconArrowLeft size="xxs" class="color-primary"/>
+          <IconArrowLeft size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
         
@@ -17,12 +17,11 @@
             <p class="text-bold">General</p>
           </div>
           
-          <AppInput v-model="designStore.design.designer_name" label="Designer name" required />
-          <AppInput v-model="designStore.design.designer_email" label="Designer email" required />
-        </div>
-        
-        <!-- Submit -->
-        <div class="margin-bottom-sm">
+          <div class="margin-bottom-md">
+            <AppInput v-model="designStore.design.designer_name" label="Designer name" required />
+            <AppInput v-model="designStore.design.designer_email" label="Designer email" required />
+          </div>
+          
           <button v-if="updated" type="submit" class="btn btn--primary btn--md width-100%" disabled>Design Updated</button>
           <button v-else type="submit" class="btn btn--primary btn--md width-100%">Update</button>
         </div>
@@ -32,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDesignStore } from '@/domain/designs/store/useDesignStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'

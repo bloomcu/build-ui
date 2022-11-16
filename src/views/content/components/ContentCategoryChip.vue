@@ -17,7 +17,7 @@ function handleClick(id) {
   let index = pageStore.selected.indexOf(id)
       index === -1 ? pageStore.selected.push(id) : null
     
-  pageStore.toggleCategoryModal()
+  pageStore.toggleContentCategoryModal()
 }
 
 const props = defineProps({

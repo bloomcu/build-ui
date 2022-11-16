@@ -10,7 +10,7 @@
       :required="required"
       :autofocus="autofocus"
       :disabled="disabled"
-      :class="error ? 'form-control--error' : ''"
+      :class="errors ? 'form-control--error' : ''"
       class="form-control width-100%" 
     >
     <div v-if="errors" class="bg-error bg-opacity-20% padding-xs radius-md text-sm color-contrast-higher margin-top-xxxs" role="alert">

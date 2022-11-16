@@ -1,4 +1,15 @@
 <template>
+  <!-- <div class="padding-y-sm border-bottom">
+    <div class="container flex justify-between">
+      <div>
+        <span class="text-sm">Back</span>
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div> -->
+  
   <LayoutDefault maxWidth="none">
     <div class="flex">
       <aside class="position-relative z-index-1 width-100% padding-y-sm padding-right-md border-right" style="max-width: 280px;">
@@ -15,6 +26,7 @@
     </div>
     
     <ContentCategoryModal/>
+    <ContentExportModal/>
   </LayoutDefault>
 </template>
 
@@ -28,10 +40,11 @@ import { useTagStore } from '@/domain/tags/store/useTagStore'
 import useQuery from '@/app/composables/useQuery.js'
 
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
+import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import ContentSkeletonLoader from '@/views/content/components/ContentSkeletonLoader.vue'
 import ContentTable from '@/views/content/components/ContentTable.vue'
 import ContentCategoryModal from '@/views/content/components/ContentCategoryModal.vue'
-import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
+import ContentExportModal from '@/views/content/components/ContentExportModal.vue'
 
 const pages = usePageStore()
 const statuses = useStatusStore()

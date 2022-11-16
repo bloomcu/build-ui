@@ -1,8 +1,8 @@
 <template>
   <AppModal 
     size="xxs"
-    @closed="pageStore.toggleCategoryModal()" 
-    :class="pageStore.categoryModalOpen ? 'modal--is-visible' : ''"
+    @closed="pageStore.toggleContentCategoryModal()" 
+    :class="pageStore.contentCategoryModalOpen ? 'modal--is-visible' : ''"
   >
     <h2 class="text-md margin-bottom-sm">Update category</h2>
     <AppNestedMenu title="new-category" :items="tagStore.children" :showTitle="false" :showAllOption="false"/>
@@ -42,7 +42,7 @@ function updateCategory(id, category) {
       'filter[status.slug]': query.value.status,
     })
     
-    pageStore.toggleCategoryModal()
+    pageStore.toggleContentCategoryModal()
   })
 }
 </script>

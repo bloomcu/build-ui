@@ -8,7 +8,8 @@ export const usePageStore = defineStore('pageStore', {
     page: null,
     selected: [],
     lastSelected: null,
-    categoryModalOpen: false,
+    contentCategoryModalOpen: false,
+    contentExportModalOpen: false,
     isLoading: false,
   }),
 
@@ -121,8 +122,12 @@ export const usePageStore = defineStore('pageStore', {
       this.selected = []
     },
     
-    toggleCategoryModal() {
-      this.categoryModalOpen = !this.categoryModalOpen
+    toggleContentCategoryModal() {
+      this.contentCategoryModalOpen = !this.contentCategoryModalOpen
+    },
+    
+    toggleContentExportModal() {
+      this.contentExportModalOpen = !this.contentExportModalOpen
     },
   }
 })

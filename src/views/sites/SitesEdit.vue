@@ -3,7 +3,7 @@
     <div class="container max-width-sm padding-y-md">
       <div class="margin-bottom-md">
         <RouterLink :to="{ name: 'sites' }" class="btn btn--subtle margin-bottom-md">
-          <IconArrowLeft size="xxs" class="color-primary"/>
+          <IconArrowLeft size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
         

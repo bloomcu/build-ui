@@ -382,9 +382,12 @@ Title: Cards
 
 -------------------------------- */
 .card {
+  display: block;
   border: 1px solid var(--color-contrast-lower);
   border-radius: var(--radius-lg);
   padding: calc(var(--space-sm) + 5px);
+  text-decoration: none;
+  color: inherit;
   
   &--shadow {
     box-shadow: var(--shadow-sm);
@@ -396,29 +399,14 @@ Title: Cards
   }
 }
 
-.card-img {
-  figure {
-    object-fit: fill;
-    width: 100%;
-    height: 180px;
-    border-radius: var(--space-xxs) var(--space-xxs) 0 0;
-  }
-}
-
-.card-content {
-  padding: var(--space-xs);
-  
-  &__header {
-    height: 80px;
-  }
-}
-
 .card--is-link {
+  box-shadow: var(--shadow-sm);
   will-change: box-shadow;
   transition: box-shadow 0.2s;
+  cursor: pointer;
   
   &:hover {
-    box-shadow: var(--inner-glow), var(--shadow-md);
+    box-shadow: var(--shadow-md);
 
     .card-img::after {
       opacity: 1;
@@ -440,6 +428,23 @@ Title: Cards
       opacity: 0;
       transition: opacity 0.2s;
     }
+  }
+}
+
+.card-img {
+  figure {
+    object-fit: fill;
+    width: 100%;
+    height: 180px;
+    border-radius: var(--space-xxs) var(--space-xxs) 0 0;
+  }
+}
+
+.card-content {
+  padding: var(--space-xs);
+  
+  &__header {
+    height: 80px;
   }
 }
 

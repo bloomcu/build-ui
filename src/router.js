@@ -10,6 +10,7 @@ import auth from '@/views/auth/routes/index.js'
 import briefs from '@/views/briefs/routes/index.js'
 import common from '@/views/common/routes/index.js'
 import content from '@/views/content/routes/index.js'
+import crawls from '@/views/crawls/routes/index.js'
 import designs from '@/views/designs/routes/index.js'
 import invitations from '@/views/invitations/routes/index.js'
 import organizations from '@/views/organizations/routes/index.js'
@@ -23,6 +24,7 @@ const routes = [
   ...briefs,
   ...common,
   ...content,
+  ...crawls,
   ...designs,
   ...invitations,
   ...organizations,
@@ -95,10 +97,10 @@ router.beforeEach(async (to) => {
 */
 router.beforeEach(async (to) => {
     // TODO: Can I just instantiate this store one in this file?
-    let { organization } = useAuthStore()
+    let store = useAuthStore()
     
     if (to.params.organization) {
-        organization = to.params.organization
+        store.organization = to.params.organization
     }
 })
 
