@@ -1,5 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-import { crawlApi as CrawlApi } from '@/domain/crawls/api/CrawlApi'
+import { crawlApi as CrawlApi } from '@/domain/crawls/api/crawlApi'
 
 import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 
