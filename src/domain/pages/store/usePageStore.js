@@ -57,7 +57,7 @@ export const usePageStore = defineStore('pageStore', {
       await PageApi.update(auth.organization, ids, properties)
         .then(response => {
           console.log(this.selected.length + ' page(s) updated')
-          this.selected = []
+          // this.selected = []
         })
         
       // TODO: Catch error and re-index pages if error

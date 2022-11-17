@@ -1,5 +1,5 @@
 <template>
-  <button class="chip chip--interactive text-sm" :class="`chip--${color}`">
+  <button class="chip chip__btn text-sm" :class="`chip--${color}`">
     <em v-if="icon" class="chip__icon-wrapper bg-success">
       <svg class="icon" viewBox="0 0 12 12"><polyline points="1.5 6 4.5 9 10.5 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </em>
@@ -48,52 +48,44 @@ const props = defineProps({
   &:not([class^="padding-"]):not([class*=" padding-"]) {
     padding: var(--space-xxxs);
   }
+  
+  &--outline {
+    background-color: var(--color-white);
+    box-shadow: inset 0 0 0 1px alpha(var(--color-contrast-high), 0.15);
+  }
+
+  &--white {
+    background-color: var(--color-white);
+  }
+
+  &--error {
+    background-color: alpha(var(--color-error), 0.2);
+    color: var(--color-contrast-higher);
+  }
+
+  &--success {
+    background-color: alpha(var(--color-success), 0.2);
+    color: var(--color-contrast-higher);
+  }
+
+  &--warning {
+    background-color: alpha(var(--color-warning), 0.2);
+    color: var(--color-contrast-higher);
+  }
 }
 
-.chip--outline {
-  background-color: transparent;
-  box-shadow: inset 0 0 0 1px alpha(var(--color-contrast-high), 0.15);
-}
-
-.chip--white {
-  background-color: var(--color-white);
-}
-
-.chip--error {
-  background-color: alpha(var(--color-error), 0.2);
-  color: var(--color-contrast-higher);
-}
-
-.chip--success {
-  background-color: alpha(var(--color-success), 0.2);
-  color: var(--color-contrast-higher);
-}
-
-.chip--warning {
-  background-color: alpha(var(--color-warning), 0.2);
-  color: var(--color-contrast-higher);
-}
-
-.chip--interactive {
+.chip__btn {
   cursor: pointer;
+  will-change: transform;
   transition: background, box-shadow, transform;
   transition-duration: .2s;
 
   &:hover {
-    background-color: alpha(var(--color-contrast-higher), 0.2);
+    background-color: alpha(var(--color-contrast-higher), 0.075);
   }
 
   &:active {
     transform: translateY(1px);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px alpha(var(--color-contrast-higher), 0.3);
-  }
-
-  &:focus:not(:focus-visible) {
-    box-shadow: none;
   }
 }
 
@@ -120,40 +112,6 @@ const props = defineProps({
   .icon {
     display: block;
     margin: auto;
-  }
-}
-
-.chip__btn {
-  @include reset;
-  display: flex;
-  width: 1.5em;
-  height: 1.5em;
-  background-color: alpha(var(--color-contrast-higher), 0.2);
-  border-radius: 50%;
-  will-change: transform;
-  transition: background, box-shadow, transform;
-  transition-duration: .2s;
-
-  .icon {
-    display: block;
-    margin: auto;
-  }
-
-  &:hover {
-    background-color: alpha(var(--color-contrast-higher), 0.3);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px alpha(var(--color-contrast-higher), 0.5);
-  }
-
-  &:focus:not(:focus-visible) {
-    box-shadow: none;
-  }
-
-  &:active {
-    transform: translateY(1px);
   }
 }
 </style>

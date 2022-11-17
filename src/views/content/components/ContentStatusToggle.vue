@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: Instead of radio inputs, just makes these <buttons? -->
   <div class="btns btns--radio inline-flex">
     <div 
       v-for="option in [
