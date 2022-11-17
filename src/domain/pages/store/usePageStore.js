@@ -82,6 +82,15 @@ export const usePageStore = defineStore('pageStore', {
       //   console.log('Error', error.response.data)
       // }
     },
+    
+    // async exportToCSV(ids) {
+    //   const auth = useAuthStore()
+    // 
+    //   await PageApi.exportToCSV(auth.organization)
+    //     .then(response => {
+    //       this.contentExportModalOpen = false
+    //     })
+    // },
 
     selectPage(id, event) {
       // Add to array if not present. Remove if already present.

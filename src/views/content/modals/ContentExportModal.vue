@@ -38,13 +38,17 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
 import AppModal from '@/app/components/AppModal.vue'
 import IconExport from '@/app/components/icons/IconExport.vue'
 
+const route = useRoute()
 const pageStore = usePageStore()
+const baseURL = import.meta.env.VITE_API_BASE_URL
 
 function exportPages() {
-  
+  // pageStore.exportToCSV()
+  window.open(`${baseURL}/${route.params.organization}/pages/export/csv`, '_blank')
 }
 </script>

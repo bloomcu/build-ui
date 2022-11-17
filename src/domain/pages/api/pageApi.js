@@ -59,6 +59,16 @@ const pageApi = {
     destroy(organization, ids) {
         return HttpClient.post(`/${organization}/pages/destroy`, {ids: ids})
     },
+    
+    // /**
+    //  * Export pages to CSV file
+    //  *
+    //  * @param String organization [Organization slug]
+    //  * @return promise
+    //  */
+    // exportToCSV(organization) {
+    //   return HttpClient.get(`/${organization}/pages/export/csv`, {responseType: 'arraybuffer'})
+    // },
 }
 
 export { pageApi }
