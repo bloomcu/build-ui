@@ -25,25 +25,31 @@ import { usePageStore } from '@/domain/pages/store/usePageStore'
 
 const pageStore = usePageStore()
 
-function updateStatus(id, status) {
-  props.status = status
-  
-  // Add to array if not present. Do not remove if already present.
-  // TODO: Abstract this away
-  let index = pageStore.selected.indexOf(id)
-      index === -1 ? pageStore.selected.push(id) : null
-      
-  // Iterate selected pages and update 
-  // TODO: Abstract this away
-  pageStore.pages.forEach((page) => {
-    if (pageStore.selected.includes(page.id)) {
-      page.status = status
-    }
-  })
-  
-  pageStore.update(pageStore.selected, {
-    status: status.slug
-  })
+function updateStatus(id, status) {  
+  if (pageStore.selected.includes(id)) {
+    // Iterate selected pages and update
+    // Optimize this so we only iterate over selected pages, not all pages
+    // TODO: Abstract this away
+    pageStore.pages.forEach((page) => {
+      if (pageStore.selected.includes(page.id)) {
+        page.status = status
+      }
+    })
+    
+    // Update all selected pages
+    pageStore.update(pageStore.selected, {
+      status: status.slug
+    })
+    
+  } else {
+    // Update single page
+    let page = pageStore.pages.find(p => p.id === id)
+        page.status = status
+    
+    pageStore.update([id], {
+      status: status.slug
+    })
+  }
 }
 
 const props = defineProps({
