@@ -13,8 +13,8 @@
   <LayoutDefault maxWidth="none">
     <div class="flex">
       <aside class="position-relative z-index-1 width-100% padding-y-sm padding-right-md border-right" style="max-width: 280px;">
-        <AppNestedMenu title="status" :items="statuses.status"/>
-        <AppNestedMenu title="category" :items="tags.children"/>
+        <AppNestedMenu v-if="statuses.status" :items="statuses.status" title="status"/>
+        <AppNestedMenu v-if="tags.children" :items="tags.children" title="category"/>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-100vh">
@@ -43,8 +43,8 @@ import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import ContentSkeletonLoader from '@/views/content/components/ContentSkeletonLoader.vue'
 import ContentTable from '@/views/content/components/ContentTable.vue'
-import ContentCategoryModal from '@/views/content/components/ContentCategoryModal.vue'
-import ContentExportModal from '@/views/content/components/ContentExportModal.vue'
+import ContentCategoryModal from '@/views/content/modals/ContentCategoryModal.vue'
+import ContentExportModal from '@/views/content/modals/ContentExportModal.vue'
 
 const pages = usePageStore()
 const statuses = useStatusStore()

@@ -64,8 +64,8 @@
               >
                 {{ page.title }}
               </AppInlineEditor>
-              <a v-if="page.url" :href="page.url" target="_blank" class="width-fit text-xs">{{ page.url }}</a>
-              <p v-else class="width-fit text-xs text-underline cursor-pointer">Add URL</p>
+              <a v-if="page.url" :href="page.url" target="_blank" class="text-xs color-contrast-low width-fit">{{ page.url }}</a>
+              <p v-else class="text-xs color-contrast-low text-underline width-fit cursor-pointer">Add URL</p>
             </div>
           </div>
           

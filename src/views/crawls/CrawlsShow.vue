@@ -53,7 +53,7 @@
         <div class="border-top padding-top-sm">
           <div v-for="(item, index) in crawlStore.results" :key="index" class="grid items-center text-sm padding-y-xs border-bottom">
             <div class="col-11">
-              <p class="text-bold margin-bottom-xxxxs" :class="item.http_status == '404' ? 'color-error' : null">{{ item.title }}</p>
+              <p class="text-bold margin-bottom-xxxxs">{{ item.title }}</p>
               <a :href="item.url" target="_blank" class="text-xs color-contrast-low">{{ item.url }}</a>
             </div>
             

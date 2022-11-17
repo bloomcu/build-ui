@@ -64,7 +64,6 @@ const emit = defineEmits(['closed'])
   cursor: pointer;
 }
 
-
 .modal__content {
   max-height: 90%;
 }

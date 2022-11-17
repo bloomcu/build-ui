@@ -1,5 +1,5 @@
 <template>
-    <nav v-if="items" class="nested-menu margin-bottom-md">
+    <nav class="nested-menu margin-bottom-md">
         <!-- Title -->
         <div v-if="showTitle" class="padding-bottom-sm">
           <span class="text-xs text-uppercase letter-spacing-lg color-primary">{{ title }}</span>

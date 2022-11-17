@@ -4,13 +4,17 @@
     @closed="pageStore.toggleContentExportModal()" 
     :class="pageStore.contentExportModalOpen ? 'modal--is-visible' : ''"
   >
-    <div class="flex items-center justify-between margin-bottom-sm">
-      <h2 class="text-md margin-bottom-sm">Exports pages to CSV</h2>
+    <div class="flex justify-between margin-bottom-md">
+      <div>
+        <h2 class="text-md margin-bottom-xxs">Export {{ pageStore.pages.length }} page(s)</h2>
+      </div>
       
-      <button @click="exportPages()" class="btn btn--primary">
-        <IconExport size="xs" class="color-white"/>
-        <span class="margin-left-xxs">Export</span>
-      </button>
+      <div>
+        <button @click="exportPages()" class="btn btn--sm btn--primary">
+          <IconExport size="xs" class="color-white"/>
+          <span class="margin-left-xxs">Export to CSV</span>
+        </button>
+      </div>
     </div>
     
     <!-- Table -->
@@ -18,7 +22,7 @@
       <div class="grid text-bold border-bottom margin-bottom-xxs padding-bottom-xxs">
         <div class="col grid">
           <div class="col padding-xxs">Title</div>
-          <div class="col padding-xxs">Url</div>
+          <div class="col padding-xxs">Old URL</div>
           <div class="col padding-xxs">Category</div>
         </div>
       </div>

@@ -5,7 +5,7 @@
     :class="pageStore.contentCategoryModalOpen ? 'modal--is-visible' : ''"
   >
     <h2 class="text-md margin-bottom-sm">Update category</h2>
-    <AppNestedMenu title="new-category" :items="tagStore.children" :showTitle="false" :showAllOption="false"/>
+    <AppNestedMenu v-if="tagStore.children" :items="tagStore.children" title="new-category" :showTitle="false" :showAllOption="false"/>
     <button @click="updateCategory()" class="btn btn--primary">Update category</button>
   </AppModal>
 </template>
