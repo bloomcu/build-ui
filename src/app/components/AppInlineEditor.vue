@@ -2,8 +2,8 @@
   <div
     contenteditable 
     spellcheck="false" 
-    @blur="update($event)"
-    @keydown.enter="update($event)"
+    @blur="handleBlur($event)"
+    @keydown.enter="handleKeydownEnter($event)"
     class="app-inline-editor"
   >
     <slot/>
@@ -20,9 +20,12 @@ const props = defineProps({
   },
 })
 
-function update(event) {
-  event.target.blur()
+function handleBlur(event) {
   emit('updated', props.id, event.target.innerText)
+}
+
+function handleKeydownEnter(event) {
+  event.target.blur()
 }
 </script>
 
