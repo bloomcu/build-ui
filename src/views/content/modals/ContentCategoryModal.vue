@@ -22,18 +22,6 @@ const tagStore = useTagStore()
 const { query } = useQuery()
 
 function updateCategory(id, category) {
-  // console.log('Selected:', pageStore.selected)
-  // console.log('Category:', category)
-  // console.log('Query:', query.value['new-category'])
-  
-  // Iterate selected pages and update 
-  // TODO: Abstract this away
-  // pageStore.pages.forEach((page) => {
-  //   if (pageStore.selected.includes(page.id)) {
-  //     page.category = category
-  //   }
-  // })
-  // 
   pageStore.update(pageStore.selected, {
     category: query.value['new-category']
   }).then(() => {
@@ -41,7 +29,7 @@ function updateCategory(id, category) {
       'filter[category.slug]': query.value.category,
       'filter[status.slug]': query.value.status,
     })
-    
+  
     pageStore.toggleContentCategoryModal()
   })
 }
