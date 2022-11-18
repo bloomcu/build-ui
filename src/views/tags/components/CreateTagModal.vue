@@ -2,7 +2,7 @@
   <AppModal 
     size="xxs"
     @closed="tagStore.toggleCreateModal()" 
-    :class="tagStore.createModal ? 'modal--is-visible' : ''"
+    :class="tagStore.createModalOpen ? 'modal--is-visible' : ''"
   >
     <form action="#" @submit.prevent="create()">
       <AppInput v-model="tag.title" label="Title" placeholder="Tag group title" required />

@@ -5,7 +5,7 @@ export const useTagStore = defineStore('tagStore', {
     state: () => ({
         tag: {},
         tags: [],
-        createModal: false,
+        createModalOpen: false,
         isLoading: false,
     }),
     
@@ -65,7 +65,7 @@ export const useTagStore = defineStore('tagStore', {
       },
       
       toggleCreateModal() {
-        this.createModal = !this.createModal
+        this.createModalOpen = !this.createModalOpen
       }
     }
 })

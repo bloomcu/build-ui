@@ -5,7 +5,7 @@ export const useStatusStore = defineStore('statusStore', {
     state: () => ({
         status: {},
         statuses: [],
-        createModal: false,
+        createModalOpen: false,
         isLoading: false,
     }),
     
@@ -82,7 +82,7 @@ export const useStatusStore = defineStore('statusStore', {
       // },
       
       // toggleCreateModal() {
-      //   this.createModal = !this.createModal
+      //   this.createModalOpen = !this.createModalOpen
       // }
     }
 })
