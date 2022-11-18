@@ -52,14 +52,14 @@
         <!-- Right -->
         <div class="flex gap-sm items-center">
           <!-- Category -->
-          <ContentCategoryChip 
+          <ContentCategory 
             :id="page.id" 
             :category="page.category" 
             class="border-right padding-right-sm"
           />
           
           <!-- Status -->
-          <ContentStatusToggle
+          <ContentStatus
             :id="page.id"
             :status="page.status"
             class="border-right padding-right-sm"
@@ -82,8 +82,8 @@ import { ref } from 'vue'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
 
 import AppInlineEditor from '@/app/components/AppInlineEditor.vue'
-import ContentStatusToggle from '@/views/content/components/ContentStatusToggle.vue'
-import ContentCategoryChip from '@/views/content/components/ContentCategoryChip.vue'
+import ContentStatus from '@/views/content/components/ContentStatus.vue'
+import ContentCategory from '@/views/content/components/ContentCategory.vue'
 
 const pageStore = usePageStore()
 const isHighlighting = ref(false)
