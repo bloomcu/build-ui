@@ -56,7 +56,7 @@ export const usePageStore = defineStore('pageStore', {
       
       await PageApi.update(auth.organization, ids, properties)
         .then(response => {
-          console.log(this.selected.length + ' page(s) updated')
+          console.log(ids.length + ' page(s) updated')
           // this.selected = []
         })
         
@@ -68,7 +68,7 @@ export const usePageStore = defineStore('pageStore', {
       
       await PageApi.destroy(auth.organization, ids)
         .then(response => {
-          console.log(this.selected.length + ' page(s) deleted')
+          console.log(ids.length + ' page(s) deleted')
           this.pages = this.pages.filter((p) => !this.selected.includes(p.id)) // remove resources
           this.selected = []
         })
