@@ -591,7 +591,7 @@ Title: Skeleton Loaders
   --ske-animation-duration: 1s;
 
   // rectangle + text
-  --ske-radius: var(--radius-md);
+  --ske-radius: var(--radius-lg);
 }
 
 .ske {
@@ -646,7 +646,8 @@ Title: Skeleton Loaders
 }
 
 .ske--text,
-.ske--heading {
+.ske--heading,
+.ske--heading-lg {
   border-radius: var(--ske-radius);
   clip-path: inset(0% 0% 0% 0% round var(--ske-radius));
 }

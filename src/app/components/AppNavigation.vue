@@ -176,7 +176,7 @@ const auth = useAuthStore()
   --f-header-logo-width: 100%;
 
   @include breakpoint(md) {
-    --f-header-height: 70px;
+    --f-header-height: 60px;
   }
 }
 
