@@ -80,7 +80,7 @@ import IconImport from '@/app/components/icons/IconImport.vue'
 import AppCircleLoader from '@/app/components/loaders/AppCircleLoader.vue'
 import AppChip from '@/app/components/AppChip.vue'
 import AppInput from '@/app/components/forms/AppInput.vue'
-import CrawlsSkeletonLoader from '@/views/crawls/components/CrawlsSkeletonLoader.vue'
+import CrawlsSkeletonLoader from '@/views/crawls/loaders/CrawlsSkeletonLoader.vue'
 
 const route = useRoute()
 const router = useRouter()

@@ -31,7 +31,7 @@ import { useOrganizationStore } from '@/domain/organizations/store/useOrganizati
 
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
-import CreateOrganizationModal from '@/views/organizations/components/CreateOrganizationModal.vue'
+import CreateOrganizationModal from '@/views/organizations/modals/CreateOrganizationModal.vue'
 
 const organizationStore = useOrganizationStore()
 

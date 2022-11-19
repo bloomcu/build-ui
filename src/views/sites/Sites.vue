@@ -46,7 +46,7 @@ import { useSiteStore } from '@/domain/sites/store/useSiteStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppCircleLoader from '@/app/components/loaders/AppCircleLoader.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
-import CreateSiteModal from '@/views/sites/components/CreateSiteModal.vue'
+import CreateSiteModal from '@/views/sites/modals/CreateSiteModal.vue'
 
 const siteStore = useSiteStore()
 

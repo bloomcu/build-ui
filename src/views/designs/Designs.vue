@@ -43,7 +43,7 @@ import { useDesignStore } from '@/domain/designs/store/useDesignStore'
 
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
-import CreateDesignModal from '@/views/designs/components/CreateDesignModal.vue'
+import CreateDesignModal from '@/views/designs/modals/CreateDesignModal.vue'
 import ButtonCopyToClipboard from '@/app/components/buttons/ButtonCopyToClipboard.vue'
 
 const designStore = useDesignStore()

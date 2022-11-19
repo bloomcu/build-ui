@@ -43,7 +43,7 @@ import { ref, onMounted } from 'vue'
 
 // Components
 import MediaList from '@/domain/media/components/MediaList.vue'
-import MediaModal from '@/domain/media/components/MediaModal.vue'
+import MediaModal from '@/domain/media/modals/MediaModal.vue'
 
 // Stores
 import { useMediaStore } from '@/domain/media/store/useMediaStore'

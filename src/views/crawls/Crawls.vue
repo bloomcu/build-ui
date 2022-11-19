@@ -66,8 +66,8 @@ import AppChip from '@/app/components/AppChip.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import IconCancel from '@/app/components/icons/IconCancel.vue'
 import IconRestart from '@/app/components/icons/IconRestart.vue'
-import CrawlsSkeletonLoader from '@/views/crawls/components/CrawlsSkeletonLoader.vue'
-import CreateCrawlModal from '@/views/crawls/components/CreateCrawlModal.vue'
+import CrawlsSkeletonLoader from '@/views/crawls/loaders/CrawlsSkeletonLoader.vue'
+import CreateCrawlModal from '@/views/crawls/modals/CreateCrawlModal.vue'
 
 const crawlStore = useCrawlStore()
 const router = useRouter()

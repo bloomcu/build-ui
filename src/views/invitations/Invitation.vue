@@ -55,7 +55,7 @@ import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 import { useInvitationStore } from '@/domain/invitations/store/useInvitationStore'
 import AppInput from '@/app/components/forms/AppInput.vue'
 import AppUserAvatar from '@/app/components/AppUserAvatar.vue'
-import InvitationSkeletonLoader from '@/views/invitations/components/InvitationSkeletonLoader.vue'
+import InvitationSkeletonLoader from '@/views/invitations/loaders/InvitationSkeletonLoader.vue'
 
 const route = useRoute()
 const errorStore = useErrorStore()

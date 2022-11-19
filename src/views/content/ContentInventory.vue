@@ -14,7 +14,7 @@
     <div class="flex">
       <aside class="position-relative z-index-1 width-100% padding-y-sm padding-right-md border-right" style="max-width: 280px;">
         <AppNestedMenu v-if="statuses.status" :items="statuses.status" title="status"/>
-        <AppNestedMenu v-if="tags.children" :items="tags.children" title="category"/>
+        <AppNestedMenu v-if="categories.children" :items="categories.children" title="category"/>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-100vh">
@@ -40,7 +40,7 @@ import { useRoute } from 'vue-router'
 
 import { usePageStore } from '@/domain/pages/store/usePageStore'
 import { useStatusStore } from '@/domain/statuses/store/useStatusStore'
-import { useTagStore } from '@/domain/tags/store/useTagStore'
+import { useCategoryStore } from '@/domain/categories/store/useCategoryStore'
 import useQuery from '@/app/composables/useQuery.js'
 
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
@@ -53,15 +53,15 @@ import ContentExportModal from '@/views/content/modals/ContentExportModal.vue'
 
 const pages = usePageStore()
 const statuses = useStatusStore()
-const tags = useTagStore() // TODO: 
+const categories = useCategoryStore()
 const route = useRoute()
 const { query } = useQuery() // TODO: Import in one line
 
 function indexPages() {
   // TODO: Consider getting query params in the store or API
   pages.index({
-    'filter[category.slug]': query.value.category,
     'filter[status.slug]': query.value.status,
+    'filter[category.slug]': query.value.category,
   })
 }
 
@@ -71,7 +71,7 @@ watch(route, (newValue) => {
 
 onMounted(() => {
   indexPages()
-  statuses.show('content-statuses')
-  tags.show('content-tags')
+  statuses.show('page-statuses')
+  categories.show('page-categories')
 })
 </script>

@@ -96,12 +96,12 @@ const tags = [
 
 <script>
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
-import AssetSkeletonLoader from '@/views/assets/components/AssetSkeletonLoader.vue'
+import AssetSkeletonLoader from '@/views/assets/loaders/AssetSkeletonLoader.vue'
 import AppNestedMenu from '@/app/components/nested-menu/AppNestedMenu.vue'
 import MediaCard from '@/domain/media/components/media-card/MediaCard.vue'
 import MediaUploader from '@/domain/media/components/MediaUploader.vue'
 import MediaList from '@/domain/media/components/MediaList.vue'
-import MediaModal from '@/domain/media/components/MediaModal.vue'
+import MediaModal from '@/domain/media/modals/MediaModal.vue'
 
 export default {
     components: [

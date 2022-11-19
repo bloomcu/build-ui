@@ -21,7 +21,7 @@ import { ref, onMounted } from 'vue'
 import { useTagStore } from '@/domain/tags/store/useTagStore'
 
 import LayoutWithoutNavigation from '@/app/layouts/LayoutWithoutNavigation.vue'
-import CreateTagModal from '@/views/tags/components/CreateTagModal.vue'
+import CreateTagModal from '@/views/tags/modals/CreateTagModal.vue'
 
 const tagStore = useTagStore()
 
