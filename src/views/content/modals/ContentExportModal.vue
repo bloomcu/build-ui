@@ -17,23 +17,32 @@
       </div>
     </div>
     
-    <!-- Table -->
-    <div class="text-sm margin-bottom-md">
-      <div class="grid text-bold border-bottom margin-bottom-xxs padding-bottom-xxs">
-        <div class="col grid">
-          <div class="col padding-xxs">Title</div>
-          <div class="col padding-xxs">Old URL</div>
-          <div class="col padding-xxs">Category</div>
-        </div>
-      </div>
+    <table class="table table--expanded position-relative z-index-1 width-100% text-unit-em text-sm">
+      <thead class="table__header">
+        <tr class="table__row">
+          <th class="table__cell text-left" scope="col">Page</th>
+          <th class="table__cell text-left" scope="col">Category</th>
+          <th class="table__cell text-left" scope="col">Wordcount</th>
+        </tr>
+      </thead>
       
-      <!-- TODO: Take care of the inline style below -->
-      <div v-for="(page) in pageStore.pages" :key="page.id" class="grid border-bottom">
-        <div class="col padding-xxs" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ page.title }}</div>
-        <div class="col padding-xxs" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ page.url }}</div>
-        <div class="col padding-xxs">{{ page.category ? page.category.title : 'Uncategorized' }}</div>
-      </div>
-    </div>
+      <tbody class="table__body">
+        <tr v-for="(page, index) in pageStore.pages" :key="index" class="table__row">
+          <td class="table__cell  text-left" role="cell">
+            <p class="text-bold margin-bottom-xxxxs">{{ page.title }}</p>
+            <a :href="page.url" target="_blank" class="text-xs color-contrast-low">{{ page.url }}</a>
+          </td>
+
+          <td class="table__cell text-left" role="cell">
+            <p>{{ page.category ? page.category.title : 'Uncategorized' }}</p>
+          </td>
+
+          <td class="table__cell text-left" role="cell">
+            <p>{{ page.wordcount }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </AppModal>
 </template>
 

@@ -9,11 +9,8 @@
       </button>
     </div>
     
-    <div class="container max-width-sm margin-bottom-md">
-      <CrawlsSkeletonLoader v-if="crawlStore.isLoading"/>
-      
-      <!-- <RouterLink v-else v-for="crawl in crawlStore.crawls" :key="crawl.id" :to="{name: 'crawlsShow', params: { crawl: crawl.id}}" class="card card--is-link margin-bottom-sm"> -->
-      <div v-else v-for="crawl in crawlStore.crawls" :key="crawl.id" @click="showCrawl(crawl.id)" class="card card--is-link margin-bottom-sm">
+    <div class="container max-width-sm margin-bottom-md">      
+      <div v-for="crawl in crawlStore.crawls" :key="crawl.id" @click="showCrawl(crawl.id)" class="card card--is-link margin-bottom-sm">
         <div class="card-header flex flex-column gap-sm">
           <div class="flex justify-between items-center">
             <div>
@@ -48,7 +45,6 @@
           </div>
         </div>
       </div>
-      <!-- </RouterLink> -->
     </div>
     
     <CreateCrawlModal/>
@@ -66,7 +62,6 @@ import AppChip from '@/app/components/AppChip.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import IconCancel from '@/app/components/icons/IconCancel.vue'
 import IconRestart from '@/app/components/icons/IconRestart.vue'
-import CrawlsSkeletonLoader from '@/views/crawls/loaders/CrawlsSkeletonLoader.vue'
 import CreateCrawlModal from '@/views/crawls/modals/CreateCrawlModal.vue'
 
 const crawlStore = useCrawlStore()
