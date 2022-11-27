@@ -6,8 +6,8 @@
             class="nested-menu__item"
         >
             <a 
-              @click.prevent="set(title, item.slug)" 
-              :class="query[title] === item.slug ? 'nested-menu__link--current' : ''" 
+              @click.prevent="emitSelected(item.slug)" 
+              :class="selected === item.slug ? 'nested-menu__link--current' : ''" 
               class="nested-menu__link" 
               href=""
             >
@@ -27,7 +27,7 @@
 
             <!-- Recursive children -->
             <ul v-if="item.children && item.children.length" class="nested-menu__list">
-                <AppNestedMenuChildren :title="title" :items="item.children"/>
+                <AppNestedMenuChildren :title="title" :items="item.children" :selected="selected" @selected="emitSelected"/>
             </ul>
         </li>
     </div>
@@ -41,10 +41,14 @@ export default {
 
 <script setup>
 import useToggleMultiple from '@/app/composables/useToggleMultiple.js'
-import useQuery from '@/app/composables/useQuery.js'
 
 const { toggle, isToggled } = useToggleMultiple()
-const { query, set, unset } = useQuery()
+
+function emitSelected(value) {
+  emit('selected', value)
+}
+
+const emit = defineEmits(['selected'])
 
 const props = defineProps({
   title: { 
@@ -53,9 +57,8 @@ const props = defineProps({
   items: { 
     type: Object 
   },
-  // updateQueryParams: {
-  //   type: Boolean,
-  //   default: true
-  // }
+  selected: {
+    type: String
+  }
 })
 </script>

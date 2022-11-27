@@ -10,8 +10,8 @@
             <!-- "All" option -->
             <li v-if="showAllOption" class="nested-menu__item">
                 <a 
-                  @click.prevent="unset(title)" 
-                  :class="query[title] === undefined ? 'nested-menu__link--current' : ''" 
+                  @click.prevent="emitSelected(null)" 
+                  :class="!selected ? 'nested-menu__link--current' : ''" 
                   class="nested-menu__link" 
                   href=""
                 >
@@ -20,19 +20,19 @@
             </li>
 
             <!-- Children -->
-            <AppNestedMenuChildren :title="title" :items="items" />
+            <AppNestedMenuChildren :title="title" :items="items" :selected="selected" @selected="emitSelected" />
         </ul>
     </nav>
 </template>
 
 <script setup>
-// TODO: Implement loading ghost
-// import LoadingGhost from '@/components/loading/LoadingGhost.vue'
 import AppNestedMenuChildren from '@/app/components/nested-menu/AppNestedMenuChildren.vue'
 
-import useQuery from '@/app/composables/useQuery.js'
+function emitSelected(value) {
+  emit('selected', value)
+}
 
-const { query, set, unset } = useQuery()
+const emit = defineEmits(['selected'])
 
 const props = defineProps({
     title: { 
@@ -50,10 +50,9 @@ const props = defineProps({
       type: Boolean,
       default: true
     },
-    // updateQueryParams: {
-    //   type: Boolean,
-    //   default: true
-    // }
+    selected: {
+      type: String
+    }
 })
 </script>
 
