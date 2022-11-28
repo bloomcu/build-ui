@@ -15,6 +15,12 @@
       <aside class="position-relative z-index-1 width-100% padding-y-sm padding-right-md border-right" style="max-width: 280px;">
         <AppNestedMenu v-if="statuses.status" :items="statuses.status" title="status" :selected="query['status']" @selected="filterStatus"/>
         <AppNestedMenu v-if="categories.children" :items="categories.children" title="category" :selected="query['category']" @selected="filterCategory"/>
+
+        <p class="text-xs text-uppercase letter-spacing-lg color-primary margin-bottom-sm">other</p>
+        <button @click="filterArchived" class="btn" :class="query['trashed'] ? 'btn--primary' : 'btn--subtle'">
+          <svg class="icon margin-right-xxs" viewBox="0 0 24 24"><g stroke-linecap="square" stroke-miterlimit="10" fill="none" stroke="currentColor" stroke-linejoin="miter"><path d="M20,9l-.867,12.142A2,2,0,0,1,17.138,23H6.862a2,2,0,0,1-1.995-1.858L4,9"></path><line x1="1" y1="5" x2="23" y2="5"></line><path data-cap="butt" d="M8,5V1h8V5" stroke-linecap="butt"></path></g></svg>
+          Archived
+        </button>
       </aside>
       
       <main class="position-relative z-index-1 flex-grow height-100vh">
@@ -61,15 +67,21 @@ function indexPages() {
   pages.index({
     'filter[status.slug]': query.value.status,
     'filter[category.slug]': query.value.category,
+    'filter[trashed]': query.value.trashed,
   })
 }
 
 function filterStatus(value) {
-  set('status', value)
+  value ? set('status', value) : unset('status')
 }
 
 function filterCategory(value) {
-  set('category', value)
+  value ? set('category', value) : unset('category')
+}
+
+function filterArchived() {
+  // console.log(query.value['trashed'])
+  query.value['trashed'] ? unset('trashed') : set('trashed', 'only')
 }
 
 watch(route, (newValue) => {
