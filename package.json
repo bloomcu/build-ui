@@ -16,9 +16,11 @@
     "filepond": "^4.30.3",
     "filepond-plugin-file-validate-size": "^2.2.7",
     "filepond-plugin-file-validate-type": "^1.2.8",
+    "laravel-echo": "^1.14.2",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.34",
     "pinia": "^2.0.14",
+    "pusher-js": "^7.5.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.15"
   },

@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <CrawlsSkeletonLoader v-if="crawlStore.isLoadingResults"/>
-      
-    <div v-else class="card card--shadow">
+  <div>  
+    <div class="card card--shadow">
       <div class="grid margin-bottom-sm">
         <div v-if="crawlStore.crawl.total" class="col">
           <p class="text-sm">Pages crawled</p>
@@ -14,7 +12,9 @@
         </div>
       </div>
       
-      <table class="table table--expanded position-relative z-index-1 width-100% text-unit-em text-sm">
+      <CrawlsSkeletonLoader v-if="crawlStore.isLoadingResults"/>
+      
+      <table v-else class="table table--expanded position-relative z-index-1 width-100% text-unit-em text-sm">
         <thead class="table__header">
           <tr class="table__row">
             <th class="table__cell text-left" scope="col">Page</th>

@@ -1,9 +1,10 @@
 <template>
-  <button class="chip chip__btn text-sm" :class="`chip--${color}`">
-    <em v-if="icon" class="chip__icon-wrapper bg-success">
+  <button class="chip chip__btn text-sm padding-y-xxxs padding-x-xs" :class="`chip--${color}`">
+    <!-- <em v-if="icon" class="chip__icon-wrapper bg-success">
       <svg class="icon" viewBox="0 0 12 12"><polyline points="1.5 6 4.5 9 10.5 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </em>
-    <i class="chip__label">{{ label }}</i>
+    </em> -->
+    <!-- <i class="chip__label">{{ label }}</i> -->
+    <slot/>
   </button>
 </template>
 
@@ -17,14 +18,18 @@ const props = defineProps({
     type: String,
     default: 'white',
   },
+  size: {
+    type: String,
+    default: 'xxxs',
+  },
   interactive: {
     type: Boolean,
     default: false,
   },
-  icon: {
-    type: Boolean,
-    default: false
-  }
+  // icon: {
+  //   type: Boolean,
+  //   default: false
+  // }
 })
 </script>
 
@@ -87,10 +92,6 @@ const props = defineProps({
   &:active {
     transform: translateY(1px);
   }
-}
-
-.chip__label {
-  padding: 0 var(--space-xxs);
 }
 
 .chip__img {

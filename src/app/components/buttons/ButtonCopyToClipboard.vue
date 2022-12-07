@@ -8,7 +8,6 @@
 <script setup>
 import { ref } from 'vue'
 import useClipboard from '@/app/composables/useClipboard'
-import AppCircleLoader from '@/app/components/loaders/AppCircleLoader.vue'
 
 const { copyToClipboard } = useClipboard()
 let copying = ref(false)

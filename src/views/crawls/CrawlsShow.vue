@@ -7,7 +7,7 @@
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
         
-        <button v-if="canAbort(crawlStore.crawl.status)" @click.stop="abort(crawl.id)"  class="btn btn--subtle">
+        <button v-if="canAbort(crawlStore.crawl.status)" @click.stop="abort(crawlStore.crawl.id)"  class="btn btn--subtle">
           <IconCancel size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Cancel</span>
         </button>
@@ -28,7 +28,10 @@
         <p class="text-sm margin-bottom-xs">Created {{ moment(crawlStore.crawl.created_at).fromNow() }}</p>
         <h1 class="text-lg margin-bottom-sm">{{ crawlStore.crawl.url }}</h1>
         <!-- TODO: Create a CrawlStatus.vue component that wraps up all this logic -->
-        <AppChip :label="crawlStore.crawl.status ? crawlStore.crawl.status : 'STARTING'" :color="getStatusColor(crawlStore.crawl.status)"/>
+        <AppChip :color="getStatusColor(crawlStore.crawl.status)">
+          <AppCircleLoader v-if="isInProgress(crawlStore.crawl.status)" class="margin-right-xxxs"/>
+          {{ crawlStore.crawl.status }}
+        </AppChip>
       </div>
       
       <!-- Crawl results -->
@@ -74,6 +77,12 @@ function getStatusColor(status) {
 }
 
 // TODO: Move to composable
+function isInProgress(status) {
+  const inProgressStatuses = ['READY', 'RUNNING', 'TIMING-OUT', 'ABORTING']
+  return inProgressStatuses.includes(status)
+}
+
+// TODO: Move to composable
 function canAbort(status) {
   const abortableStatuses = ['READY', 'RUNNING', 'TIMING-OUT']
   return abortableStatuses.includes(status)
@@ -97,6 +106,12 @@ function importResults(id) {
 onMounted(() => {
   crawlStore.show(route.params.crawl)
     .then(() => {
+      crawlStore.showResults(route.params.crawl)
+    })
+    
+  window.Echo.private('DDD.Domain.Crawls.Crawl.' + route.params.crawl)
+    .listen('.CrawlStatusUpdated', ({ crawl }) => {
+      crawlStore.crawl = crawl
       crawlStore.showResults(route.params.crawl)
     })
 })

@@ -6,6 +6,7 @@ import { authApi as AuthApi } from '@/domain/auth/api/authApi'
 
 export const useAuthStore = defineStore('authStore', {
     state: () => ({
+      // TODO: Rename this property as "auth"
       user: JSON.parse(localStorage.getItem('user')),
       organization: 'bloomcu',
     }),
