@@ -1,7 +1,6 @@
 <template>
   <div @click="handleClick(id)">
-    <AppChip v-if="category" color="outline" :label="category.title" class="chip__btn" />
-    <AppChip v-else color="grey" label="Uncategorized" class="chip__btn" />
+    <AppChip>{{category ? category.title : 'Uncategorized'}}</AppChip>
   </div>
 </template>
 

@@ -31,11 +31,12 @@
         </div>
         
         <div class="card-footer grid items-center border-top margin-top-sm padding-top-sm">
-          <!-- TODO: Consider create a CrawlStats.vue component that wraps up all this logic -->
           <div class="col">
             <!-- TODO: Create a CrawlStatus.vue component that wraps up all this logic -->
-            <!-- TODO: Add spinning loader to chip -->
-            <AppChip :label="crawl.status ? crawl.status : 'STARTING'" :color="getStatusColor(crawl.status)"/>
+            <AppChip :color="getStatusColor(crawl.status)">
+              <AppCircleLoader v-if="isInProgress(crawl.status)" class="margin-right-xxxs"/>
+              {{ crawl.status }}
+            </AppChip>
           </div>
           <div v-if="crawl.total" class="col border-left padding-left-xs">
             <p class="text-sm">{{ crawl.total }} pages crawled</p>
@@ -59,6 +60,7 @@ import { useCrawlStore } from '@/domain/crawls/store/useCrawlStore'
 
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
 import AppChip from '@/app/components/AppChip.vue'
+import AppCircleLoader from '@/app/components/loaders/AppCircleLoader.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 import IconCancel from '@/app/components/icons/IconCancel.vue'
 import IconRestart from '@/app/components/icons/IconRestart.vue'
@@ -95,7 +97,6 @@ function restart(url) {
 }
 
 // TODO: Move to composable
-// TODO: Use green for SUCCEEDED, outline for READY and blue for RUNNING
 function getStatusColor(status) {
   const statuses = {
     'READY': 'outline',
@@ -109,6 +110,12 @@ function getStatusColor(status) {
   }
   
   return status ? statuses[status] : 'outline'
+}
+
+// TODO: Move to composable
+function isInProgress(status) {
+  const inProgressStatuses = ['READY', 'RUNNING', 'TIMING-OUT', 'ABORTING']
+  return inProgressStatuses.includes(status)
 }
 
 function showCrawl(id) {

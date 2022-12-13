@@ -82,7 +82,9 @@
                 </div>
               </td>
               <td class="table__cell" role="cell">
-                <AppChip :label="user.role" color="outline"/>
+                <AppChip color="outline">
+                  {{ user.role }}
+                </AppChip>
               </td>
               <td class="table__cell text-right" role="cell">
                 {{ moment(user.created_at).fromNow() }}

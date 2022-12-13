@@ -1,22 +1,14 @@
 <template>
   <button class="chip chip__btn text-sm padding-y-xxxs padding-x-xs" :class="`chip--${color}`">
-    <!-- <em v-if="icon" class="chip__icon-wrapper bg-success">
-      <svg class="icon" viewBox="0 0 12 12"><polyline points="1.5 6 4.5 9 10.5 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </em> -->
-    <!-- <i class="chip__label">{{ label }}</i> -->
     <slot/>
   </button>
 </template>
 
 <script setup>
 const props = defineProps({
-  label: {
-    type: String,
-    required: true,
-  },
   color: {
     type: String,
-    default: 'white',
+    default: 'outline',
   },
   size: {
     type: String,
@@ -26,10 +18,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  // icon: {
-  //   type: Boolean,
-  //   default: false
-  // }
 })
 </script>
 
@@ -50,9 +38,9 @@ const props = defineProps({
   @include fontSmooth;
   
   /* 👇 you can ovveride this padding by using the padding utility classes */
-  &:not([class^="padding-"]):not([class*=" padding-"]) {
-    padding: var(--space-xxxs);
-  }
+  // &:not([class^="padding-"]):not([class*=" padding-"]) {
+  //   padding: var(--space-xxxs);
+  // }
   
   &--outline {
     background-color: var(--color-white);
@@ -91,28 +79,6 @@ const props = defineProps({
 
   &:active {
     transform: translateY(1px);
-  }
-}
-
-.chip__img {
-  display: block;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.chip__icon-wrapper {
-  display: flex;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  // background-color: alpha(var(--color-contrast-higher), 0.95);
-  color: var(--color-bg); /* icon color */
-
-  .icon {
-    display: block;
-    margin: auto;
   }
 }
 </style>
