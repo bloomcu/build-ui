@@ -31,18 +31,18 @@
         </div>
         
         <div class="card-footer grid items-center border-top margin-top-sm padding-top-sm">
-          <div v-if="crawl.status" class="col">
+          <div class="col">
             <!-- TODO: Create a CrawlStatus.vue component that wraps up all this logic -->
             <AppChip :color="getStatusColor(crawl.status)">
               <AppCircleLoader v-if="isInProgress(crawl.status)" class="margin-right-xxxs"/>
-              {{ crawl.status }}
+              {{ crawl.status ? crawl.status : 'STARTING' }}
             </AppChip>
           </div>
-          <div v-if="crawl.total" class="col border-left padding-left-xs">
-            <p class="text-sm">{{ crawl.total }} pages crawled</p>
+          <div class="col border-left padding-left-xs">
+            <p class="text-sm">{{ crawl.total ? crawl.total : 0 }} pages crawled</p>
           </div>
           <div class="col border-left padding-left-xs">
-            <p class="text-sm">{{ crawl.pending }} pending</p>
+            <p class="text-sm">{{ crawl.pending ? crawl.pending : 0 }} pending</p>
           </div>
         </div>
       </div>
