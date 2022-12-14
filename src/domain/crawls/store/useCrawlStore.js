@@ -36,8 +36,9 @@ export const useCrawlStore = defineStore('crawlStore', {
           await CrawlApi.store(auth.organization, crawl)
             .then(response => {
               this.crawls.unshift(response.data.data)
-            }).catch(error => {
-              console.log('Error', error.response.data)
+            })
+            .catch((error) => {
+              return Promise.reject(error)
             })
         },
         
