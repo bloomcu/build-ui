@@ -1,5 +1,5 @@
 <template>
-  <LayoutDefault v-if="crawlStore.crawl" maxWidth="md">
+  <LayoutDefault v-if="store.crawl" maxWidth="md">
     <div class="container padding-y-md">
       <div class="flex items-center justify-between margin-bottom-md">
         <RouterLink :to="{name: 'crawls'}" class="btn btn--subtle">
@@ -7,17 +7,17 @@
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
         
-        <button v-if="canAbort(crawlStore.crawl.status)" @click.stop="abort(crawlStore.crawl.id)"  class="btn btn--subtle">
+        <button v-if="canAbort(store.crawl.status)" @click.stop="abort(store.crawl.id)"  class="btn btn--subtle">
           <IconCancel size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Cancel</span>
         </button>
         
-        <button v-if="crawlStore.crawl.status == 'SUCCEEDED' && !crawlStore.isImportingResults" @click.stop="importResults(crawlStore.crawl.id)" class="btn btn--primary">
+        <button v-if="store.crawl.status == 'SUCCEEDED' && !store.isImportingResults" @click.stop="importResults(store.crawl.id)" class="btn btn--primary">
           <IconImport size="xs" class="color-white"/>
           <span class="margin-left-xxs">Import results</span>
         </button>
         
-        <button v-if="crawlStore.isImportingResults" class="btn btn--disabled">
+        <button v-if="store.isImportingResults" class="btn btn--disabled">
           <AppCircleLoader/>
           <span class="margin-left-xxs">Importing</span>
         </button>
@@ -25,12 +25,12 @@
       
       <!-- Crawl info -->
       <div class="margin-bottom-md">
-        <p class="text-sm margin-bottom-xs">Created {{ moment(crawlStore.crawl.created_at).fromNow() }}</p>
-        <h1 class="text-lg margin-bottom-sm">{{ crawlStore.crawl.url }}</h1>
+        <p class="text-sm margin-bottom-xs">Created {{ moment(store.crawl.created_at).fromNow() }}</p>
+        <h1 class="text-lg margin-bottom-sm">{{ store.crawl.url }}</h1>
         <!-- TODO: Create a CrawlStatus.vue component that wraps up all this logic -->
-        <AppChip :color="getStatusColor(crawlStore.crawl.status)">
-          <AppCircleLoader v-if="isInProgress(crawlStore.crawl.status)" class="margin-right-xxxs"/>
-          {{ crawlStore.crawl.status }}
+        <AppChip :color="getStatusColor(store.crawl.status)">
+          <AppCircleLoader v-if="isInProgress(store.crawl.status)" class="margin-right-xxxs"/>
+          {{ store.crawl.status }}
         </AppChip>
       </div>
       
@@ -42,7 +42,7 @@
 
 <script setup>
 import moment from "moment"
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCrawlStore } from '@/domain/crawls/store/useCrawlStore'
 
@@ -58,7 +58,7 @@ import CrawlResults from '@/views/crawls/components/CrawlResults.vue'
 
 const route = useRoute()
 const router = useRouter()
-const crawlStore = useCrawlStore()
+const store = useCrawlStore()
 
 // TODO: Move to composable
 function getStatusColor(status) {
@@ -90,29 +90,33 @@ function canAbort(status) {
 
 function abort(id) {
   // Todo: Create an "Abort" endpoint. Use destroy for soft-deleting
-  crawlStore.destroy(id)
+  store.destroy(id)
     .then(() => {
-      crawlStore.show(id)
+      store.show(id)
     })
 }
 
 function importResults(id) {
-  crawlStore.importResults(id)
+  store.importResults(id)
     .then(() => {
       router.push({ name: 'content', params: { organization: route.params.organization}})
     })
 }
 
 onMounted(() => {
-  crawlStore.show(route.params.crawl)
+  store.show(route.params.crawl)
     .then(() => {
-      crawlStore.showResults(route.params.crawl)
+      store.showResults(store.crawl.id)
     })
     
   window.Echo.private('DDD.Domain.Crawls.Crawl.' + route.params.crawl)
     .listen('.CrawlStatusUpdated', ({ crawl }) => {
-      crawlStore.crawl = crawl
-      crawlStore.showResults(route.params.crawl)
+      store.crawl = crawl
+      store.showResults(route.params.crawl)
     })
+})
+
+onUnmounted(() => {
+  window.Echo.leave('DDD.Domain.Crawls.Crawl.' + store.crawl.id)
 })
 </script>

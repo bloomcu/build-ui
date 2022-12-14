@@ -31,7 +31,7 @@
         </div>
         
         <div class="card-footer grid items-center border-top margin-top-sm padding-top-sm">
-          <div class="col">
+          <div v-if="crawl.status" class="col">
             <!-- TODO: Create a CrawlStatus.vue component that wraps up all this logic -->
             <AppChip :color="getStatusColor(crawl.status)">
               <AppCircleLoader v-if="isInProgress(crawl.status)" class="margin-right-xxxs"/>
