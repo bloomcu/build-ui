@@ -56,21 +56,22 @@
           
           <!-- Main navigation -->
           <li class="f-header__item">
-            <router-link 
-              :to="{ name: 'assets', params: { organization: auth.organization }}" 
-              class="f-header__link"
-            >
-              Assets
-            </router-link>
+            <RouterLink :to="{ name: 'assets', params: { organization: auth.organization }}" class="f-header__link reset cursor-pointer">
+              <span>Assets</span>
+              <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
+            </RouterLink>
+            <ul class="f-header__dropdown">
+              <li>
+                <RouterLink :to="{ name: 'assets', params: { organization: auth.organization }}"  class="f-header__dropdown-link">
+                  Asset Library
+                </RouterLink>
+                <RouterLink :to="{ name: 'assetsIntake', params: { organization: auth.organization }}"  class="f-header__dropdown-link">
+                  Asset Intake
+                </RouterLink>
+              </li>
+            </ul>
           </li>
-          <li class="f-header__item">
-            <router-link 
-              :to="{ name: 'assetsIntake', params: { organization: auth.organization }}" 
-              class="f-header__link"
-            >
-              Intake
-            </router-link>
-          </li>
+          
           <li class="f-header__item">
             <router-link 
               :to="{ name: 'styleDesignBrief', params: { organization: auth.organization }}" 
@@ -79,6 +80,7 @@
               Brief
             </router-link>
           </li>
+          
           <li class="f-header__item">
             <router-link 
               :to="{ name: 'designs', params: { organization: auth.organization}}" 
@@ -87,6 +89,7 @@
               Designs
             </router-link>
           </li>
+          
           <li class="f-header__item">
             <router-link 
               :to="{ name: 'sites', params: { organization: auth.organization}}" 
@@ -95,14 +98,7 @@
               Sites
             </router-link>
           </li>
-          <!-- <li class="f-header__item">
-            <router-link 
-              :to="{ name: 'content', params: { organization: auth.organization, site: 1 }}" 
-              class="f-header__link"
-            >
-              Content
-            </router-link>
-          </li> -->
+
           <li class="f-header__item">
             <button class="f-header__link reset cursor-pointer">
               <span>Content</span>
@@ -123,7 +119,7 @@
         
         <!-- Search -->
         <div class="f-header__search margin-right-md">
-          <!-- <AppNavigationSearch /> -->
+          <!-- <AppNavigationSearch/> -->
         </div>
         
         <!-- Settings -->
@@ -148,7 +144,7 @@
               <span>{{ auth.user.name }}</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </button>
-            <ul class="f-header__dropdown">
+            <ul class="f-header__dropdown f-header__dropdown--on-right">
               <li>
                 <RouterLink :to="{ name: 'users' }" class="f-header__dropdown-link">People</RouterLink>
                 <RouterLink :to="{ name: 'logout' }" class="f-header__dropdown-link">Log out</RouterLink>
@@ -420,7 +416,6 @@ const auth = useAuthStore()
     position: absolute;
     top: 100%;
     width: 220px;
-    left: calc(50% - 150px);
     padding: var(--space-xxxs) 0;
     background-color: var(--color-bg-light);
     border-radius: var(--radius-md);
@@ -432,6 +427,10 @@ const auth = useAuthStore()
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.2s 0.2s, opacity 0.2s 0s;
+    
+    &--on-right {
+      left: calc(50% - 150px);
+    }
 
     .f-header__dropdown-control + & {
       display: block; /* reset style */
