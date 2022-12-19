@@ -25,18 +25,37 @@
       
       <main class="position-relative z-index-1 flex-grow height-100vh">
         <div class="padding-left-md">
-          <ContentSkeletonLoader v-if="pages.isLoading" class="margin-top-sm"/>
+          <ContentSkeletonLoader v-if="pageStore.isLoading" class="margin-top-sm"/>
           
-          <div v-else>
+          <!-- Tutorial -->
+          <div v-if="!pageStore.isLoading && !pageStore.pages.length" class="card card--shadow card--dark margin-top-md">
+            <div class="grid gap-lg padding-sm">
+              <div class="col-6@lg col-10@md col-12@sm text-component">
+                <h3>Crawl your website</h3>
+                <p>Start an inventory of your content by crawling your current website.</p>
+                <RouterLink :to="{ name: 'crawls', params: { organization: auth.organization }}" class="btn btn--primary">
+                  Crawl your website
+                </RouterLink>
+              </div>
+              
+              <div class="col-6@lg col-10@md col-12@sm">
+                <div class="video">
+                  <iframe class="video__iframe" src="https://player.vimeo.com/video/743548172?h=4bd1787217&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&byline=0&dnt=1&portrait=0&title=0" frameborder="0" allow="fullscreen" allowfullscreen title="How to use the Style Design Interface"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div v-if="!pageStore.isLoading && pageStore.pages.length">
             <ContentTableTopBar/>
             <ContentTable/>
           </div>
         </div>
       </main>
+      
+      <ContentCategoryModal/>
+      <ContentExportModal/>
     </div>
-    
-    <ContentCategoryModal/>
-    <ContentExportModal/>
   </LayoutDefault>
 </template>
 
@@ -44,6 +63,7 @@
 import { watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
+import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 import { usePageStore } from '@/domain/pages/store/usePageStore'
 import { useStatusStore } from '@/domain/statuses/store/useStatusStore'
 import { useCategoryStore } from '@/domain/categories/store/useCategoryStore'
@@ -57,14 +77,15 @@ import ContentTableTopBar from '@/views/content/components/ContentTableTopBar.vu
 import ContentCategoryModal from '@/views/content/modals/ContentCategoryModal.vue'
 import ContentExportModal from '@/views/content/modals/ContentExportModal.vue'
 
-const pages = usePageStore()
+const auth = useAuthStore()
+const pageStore = usePageStore()
 const statuses = useStatusStore()
 const categories = useCategoryStore()
 const route = useRoute()
 const { query, set, unset } = useQuery()
 
 function indexPages() {
-  pages.index({
+  pageStore.index({
     'filter[status.slug]': query.value.status,
     'filter[category.slug]': query.value.category,
     'filter[trashed]': query.value.trashed,

@@ -5,7 +5,7 @@ import { useAuthStore } from '@/domain/auth/store/useAuthStore'
 export const usePageStore = defineStore('pageStore', {
   state: () => ({
     pages: [],
-    page: null,
+    page: {},
     selected: [],
     lastSelected: null,
     contentCategoryModalOpen: false,
