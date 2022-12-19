@@ -54,14 +54,14 @@
             </ul>
           </li> -->
           
-          <!-- <li class="f-header__item">
+          <li class="f-header__item">
             <router-link 
               :to="{ name: 'dashboard', params: { organization: auth.organization }}" 
               class="f-header__link"
             >
               Dashboard
             </router-link>
-          </li> -->
+          </li>
           
           <li class="f-header__item">
             <RouterLink :to="{ name: 'assets', params: { organization: auth.organization }}" class="f-header__link reset cursor-pointer">

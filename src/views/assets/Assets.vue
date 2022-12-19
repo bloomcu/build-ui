@@ -10,20 +10,12 @@
         
         <!-- Tutorial -->
         <div v-if="!mediaStore.isLoading && !mediaStore.files.length" class="card card--shadow card--dark">
-          <div class="grid gap-lg padding-sm">
-            <div class="col-6@lg col-10@md col-12@sm text-component">
-              <h3>Upload your brand assets</h3>
-              <p>Complete an intake form that asks for your brand assets.</p>
-              <RouterLink :to="{ name: 'assetsIntake', params: { organization: auth.organization }}" class="btn btn--primary">
-                Start intake form
-              </RouterLink>
-            </div>
-            
-            <div class="col-6@lg col-10@md col-12@sm">
-              <div class="video">
-                <iframe class="video__iframe" src="https://player.vimeo.com/video/743548172?h=4bd1787217&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&byline=0&dnt=1&portrait=0&title=0" frameborder="0" allow="fullscreen" allowfullscreen title="How to use the Style Design Interface"></iframe>
-              </div>
-            </div>
+          <div class="text-component padding-sm">
+            <h3>Upload your brand assets</h3>
+            <p>Complete an intake form that asks for your brand assets.</p>
+            <RouterLink :to="{ name: 'assetsIntake', params: { organization: auth.organization }}" class="btn btn--primary">
+              Start intake form
+            </RouterLink>
           </div>
         </div>
         

@@ -29,20 +29,20 @@
           
           <!-- Tutorial -->
           <div v-if="!pageStore.isLoading && !pageStore.pages.length" class="card card--shadow card--dark margin-top-md">
-            <div class="grid gap-lg padding-sm">
-              <div class="col-6@lg col-10@md col-12@sm text-component">
-                <h3>Crawl your website</h3>
+            <div class="text-component padding-sm">
+              <!-- <div class="col-6@lg col-10@md col-12@sm text-component"> -->
+                <h3>Crawl your content</h3>
                 <p>Start an inventory of your content by crawling your current website.</p>
                 <RouterLink :to="{ name: 'crawls', params: { organization: auth.organization }}" class="btn btn--primary">
-                  Crawl your website
+                  Start a crawl
                 </RouterLink>
-              </div>
+              <!-- </div> -->
               
-              <div class="col-6@lg col-10@md col-12@sm">
+              <!-- <div class="col-6@lg col-10@md col-12@sm">
                 <div class="video">
                   <iframe class="video__iframe" src="https://player.vimeo.com/video/743548172?h=4bd1787217&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&byline=0&dnt=1&portrait=0&title=0" frameborder="0" allow="fullscreen" allowfullscreen title="How to use the Style Design Interface"></iframe>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           

@@ -11,6 +11,7 @@ import briefs from '@/views/briefs/routes/index.js'
 import common from '@/views/common/routes/index.js'
 import content from '@/views/content/routes/index.js'
 import crawls from '@/views/crawls/routes/index.js'
+import dashboard from '@/views/dashboard/routes/index.js'
 import designs from '@/views/designs/routes/index.js'
 import invitations from '@/views/invitations/routes/index.js'
 import organizations from '@/views/organizations/routes/index.js'
@@ -25,6 +26,7 @@ const routes = [
   ...common,
   ...content,
   ...crawls,
+  ...dashboard,
   ...designs,
   ...invitations,
   ...organizations,
