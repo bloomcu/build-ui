@@ -126,6 +126,10 @@ export const usePageStore = defineStore('pageStore', {
 
       this.lastSelected = id
     },
+    
+    selectAllPages() {
+      this.selected.length == this.pages.length ? this.selected = [] : this.selected = this.pages.map((page) => page.id)
+    },
 
     clearSelectedPages() {
       this.selected = []

@@ -84,6 +84,11 @@
 }
 
 // size
+.btn--xs {
+  font-size: 0.7em;
+  padding: var(--space-xxs) var(--space-xs);
+}
+
 .btn--sm {
   font-size: 0.8em;
 }
