@@ -77,7 +77,7 @@
             <td class="int-table__cell">
               <!-- TODO: Either use the AppChip, or delete it and create a chip class in app css -->
               <span @click="handleCategoryClick(page.id)" class="inline-block bg-contrast-low bg-opacity-20% radius-full padding-y-xxxs padding-x-xs text-xs ws-nowrap cursor-pointer">
-                {{ page.category ? page.category.title : 'Uncategorized' }}
+                {{ page.category.title }}
               </span>
             </td>
             
@@ -86,7 +86,7 @@
               <div class="btns inline-flex flex-wrap text-xs">
                 <button 
                   v-for="option in [
-                   /* {title: 'Needs review', slug: 'needs-review'}, */
+                   {title: 'Needs review', slug: 'needs-review'},
                    {title: 'Looks good', slug: 'looks-good'},
                    {title: 'Not sure', slug: 'not-sure'},
                   ]" 
