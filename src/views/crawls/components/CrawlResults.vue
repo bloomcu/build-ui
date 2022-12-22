@@ -2,13 +2,13 @@
   <div>  
     <div class="card card--shadow">
       <div class="grid margin-bottom-sm">
-        <div v-if="crawlStore.crawl.total" class="col">
+        <div v-if="crawlStore.results" class="col">
           <p class="text-sm">Pages crawled</p>
-          <p class="text-lg text-bold">{{ crawlStore.crawl.total }}</p>
+          <p class="text-xl text-bold">{{ crawlStore.results.length }}</p>
         </div>
-        <div class="col border-left padding-left-sm">
+        <div v-if="isInProgress(crawlStore.crawl.status)" class="col border-left padding-left-sm">
           <p class="text-sm">Pending</p>
-          <p class="text-lg text-bold">{{ crawlStore.crawl.pending }}</p>
+          <p class="text-xl text-bold">{{ crawlStore.crawl.pending }}</p>
         </div>
       </div>
       
@@ -17,7 +17,7 @@
       <table v-else class="table table--expanded position-relative z-index-1 width-100% text-unit-em text-sm">
         <thead class="table__header">
           <tr class="table__row">
-            <th class="table__cell text-left" scope="col">Page</th>
+            <th class="table__cell text-left" scope="col">Title & URL</th>
             <th class="table__cell text-left" scope="col">Status</th>
             <th class="table__cell text-left" scope="col">Wordcount</th>
             <th class="table__cell text-left" scope="col">Redirected</th>
@@ -26,19 +26,24 @@
         
         <tbody class="table__body">
           <tr v-for="(item, index) in crawlStore.results" :key="index" class="table__row">
-            <td class="table__cell" role="cell">
-              <p class="text-bold margin-bottom-xxxxs">{{ item.title }}</p>
-              <a :href="item.url" target="_blank" class="text-xs color-contrast-low">{{ item.url }}</a>
+            <!-- Item title and url(s) -->
+            <td class="table__cell flex flex-column gap-xxs" role="cell">
+              <p class="text-bold">{{ item.title }}</p>
+              <span v-if="item.redirected" class="text-sm"><a :href="item.requested_url" target="_blank" class="color-contrast-low">{{ item.requested_url }}</a> (original)</span>
+              <a :href="item.url" target="_blank" class="text-sm color-contrast-low">{{ item.url }}</a>
             </td>
-
+            
+            <!-- Status -->
             <td class="table__cell" role="cell">
               <p :class="item.http_status == '404' ? 'color-error' : null">{{ item.http_status }}</p>
             </td>
-
+            
+            <!-- Wordcount -->
             <td class="table__cell text-left" role="cell">
               <p>{{ item.wordcount }}</p>
             </td>
             
+            <!-- Redirected -->
             <td class="table__cell text-left" role="cell">
               <p :class="item.redirected ? 'color-error' : null">{{ item.redirected ? 'Yes' : 'No' }}</p>
             </td>
@@ -57,6 +62,12 @@ import CrawlsSkeletonLoader from '@/views/crawls/loaders/CrawlsSkeletonLoader.vu
 
 const route = useRoute()
 const crawlStore = useCrawlStore()
+
+// TODO: Move to composable
+function isInProgress(status) {
+  const inProgressStatuses = ['READY', 'RUNNING', 'TIMING-OUT', 'ABORTING']
+  return inProgressStatuses.includes(status)
+}
 
 onMounted(() => {
   crawlStore.showResults(route.params.crawl)

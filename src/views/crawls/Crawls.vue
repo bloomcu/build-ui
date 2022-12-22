@@ -30,20 +30,14 @@
           </div>
         </div>
         
-        <div class="card-footer grid items-center border-top margin-top-sm padding-top-sm">
-          <div class="col">
-            <!-- TODO: Create a CrawlStatus.vue component that wraps up all this logic -->
-            <AppChip :color="getStatusColor(crawl.status)">
-              <AppCircleLoader v-if="isInProgress(crawl.status)" class="margin-right-xxxs"/>
-              {{ crawl.status ? crawl.status : 'STARTING' }}
-            </AppChip>
-          </div>
-          <div class="col border-left padding-left-xs">
-            <p class="text-sm">{{ crawl.total ? crawl.total : 0 }} pages crawled</p>
-          </div>
-          <div class="col border-left padding-left-xs">
-            <p class="text-sm">{{ crawl.pending ? crawl.pending : 0 }} pending</p>
-          </div>
+        <div class="card-footer flex justify-between items-center border-top margin-top-sm padding-top-sm">
+          <!-- TODO: Create a CrawlStatus.vue component that wraps up all this logic -->
+          <AppChip :color="getStatusColor(crawl.status)">
+            <AppCircleLoader v-if="isInProgress(crawl.status)" class="margin-right-xxxs"/>
+            {{ crawl.status ? crawl.status : 'STARTING' }}
+          </AppChip>
+          
+          <p class="text-sm">{{ crawl.total ? crawl.total : 0 }} pages crawled</p>
         </div>
       </div>
     </div>
