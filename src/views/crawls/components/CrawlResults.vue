@@ -29,8 +29,8 @@
             <!-- Item title and url(s) -->
             <td class="table__cell flex flex-column gap-xxs" role="cell">
               <p class="text-bold">{{ item.title }}</p>
-              <span v-if="item.redirected" class="text-sm"><a :href="item.requested_url" target="_blank" class="color-contrast-low">{{ item.requested_url }}</a> (original)</span>
-              <a :href="item.url" target="_blank" class="text-sm color-contrast-low">{{ item.url }}</a>
+              <span v-if="item.redirected" class="text-sm">Request: <a :href="item.requested_url" target="_blank" class="text-sm color-contrast-low">{{ item.requested_url }}</a></span>
+              <span class="text-sm">Destination: <a :href="item.url" target="_blank" class="text-sm color-contrast-low">{{ item.url }}</a></span>
             </td>
             
             <!-- Status -->
