@@ -59,7 +59,7 @@
             </th>
             
             <!-- Title & URL -->
-            <td class="int-table__cell">
+            <td class="int-table__cell max-width-xs">
               <AppInlineEditor 
                 :id="page.id" 
                 @updated="updateTitle" 
