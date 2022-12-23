@@ -17,7 +17,7 @@
       <table v-else class="table table--expanded position-relative z-index-1 width-100% text-unit-em text-sm">
         <thead class="table__header">
           <tr class="table__row">
-            <th class="table__cell text-left" scope="col">Title & URL</th>
+            <th class="table__cell text-left" scope="col">Title & URLs</th>
             <th class="table__cell text-left" scope="col">Status</th>
             <th class="table__cell text-left" scope="col">Wordcount</th>
             <th class="table__cell text-left" scope="col">Redirected</th>
@@ -30,7 +30,7 @@
             <td class="table__cell flex flex-column gap-xxs" role="cell">
               <p class="text-bold">{{ item.title }}</p>
               <span v-if="item.redirected" class="text-sm">Request: <a :href="item.requested_url" target="_blank" class="text-sm color-contrast-low">{{ item.requested_url }}</a></span>
-              <span class="text-sm">Destination: <a :href="item.url" target="_blank" class="text-sm color-contrast-low">{{ item.url }}</a></span>
+              <span class="text-sm">Destination: <a :href="item.destination_url" target="_blank" class="text-sm color-contrast-low">{{ item.destination_url }}</a></span>
             </td>
             
             <!-- Status -->

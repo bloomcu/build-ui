@@ -68,7 +68,7 @@
                 {{ page.title }}
               </AppInlineEditor>
               
-              <!-- <a v-if="page.url" :href="page.url" target="_blank" class="text-xs color-contrast-low width-fit">{{ page.url }}</a> -->
+              <a v-if="page.url" :href="page.url" target="_blank" class="text-xs color-contrast-low width-fit">{{ page.url }}</a>
             </td>
             
             <!-- Category -->
