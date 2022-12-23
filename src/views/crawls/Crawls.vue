@@ -36,8 +36,6 @@
             <AppCircleLoader v-if="isInProgress(crawl.status)" class="margin-right-xxxs"/>
             {{ crawl.status ? crawl.status : 'STARTING' }}
           </AppChip>
-          
-          <p class="text-sm">{{ crawl.total ? crawl.total : 0 }} pages crawled</p>
         </div>
       </div>
     </div>
