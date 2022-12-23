@@ -117,6 +117,9 @@
                 <RouterLink :to="{ name: 'content', params: { organization: auth.organization}}" class="f-header__dropdown-link">
                   Pages
                 </RouterLink>
+                <RouterLink :to="{ name: 'redirects', params: { organization: auth.organization}}" class="f-header__dropdown-link">
+                  Redirects
+                </RouterLink>
                 <RouterLink :to="{ name: 'crawls', params: { organization: auth.organization}}" class="f-header__dropdown-link">
                   Crawls
                 </RouterLink>

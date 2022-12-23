@@ -16,7 +16,7 @@
         <span class="margin-left-xxs">Edit</span>
       </button>
       
-      <button @click="addNewPage()" class="flex items-center reset cursor-pointer text-sm margin-right-md">
+      <button @click="create()" class="flex items-center reset cursor-pointer text-sm margin-right-md">
         <IconPlus size="xxs" class="color-primary"/>
         <span class="margin-left-xxs">Add Page</span>
       </button>
@@ -46,7 +46,7 @@ import IconPlus from '@/app/components/icons/IconPlus.vue'
 const pageStore = usePageStore()
 const { query, set, unset } = useQuery()
 
-function addNewPage() {
+function create() {
   pageStore.store({title: 'New page'})
 }
 

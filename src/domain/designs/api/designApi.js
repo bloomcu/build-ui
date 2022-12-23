@@ -34,6 +34,7 @@ const designApi = {
     /**
      * Update a design
      *
+     * @param String organization [Organization slug]
      * @param Integer id [Id of the design you want to update]
      * @param Object  design [Properties to update design with]
      * @return promise

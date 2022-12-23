@@ -15,6 +15,7 @@ import dashboard from '@/views/dashboard/routes/index.js'
 import designs from '@/views/designs/routes/index.js'
 import invitations from '@/views/invitations/routes/index.js'
 import organizations from '@/views/organizations/routes/index.js'
+import redirects from '@/views/redirects/routes/index.js'
 import sites from '@/views/sites/routes/index.js'
 import tags from '@/views/tags/routes/index.js'
 import users from '@/views/users/routes/index.js'
@@ -30,6 +31,7 @@ const routes = [
   ...designs,
   ...invitations,
   ...organizations,
+  ...redirects,
   ...sites,
   ...tags,
   ...users,
