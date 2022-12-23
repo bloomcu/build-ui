@@ -1,5 +1,5 @@
 <template>
-  <div class="content-table__top-bar flex items-center justify-between z-index-2 shadow-xs bg radius-md radius-top-left-0 radius-top-right-0 padding-y-xxs padding-x-xs margin-bottom-xs">
+  <div class="content-table__top-bar flex items-center justify-between z-index-2 shadow-xs bg radius-md radius-top-left-0 radius-top-right-0 padding-y-xs padding-x-xs margin-bottom-xs">
     <!-- Left -->
     <div class="flex items-center">
       <span class="text-sm">{{ pageStore.pages.length }} page(s)</span>
@@ -11,35 +11,47 @@
     
     <!-- Right -->
     <div class="flex items-center">
-      <button v-if="pageStore.selected.length" @click="pageStore.toggleContentCategoryModal()" class="btn btn--sm btn--subtle margin-right-xxs">
-        <IconEdit size="xs" class="color-primary"/>
+      <button v-if="pageStore.selected.length" @click="pageStore.toggleContentCategoryModal()" class="flex items-center reset cursor-pointer text-sm margin-right-md">
+        <IconEdit size="xxs" class="color-primary"/>
         <span class="margin-left-xxs">Edit</span>
       </button>
       
-      <button @click="addNewPage()" class="btn btn--sm btn--subtle">
-        <IconPlus size="xs" class="color-primary"/>
+      <button @click="addNewPage()" class="flex items-center reset cursor-pointer text-sm margin-right-md">
+        <IconPlus size="xxs" class="color-primary"/>
         <span class="margin-left-xxs">Add Page</span>
       </button>
       
-      <button @click="pageStore.toggleContentExportModal()" class="btn btn--sm btn--primary margin-left-xxs">
-        <IconExport size="xs" class="color-white"/>
+      <button @click="pageStore.toggleContentExportModal()" class="flex items-center reset cursor-pointer text-sm margin-right-md">
+        <IconExport size="xxs" class="color-primary"/>
         <span class="margin-left-xxs">Export</span>
       </button>
+      
+      <div class="text-sm">
+        <input @input="filterArchived" :checked="query['trashed']" class="checkbox" type="checkbox" id="trashed">
+        <label for="trashed">Archived</label>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { usePageStore } from '@/domain/pages/store/usePageStore'
+import useQuery from '@/app/composables/useQuery.js'
+
 import IconClose from '@/app/components/icons/IconClose.vue'
 import IconEdit from '@/app/components/icons/IconEdit.vue'
 import IconExport from '@/app/components/icons/IconExport.vue'
 import IconPlus from '@/app/components/icons/IconPlus.vue'
 
 const pageStore = usePageStore()
+const { query, set, unset } = useQuery()
 
 function addNewPage() {
   pageStore.store({title: 'New page'})
+}
+
+function filterArchived() {
+  query.value['trashed'] ? unset('trashed') : set('trashed', 'only')
 }
 </script>
 

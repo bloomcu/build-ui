@@ -35,9 +35,7 @@
               Status
             </th>
 
-            <th class="int-table__cell int-table__cell--th text-left">
-              Archive
-            </th>
+            <th class="int-table__cell int-table__cell--th text-left"></th>
           </tr>
         </thead>
 
@@ -61,7 +59,7 @@
             </th>
             
             <!-- Title & URL -->
-            <td class="int-table__cell text-truncate max-width-xxxxs">
+            <td class="int-table__cell">
               <AppInlineEditor 
                 :id="page.id" 
                 @updated="updateTitle" 
@@ -83,7 +81,7 @@
             
             <!-- Status -->
             <td class="int-table__cell">
-              <div class="btns inline-flex flex-wrap text-xs">
+              <div class="btns inline-flex text-xs">
                 <button 
                   v-for="option in [
                    {title: 'Needs review', slug: 'needs-review'},
@@ -101,8 +99,8 @@
             </td>
             
             <!-- Archive -->
-            <td class="int-table__cell">              
-              <button @click="destroy(page.id)" class="btn btn--sm btn--icon">
+            <td class="int-table__cell width-xxs">              
+              <button @click="destroy(page.id)" class="btn btn--sm btn--icon float-right">
                 <IconTrash size="xs" class="color-contrast-medium color-opacity-60%"/>
               </button>
             </td>
