@@ -167,6 +167,7 @@ function handleStatusClick(id, statusObj) {
       status: statusObj.slug
     })
     
+    pageStore.selected = []
   } else {
     // Update single page
     let page = pageStore.pages.find(p => p.id === id)
