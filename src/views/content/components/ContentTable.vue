@@ -131,10 +131,15 @@ function addUrl(id, url) {
 function destroy(id) {
   // TODO: Abstract this away
   // Add to array if not present.
+  
+  // Check is this page selected already
   let index = pageStore.selected.indexOf(id)
+      // if it is not selected, then select it
       index === -1 ? pageStore.selected.push(id) : null
       
   pageStore.destroy(pageStore.selected)
+  
+  pageStore.selected = []
 }
 
 function handleCategoryClick(id) {

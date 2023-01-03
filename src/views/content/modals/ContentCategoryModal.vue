@@ -31,11 +31,12 @@ function updateCategory() {
   pageStore.update(pageStore.selected, {
     category: category.value
   }).then(() => {
-    
     pageStore.index({
       'filter[status.slug]': query.value.status,
       'filter[category.slug]': query.value.category,
     })
+    
+    pageStore.selected = []
   
     pageStore.toggleContentCategoryModal()
   })
