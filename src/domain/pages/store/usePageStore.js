@@ -69,7 +69,7 @@ export const usePageStore = defineStore('pageStore', {
       await PageApi.destroy(auth.organization, ids)
         .then(response => {
           console.log(ids.length + ' page(s) deleted')
-          this.pages = this.pages.filter((p) => !this.selected.includes(p.id)) // remove resources
+          this.pages = this.pages.filter((p) => !ids.includes(p.id)) // remove resources
         })
         
       // TODO: Catch error and re-index pages if error
