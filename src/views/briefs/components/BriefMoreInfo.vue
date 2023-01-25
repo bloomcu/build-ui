@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex gap-xs margin-top-md padding-y-md border-top">
-      <button @click="toggle('brief-create')" class="btn btn--subtle">Back</button>
+      <button @click="toggle('brief-final-instructions')" class="btn btn--subtle">Back</button>
     </div>
   </div>
 </template>
