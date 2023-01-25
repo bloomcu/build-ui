@@ -3,7 +3,7 @@
     <div class="container padding-y-md">
       <div class="margin-bottom-md">
         <RouterLink :to="{ name: 'designs' }" class="btn btn--subtle margin-bottom-md">
-          <IconArrowLeft size="xs" class="color-primary"/>
+          <IconAngleLeft size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
         
@@ -35,7 +35,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDesignStore } from '@/domain/designs/store/useDesignStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
-import IconArrowLeft from '@/app/components/icons/IconArrowLeft.vue'
+import IconAngleLeft from '@/app/components/icons/IconAngleLeft.vue'
 import AppInput from '@/app/components/forms/AppInput.vue'
 
 const route = useRoute()
