@@ -11,5 +11,6 @@ export default [
     path: "/:organization/designs/:design",
     name: "designsEdit",
     component: DesignsEdit,
+    meta: { authorize: ['admin'] }
   },
 ]

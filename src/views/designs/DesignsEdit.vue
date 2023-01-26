@@ -7,7 +7,7 @@
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
         
-        <h1 class="text-lg">{{ designStore.design.title }} by {{ designStore.design.designer_name }}</h1>
+        <h1 class="text-lg margin-bottom-sm">{{ designStore.design.title }}</h1>
       </div>
       
       <form action="#" @submit.prevent="update()">
