@@ -60,7 +60,7 @@ const router = createRouter({
 })
 
 /**
-* Clear any validation errors
+* Clear any form validation errors
 * When routing to another view, we don't want form validations errors following us
 */
 router.beforeEach(async (to) => {
@@ -69,8 +69,8 @@ router.beforeEach(async (to) => {
 })
 
 /**
-* Restrict unauthenticated access
-* Redirect to login page if not logged in and trying to access a restricted page
+* Restrict unauthenticated route access
+* Redirect to login route if not logged in and trying to access a restricted route
 */
 router.beforeEach(async (to) => {
   // TODO: Can I just instantiate this store one in this file?
@@ -92,6 +92,27 @@ router.beforeEach(async (to) => {
     // authStore.returnUrl = to.fullPath
     
     return '/login'
+  }
+})
+
+/**
+* Restrict route access by role
+* Redirect to unauthorized route if you don't have permissions for route
+*/
+router.beforeEach(async (to) => {
+  const { authorize } = to.meta
+  const { user } = useAuthStore()
+  
+  if (authorize) {
+    // We could handle unauthenticated route access here
+    // if (!user) {
+    //   return '/login'
+    // }
+    
+    // Check if route is restricted by role
+    if (authorize.length && !authorize.includes(user.role)) {
+      return '/not-authorized'
+    }
   }
 })
 
