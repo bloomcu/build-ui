@@ -69,7 +69,7 @@
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </RouterLink>
             <ul class="f-header__dropdown">
-              <li>
+              <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'assets', params: { organization: auth.organization }}"  class="f-header__dropdown-link">
                   Asset Library
                 </RouterLink>
@@ -81,15 +81,19 @@
           </li>
           
           <li class="f-header__item">
-            <RouterLink :to="{ name: 'designs', params: { organization: auth.organization}}" class="f-header__link reset cursor-pointer">
+            <!-- <RouterLink :to="{ name: 'designs', params: { organization: auth.organization}}" class="f-header__link reset cursor-pointer">
               <span>Design</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
-            </RouterLink>
+            </RouterLink> -->
+            <button class="f-header__link reset cursor-pointer">
+              <span>Design</span>
+              <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
+            </button>
             <ul class="f-header__dropdown">
-              <li>
-                <RouterLink :to="{ name: 'designs', params: { organization: auth.organization}}" class="f-header__dropdown-link">
+              <li class="f-header__dropdown-container">
+                <!-- <RouterLink :to="{ name: 'designs', params: { organization: auth.organization}}" class="f-header__dropdown-link">
                   Style Concepts
-                </RouterLink>
+                </RouterLink> -->
                 <RouterLink :to="{ name: 'styleDesignBrief', params: { organization: auth.organization }}" class="f-header__dropdown-link">
                   Designer Brief
                 </RouterLink>
@@ -112,7 +116,7 @@
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </RouterLink>
             <ul class="f-header__dropdown">
-              <li>
+              <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'content', params: { organization: auth.organization}}" class="f-header__dropdown-link">
                   Pages
                 </RouterLink>
@@ -140,7 +144,7 @@
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </button>
             <ul class="f-header__dropdown">
-              <li>
+              <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'tags' }" class="f-header__dropdown-link">Tags</RouterLink>
               </li>
             </ul>
@@ -161,7 +165,7 @@
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </button>
             <ul class="f-header__dropdown f-header__dropdown--on-right">
-              <li>
+              <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'users' }" class="f-header__dropdown-link">People</RouterLink>
                 <RouterLink :to="{ name: 'logout' }" class="f-header__dropdown-link">Log out</RouterLink>
               </li>
@@ -322,10 +326,6 @@ const auth = useAuthStore()
   width: 100%;
 }
 
-.f-header__dropdown { /* sub navigation */
-  padding-left: var(--space-md); /* offset sub nav */
-}
-
 .f-header__dropdown-control {
   + .f-header__dropdown {
     display: none;
@@ -386,7 +386,7 @@ const auth = useAuthStore()
   .f-header__item {
     position: relative;
     border-bottom: none;
-    margin-right: var(--space-xs); /* margin between nav items */
+    margin-right: var(--space-md); /* margin between nav items */
 
     &:first-child {
       .f-header__link {
@@ -432,10 +432,7 @@ const auth = useAuthStore()
     position: absolute;
     top: 100%;
     width: 220px;
-    padding: var(--space-xxxs) 0;
-    background-color: var(--color-bg-light);
-    border-radius: var(--radius-md);
-    box-shadow: var(--inner-glow), var(--shadow-md);
+    padding: var(--space-xs) 0 0;
     z-index: var(--z-index-popover, 5); 
 
     /* hide */
@@ -446,6 +443,12 @@ const auth = useAuthStore()
     
     &--on-right {
       left: calc(50% - 150px);
+    }
+    
+    .f-header__dropdown-container {
+      background-color: var(--color-bg-light);
+      border-radius: var(--radius-md);
+      box-shadow: var(--inner-glow), var(--shadow-md);
     }
 
     .f-header__dropdown-control + & {
@@ -464,6 +467,7 @@ const auth = useAuthStore()
   .f-header__dropdown-link {
     color: var(--color-contrast-high);
     padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
     transition: .2s;
 
     &:hover {
