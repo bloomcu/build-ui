@@ -272,6 +272,7 @@ Title: Cards
 -------------------------------- */
 .card {
   display: block;
+  background-color: var(--color-white);
   border: 1px solid var(--color-contrast-lower);
   border-radius: var(--radius-lg);
   padding: calc(var(--space-sm) + 5px);
@@ -330,11 +331,11 @@ Title: Cards
 }
 
 .card-content {
-  padding: var(--space-xs);
+  padding: var(--space-xs) 0 0 0;
   
-  &__header {
-    height: 80px;
-  }
+  // &__header {
+  //   height: 80px;
+  // }
 }
 
 .card-link {

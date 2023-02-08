@@ -3,7 +3,7 @@
     <div class="container padding-y-md">
       <div class="flex items-center justify-between margin-bottom-md">
         <RouterLink :to="{name: 'crawls'}" class="btn btn--subtle">
-          <IconArrowLeft size="xs" class="color-primary"/>
+          <IconAngleLeft size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
         
@@ -13,8 +13,7 @@
         </button>
         
         <button v-if="store.crawl.status == 'SUCCEEDED' && !store.isImportingResults" @click.stop="importResults(store.crawl.id)" class="btn btn--primary">
-          <IconImport size="xs" class="color-white"/>
-          <span class="margin-left-xxs">Import results</span>
+          Import results
         </button>
         
         <button v-if="store.isImportingResults" class="btn btn--disabled">
@@ -47,9 +46,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { useCrawlStore } from '@/domain/crawls/store/useCrawlStore'
 
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
-import IconArrowLeft from '@/app/components/icons/IconArrowLeft.vue'
+import IconAngleLeft from '@/app/components/icons/IconAngleLeft.vue'
 import IconCancel from '@/app/components/icons/IconCancel.vue'
-import IconImport from '@/app/components/icons/IconImport.vue'
 import AppCircleLoader from '@/app/components/loaders/AppCircleLoader.vue'
 import AppChip from '@/app/components/AppChip.vue'
 import AppInput from '@/app/components/forms/AppInput.vue'

@@ -3,7 +3,7 @@
     <div class="container max-width-sm padding-y-md">
       <div class="margin-bottom-md">
         <RouterLink :to="{ name: 'sites' }" class="btn btn--subtle margin-bottom-md">
-          <IconArrowLeft size="xs" class="color-primary"/>
+          <IconAngleLeft size="xs" class="color-primary"/>
           <span class="margin-left-xxs">Back</span>
         </RouterLink>
         
@@ -50,7 +50,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useSiteStore } from '@/domain/sites/store/useSiteStore'
 import LayoutDefault from '@/app/layouts/LayoutDefault.vue'
-import IconArrowLeft from '@/app/components/icons/IconArrowLeft.vue'
+import IconAngleLeft from '@/app/components/icons/IconAngleLeft.vue'
 import AppInput from '@/app/components/forms/AppInput.vue'
 // import AppDatePicker from '@/app/components/forms/AppDatePicker.vue'
 import AppRichtext from '@/app/components/forms/AppRichtext.vue'

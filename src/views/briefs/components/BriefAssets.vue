@@ -116,7 +116,7 @@
 
     <div class="flex gap-xs margin-top-md padding-y-md">
       <button @click="toggle('brief-brand')" class="btn btn--subtle">Back</button>
-      <button @click="toggle('brief-create')" class="btn btn--primary">Next</button>
+      <button @click="toggle('brief-final-instructions')" class="btn btn--primary">Next</button>
     </div>
     
     <MediaModal @closed="closeModal" :file="modalData" :deleteable="false" :class="modalData ? 'modal--is-visible' : ''"/>

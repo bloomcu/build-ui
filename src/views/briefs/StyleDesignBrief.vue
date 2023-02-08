@@ -55,8 +55,8 @@ const steps = [
     slug: 'brief-assets',
   },
   {
-    title: 'Step 4 - Create',
-    slug: 'brief-create',
+    title: 'Step 4 - Final Instructions',
+    slug: 'brief-final-instructions',
   },
   {
     title: 'More info',
@@ -73,7 +73,7 @@ import BriefIntro from '@/views/briefs/components/BriefIntro.vue'
 import BriefTutorial from '@/views/briefs/components/BriefTutorial.vue'
 import BriefBrand from '@/views/briefs/components/BriefBrand.vue'
 import BriefAssets from '@/views/briefs/components/BriefAssets.vue'
-import BriefCreate from '@/views/briefs/components/BriefCreate.vue'
+import BriefFinalInstructions from '@/views/briefs/components/BriefFinalInstructions.vue'
 import BriefMoreInfo from '@/views/briefs/components/BriefMoreInfo.vue'
 
 export default defineComponent({
@@ -82,7 +82,7 @@ export default defineComponent({
       BriefTutorial,
       BriefBrand,
       BriefAssets,
-      BriefCreate,
+      BriefFinalInstructions,
       BriefMoreInfo,
     }
 })    

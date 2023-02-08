@@ -19,7 +19,7 @@
           </RouterLink>
         </div> -->
         
-        <ul class="f-header__list margin-right-md">
+        <ul class="f-header__list">
           <!-- Organization(s) -->
           <!-- <li class="f-header__item border-right padding-right-xs">
             <router-link 
@@ -69,7 +69,7 @@
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </RouterLink>
             <ul class="f-header__dropdown">
-              <li>
+              <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'assets', params: { organization: auth.organization }}"  class="f-header__dropdown-link">
                   Asset Library
                 </RouterLink>
@@ -81,31 +81,34 @@
           </li>
           
           <li class="f-header__item">
-            <router-link 
-              :to="{ name: 'styleDesignBrief', params: { organization: auth.organization }}" 
-              class="f-header__link"
-            >
-              Design Brief
-            </router-link>
+            <!-- <RouterLink :to="{ name: 'designs', params: { organization: auth.organization}}" class="f-header__link reset cursor-pointer">
+              <span>Design</span>
+              <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
+            </RouterLink> -->
+            <button class="f-header__link reset cursor-pointer">
+              <span>Design</span>
+              <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
+            </button>
+            <ul class="f-header__dropdown">
+              <li class="f-header__dropdown-container">
+                <!-- <RouterLink :to="{ name: 'designs', params: { organization: auth.organization}}" class="f-header__dropdown-link">
+                  Style Concepts
+                </RouterLink> -->
+                <RouterLink :to="{ name: 'styleDesignBrief', params: { organization: auth.organization }}" class="f-header__dropdown-link">
+                  Designer Brief
+                </RouterLink>
+              </li>
+            </ul>
           </li>
           
-          <!-- <li class="f-header__item">
-            <router-link 
-              :to="{ name: 'designs', params: { organization: auth.organization}}" 
-              class="f-header__link"
-            >
-              Designs
-            </router-link>
-          </li> -->
-          
-          <!-- <li class="f-header__item">
+          <li class="f-header__item">
             <router-link 
               :to="{ name: 'sites', params: { organization: auth.organization}}" 
               class="f-header__link"
             >
               Sites
             </router-link>
-          </li> -->
+          </li>
 
           <li class="f-header__item">
             <RouterLink :to="{ name: 'content', params: { organization: auth.organization}}" class="f-header__link reset cursor-pointer">
@@ -113,13 +116,13 @@
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </RouterLink>
             <ul class="f-header__dropdown">
-              <li>
+              <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'content', params: { organization: auth.organization}}" class="f-header__dropdown-link">
                   Pages
                 </RouterLink>
-                <RouterLink :to="{ name: 'redirects', params: { organization: auth.organization}}" class="f-header__dropdown-link">
+                <!-- <RouterLink :to="{ name: 'redirects', params: { organization: auth.organization}}" class="f-header__dropdown-link">
                   Redirects
-                </RouterLink>
+                </RouterLink> -->
                 <RouterLink :to="{ name: 'crawls', params: { organization: auth.organization}}" class="f-header__dropdown-link">
                   Crawls
                 </RouterLink>
@@ -129,47 +132,32 @@
         </ul>
         
         <!-- Search -->
-        <div class="f-header__search margin-right-md">
+        <!-- <div class="f-header__search margin-right-md"> -->
           <!-- <AppNavigationSearch/> -->
-        </div>
+        <!-- </div> -->
         
         <!-- Settings -->
-        <!-- <ul class="f-header__list">
-          <li class="f-header__item margin-right-md">
-            <button class="f-header__link reset cursor-pointer">
-              <span>Settings</span>
-              <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
-            </button>
-            <ul class="f-header__dropdown">
-              <li>
-                <RouterLink :to="{ name: 'tags' }" class="f-header__dropdown-link">Tags</RouterLink>
-              </li>
-            </ul>
-          </li>
-        </ul> -->
-        
-        <!-- User -->
         <ul class="f-header__list">
-          <li class="f-header__item margin-right-md">
-            <button class="f-header__link reset cursor-pointer">
-              Help
-            </button>
+          <li v-if="!auth.user.organization.subscribed" class="f-header__item">
+            <RouterLink :to="{ name: 'subscription-plans' }" class="f-header__link reset cursor-pointer">
+              Upgrade ✨
+            </RouterLink>
           </li>
           
-          <li class="f-header__item margin-right-md">
+          <li class="f-header__item">
             <button class="f-header__link reset cursor-pointer">
               <span>{{ auth.user.name }}</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
             </button>
             <ul class="f-header__dropdown f-header__dropdown--on-right">
-              <li>
+              <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'users' }" class="f-header__dropdown-link">People</RouterLink>
+                <!-- <RouterLink :to="{ name: 'settings' }" class="f-header__dropdown-link">Settings</RouterLink> -->
                 <RouterLink :to="{ name: 'logout' }" class="f-header__dropdown-link">Log out</RouterLink>
               </li>
             </ul>
           </li>
         </ul>
-        
       </div>
     </div>
   </header>
@@ -323,10 +311,6 @@ const auth = useAuthStore()
   width: 100%;
 }
 
-.f-header__dropdown { /* sub navigation */
-  padding-left: var(--space-md); /* offset sub nav */
-}
-
 .f-header__dropdown-control {
   + .f-header__dropdown {
     display: none;
@@ -378,6 +362,7 @@ const auth = useAuthStore()
 
   .f-header__nav-grid {
     height: 100%;
+    justify-content: space-between;
   }
   
   .f-header__search {
@@ -387,12 +372,16 @@ const auth = useAuthStore()
   .f-header__item {
     position: relative;
     border-bottom: none;
-    margin-right: var(--space-xs); /* margin between nav items */
-
+    margin-right: var(--space-sm); /* margin between nav items */
+    
     &:first-child {
       .f-header__link {
-        padding-left: 0;
+        padding-left: 0px;
       }
+    }
+    
+    &:last-child {
+      margin-right: 0px;
     }
   }
 
@@ -433,10 +422,7 @@ const auth = useAuthStore()
     position: absolute;
     top: 100%;
     width: 220px;
-    padding: var(--space-xxxs) 0;
-    background-color: var(--color-bg-light);
-    border-radius: var(--radius-md);
-    box-shadow: var(--inner-glow), var(--shadow-md);
+    padding: var(--space-xs) 0 0;
     z-index: var(--z-index-popover, 5); 
 
     /* hide */
@@ -447,6 +433,12 @@ const auth = useAuthStore()
     
     &--on-right {
       left: calc(50% - 150px);
+    }
+    
+    .f-header__dropdown-container {
+      background-color: var(--color-bg-light);
+      border-radius: var(--radius-md);
+      box-shadow: var(--inner-glow), var(--shadow-md);
     }
 
     .f-header__dropdown-control + & {
@@ -465,6 +457,7 @@ const auth = useAuthStore()
   .f-header__dropdown-link {
     color: var(--color-contrast-high);
     padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
     transition: .2s;
 
     &:hover {

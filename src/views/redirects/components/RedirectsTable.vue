@@ -7,6 +7,10 @@
             <th class="int-table__cell int-table__cell--th text-left">
               Request Url
             </th>
+            
+            <th class="int-table__cell int-table__cell--th">
+              <span class="sr-only">Arrow Icon</span>
+            </th>
 
             <th class="int-table__cell int-table__cell--th text-left">
               Destination Url
@@ -29,6 +33,11 @@
             <!-- Requested Url -->
             <td class="int-table__cell max-width-xs">
               <AppInlineEditor :id="redirect.id" @updated="updateRequestedUrl" class="width-fit">{{ redirect.requested_url }}</AppInlineEditor>
+            </td>
+            
+            <!-- Arrow icon -->
+            <td class="int-table__cell max-width-xs">
+              <IconArrowRight size="xs" class="color-contrast-medium color-opacity-60%"/>
             </td>
             
             <!-- Destination Url -->
@@ -61,6 +70,7 @@
 import { ref } from 'vue'
 import { useRedirectStore } from '@/domain/redirects/store/useRedirectStore'
 import AppInlineEditor from '@/app/components/AppInlineEditor.vue'
+import IconArrowRight from '@/app/components/icons/IconArrowRight.vue'
 import IconTrash from '@/app/components/icons/IconTrash.vue'
 
 const redirectStore = useRedirectStore()

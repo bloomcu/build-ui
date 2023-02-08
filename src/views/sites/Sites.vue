@@ -14,22 +14,22 @@
           <p class="text-xs color-primary text-uppercase margin-bottom-xs">{{ site.title }}</p>
           <h2 class="text-md margin-bottom-sm">{{ site.domain }}</h2>
           
-          <div v-if="site.last_crawl.status === 'RUNNING'" class="flex items-center margin-y-sm">
+          <!-- <div v-if="site.last_crawl.status === 'RUNNING'" class="flex items-center margin-y-sm">
             <span class="text-sm margin-right-xxs">Crawling website</span>
             <AppCircleLoader/>
-          </div>
+          </div> -->
           
-          <div v-if="site.last_crawl.status === 'SUCCEEDED'" class="flex items-center margin-y-sm">
+          <!-- <div v-if="site.last_crawl.status === 'SUCCEEDED'" class="flex items-center margin-y-sm">
             <span class="text-sm">Crawled {{ moment(site.last_crawl.created_at).fromNow() }}</span>
-          </div>
+          </div> -->
           
-          <div v-if="site.last_crawl.status === 'FAILED'" class="flex items-center margin-y-sm">
+          <!-- <div v-if="site.last_crawl.status === 'FAILED'" class="flex items-center margin-y-sm">
             <span class="text-sm">Last crawl failed {{ moment(site.last_crawl.created_at).fromNow() }}</span>
-          </div>
+          </div> -->
         </div>
         
         <div class="card-footer flex gap-xs border-top margin-top-sm padding-top-sm">
-          <RouterLink :to="{ name: 'sitesLaunch', params: { site: site.id } }" class="btn btn--sm btn--primary">Launch</RouterLink>
+          <RouterLink :to="{ name: 'sitesLaunch', params: { site: site.id } }" class="btn btn--sm btn--primary">Launch Dashboard</RouterLink>
           <RouterLink :to="{ name: 'sitesEdit', params: { site: site.id } }" class="btn btn--sm btn--subtle margin-left-auto">Edit</RouterLink>
         </div>
       </div>

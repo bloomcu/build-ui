@@ -11,6 +11,11 @@ export const useAuthStore = defineStore('authStore', {
       organization: 'bloomcu',
     }),
     
+    getters: {
+      isAdmin: (state) => state.user.role === 'admin',
+      isEditor: (state) => state.user.role === 'editor',
+    },
+    
     actions: {
       async login(email, password) {
         await AuthApi.login(email, password)

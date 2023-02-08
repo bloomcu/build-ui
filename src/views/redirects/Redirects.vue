@@ -6,12 +6,12 @@
       <div class="flex gap-xs">
         <button @click="redirectStore.toggleRedirectImportModal()" class="btn btn--sm btn--subtle">
           <IconImport size="xs" class="color-primary"/>
-          <span class="margin-left-xxs">Import</span>
+          <span class="margin-left-xxs">Import new redirects</span>
         </button>
         
         <button @click="redirectStore.toggleRedirectExportModal()" class="btn btn--sm btn--primary">
           <IconExport size="xs" class="color-white"/>
-          <span class="margin-left-xxs">Export</span>
+          <span class="margin-left-xxs">Export for .htaccess</span>
         </button>
       </div>
     </div>

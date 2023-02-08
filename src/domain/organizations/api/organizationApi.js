@@ -19,7 +19,17 @@ const organizationApi = {
      */
     store(organization) {
         return HttpClient.post('/organizations', organization)
-    }
+    },
+    
+    /**
+     * Show an organization
+     *
+     * @param String slug [Organization slug]
+     * @return promise
+     */
+    show(slug) {
+      return HttpClient.get(`/organizations/${slug}`)
+    },
 }
 
 export { organizationApi }
