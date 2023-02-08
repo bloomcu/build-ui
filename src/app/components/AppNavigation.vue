@@ -19,7 +19,7 @@
           </RouterLink>
         </div> -->
         
-        <ul class="f-header__list margin-right-md">
+        <ul class="f-header__list">
           <!-- Organization(s) -->
           <!-- <li class="f-header__item border-right padding-right-xs">
             <router-link 
@@ -132,34 +132,19 @@
         </ul>
         
         <!-- Search -->
-        <div class="f-header__search margin-right-md">
+        <!-- <div class="f-header__search margin-right-md"> -->
           <!-- <AppNavigationSearch/> -->
-        </div>
+        <!-- </div> -->
         
         <!-- Settings -->
-        <!-- <ul class="f-header__list">
-          <li class="f-header__item margin-right-md">
-            <button class="f-header__link reset cursor-pointer">
-              <span>Settings</span>
-              <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
-            </button>
-            <ul class="f-header__dropdown">
-              <li class="f-header__dropdown-container">
-                <RouterLink :to="{ name: 'tags' }" class="f-header__dropdown-link">Tags</RouterLink>
-              </li>
-            </ul>
-          </li>
-        </ul> -->
-        
-        <!-- User -->
         <ul class="f-header__list">
-          <li class="f-header__item margin-right-md">
-            <!-- <button class="f-header__link reset cursor-pointer">
-              Help
-            </button> -->
+          <li v-if="!auth.user.organization.subscribed" class="f-header__item">
+            <RouterLink :to="{ name: 'subscription-plans' }" class="f-header__link reset cursor-pointer">
+              Upgrade ✨
+            </RouterLink>
           </li>
           
-          <li class="f-header__item margin-right-md">
+          <li class="f-header__item">
             <button class="f-header__link reset cursor-pointer">
               <span>{{ auth.user.name }}</span>
               <svg class="f-header__dropdown-icon icon" height="12" width="12" viewBox="0 0 12 12"><g fill="#000000"><path d="M10.293,3.293,6,7.586,1.707,3.293A1,1,0,0,0,.293,4.707l5,5a1,1,0,0,0,1.414,0l5-5a1,1,0,1,0-1.414-1.414Z" fill="#000000"></path></g></svg>
@@ -167,12 +152,12 @@
             <ul class="f-header__dropdown f-header__dropdown--on-right">
               <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'users' }" class="f-header__dropdown-link">People</RouterLink>
+                <!-- <RouterLink :to="{ name: 'settings' }" class="f-header__dropdown-link">Settings</RouterLink> -->
                 <RouterLink :to="{ name: 'logout' }" class="f-header__dropdown-link">Log out</RouterLink>
               </li>
             </ul>
           </li>
         </ul>
-        
       </div>
     </div>
   </header>
@@ -377,6 +362,7 @@ const auth = useAuthStore()
 
   .f-header__nav-grid {
     height: 100%;
+    justify-content: space-between;
   }
   
   .f-header__search {
@@ -386,12 +372,16 @@ const auth = useAuthStore()
   .f-header__item {
     position: relative;
     border-bottom: none;
-    margin-right: var(--space-md); /* margin between nav items */
-
+    margin-right: var(--space-sm); /* margin between nav items */
+    
     &:first-child {
       .f-header__link {
-        padding-left: 0;
+        padding-left: 0px;
       }
+    }
+    
+    &:last-child {
+      margin-right: 0px;
     }
   }
 
