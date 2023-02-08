@@ -138,11 +138,11 @@
         
         <!-- Settings -->
         <ul class="f-header__list">
-          <li v-if="!auth.user.organization.subscribed" class="f-header__item">
+          <!-- <li v-if="!auth.user.organization.subscribed" class="f-header__item">
             <RouterLink :to="{ name: 'subscription-plans' }" class="f-header__link reset cursor-pointer">
               Upgrade ✨
             </RouterLink>
-          </li>
+          </li> -->
           
           <li class="f-header__item">
             <button class="f-header__link reset cursor-pointer">

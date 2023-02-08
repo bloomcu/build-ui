@@ -2,7 +2,7 @@
   <div v-if="siteStore.site">
     <div class="margin-bottom-md">
       <p class="text-bold margin-bottom-xs">Notes</p>
-      <p v-html="siteStore.launch.notes"></p>
+      <div v-html="siteStore.launch.notes" class="content-component"></div>
     </div>
     
     <div class="flex flex-column gap-xs">
