@@ -101,14 +101,14 @@
             </ul>
           </li>
           
-          <!-- <li class="f-header__item">
+          <li class="f-header__item">
             <router-link 
               :to="{ name: 'sites', params: { organization: auth.organization}}" 
               class="f-header__link"
             >
               Sites
             </router-link>
-          </li> -->
+          </li>
 
           <li class="f-header__item">
             <RouterLink :to="{ name: 'content', params: { organization: auth.organization}}" class="f-header__link reset cursor-pointer">
