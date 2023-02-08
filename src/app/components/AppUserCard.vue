@@ -49,5 +49,5 @@ const props = defineProps({
   },
 })
 
-const open = ref(false)
+const open = ref(true)
 </script>
