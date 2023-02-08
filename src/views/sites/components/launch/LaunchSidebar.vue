@@ -6,7 +6,7 @@
     </div>
     
     <div class="flex flex-column gap-xs">
-      <p class="text-bold">Contacts</p>
+      <p class="text-bold">BloomCU Contacts</p>
       <div v-for="contact in bloomcuContacts" :key="contact.id">
         <AppUserCard :user="contact"/>
       </div>
