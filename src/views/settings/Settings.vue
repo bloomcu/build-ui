@@ -30,8 +30,9 @@
               </div>
               <div class="card-content grid gap-xs">
                 <p class="text-sm">Limits: 1 user, 5 rate groups</p>
-                <p v-if="organizationStore.organization.ends_at" class="text-sm color-error">
-                  Your subscription ends {{ moment(organizationStore.organization.ends_at).fromNow() }}
+                <p v-if="organizationStore.organization.ends_at" class="text-sm color-primary">
+                  Your subscription ends {{ moment(organizationStore.organization.ends_at).fromNow() }} 
+                  on {{ moment(organizationStore.organization.ends_at).format('LL') }}
                 </p>
               </div>
             </div>
@@ -49,7 +50,8 @@
             </div>
             <div>
               <p class="text-sm color-contrast-low margin-bottom-xs">Tax information:</p>
-              <router-link :to="{name: 'subscription-plans'}" class="btn btn--subtle">Enter tax information</router-link>
+              <p>No tax information</p>
+              <!-- <router-link :to="{name: 'subscription-plans'}" class="btn btn--subtle">Enter tax information</router-link> -->
             </div>
           </div>
           

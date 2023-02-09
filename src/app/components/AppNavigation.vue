@@ -100,15 +100,6 @@
               </li>
             </ul>
           </li>
-          
-          <li class="f-header__item">
-            <router-link 
-              :to="{ name: 'sites', params: { organization: auth.organization}}" 
-              class="f-header__link"
-            >
-              Sites
-            </router-link>
-          </li>
 
           <li class="f-header__item">
             <RouterLink :to="{ name: 'content', params: { organization: auth.organization}}" class="f-header__link reset cursor-pointer">
@@ -128,6 +119,15 @@
                 </RouterLink>
               </li>
             </ul>
+          </li>
+          
+          <li class="f-header__item">
+            <router-link 
+              :to="{ name: 'sites', params: { organization: auth.organization}}" 
+              class="f-header__link"
+            >
+              Sites
+            </router-link>
           </li>
         </ul>
         
@@ -152,7 +152,7 @@
             <ul class="f-header__dropdown f-header__dropdown--on-right">
               <li class="f-header__dropdown-container">
                 <RouterLink :to="{ name: 'users' }" class="f-header__dropdown-link">People</RouterLink>
-                <!-- <RouterLink :to="{ name: 'settings' }" class="f-header__dropdown-link">Settings</RouterLink> -->
+                <RouterLink :to="{ name: 'settings' }" class="f-header__dropdown-link">Settings</RouterLink>
                 <RouterLink :to="{ name: 'logout' }" class="f-header__dropdown-link">Log out</RouterLink>
               </li>
             </ul>

@@ -4,7 +4,7 @@
       <h1 class="text-lg">Swap plan</h1>
     </div>
 
-    <div v-if="!organizationStore.isLoading" class="margin-bottom-md">
+    <div v-if="!organizationStore.isLoading && subscriptionStore.planAvailability" class="margin-bottom-md">
       <div v-for="plan in subscriptionStore.plans" :key="plan.id">
         <!-- Can swap -->
         <div v-if="subscriptionStore.planAvailability[plan.slug]" class="card card--shadow margin-bottom-sm flex gap-md items-center justify-between">
